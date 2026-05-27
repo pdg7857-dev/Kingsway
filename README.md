@@ -19,15 +19,19 @@ A dark-mode, AI-augmented operations dashboard for managing six businesses and p
 
 ## Getting started
 
+**Deploy to Vercel + Supabase (recommended):** see [`docs/DEPLOY_VERCEL.md`](./docs/DEPLOY_VERCEL.md).
+
+**Local dev:**
+
 ```bash
 # 1. install
 npm install
 
 # 2. configure
 cp .env.example .env
-# edit DATABASE_URL (Postgres) and any keys you want active
+# edit DATABASE_URL + DIRECT_URL (both can be the same local Postgres URL)
 
-# 3. db schema + seed (Postgres must be running)
+# 3. db schema + seed
 npm run db:push
 npm run db:seed
 
