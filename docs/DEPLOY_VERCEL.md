@@ -1,114 +1,155 @@
-# Deploy: Vercel + Supabase
+# Deploy from your phone — Vercel + Supabase
 
-End-to-end, ~10 minutes.
+End-to-end, ~15 minutes, no laptop needed. Every step is a tap-and-paste in a mobile browser.
 
-## 1. Supabase — provision the database
+> **Tip:** keep this guide open in one tab. Open Supabase, Vercel, and GitHub in their own tabs (or use the mobile apps).
 
-1. Go to https://supabase.com → **New project**.
+---
+
+## Step 1 · Supabase (the database)
+
+1. Open **supabase.com** and sign in (use Google).
+2. Tap **New project**.
    - Name: `ceo-command-os`
-   - Pick a region close to you, generate a strong DB password (save it).
-   - Free tier is fine.
-2. Wait for it to provision (~1 min).
-3. Open **Project Settings → Database → Connection string**:
-   - Copy the **Transaction pooler** URL (port `6543`, `?pgbouncer=true`) → this becomes `DATABASE_URL`.
-   - Copy the **Session pooler** or **Direct connection** URL (port `5432`) → this becomes `DIRECT_URL`.
-   - Both URLs need the password substituted into them.
+   - Database password: tap the generate button → **copy the password somewhere safe**.
+   - Region: pick one near you.
+   - Plan: Free.
+3. Wait ~60 seconds for provisioning.
+4. Tap **Project Settings** (gear icon) → **Database** → scroll to **Connection string**.
+5. You need to copy **two** different strings:
+   - **Transaction pooler** (port `6543`) → this is your `DATABASE_URL`.
+     - Toggle "Display connection pooler" if needed.
+     - Make sure the URL ends with `?pgbouncer=true` (Supabase usually adds it; if not, append it).
+   - **Session pooler or Direct connection** (port `5432`) → this is your `DIRECT_URL`.
+6. In each string, replace `[YOUR-PASSWORD]` with the password you saved.
 
-> Why two URLs? Serverless functions on Vercel reuse short-lived connections — the pooler handles that. Prisma migrations need a long-lived direct connection.
+Paste both URLs into a note for the next step.
 
-## 2. Vercel — import the repo
+---
 
-1. Go to https://vercel.com → **Add New… → Project**.
-2. Import `pdg7857-dev/kingsway`.
-3. On the import screen:
-   - **Framework**: Next.js (auto-detected).
-   - **Branch**: `claude/ceo-command-os-build-dCepC` (or merge to `main` first and use that).
-   - **Build command**: leave default (`npm run build` — already runs `prisma generate && next build`).
-   - **Root directory**: `.`
-4. **Environment Variables** — paste these now (at least the required ones):
+## Step 2 · Vercel (the app)
 
-| Key                  | Value                                              | Required |
-|----------------------|----------------------------------------------------|----------|
-| `DATABASE_URL`       | Supabase pooler URL (port 6543, `?pgbouncer=true`) | ✅ |
-| `DIRECT_URL`         | Supabase direct URL (port 5432)                    | ✅ |
-| `NEXTAUTH_URL`       | `https://<your-vercel-domain>.vercel.app`          | ✅ |
-| `NEXTAUTH_SECRET`    | Run `openssl rand -base64 32` and paste it         | ✅ |
-| `ANTHROPIC_API_KEY`  | from console.anthropic.com                         | turns AI on |
-| `GOOGLE_CLIENT_ID`   | from Google Cloud Console                          | for Gmail/Calendar |
-| `GOOGLE_CLIENT_SECRET` | from Google Cloud Console                        | for Gmail/Calendar |
-| `SLACK_WEBHOOK_URL`  | incoming webhook URL                               | for alerts |
-| `TWILIO_*`           | account sid / token / from number                  | for SMS |
-| `WHATSAPP_*`         | Meta cloud API token / phone id / verify token     | for WhatsApp |
-| `APP_TIMEZONE`       | `America/Los_Angeles`                              | optional |
+1. Open **vercel.com** and sign in with GitHub.
+2. Tap **Add New… → Project**.
+3. Find `pdg7857-dev/kingsway` in the list → tap **Import**.
+4. On the configure screen:
+   - Framework: Next.js (auto).
+   - Root directory: leave default.
+   - Branch (top-right): switch to **`claude/ceo-command-os-build-dCepC`** if it's not on `main` yet.
+5. Expand **Environment Variables** and add these. Paste the value for each:
 
-5. Click **Deploy**.
+| Name                | Value                                                              |
+|---------------------|--------------------------------------------------------------------|
+| `DATABASE_URL`      | Supabase **pooler** URL (port 6543, ends with `?pgbouncer=true`)   |
+| `DIRECT_URL`        | Supabase **direct/session** URL (port 5432)                        |
+| `NEXTAUTH_URL`      | leave blank for now; come back after deploy                        |
+| `NEXTAUTH_SECRET`   | any long random string — use a password generator app, 32+ chars   |
+| `SETUP_TOKEN`       | another long random string — you'll use this once in Step 4        |
+| `ANTHROPIC_API_KEY` | optional, but turns the AI on (console.anthropic.com → API keys)   |
 
-The first deploy will succeed but the app will 500 because the database is empty. That's step 3.
+6. Tap **Deploy**. Wait ~2 minutes.
 
-## 3. Initialize the database
+The app will deploy successfully. The pages will 500 until Step 4 (database has no tables yet).
 
-You have two clean options. Pick one.
+---
 
-### Option A — push schema from your laptop (recommended, one-time)
+## Step 3 · Set NEXTAUTH_URL
 
-```bash
-git pull origin claude/ceo-command-os-build-dCepC
-npm install
-# Paste your Supabase URLs (both!) into a local .env, then:
-DATABASE_URL="<DIRECT_URL value>" npx prisma db push
-DATABASE_URL="<DIRECT_URL value>" npx prisma db seed
-```
+1. When the deploy finishes, Vercel shows your production URL (something like `kingsway-abc123.vercel.app`).
+2. Tap your **Project → Settings → Environment Variables**.
+3. Find `NEXTAUTH_URL` → tap **Edit** → set it to your full URL **with `https://`**, e.g. `https://kingsway-abc123.vercel.app`.
+4. Tap **Save**.
+5. Go to **Deployments** → tap the latest → tap **⋯ → Redeploy** (no need to rebuild — toggle "Use existing build cache" on).
 
-> We point `DATABASE_URL` at the direct URL only for the push/seed because pgbouncer rejects prepared statements.
+---
 
-### Option B — Vercel CLI
+## Step 4 · Run the one-time setup
 
-```bash
-npm i -g vercel
-vercel link            # link the local folder to your Vercel project
-vercel env pull .env   # pulls all the env vars you set in step 2
-DATABASE_URL=$DIRECT_URL npx prisma db push
-DATABASE_URL=$DIRECT_URL npx prisma db seed
-```
-
-Either way, when finished you should see:
+In any browser tab, visit:
 
 ```
-✔ Generated Prisma Client
-✔ Your database is now in sync with your Prisma schema.
-Seed complete for pdg7857@gmail.com
+https://<your-vercel-domain>/api/setup?token=<your SETUP_TOKEN value>
 ```
 
-## 4. Redeploy / open the app
+Replace `<your-vercel-domain>` and `<your SETUP_TOKEN value>` with the actual values you set.
 
-Vercel will already be deployed from step 2. Just open the URL.
+You should see a JSON response like:
 
-- `/` — Master dashboard with the seeded data.
-- `/login` — currently falls back to the seeded operator user (real Google OAuth requires step 5).
-- `/ai` — AI Assistant. With `ANTHROPIC_API_KEY` set you'll get real responses; without it you get a deterministic fallback so the UI still works.
+```json
+{
+  "ok": true,
+  "steps": [
+    { "name": "schema", "ok": true, "detail": "init.sql applied" },
+    { "name": "seed", "ok": true, "detail": "user + businesses + sample data" }
+  ],
+  "next": "Open the root URL and start using the dashboard."
+}
+```
 
-## 5. Connect Google (optional but recommended)
+What this did, in one tap:
+- Created every table, enum, and index in your Supabase database (1077-line `prisma/init.sql`).
+- Seeded your operator user, six businesses, sample tasks, deals, expenses, fitness clients, content items, repair tickets, inventory, ideas, automations, and a starter AI daily briefing.
 
-In Google Cloud Console:
+**If you see "Invalid token"** — the `SETUP_TOKEN` you put in Vercel doesn't match what you put in the URL. Recheck both, no spaces.
 
-1. Create OAuth client (Web).
-2. Authorized redirect URI: `https://<your-vercel-domain>.vercel.app/api/auth/callback/google`
-3. Enable the Calendar and Gmail APIs on the project.
-4. Copy client id + secret into Vercel env vars; redeploy.
+**If you see a DB error** — your `DIRECT_URL` is wrong. Most common cause: password not substituted into the URL. Edit it in Vercel → Settings → Environment Variables, then redeploy and visit `/api/setup` again. Re-running is safe; the schema apply skips "already exists" and the seed is idempotent.
 
-## 6. Daily briefing cron
+---
 
-Add a Vercel Cron in **Project Settings → Cron Jobs**:
+## Step 5 · Open the dashboard
 
-| Path                                  | Schedule         |
-|---------------------------------------|------------------|
-| `/api/ai/briefing`                    | `30 13 * * *`    | (6:30am PT = 13:30 UTC) |
+Go to `https://<your-vercel-domain>/`. You'll land on the **Master Command** dashboard with all six businesses pre-populated.
 
-It POSTs to the briefing endpoint and persists a new `AIInsight` each morning.
+Try these:
+- `/` — master dashboard with every panel
+- `/ai` — AI Assistant (set `ANTHROPIC_API_KEY` for real responses)
+- `/business/lexus`, `/business/fitness`, etc.
+- `/tasks`, `/finance`, `/pipeline`, `/inventory`, `/ideas`
 
-## Troubleshooting
+---
 
-- **Build fails with "Can't reach database server"** — your `DATABASE_URL` is wrong or the pooler URL omits `?pgbouncer=true`. Pages with database calls are `force-dynamic` so they shouldn't run at build time; if you see this at request time, double-check the URL.
-- **`prepared statement "s0" already exists`** — you're running `prisma db push` against the pooler URL. Use the `DIRECT_URL` for schema operations.
-- **NextAuth: `[next-auth][error][NO_SECRET]`** — `NEXTAUTH_SECRET` isn't set.
-- **Vercel timeout (10s on free)** — most routes return in <1s; the AI briefing can take 5–10s. Upgrade to Pro for 60s functions if you hit limits.
+## Step 6 (optional) · Daily briefing cron
+
+In Vercel: **Project → Settings → Cron Jobs → Add**.
+
+| Path                | Schedule (UTC) | Equivalent |
+|---------------------|----------------|------------|
+| `/api/ai/briefing`  | `30 13 * * *`  | 6:30 am PT |
+
+Vercel will hit that endpoint every morning and persist a fresh briefing.
+
+---
+
+## Step 7 (optional) · Google sign-in
+
+If you want real Google auth (and Gmail/Calendar later):
+
+1. In Google Cloud Console → **OAuth consent screen** → set up External app.
+2. **Credentials → Create OAuth client → Web**.
+3. Authorized redirect URI: `https://<your-vercel-domain>/api/auth/callback/google`
+4. Enable **Google Calendar API** and **Gmail API** for the project.
+5. Copy Client ID + Secret into Vercel env (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`).
+6. Redeploy.
+
+You can do all of this from your phone too — the Google Cloud Console mobile site works.
+
+---
+
+## Common gotchas
+
+| Symptom                                            | Fix |
+|----------------------------------------------------|-----|
+| `Invalid token` on `/api/setup`                    | `SETUP_TOKEN` env var doesn't match the `?token=` you sent. |
+| `Can't reach database server`                      | Wrong `DIRECT_URL` (or password not substituted). |
+| `prepared statement "s0" already exists`           | You set `DATABASE_URL` to a non-pooler URL, or omitted `?pgbouncer=true`. |
+| Dashboard loads but everything is empty            | Seed didn't run. Re-hit `/api/setup` — it's safe to re-run. |
+| AI panel says "AI key not configured"              | Add `ANTHROPIC_API_KEY` in Vercel env and redeploy. |
+| `/login` only shows "Continue with Google" disabled| Add `GOOGLE_CLIENT_ID/SECRET` (Step 7) or just tap "Enter dashboard" — dev fallback uses the seeded operator. |
+
+---
+
+## After it works
+
+- Want to **disable the setup endpoint?** Delete `SETUP_TOKEN` from Vercel env and redeploy.
+- Want to **re-seed** (e.g., after schema changes)? Set a new `SETUP_TOKEN`, redeploy, hit the endpoint.
+- Want to **add an integration** (Slack/SMS/WhatsApp)? Add the env vars from `.env.example`, redeploy. Adapters in `src/lib/integrations/*.ts` light up automatically.
