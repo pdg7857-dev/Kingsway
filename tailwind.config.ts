@@ -15,28 +15,28 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Surface palette — deep slate / obsidian
+        // Surface palette — obsidian (near-black with a faint blue cast)
         bg: {
-          DEFAULT: "hsl(222 47% 5%)",
-          subtle: "hsl(222 40% 7%)",
-          panel: "hsl(222 36% 9%)",
-          raised: "hsl(222 32% 11%)",
-          hover: "hsl(222 28% 14%)",
+          DEFAULT: "hsl(222 44% 3.5%)",
+          subtle: "hsl(222 40% 5%)",
+          panel: "hsl(222 34% 7%)",
+          raised: "hsl(221 30% 9.5%)",
+          hover: "hsl(221 26% 13%)",
         },
         border: {
-          DEFAULT: "hsl(222 24% 17%)",
-          subtle: "hsl(222 20% 13%)",
+          DEFAULT: "hsl(220 22% 15%)",
+          subtle: "hsl(220 20% 11%)",
         },
         fg: {
-          DEFAULT: "hsl(210 40% 96%)",
-          muted: "hsl(215 16% 65%)",
-          subtle: "hsl(215 14% 45%)",
+          DEFAULT: "hsl(200 30% 97%)",
+          muted: "hsl(214 15% 62%)",
+          subtle: "hsl(216 14% 42%)",
         },
-        // Accent — neon-cyan / electric-violet for that AI-OS feel
+        // Accent — electric cyan with a glow
         accent: {
-          DEFAULT: "hsl(186 100% 55%)",
-          glow: "hsl(186 100% 65%)",
-          soft: "hsl(186 60% 20%)",
+          DEFAULT: "hsl(184 100% 52%)",
+          glow: "hsl(184 100% 64%)",
+          soft: "hsl(187 70% 16%)",
         },
         violet: {
           DEFAULT: "hsl(265 89% 66%)",
@@ -66,12 +66,15 @@ const config: Config = {
         "2xl": "1.125rem",
       },
       boxShadow: {
-        panel: "0 1px 0 hsl(222 30% 14%) inset, 0 8px 24px -16px hsl(222 60% 2% / 0.6)",
-        glow: "0 0 0 1px hsl(186 100% 55% / 0.4), 0 0 30px -5px hsl(186 100% 55% / 0.45)",
+        panel: "0 1px 0 hsl(220 30% 16% / 0.6) inset, 0 10px 30px -18px hsl(222 80% 1% / 0.8)",
+        glow: "0 0 0 1px hsl(184 100% 52% / 0.45), 0 0 28px -4px hsl(184 100% 52% / 0.5)",
+        lift: "0 12px 40px -20px hsl(222 90% 1% / 0.9)",
       },
       backgroundImage: {
         "grid-fade":
-          "radial-gradient(circle at 20% 0%, hsl(265 89% 66% / 0.10), transparent 40%), radial-gradient(circle at 80% 10%, hsl(186 100% 55% / 0.10), transparent 45%)",
+          "radial-gradient(circle at 20% 0%, hsl(265 89% 66% / 0.10), transparent 40%), radial-gradient(circle at 80% 10%, hsl(184 100% 52% / 0.10), transparent 45%)",
+        "hairline":
+          "linear-gradient(90deg, transparent, hsl(184 100% 52% / 0.5), transparent)",
       },
       keyframes: {
         shimmer: {

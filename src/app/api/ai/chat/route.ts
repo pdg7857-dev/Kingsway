@@ -3,6 +3,7 @@ import { aiClient, DEFAULT_MODEL } from "@/lib/ai/client";
 import { AGENTS } from "@/lib/ai/agents";
 import { requireCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { logAIUsage } from "@/lib/ai/usage";
 
 export const runtime = "nodejs";
 
@@ -35,6 +36,15 @@ export async function POST(req: NextRequest) {
   });
   const block = res.content.find((b) => b.type === "text");
   const content = block && "text" in block ? block.text : "(no response)";
+
+  await logAIUsage({
+    userId: user.id,
+    model: DEFAULT_MODEL,
+    agent: spec.kind,
+    feature: "chat",
+    inputTokens: res.usage?.input_tokens ?? 0,
+    outputTokens: res.usage?.output_tokens ?? 0,
+  });
 
   // Persist conversation snapshot for the AI history page
   try {

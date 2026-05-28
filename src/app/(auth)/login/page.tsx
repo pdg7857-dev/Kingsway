@@ -5,13 +5,13 @@ export default function LoginPage() {
   return (
     <div className="min-h-dvh grid place-items-center px-6">
       <div className="panel relative w-full max-w-md p-8 scanline">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-accent to-violet shadow-[0_0_20px_-4px_hsl(186_100%_55%_/_0.6)]">
-            <span className="font-mono text-[10px] font-bold text-bg">OS</span>
+        <div className="flex items-center gap-2.5 mb-6">
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-accent to-violet shadow-[0_0_24px_-4px_hsl(184_100%_52%_/_0.7)]">
+            <span className="font-mono text-xs font-bold text-bg">K</span>
           </div>
           <div className="leading-tight">
-            <div className="text-base font-semibold text-gradient-accent">CEO Command OS</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-fg-subtle">Operating System</div>
+            <div className="text-base font-semibold text-gradient-accent">Kingsway OS</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-fg-subtle">Command Center</div>
           </div>
         </div>
 

@@ -1,4 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { logAIUsage } from "./usage";
+
+export type AITrack = { userId: string; agent?: string; feature?: string };
 
 let _client: Anthropic | null = null;
 
@@ -21,15 +24,27 @@ export async function complete(opts: {
   prompt: string;
   model?: string;
   maxTokens?: number;
+  track?: AITrack;
 }): Promise<string | null> {
   const client = aiClient();
   if (!client) return null;
+  const model = opts.model ?? DEFAULT_MODEL;
   const res = await client.messages.create({
-    model: opts.model ?? DEFAULT_MODEL,
+    model,
     max_tokens: opts.maxTokens ?? 1024,
     system: opts.system,
     messages: [{ role: "user", content: opts.prompt }],
   });
+  if (opts.track) {
+    await logAIUsage({
+      userId: opts.track.userId,
+      model,
+      agent: opts.track.agent,
+      feature: opts.track.feature,
+      inputTokens: res.usage?.input_tokens ?? 0,
+      outputTokens: res.usage?.output_tokens ?? 0,
+    });
+  }
   const block = res.content.find((b) => b.type === "text");
   return block && "text" in block ? block.text : null;
 }
@@ -45,11 +60,13 @@ export async function completeWithImage(opts: {
   mediaType: "image/jpeg" | "image/png" | "image/webp" | "image/gif";
   model?: string;
   maxTokens?: number;
+  track?: AITrack;
 }): Promise<string | null> {
   const client = aiClient();
   if (!client) return null;
+  const model = opts.model ?? DEFAULT_MODEL;
   const res = await client.messages.create({
-    model: opts.model ?? DEFAULT_MODEL,
+    model,
     max_tokens: opts.maxTokens ?? 1024,
     system: opts.system,
     messages: [
@@ -62,6 +79,16 @@ export async function completeWithImage(opts: {
       },
     ],
   });
+  if (opts.track) {
+    await logAIUsage({
+      userId: opts.track.userId,
+      model,
+      agent: opts.track.agent,
+      feature: opts.track.feature,
+      inputTokens: res.usage?.input_tokens ?? 0,
+      outputTokens: res.usage?.output_tokens ?? 0,
+    });
+  }
   const block = res.content.find((b) => b.type === "text");
   return block && "text" in block ? block.text : null;
 }

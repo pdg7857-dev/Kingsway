@@ -33,10 +33,31 @@ export async function listGmailUnread(userId: string, max = 20) {
   const token = await getGoogleAccessToken(userId);
   if (!token) return { ok: false as const, reason: "Gmail not connected", messages: [] };
   const url = new URL("https://gmail.googleapis.com/gmail/v1/users/me/messages");
-  url.searchParams.set("q", "is:unread");
+  url.searchParams.set("q", "is:unread newer_than:14d");
   url.searchParams.set("maxResults", String(max));
   const res = await fetch(url.toString(), { headers: { Authorization: `Bearer ${token}` } });
   if (!res.ok) return { ok: false as const, reason: `HTTP ${res.status}`, messages: [] };
   const data = await res.json();
   return { ok: true as const, messages: data.messages ?? [] };
+}
+
+export async function getGmailMessage(token: string, id: string) {
+  const url = new URL(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${id}`);
+  url.searchParams.set("format", "metadata");
+  ["From", "Subject", "Date", "To"].forEach((h) => url.searchParams.append("metadataHeaders", h));
+  const res = await fetch(url.toString(), { headers: { Authorization: `Bearer ${token}` } });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const headers: Record<string, string> = {};
+  for (const h of data.payload?.headers ?? []) headers[h.name] = h.value;
+  return {
+    id: data.id as string,
+    threadId: data.threadId as string,
+    snippet: (data.snippet as string) ?? "",
+    from: headers.From ?? "",
+    to: headers.To ?? "",
+    subject: headers.Subject ?? "",
+    date: headers.Date ? new Date(headers.Date) : new Date(),
+    labels: (data.labelIds as string[]) ?? [],
+  };
 }

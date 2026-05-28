@@ -12,12 +12,13 @@
   }
   body {
     background-image:
-      radial-gradient(circle at 12% -10%, hsl(265 89% 66% / 0.10), transparent 45%),
-      radial-gradient(circle at 88% -5%, hsl(186 100% 55% / 0.08), transparent 50%),
-      linear-gradient(to bottom, hsl(222 47% 5%), hsl(222 47% 4%));
+      radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+      radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+      linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
+    background-attachment: fixed;
     min-height: 100dvh;
   }
-  ::selection { background: hsl(186 100% 55% / 0.35); }
+  ::selection { background: hsl(184 100% 52% / 0.30); color: white; }
   /* scrollbar */
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -27,13 +28,19 @@
 
 @layer components {
   .panel {
-    @apply rounded-2xl border border-border bg-bg-panel/70 backdrop-blur-md shadow-panel;
+    @apply relative rounded-2xl border border-border bg-bg-panel/60 backdrop-blur-xl shadow-panel transition-colors;
+  }
+  /* gradient hairline along the top edge of every panel */
+  .panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-5 top-0 h-px opacity-60;
+    background: linear-gradient(90deg, transparent, hsl(184 100% 52% / 0.45), transparent);
   }
   .panel-header {
-    @apply flex items-center justify-between gap-3 px-5 py-4 border-b border-border-subtle;
+    @apply flex items-center justify-between gap-3 px-5 py-3.5 border-b border-border-subtle;
   }
   .panel-title {
-    @apply text-sm font-medium uppercase tracking-[0.14em] text-fg-muted;
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-fg-muted;
   }
   .glow-border {
     @apply ring-1 ring-accent/40 shadow-glow;
@@ -45,13 +52,22 @@
     @apply inline-block h-2 w-2 rounded-full;
   }
   .stat-value {
-    @apply font-mono text-2xl font-semibold tracking-tight text-fg;
+    @apply font-mono text-[1.7rem] font-semibold tracking-tight text-fg tabular-nums;
+  }
+  .lift {
+    @apply transition-transform duration-200 hover:-translate-y-0.5;
   }
   .nav-item {
-    @apply flex items-center gap-3 rounded-xl px-3 py-2 text-[13px] text-fg-muted hover:bg-bg-hover hover:text-fg transition-colors;
+    @apply relative flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] text-fg-muted hover:bg-bg-hover hover:text-fg transition-all duration-150;
   }
   .nav-item-active {
-    @apply bg-bg-hover text-fg ring-1 ring-border;
+    @apply bg-accent-soft/30 text-fg;
+  }
+  /* cyan indicator bar on the active nav item */
+  .nav-item-active::before {
+    content: "";
+    @apply absolute left-0 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-r-full bg-accent;
+    box-shadow: 0 0 10px hsl(184 100% 52% / 0.8);
   }
   .pill {
     @apply inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium;

@@ -2,13 +2,13 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "CEO Command OS",
-  description: "Dark-mode AI operations system for managing every business and personal life.",
-  applicationName: "CEO Command OS",
+  title: "Kingsway OS",
+  description: "Dark-mode AI operating system for running every business and your personal life from one command center.",
+  applicationName: "Kingsway OS",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06080d",
+  themeColor: "#05070a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

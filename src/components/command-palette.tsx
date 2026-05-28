@@ -5,7 +5,7 @@ import { Command } from "cmdk";
 import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
-  Boxes, Zap, BarChart3, Sparkles, Bell, Search, Car, ReceiptText,
+  Boxes, Zap, BarChart3, Sparkles, Bell, Search, Car, ReceiptText, Mail, Coins, Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,12 +18,15 @@ const links = [
   { href: "/pipeline", label: "Sales pipeline", icon: Briefcase },
   { href: "/finance", label: "Finance", icon: Wallet },
   { href: "/receipts", label: "Scan receipt", icon: ReceiptText },
-  { href: "/mileage", label: "Mileage log", icon: Car },
+  { href: "/mileage", label: "Mileage & travel", icon: Car },
   { href: "/inventory", label: "Inventory", icon: Boxes },
+  { href: "/gmail", label: "Gmail", icon: Mail },
   { href: "/automations", label: "Automations", icon: Zap },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/ai", label: "AI Assistant", icon: Sparkles },
+  { href: "/ai-usage", label: "AI usage & spend", icon: Coins },
   { href: "/notifications", label: "Notifications", icon: Bell },
+  { href: "/settings", label: "Settings", icon: Settings },
 ];
 
 export function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void }) {

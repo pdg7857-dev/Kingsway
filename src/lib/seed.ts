@@ -305,13 +305,14 @@ export async function runSeed(prisma: PrismaClient, email = "pdg7857@gmail.com")
     ],
   });
 
-  // Mileage logs
+  // Mileage / travel logs (km + transport modes)
   await prisma.mileageLog.createMany({
     data: [
-      { userId: user.id, businessId: businessMap.lexus, fromLocation: "Dealership", toLocation: "Customer home (delivery)", reason: "RX 350 delivery", miles: 14.2, purpose: "BUSINESS", date: days(-2) },
-      { userId: user.id, businessId: businessMap.phone_repair, fromLocation: "Shop", toLocation: "Post office", reason: "Mail-in shipments", miles: 6.8, purpose: "BUSINESS", roundTrip: true, date: days(-1) },
-      { userId: user.id, businessId: businessMap.eprocurement, fromLocation: "Office", toLocation: "Apex Electrical LLC", reason: "Client onboarding meeting", miles: 22.5, purpose: "BUSINESS", date: days(-4) },
-      { userId: user.id, fromLocation: "Home", toLocation: "Gym", reason: "Training", miles: 3.1, purpose: "PERSONAL", date: days(-1) },
+      { userId: user.id, businessId: businessMap.lexus, fromLocation: "Dealership", toLocation: "Customer home (delivery)", reason: "RX 350 delivery", distanceKm: 22.8, miles: 14.2, transportMode: "CAR", purpose: "BUSINESS", date: days(-2) },
+      { userId: user.id, businessId: businessMap.phone_repair, fromLocation: "Shop", toLocation: "Post office", reason: "Mail-in shipments", distanceKm: 21.9, miles: 13.6, transportMode: "CAR", purpose: "BUSINESS", roundTrip: true, date: days(-1) },
+      { userId: user.id, businessId: businessMap.eprocurement, fromLocation: "Office", toLocation: "Client HQ (downtown)", reason: "Client onboarding meeting", distanceKm: 12.0, miles: 7.5, transportMode: "UBER", costCents: 2400, purpose: "BUSINESS", date: days(-4) },
+      { userId: user.id, businessId: businessMap.content, fromLocation: "Home city", toLocation: "Creator conference", reason: "Networking / filming", distanceKm: 1850, miles: 1149, transportMode: "PLANE", costCents: 32000, purpose: "BUSINESS", date: days(-12) },
+      { userId: user.id, fromLocation: "Home", toLocation: "Gym", reason: "Training", distanceKm: 5.0, miles: 3.1, transportMode: "CAR", purpose: "PERSONAL", date: days(-1) },
     ],
   });
 

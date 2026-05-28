@@ -241,6 +241,7 @@ model User {
   image         String?
   emailVerified DateTime?
   timezone      String    @default("America/Los_Angeles")
+  aiMonthlyBudgetCents Int @default(2000)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -281,6 +282,8 @@ model User {
   mileageLogs       MileageLog[]
   procurementClients ProcurementClient[]
   govContracts      GovContract[]
+  integrationCredentials IntegrationCredential[]
+  aiUsage           AIUsage[]
 }
 
 model Account {
@@ -1115,10 +1118,14 @@ model MileageLog {
   fromLocation String
   toLocation   String
   reason       String?
-  miles        Float
+  miles        Float          @default(0)
+  distanceKm   Float?
+  transportMode String        @default("CAR") // CAR | TRAIN | PLANE | UBER | TAXI | RIDESHARE | BUS | OTHER
   purpose      MileagePurpose @default(BUSINESS)
   vehicle      String?
-  ratePerMile  Float          @default(0.70) // IRS standard business rate
+  ratePerMile  Float          @default(0.70)
+  ratePerKm    Float?         @default(0.43)
+  costCents    Int?           // for train/plane/uber fares
   roundTrip    Boolean        @default(false)
   odometerStart Float?
   odometerEnd   Float?
@@ -1131,6 +1138,41 @@ model MileageLog {
 
   @@index([userId, date])
   @@index([userId, purpose])
+}
+
+model AIUsage {
+  id           String   @id @default(cuid())
+  userId       String
+  agent        String?
+  model        String
+  feature      String?  // chat | briefing | receipt | idea | contract | quickadd
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  costCents    Float    @default(0)
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model IntegrationCredential {
+  id          String   @id @default(cuid())
+  userId      String
+  provider    String   // icloud | google
+  label       String?
+  username    String?
+  secret      String?  // app-specific password / token
+  calendarUrl String?
+  remindersUrl String?
+  data        Json?
+  lastSyncAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, provider])
 }
 
 // ─────────────────────────────────────────────────────────────

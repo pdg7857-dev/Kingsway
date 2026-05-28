@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
-  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText,
+  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText, Mail, Coins,
 } from "lucide-react";
 
 const main = [
@@ -19,9 +19,11 @@ const main = [
   { href: "/receipts", label: "Receipts", icon: ReceiptText },
   { href: "/mileage", label: "Mileage", icon: Car },
   { href: "/inventory", label: "Inventory", icon: Boxes },
+  { href: "/gmail", label: "Gmail", icon: Mail },
   { href: "/automations", label: "Automations", icon: Zap },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/ai", label: "AI Assistant", icon: Sparkles },
+  { href: "/ai-usage", label: "AI Usage", icon: Coins },
   { href: "/notifications", label: "Notifications", icon: Bell },
 ];
 
@@ -29,13 +31,13 @@ export function Sidebar() {
   const pathname = usePathname();
   return (
     <aside className="hidden lg:flex sticky top-0 h-dvh w-[260px] shrink-0 flex-col border-r border-border bg-bg-subtle/60 backdrop-blur-md">
-      <div className="flex items-center gap-2 px-5 py-5">
-        <div className="relative grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-accent to-violet shadow-[0_0_20px_-4px_hsl(186_100%_55%_/_0.6)]">
-          <span className="font-mono text-[10px] font-bold text-bg">OS</span>
+      <div className="flex items-center gap-2.5 px-5 py-5">
+        <div className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-accent to-violet shadow-[0_0_24px_-4px_hsl(184_100%_52%_/_0.7)]">
+          <span className="font-mono text-[11px] font-bold text-bg">K</span>
         </div>
         <div className="leading-tight">
-          <div className="text-sm font-semibold text-gradient-accent">CEO Command</div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-fg-subtle">Operating System</div>
+          <div className="text-[15px] font-semibold tracking-tight text-gradient-accent">Kingsway OS</div>
+          <div className="text-[9px] uppercase tracking-[0.22em] text-fg-subtle">Command Center</div>
         </div>
       </div>
 

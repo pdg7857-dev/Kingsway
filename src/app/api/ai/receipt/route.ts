@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
     imageBase64: body.imageBase64,
     mediaType: body.mediaType,
     maxTokens: 800,
+    track: { userId: user.id, agent: "FINANCE", feature: "receipt" },
   });
 
   if (!text) {

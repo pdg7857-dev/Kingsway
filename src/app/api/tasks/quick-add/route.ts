@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
     system: `${AGENTS.MASTER.system}\nReturn ONLY a JSON object: {"title": string, "priority": "LOW"|"MEDIUM"|"HIGH"|"URGENT", "dueAt": ISO-8601 or null}. Today is ${new Date().toISOString()}.`,
     prompt: `Convert this freeform note into a task. Note: "${text}"`,
     maxTokens: 200,
+    track: { userId: user.id, agent: "MASTER", feature: "quickadd" },
   });
   if (ai) {
     try {

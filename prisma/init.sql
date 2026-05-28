@@ -72,6 +72,7 @@ CREATE TABLE "User" (
     "image" TEXT,
     "emailVerified" TIMESTAMP(3),
     "timezone" TEXT NOT NULL DEFAULT 'America/Los_Angeles',
+    "aiMonthlyBudgetCents" INTEGER NOT NULL DEFAULT 2000,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -767,10 +768,14 @@ CREATE TABLE "MileageLog" (
     "fromLocation" TEXT NOT NULL,
     "toLocation" TEXT NOT NULL,
     "reason" TEXT,
-    "miles" DOUBLE PRECISION NOT NULL,
+    "miles" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "distanceKm" DOUBLE PRECISION,
+    "transportMode" TEXT NOT NULL DEFAULT 'CAR',
     "purpose" "MileagePurpose" NOT NULL DEFAULT 'BUSINESS',
     "vehicle" TEXT,
     "ratePerMile" DOUBLE PRECISION NOT NULL DEFAULT 0.70,
+    "ratePerKm" DOUBLE PRECISION DEFAULT 0.43,
+    "costCents" INTEGER,
     "roundTrip" BOOLEAN NOT NULL DEFAULT false,
     "odometerStart" DOUBLE PRECISION,
     "odometerEnd" DOUBLE PRECISION,
@@ -779,6 +784,39 @@ CREATE TABLE "MileageLog" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "MileageLog_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AIUsage" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "agent" TEXT,
+    "model" TEXT NOT NULL,
+    "feature" TEXT,
+    "inputTokens" INTEGER NOT NULL DEFAULT 0,
+    "outputTokens" INTEGER NOT NULL DEFAULT 0,
+    "costCents" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AIUsage_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "IntegrationCredential" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "label" TEXT,
+    "username" TEXT,
+    "secret" TEXT,
+    "calendarUrl" TEXT,
+    "remindersUrl" TEXT,
+    "data" JSONB,
+    "lastSyncAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "IntegrationCredential_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -962,6 +1000,12 @@ CREATE INDEX "MileageLog_userId_date_idx" ON "MileageLog"("userId", "date");
 
 -- CreateIndex
 CREATE INDEX "MileageLog_userId_purpose_idx" ON "MileageLog"("userId", "purpose");
+
+-- CreateIndex
+CREATE INDEX "AIUsage_userId_createdAt_idx" ON "AIUsage"("userId", "createdAt");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "IntegrationCredential_userId_provider_key" ON "IntegrationCredential"("userId", "provider");
 
 -- CreateIndex
 CREATE INDEX "ProcurementClient_userId_status_idx" ON "ProcurementClient"("userId", "status");
@@ -1181,6 +1225,12 @@ ALTER TABLE "MileageLog" ADD CONSTRAINT "MileageLog_userId_fkey" FOREIGN KEY ("u
 
 -- AddForeignKey
 ALTER TABLE "MileageLog" ADD CONSTRAINT "MileageLog_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AIUsage" ADD CONSTRAINT "AIUsage_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IntegrationCredential" ADD CONSTRAINT "IntegrationCredential_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ProcurementClient" ADD CONSTRAINT "ProcurementClient_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

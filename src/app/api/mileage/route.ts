@@ -9,12 +9,14 @@ const create = z.object({
   fromLocation: z.string().min(1),
   toLocation: z.string().min(1),
   reason: z.string().optional().nullable(),
-  miles: z.coerce.number().positive(),
+  distanceKm: z.coerce.number().positive(),
+  transportMode: z.enum(["CAR", "TRAIN", "PLANE", "UBER", "TAXI", "RIDESHARE", "BUS", "OTHER"]).default("CAR"),
   purpose: z.enum(["BUSINESS", "PERSONAL"]).default("BUSINESS"),
   businessSlug: z.string().nullable().optional(),
   vehicle: z.string().optional().nullable(),
   roundTrip: z.boolean().optional(),
-  ratePerMile: z.coerce.number().optional(),
+  ratePerKm: z.coerce.number().optional(),
+  fareDollars: z.coerce.number().optional(),
   date: z.coerce.date().optional(),
 });
 
@@ -39,7 +41,7 @@ export async function POST(req: NextRequest) {
     businessId = biz?.id;
   }
 
-  const miles = body.roundTrip ? body.miles * 2 : body.miles;
+  const distanceKm = body.roundTrip ? body.distanceKm * 2 : body.distanceKm;
 
   const log = await prisma.mileageLog.create({
     data: {
@@ -48,11 +50,14 @@ export async function POST(req: NextRequest) {
       fromLocation: body.fromLocation,
       toLocation: body.toLocation,
       reason: body.reason ?? null,
-      miles,
+      distanceKm,
+      miles: distanceKm * 0.621371,
+      transportMode: body.transportMode,
       purpose: body.purpose,
       vehicle: body.vehicle ?? null,
       roundTrip: body.roundTrip ?? false,
-      ratePerMile: body.ratePerMile ?? 0.7,
+      ratePerKm: body.ratePerKm ?? 0.43,
+      costCents: body.fareDollars != null ? Math.round(body.fareDollars * 100) : null,
       date: body.date ?? new Date(),
     },
   });

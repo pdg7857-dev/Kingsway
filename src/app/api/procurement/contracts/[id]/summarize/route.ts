@@ -34,7 +34,7 @@ Produce TWO short sections in markdown:
 2. **Can they do it?** — a go/maybe/pass call with the 2-3 factors that decide it (capabilities, timeline, competition, certifications/set-asides).
 Keep the whole thing under 200 words.`;
 
-  const text = await complete({ system: SYSTEM, prompt, maxTokens: 700 });
+  const text = await complete({ system: SYSTEM, prompt, maxTokens: 700, track: { userId: user.id, agent: "EPROCUREMENT", feature: "contract" } });
   if (!text) {
     return NextResponse.json(
       { ok: false, error: "AI not configured. Set ANTHROPIC_API_KEY to generate contract summaries." },

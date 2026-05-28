@@ -3,6 +3,7 @@ import { Client } from "pg";
 import { PrismaClient } from "@prisma/client";
 import { runSeed } from "@/lib/seed";
 import { INIT_SQL } from "@/lib/initSql";
+import { MIGRATE_SQL } from "@/lib/migrateSql";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -69,6 +70,19 @@ async function handle(req: NextRequest) {
     }
   } finally {
     await client.end().catch(() => {});
+  }
+
+  // Step 1b: idempotent incremental migration (adds new columns/tables to
+  // already-provisioned databases). Always runs; safe on fresh installs too.
+  const migrateClient = new Client({ connectionString: directUrl, ssl: { rejectUnauthorized: false } });
+  try {
+    await migrateClient.connect();
+    await migrateClient.query(MIGRATE_SQL);
+    steps.push({ name: "migrate", ok: true, detail: "incremental migration applied" });
+  } catch (e: any) {
+    steps.push({ name: "migrate", ok: false, detail: String(e?.message ?? e) });
+  } finally {
+    await migrateClient.end().catch(() => {});
   }
 
   // Step 2: seed (uses Prisma → pooled URL → fine for inserts)

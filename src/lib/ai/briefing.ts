@@ -51,6 +51,7 @@ export async function generateDailyBriefing(userId: string) {
     system: AGENTS.MASTER.system,
     prompt,
     maxTokens: 1400,
+    track: { userId, agent: "MASTER", feature: "briefing" },
   });
 
   return text ?? fallbackBriefing(context);

@@ -21,19 +21,27 @@ export function KpiCard({ label, value, hint, delta, tone = "default", icon, cla
     warn: "ring-warn/40",
     danger: "ring-danger/40",
   };
+  const iconTint: Record<string, string> = {
+    default: "text-fg-muted",
+    accent: "text-accent",
+    violet: "text-violet",
+    success: "text-success",
+    warn: "text-warn",
+    danger: "text-danger",
+  };
   return (
     <div
       className={cn(
-        "panel relative overflow-hidden p-4 ring-1 transition-colors",
+        "panel lift overflow-hidden p-4 ring-1",
         ring[tone],
         className
       )}
     >
       <div className="flex items-center justify-between gap-3">
-        <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-fg-subtle">{label}</div>
-        {icon ? <div className="text-fg-muted">{icon}</div> : null}
+        <div className="text-[10.5px] font-medium uppercase tracking-[0.16em] text-fg-subtle">{label}</div>
+        {icon ? <div className={cn("grid h-7 w-7 place-items-center rounded-lg bg-bg-raised/70 ring-1 ring-border", iconTint[tone])}>{icon}</div> : null}
       </div>
-      <div className="mt-2 stat-value">{value}</div>
+      <div className="mt-2.5 stat-value">{value}</div>
       <div className="mt-1 flex items-center gap-2 text-xs">
         {typeof delta === "number" ? (
           <span

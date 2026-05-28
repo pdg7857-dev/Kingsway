@@ -1,6 +1,11 @@
 import { Topbar } from "@/components/layout/topbar";
 import { Panel, PanelHeader, PanelBody } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ICloudConnect } from "@/components/integrations/icloud-connect";
+import { requireCurrentUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
 
 const integrations = [
   { name: "Google Calendar", env: "GOOGLE_CLIENT_ID", purpose: "Two-way sync with internal calendar" },
@@ -13,11 +18,30 @@ const integrations = [
   { name: "Inngest", env: "INNGEST_EVENT_KEY", purpose: "Scheduled jobs + automations" },
 ];
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+  const user = await requireCurrentUser();
+  const icloud = await prisma.integrationCredential
+    .findUnique({ where: { userId_provider: { userId: user.id, provider: "icloud" } } })
+    .catch(() => null);
+
   return (
     <>
       <Topbar title="Settings" subtitle="Profile · integrations · notifications" />
       <div className="px-4 lg:px-6 py-4 space-y-4">
+        <Panel>
+          <PanelHeader title="iPhone — iCloud Calendar & Reminders" hint="Two-way sync via CalDAV" />
+          <PanelBody>
+            <ICloudConnect
+              connected={!!icloud}
+              username={icloud?.username ?? null}
+              lastSyncAt={icloud?.lastSyncAt ? icloud.lastSyncAt.toISOString() : null}
+            />
+            <p className="mt-3 text-[11px] text-fg-subtle">
+              On your iPhone, make sure iCloud Calendar &amp; Reminders are on (Settings → [your name] → iCloud). Kingsway events sync to your Calendar and tasks with due dates sync to Reminders. Events you create on your iPhone flow back here.
+            </p>
+          </PanelBody>
+        </Panel>
+
         <Panel>
           <PanelHeader title="Integrations" />
           <PanelBody>

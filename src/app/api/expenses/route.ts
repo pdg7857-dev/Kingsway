@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
       system: `${AGENTS.FINANCE.system}\nReturn ONLY JSON: {"vendor": string, "amountCents": int, "category": string}`,
       prompt: `Extract structured fields from this expense note: "${body.text}"`,
       maxTokens: 200,
+      track: { userId: user.id, agent: "FINANCE", feature: "expense" },
     });
     if (ai) {
       try {

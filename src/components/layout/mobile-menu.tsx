@@ -16,11 +16,15 @@ const sections: Array<{ title: string; items: { href: string; label: string }[] 
       { href: "/customers", label: "Customers" },
       { href: "/finance", label: "Finance" },
       { href: "/receipts", label: "Scan receipt" },
-      { href: "/mileage", label: "Mileage" },
+      { href: "/mileage", label: "Mileage & travel" },
       { href: "/inventory", label: "Inventory" },
+      { href: "/gmail", label: "Gmail" },
       { href: "/automations", label: "Automations" },
       { href: "/reports", label: "Reports" },
+      { href: "/ai", label: "AI Assistant" },
+      { href: "/ai-usage", label: "AI usage & spend" },
       { href: "/notifications", label: "Notifications" },
+      { href: "/settings", label: "Settings" },
     ],
   },
 ];
@@ -41,7 +45,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
         )}
       >
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-semibold text-gradient-accent">CEO Command</div>
+          <div className="text-sm font-semibold text-gradient-accent">Kingsway OS</div>
           <button onClick={onClose} className="rounded-md p-1 text-fg-muted hover:bg-bg-hover">
             <X className="h-4 w-4" />
           </button>

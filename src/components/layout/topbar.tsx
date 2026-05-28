@@ -13,7 +13,7 @@ export function Topbar({ title, subtitle }: { title?: string; subtitle?: string 
   const [showCmd, setShowCmd] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-bg-subtle/70 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-border bg-bg/60 backdrop-blur-xl">
       <div className="flex items-center gap-2 px-4 lg:px-6 py-3">
         <div className="min-w-0 flex-1">
           {title ? <h1 className="text-base font-semibold text-fg truncate">{title}</h1> : null}
@@ -46,7 +46,7 @@ export function Topbar({ title, subtitle }: { title?: string; subtitle?: string 
 
         <Button size="sm" variant="secondary" onClick={() => setShowAI(true)} className="gap-1.5">
           <Sparkles className="h-3.5 w-3.5 text-accent" />
-          <span className="hidden sm:inline">CEO AI</span>
+          <span className="hidden sm:inline">Kingsway AI</span>
         </Button>
       </div>
 

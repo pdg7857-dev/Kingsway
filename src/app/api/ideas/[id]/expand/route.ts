@@ -13,6 +13,7 @@ export async function POST(_req: NextRequest, { params }: { params: { id: string
     system: `${AGENTS.MASTER.system}\nExpand the idea. Return JSON: {"expansion": markdown string, "feasibility": 0-100, "nextActions": [string, ...]}`,
     prompt: `Idea: ${idea.title}\n${idea.body ?? ""}`,
     maxTokens: 800,
+    track: { userId: user.id, agent: "MASTER", feature: "idea" },
   });
   let expansion = text ?? "(AI offline — set ANTHROPIC_API_KEY.)";
   let feasibility: number | null = null;

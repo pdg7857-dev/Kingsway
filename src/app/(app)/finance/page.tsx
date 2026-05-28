@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { fmtCents, businessDotBg, cn } from "@/lib/utils";
 import { BUSINESS_BY_SLUG } from "@/lib/constants";
 import { Wallet, TrendingUp, TrendingDown, CreditCard } from "lucide-react";
+import { FinanceAdd } from "@/components/finance/finance-add";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +39,9 @@ export default async function FinancePage() {
     <>
       <Topbar title="Finance" subtitle="P&L · cash · credit · bills · forecasting" />
       <div className="px-4 lg:px-6 py-4 space-y-4">
+        <div className="flex justify-end">
+          <FinanceAdd />
+        </div>
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <KpiCard label="Revenue · 30d" value={fmtCents(totalRev)} tone="success" icon={<TrendingUp className="h-4 w-4" />} />
           <KpiCard label="Expenses · 30d" value={fmtCents(totalExp)} tone="warn" icon={<TrendingDown className="h-4 w-4" />} />
