@@ -12,8 +12,16 @@
 const BASE = "https://caldav.icloud.com";
 
 function authHeader(appleId: string, appPassword: string) {
-  return "Basic " + Buffer.from(`${appleId}:${appPassword}`).toString("base64");
+  return "Basic " + Buffer.from(`${appleId.trim()}:${appPassword.trim()}`).toString("base64");
 }
+
+const DAV_HEADERS = (auth: string, depth: string) => ({
+  Authorization: auth,
+  "Content-Type": "application/xml; charset=utf-8",
+  Depth: depth,
+  "User-Agent": "Kingsway-OS/1.0 (CalDAV)",
+  Accept: "application/xml, text/xml",
+});
 
 function tagBlocks(xml: string, tag: string): string[] {
   const re = new RegExp(`<(?:\\w+:)?${tag}\\b[\\s\\S]*?<\\/(?:\\w+:)?${tag}>`, "gi");
@@ -35,24 +43,37 @@ function resolveUrl(href: string, ref: string) {
 async function propfind(url: string, auth: string, body: string, depth = "0") {
   const res = await fetch(url, {
     method: "PROPFIND",
-    headers: { Authorization: auth, "Content-Type": "application/xml; charset=utf-8", Depth: depth },
+    headers: DAV_HEADERS(auth, depth),
     body,
+    redirect: "follow",
   });
   return { ok: res.ok || res.status === 207, status: res.status, text: await res.text() };
 }
 
+const snippet = (t: string) => (t || "").replace(/\s+/g, " ").slice(0, 180);
+
 export async function discoverICloud(appleId: string, appPassword: string) {
   const auth = authHeader(appleId, appPassword);
 
-  // 1) current-user-principal
-  const p1 = await propfind(
+  // 1) current-user-principal — try the bare host then the well-known path.
+  let p1 = await propfind(
     BASE + "/",
     auth,
     `<d:propfind xmlns:d="DAV:"><d:prop><d:current-user-principal/></d:prop></d:propfind>`
   );
-  if (!p1.ok) return { ok: false as const, reason: `Auth/discovery failed (HTTP ${p1.status}). Check your Apple ID and app-specific password.` };
+  if (p1.status === 401) {
+    return { ok: false as const, reason: "iCloud rejected the login (401). Use your Apple ID email and an APP-SPECIFIC password from appleid.apple.com — your normal Apple password won't work." };
+  }
+  if (!p1.ok) {
+    p1 = await propfind(
+      BASE + "/.well-known/caldav",
+      auth,
+      `<d:propfind xmlns:d="DAV:"><d:prop><d:current-user-principal/></d:prop></d:propfind>`
+    );
+  }
+  if (!p1.ok) return { ok: false as const, reason: `Discovery failed (HTTP ${p1.status}). Response: ${snippet(p1.text)}` };
   const principalHref = firstTag(firstTag(p1.text, "current-user-principal") ?? p1.text, "href");
-  if (!principalHref) return { ok: false as const, reason: "Could not find principal." };
+  if (!principalHref) return { ok: false as const, reason: `Could not find principal in iCloud response: ${snippet(p1.text)}` };
   const principalUrl = resolveUrl(principalHref, BASE);
 
   // 2) calendar-home-set
@@ -61,8 +82,9 @@ export async function discoverICloud(appleId: string, appPassword: string) {
     auth,
     `<d:propfind xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav"><d:prop><c:calendar-home-set/></d:prop></d:propfind>`
   );
+  if (!p2.ok) return { ok: false as const, reason: `Calendar-home lookup failed (HTTP ${p2.status}). Response: ${snippet(p2.text)}` };
   const homeHref = firstTag(firstTag(p2.text, "calendar-home-set") ?? p2.text, "href");
-  if (!homeHref) return { ok: false as const, reason: "Could not find calendar home." };
+  if (!homeHref) return { ok: false as const, reason: `Could not find calendar home: ${snippet(p2.text)}` };
   const homeUrl = resolveUrl(homeHref, principalUrl);
 
   // 3) list collections
@@ -101,7 +123,7 @@ async function putICS(collectionUrl: string, auth: string, uid: string, ics: str
   const url = collectionUrl.replace(/\/$/, "") + "/" + uid + ".ics";
   const res = await fetch(url, {
     method: "PUT",
-    headers: { Authorization: auth, "Content-Type": "text/calendar; charset=utf-8" },
+    headers: { Authorization: auth, "Content-Type": "text/calendar; charset=utf-8", "User-Agent": "Kingsway-OS/1.0 (CalDAV)" },
     body: ics,
   });
   return res.ok || res.status === 201 || res.status === 204;
@@ -157,7 +179,7 @@ export async function pullEvents(opts: {
   </c:comp-filter></c:comp-filter></c:filter></c:calendar-query>`;
   const res = await fetch(opts.calendarUrl, {
     method: "REPORT",
-    headers: { Authorization: auth, "Content-Type": "application/xml; charset=utf-8", Depth: "1" },
+    headers: DAV_HEADERS(auth, "1"),
     body,
   });
   if (!(res.ok || res.status === 207)) return { ok: false as const, events: [] };

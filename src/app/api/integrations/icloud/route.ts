@@ -31,7 +31,12 @@ export async function POST(req: NextRequest) {
   const user = await requireCurrentUser();
   const body = connect.parse(await req.json());
 
-  const disc = await discoverICloud(body.appleId, body.appPassword);
+  let disc;
+  try {
+    disc = await discoverICloud(body.appleId, body.appPassword);
+  } catch (e: any) {
+    return NextResponse.json({ ok: false, error: `Network error reaching iCloud: ${e?.message ?? e}` }, { status: 502 });
+  }
   if (!disc.ok) return NextResponse.json({ ok: false, error: disc.reason }, { status: 400 });
 
   await prisma.integrationCredential.upsert({
