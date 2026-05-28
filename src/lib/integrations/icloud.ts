@@ -52,17 +52,28 @@ async function propfind(url: string, auth: string, body: string, depth = "0") {
 
 const snippet = (t: string) => (t || "").replace(/\s+/g, " ").slice(0, 180);
 
-export async function discoverICloud(appleId: string, appPassword: string) {
-  const auth = authHeader(appleId, appPassword);
+export async function discoverICloud(appleId: string, appPasswordRaw: string) {
+  // iCloud shows app-specific passwords with dashes; some setups want them
+  // without. Try both forms so the dash format can't block the connection.
+  const variants = Array.from(new Set([
+    appPasswordRaw.trim(),
+    appPasswordRaw.replace(/[\s-]/g, ""),
+  ]));
 
-  // 1) current-user-principal — try the bare host then the well-known path.
-  let p1 = await propfind(
-    BASE + "/",
-    auth,
-    `<d:propfind xmlns:d="DAV:"><d:prop><d:current-user-principal/></d:prop></d:propfind>`
-  );
+  let auth = "";
+  let p1 = { ok: false, status: 0, text: "" } as { ok: boolean; status: number; text: string };
+  for (const pw of variants) {
+    auth = authHeader(appleId, pw);
+    p1 = await propfind(
+      BASE + "/",
+      auth,
+      `<d:propfind xmlns:d="DAV:"><d:prop><d:current-user-principal/></d:prop></d:propfind>`
+    );
+    if (p1.status !== 401) break;
+  }
+
   if (p1.status === 401) {
-    return { ok: false as const, reason: "iCloud rejected the login (401). Use your Apple ID email and an APP-SPECIFIC password from appleid.apple.com — your normal Apple password won't work." };
+    return { ok: false as const, reason: "iCloud rejected the login (401). Use your Apple ID email and an APP-SPECIFIC password from appleid.apple.com (Sign-In & Security → App-Specific Passwords). Your normal Apple password and your device passcode won't work, and your Apple ID needs two-factor authentication enabled." };
   }
   if (!p1.ok) {
     p1 = await propfind(
@@ -109,7 +120,9 @@ export async function discoverICloud(appleId: string, appPassword: string) {
   }
 
   if (!calendarUrl && !remindersUrl) return { ok: false as const, reason: "No calendars or reminder lists found." };
-  return { ok: true as const, principalUrl, calendarUrl, remindersUrl };
+  // return the password form that actually authenticated, so sync reuses it
+  const workingPassword = Buffer.from(auth.replace(/^Basic\s+/, ""), "base64").toString("utf8").split(":").slice(1).join(":");
+  return { ok: true as const, principalUrl, calendarUrl, remindersUrl, appPassword: workingPassword };
 }
 
 function icalEscape(s: string) {

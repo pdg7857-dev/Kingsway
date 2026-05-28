@@ -39,11 +39,13 @@ export async function POST(req: NextRequest) {
   }
   if (!disc.ok) return NextResponse.json({ ok: false, error: disc.reason }, { status: 400 });
 
+  const workingPassword = disc.appPassword ?? body.appPassword;
+
   await prisma.integrationCredential.upsert({
     where: { userId_provider: { userId: user.id, provider: "icloud" } },
     update: {
       username: body.appleId,
-      secret: body.appPassword,
+      secret: workingPassword,
       calendarUrl: disc.calendarUrl,
       remindersUrl: disc.remindersUrl,
       data: { principalUrl: disc.principalUrl },
@@ -53,7 +55,7 @@ export async function POST(req: NextRequest) {
       provider: "icloud",
       label: "iCloud",
       username: body.appleId,
-      secret: body.appPassword,
+      secret: workingPassword,
       calendarUrl: disc.calendarUrl,
       remindersUrl: disc.remindersUrl,
       data: { principalUrl: disc.principalUrl },
