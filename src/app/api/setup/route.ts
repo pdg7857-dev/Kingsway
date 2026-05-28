@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Client } from "pg";
-import fs from "fs";
-import path from "path";
 import { PrismaClient } from "@prisma/client";
 import { runSeed } from "@/lib/seed";
+import { INIT_SQL } from "@/lib/initSql";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,17 +45,8 @@ async function handle(req: NextRequest) {
 
   const steps: { name: string; ok: boolean; detail?: string }[] = [];
 
-  // Step 1: run schema migration
-  const sqlPath = path.join(process.cwd(), "prisma", "init.sql");
-  let sql: string;
-  try {
-    sql = fs.readFileSync(sqlPath, "utf8");
-  } catch (e: any) {
-    return NextResponse.json(
-      { ok: false, error: `Could not read prisma/init.sql: ${e?.message ?? e}` },
-      { status: 500 }
-    );
-  }
+  // Step 1: run schema migration (SQL is embedded at build time)
+  const sql = INIT_SQL;
 
   const client = new Client({ connectionString: directUrl, ssl: { rejectUnauthorized: false } });
   try {

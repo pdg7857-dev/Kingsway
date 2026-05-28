@@ -4,9 +4,6 @@ const nextConfig = {
   experimental: {
     serverActions: { bodySizeLimit: "2mb" },
   },
-  outputFileTracingIncludes: {
-    "/api/setup": ["./prisma/init.sql"],
-  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "**" },
