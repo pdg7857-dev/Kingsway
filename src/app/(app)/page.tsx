@@ -31,6 +31,7 @@ export default async function MasterDashboard() {
       content: "hsl(280 90% 65%)",
       phone_repair: "hsl(38 92% 58%)",
       supplements: "hsl(186 100% 55%)",
+      eprocurement: "hsl(214 95% 62%)",
       personal: "hsl(215 28% 65%)",
     };
     return {

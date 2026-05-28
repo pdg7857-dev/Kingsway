@@ -23,6 +23,7 @@ enum BusinessSlug {
   phone_repair
   supplements
   personal
+  eprocurement
 }
 
 enum Priority {
@@ -165,6 +166,31 @@ enum IdeaStatus {
   ARCHIVED
 }
 
+enum MileagePurpose {
+  BUSINESS
+  PERSONAL
+}
+
+enum ProcurementStatus {
+  LEAD
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+  ACTIVE
+  PAUSED
+  CHURNED
+}
+
+enum GovContractStatus {
+  FOUND
+  SUMMARIZED
+  SENT
+  PURCHASED
+  PASSED
+}
+
 enum AgentKind {
   MASTER
   FINANCE
@@ -175,6 +201,7 @@ enum AgentKind {
   CONTENT
   PHONE_REPAIR
   SUPPLEMENT
+  EPROCUREMENT
   PERSONAL
 }
 
@@ -251,6 +278,9 @@ model User {
   habits            Habit[]
   goals             Goal[]
   financialAccounts FinancialAccount[]
+  mileageLogs       MileageLog[]
+  procurementClients ProcurementClient[]
+  govContracts      GovContract[]
 }
 
 model Account {
@@ -318,6 +348,9 @@ model Business {
   repairTickets     RepairTicket[]
   fitnessClients    FitnessClient[]
   supplementProducts SupplementProduct[]
+  mileageLogs       MileageLog[]
+  procurementClients ProcurementClient[]
+  govContracts      GovContract[]
 
   @@unique([userId, slug])
 }
@@ -575,6 +608,7 @@ model Expense {
   vendor        String
   description   String?
   amountCents   Int
+  taxCents      Int?
   currency      String         @default("USD")
   date          DateTime
   dueAt         DateTime?
@@ -1067,4 +1101,96 @@ model Document {
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────────────────────────────────────────
+// Mileage tracker
+// ─────────────────────────────────────────────────────────────
+
+model MileageLog {
+  id           String         @id @default(cuid())
+  userId       String
+  businessId   String?
+  date         DateTime       @default(now())
+  fromLocation String
+  toLocation   String
+  reason       String?
+  miles        Float
+  purpose      MileagePurpose @default(BUSINESS)
+  vehicle      String?
+  ratePerMile  Float          @default(0.70) // IRS standard business rate
+  roundTrip    Boolean        @default(false)
+  odometerStart Float?
+  odometerEnd   Float?
+  notes        String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business? @relation(fields: [businessId], references: [id])
+
+  @@index([userId, date])
+  @@index([userId, purpose])
+}
+
+// ─────────────────────────────────────────────────────────────
+// eProcurement consulting
+// ─────────────────────────────────────────────────────────────
+
+model ProcurementClient {
+  id            String            @id @default(cuid())
+  userId        String
+  businessId    String?
+  name          String
+  company       String?
+  email         String?
+  phone         String?
+  industry      String?
+  status        ProcurementStatus @default(LEAD)
+  touchCount    Int               @default(0)
+  touchesToSign Int?              // observed touches before they signed
+  monthlyFeeCents Int             @default(25000) // $250/mo default
+  businessInfo  String?           @db.Text
+  notes         String?           @db.Text
+  lostReason    String?
+  signedAt      DateTime?
+  lastTouchAt   DateTime?
+  nextTouchAt   DateTime?
+  renewalAt     DateTime?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business  Business?     @relation(fields: [businessId], references: [id])
+  contracts GovContract[]
+
+  @@index([userId, status])
+  @@index([userId, industry])
+}
+
+model GovContract {
+  id            String            @id @default(cuid())
+  userId        String
+  businessId    String?
+  clientId      String?
+  title         String
+  agency        String?
+  industry      String?
+  solicitationNumber String?
+  url           String?
+  valueCents    Int?
+  responseDueAt DateTime?
+  summary       String?           @db.Text
+  fitAssessment String?           @db.Text
+  status        GovContractStatus @default(FOUND)
+  notes         String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  user     User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business?          @relation(fields: [businessId], references: [id])
+  client   ProcurementClient? @relation(fields: [clientId], references: [id])
+
+  @@index([userId, status])
+  @@index([userId, industry])
 }

@@ -13,6 +13,7 @@ export const BUSINESSES: Array<{
   { slug: "content",      name: "Social Content",     short: "Content",     emoji: "🎬", href: "/business/content",      dot: "bg-biz-content" },
   { slug: "phone_repair", name: "Phone Repair",       short: "Repair",      emoji: "📱", href: "/business/phone-repair", dot: "bg-biz-phone" },
   { slug: "supplements",  name: "Supplements",        short: "Supplements", emoji: "💊", href: "/business/supplements",  dot: "bg-biz-supplements" },
+  { slug: "eprocurement", name: "eProcurement",       short: "eProc",       emoji: "📑", href: "/business/eprocurement", dot: "bg-biz-eprocurement" },
   { slug: "personal",     name: "Personal",           short: "Personal",    emoji: "👤", href: "/business/personal",     dot: "bg-biz-personal" },
 ];
 

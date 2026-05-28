@@ -36,6 +36,8 @@ All authenticated routes live under the `(app)` segment with a shared shell (sid
 - `/leads` — Lead list with source + status.
 - `/pipeline` — Kanban deal pipeline.
 - `/finance` — Money OS. Tabs: Overview · Expenses · Revenue · Credit Cards · Bills · Forecast.
+- `/receipts` — AI receipt scanner. Snap/upload a photo → extracts vendor, total, tax, date, card → files an expense.
+- `/mileage` — Mileage tracker. From/to, reason, business vs personal, auto IRS deduction estimate.
 - `/inventory` — Inventory across businesses, filterable.
 - `/automations` — List + builder.
 - `/reports` — Daily / weekly / monthly / business / pipeline / content / retention / inventory.
@@ -49,6 +51,7 @@ All authenticated routes live under the `(app)` segment with a shared shell (sid
 - `/business/content`
 - `/business/phone-repair`
 - `/business/supplements`
+- `/business/eprocurement` — gov-contract consulting: client pipeline w/ touch counts, retainer MRR, contract feed with AI summaries
 - `/business/personal`
 
 Each business dashboard has:

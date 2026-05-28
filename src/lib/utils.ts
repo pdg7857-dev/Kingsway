@@ -60,6 +60,7 @@ export const businessTone: Record<string, string> = {
   content: "text-biz-content",
   phone_repair: "text-biz-phone",
   supplements: "text-biz-supplements",
+  eprocurement: "text-biz-eprocurement",
   personal: "text-biz-personal",
 };
 
@@ -69,5 +70,6 @@ export const businessDotBg: Record<string, string> = {
   content: "bg-biz-content",
   phone_repair: "bg-biz-phone",
   supplements: "bg-biz-supplements",
+  eprocurement: "bg-biz-eprocurement",
   personal: "bg-biz-personal",
 };

@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "BusinessSlug" AS ENUM ('lexus', 'fitness', 'content', 'phone_repair', 'supplements', 'personal');
+CREATE TYPE "BusinessSlug" AS ENUM ('lexus', 'fitness', 'content', 'phone_repair', 'supplements', 'personal', 'eprocurement');
 
 -- CreateEnum
 CREATE TYPE "Priority" AS ENUM ('LOW', 'MEDIUM', 'HIGH', 'URGENT');
@@ -47,7 +47,16 @@ CREATE TYPE "FitnessClientStatus" AS ENUM ('LEAD', 'ONBOARDING', 'ACTIVE', 'PAUS
 CREATE TYPE "IdeaStatus" AS ENUM ('INBOX', 'EXPLORING', 'VALIDATED', 'CONVERTED', 'ARCHIVED');
 
 -- CreateEnum
-CREATE TYPE "AgentKind" AS ENUM ('MASTER', 'FINANCE', 'EMAIL', 'CALENDAR', 'SALES', 'FITNESS', 'CONTENT', 'PHONE_REPAIR', 'SUPPLEMENT', 'PERSONAL');
+CREATE TYPE "MileagePurpose" AS ENUM ('BUSINESS', 'PERSONAL');
+
+-- CreateEnum
+CREATE TYPE "ProcurementStatus" AS ENUM ('LEAD', 'CONTACTED', 'QUALIFIED', 'PROPOSAL', 'WON', 'LOST', 'ACTIVE', 'PAUSED', 'CHURNED');
+
+-- CreateEnum
+CREATE TYPE "GovContractStatus" AS ENUM ('FOUND', 'SUMMARIZED', 'SENT', 'PURCHASED', 'PASSED');
+
+-- CreateEnum
+CREATE TYPE "AgentKind" AS ENUM ('MASTER', 'FINANCE', 'EMAIL', 'CALENDAR', 'SALES', 'FITNESS', 'CONTENT', 'PHONE_REPAIR', 'SUPPLEMENT', 'EPROCUREMENT', 'PERSONAL');
 
 -- CreateEnum
 CREATE TYPE "InsightKind" AS ENUM ('DAILY_BRIEFING', 'WEEKLY_REVIEW', 'MONTHLY_REPORT', 'RISK_ALERT', 'OPPORTUNITY', 'SUMMARY', 'ACTION_TAKEN');
@@ -319,6 +328,7 @@ CREATE TABLE "Expense" (
     "vendor" TEXT NOT NULL,
     "description" TEXT,
     "amountCents" INTEGER NOT NULL,
+    "taxCents" INTEGER,
     "currency" TEXT NOT NULL DEFAULT 'USD',
     "date" TIMESTAMP(3) NOT NULL,
     "dueAt" TIMESTAMP(3),
@@ -748,6 +758,79 @@ CREATE TABLE "Document" (
     CONSTRAINT "Document_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "MileageLog" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "businessId" TEXT,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "fromLocation" TEXT NOT NULL,
+    "toLocation" TEXT NOT NULL,
+    "reason" TEXT,
+    "miles" DOUBLE PRECISION NOT NULL,
+    "purpose" "MileagePurpose" NOT NULL DEFAULT 'BUSINESS',
+    "vehicle" TEXT,
+    "ratePerMile" DOUBLE PRECISION NOT NULL DEFAULT 0.70,
+    "roundTrip" BOOLEAN NOT NULL DEFAULT false,
+    "odometerStart" DOUBLE PRECISION,
+    "odometerEnd" DOUBLE PRECISION,
+    "notes" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "MileageLog_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ProcurementClient" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "businessId" TEXT,
+    "name" TEXT NOT NULL,
+    "company" TEXT,
+    "email" TEXT,
+    "phone" TEXT,
+    "industry" TEXT,
+    "status" "ProcurementStatus" NOT NULL DEFAULT 'LEAD',
+    "touchCount" INTEGER NOT NULL DEFAULT 0,
+    "touchesToSign" INTEGER,
+    "monthlyFeeCents" INTEGER NOT NULL DEFAULT 25000,
+    "businessInfo" TEXT,
+    "notes" TEXT,
+    "lostReason" TEXT,
+    "signedAt" TIMESTAMP(3),
+    "lastTouchAt" TIMESTAMP(3),
+    "nextTouchAt" TIMESTAMP(3),
+    "renewalAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ProcurementClient_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "GovContract" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "businessId" TEXT,
+    "clientId" TEXT,
+    "title" TEXT NOT NULL,
+    "agency" TEXT,
+    "industry" TEXT,
+    "solicitationNumber" TEXT,
+    "url" TEXT,
+    "valueCents" INTEGER,
+    "responseDueAt" TIMESTAMP(3),
+    "summary" TEXT,
+    "fitAssessment" TEXT,
+    "status" "GovContractStatus" NOT NULL DEFAULT 'FOUND',
+    "notes" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "GovContract_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -873,6 +956,24 @@ CREATE INDEX "Automation_userId_enabled_idx" ON "Automation"("userId", "enabled"
 
 -- CreateIndex
 CREATE INDEX "Report_userId_createdAt_idx" ON "Report"("userId", "createdAt");
+
+-- CreateIndex
+CREATE INDEX "MileageLog_userId_date_idx" ON "MileageLog"("userId", "date");
+
+-- CreateIndex
+CREATE INDEX "MileageLog_userId_purpose_idx" ON "MileageLog"("userId", "purpose");
+
+-- CreateIndex
+CREATE INDEX "ProcurementClient_userId_status_idx" ON "ProcurementClient"("userId", "status");
+
+-- CreateIndex
+CREATE INDEX "ProcurementClient_userId_industry_idx" ON "ProcurementClient"("userId", "industry");
+
+-- CreateIndex
+CREATE INDEX "GovContract_userId_status_idx" ON "GovContract"("userId", "status");
+
+-- CreateIndex
+CREATE INDEX "GovContract_userId_industry_idx" ON "GovContract"("userId", "industry");
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -1074,4 +1175,25 @@ ALTER TABLE "Report" ADD CONSTRAINT "Report_userId_fkey" FOREIGN KEY ("userId") 
 
 -- AddForeignKey
 ALTER TABLE "Document" ADD CONSTRAINT "Document_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MileageLog" ADD CONSTRAINT "MileageLog_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MileageLog" ADD CONSTRAINT "MileageLog_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProcurementClient" ADD CONSTRAINT "ProcurementClient_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProcurementClient" ADD CONSTRAINT "ProcurementClient_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GovContract" ADD CONSTRAINT "GovContract_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GovContract" ADD CONSTRAINT "GovContract_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "GovContract" ADD CONSTRAINT "GovContract_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "ProcurementClient"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 

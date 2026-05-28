@@ -15,6 +15,7 @@ const BUSINESS_SEEDS: Array<{
   { slug: "content", name: "Social Content", description: "IG / TikTok / YouTube / FB content engine", color: "biz-content", emoji: "🎬" },
   { slug: "phone_repair", name: "Phone Repair & Resale", description: "Repair tickets, buybacks, resale", color: "biz-phone", emoji: "📱" },
   { slug: "supplements", name: "Supplements", description: "Inventory, manufacturing, subscriptions", color: "biz-supplements", emoji: "💊" },
+  { slug: "eprocurement", name: "eProcurement Consulting", description: "Gov-contract sourcing + summaries, $250/mo retainers", color: "biz-eprocurement", emoji: "📑" },
   { slug: "personal", name: "Personal", description: "Personal life, finance, habits, goals", color: "biz-personal", emoji: "👤" },
 ];
 
@@ -254,6 +255,63 @@ export async function runSeed(prisma: PrismaClient, email = "pdg7857@gmail.com")
       { userId: user.id, title: "Hit 50k MRR across coaching + supplements", area: "business", progress: 38 },
       { userId: user.id, title: "Net worth +25% YoY", area: "personal", progress: 17 },
       { userId: user.id, title: "Publish 4x/week on all platforms", area: "content", progress: 62 },
+      { userId: user.id, title: "Land 20 eProcurement retainers (5k MRR)", area: "business", progress: 15 },
+    ],
+  });
+
+  // eProcurement clients + contracts
+  const procClients = await Promise.all([
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Karen Diaz", company: "Apex Electrical LLC", industry: "Electrical contracting", status: "ACTIVE", touchCount: 4, touchesToSign: 4, monthlyFeeCents: 25000, signedAt: days(-40), lastTouchAt: days(-3), renewalAt: days(20), businessInfo: "Licensed electrical contractor, 12 employees, SAM registered, no set-aside certs yet.", notes: "Wants small-dollar facilities contracts to start." },
+    }),
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Marcus Webb", company: "Webb HVAC Services", industry: "Electrical contracting", status: "ACTIVE", touchCount: 6, touchesToSign: 6, monthlyFeeCents: 25000, signedAt: days(-15), lastTouchAt: days(-2), renewalAt: days(45), businessInfo: "HVAC + electrical, WOSB-eligible (owner's wife), strong bonding capacity.", notes: "High intent, responsive. Good case study candidate." },
+    }),
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Priya Nair", company: "Voltline Co", industry: "Electrical contracting", status: "PROPOSAL", touchCount: 3, monthlyFeeCents: 25000, lastTouchAt: days(-1), notes: "Sent proposal, waiting on partner sign-off. Follow up in 2 days." },
+    }),
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Tom Bauer", company: "Bauer Electric", industry: "Electrical contracting", status: "QUALIFIED", touchCount: 2, monthlyFeeCents: 25000, lastTouchAt: days(-4), notes: "Qualified, needs a sample contract summary to see value." },
+    }),
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Lena Ortiz", company: "Ortiz Power Systems", industry: "Electrical contracting", status: "LEAD", touchCount: 1, monthlyFeeCents: 25000, lastTouchAt: days(-6), notes: "Cold outreach replied. Book a discovery call." },
+    }),
+    prisma.procurementClient.create({
+      data: { userId: user.id, businessId: businessMap.eprocurement, name: "Greg Pope", company: "Pope Contracting", industry: "Electrical contracting", status: "LOST", touchCount: 5, monthlyFeeCents: 25000, lostReason: "Went with an in-house bid writer.", lastTouchAt: days(-25) },
+    }),
+  ]);
+
+  await prisma.govContract.createMany({
+    data: [
+      { userId: user.id, businessId: businessMap.eprocurement, clientId: procClients[0].id, title: "Electrical maintenance — VA Medical Center", agency: "Dept. of Veterans Affairs", industry: "Electrical contracting", solicitationNumber: "36C24625R0042", valueCents: 18_500_000, responseDueAt: days(11), status: "SENT", summary: "**Summary**\n- Recurring electrical preventive maintenance at a VA hospital campus.\n- 12-month base + 4 option years.\n- Requires licensed electricians + after-hours coverage.\n- Estimated $185k/yr." },
+      { userId: user.id, businessId: businessMap.eprocurement, clientId: procClients[1].id, title: "HVAC/Electrical upgrade — Army Reserve Center", agency: "U.S. Army Corps of Engineers", industry: "Electrical contracting", solicitationNumber: "W912DR25B0007", valueCents: 42_000_000, responseDueAt: days(19), status: "SUMMARIZED" },
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Switchgear replacement — Federal Courthouse", agency: "GSA", industry: "Electrical contracting", solicitationNumber: "47PE0125R0011", valueCents: 76_000_000, responseDueAt: days(28), status: "FOUND" },
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Emergency generator service contract", agency: "Dept. of Homeland Security", industry: "Electrical contracting", valueCents: 9_900_000, responseDueAt: days(6), status: "FOUND" },
+    ],
+  });
+
+  await prisma.task.createMany({
+    data: [
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Follow up with Voltline on proposal", priority: "HIGH", dueAt: days(2), status: "TODO" },
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Send sample contract summary to Bauer Electric", priority: "HIGH", dueAt: hours(20), status: "TODO" },
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Summarize switchgear solicitation (GSA)", priority: "MEDIUM", dueAt: days(3), status: "TODO" },
+      { userId: user.id, businessId: businessMap.eprocurement, title: "Book discovery call — Ortiz Power Systems", priority: "MEDIUM", dueAt: days(1), status: "TODO" },
+    ],
+  });
+
+  await prisma.revenue.createMany({
+    data: [
+      { userId: user.id, businessId: businessMap.eprocurement, source: "Retainers — 2 active clients", amountCents: 50000, date: days(-5) },
+    ],
+  });
+
+  // Mileage logs
+  await prisma.mileageLog.createMany({
+    data: [
+      { userId: user.id, businessId: businessMap.lexus, fromLocation: "Dealership", toLocation: "Customer home (delivery)", reason: "RX 350 delivery", miles: 14.2, purpose: "BUSINESS", date: days(-2) },
+      { userId: user.id, businessId: businessMap.phone_repair, fromLocation: "Shop", toLocation: "Post office", reason: "Mail-in shipments", miles: 6.8, purpose: "BUSINESS", roundTrip: true, date: days(-1) },
+      { userId: user.id, businessId: businessMap.eprocurement, fromLocation: "Office", toLocation: "Apex Electrical LLC", reason: "Client onboarding meeting", miles: 22.5, purpose: "BUSINESS", date: days(-4) },
+      { userId: user.id, fromLocation: "Home", toLocation: "Gym", reason: "Training", miles: 3.1, purpose: "PERSONAL", date: days(-1) },
     ],
   });
 

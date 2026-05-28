@@ -5,7 +5,7 @@ import { Command } from "cmdk";
 import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
-  Boxes, Zap, BarChart3, Sparkles, Bell, Search,
+  Boxes, Zap, BarChart3, Sparkles, Bell, Search, Car, ReceiptText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,8 @@ const links = [
   { href: "/customers", label: "Customers", icon: Users },
   { href: "/pipeline", label: "Sales pipeline", icon: Briefcase },
   { href: "/finance", label: "Finance", icon: Wallet },
+  { href: "/receipts", label: "Scan receipt", icon: ReceiptText },
+  { href: "/mileage", label: "Mileage log", icon: Car },
   { href: "/inventory", label: "Inventory", icon: Boxes },
   { href: "/automations", label: "Automations", icon: Zap },
   { href: "/reports", label: "Reports", icon: BarChart3 },

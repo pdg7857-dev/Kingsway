@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
-  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2,
+  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText,
 } from "lucide-react";
 
 const main = [
@@ -16,6 +16,8 @@ const main = [
   { href: "/pipeline", label: "Pipeline", icon: Briefcase },
   { href: "/customers", label: "Customers", icon: Users },
   { href: "/finance", label: "Finance", icon: Wallet },
+  { href: "/receipts", label: "Receipts", icon: ReceiptText },
+  { href: "/mileage", label: "Mileage", icon: Car },
   { href: "/inventory", label: "Inventory", icon: Boxes },
   { href: "/automations", label: "Automations", icon: Zap },
   { href: "/reports", label: "Reports", icon: BarChart3 },

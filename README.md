@@ -3,7 +3,9 @@
 A dark-mode, AI-augmented operations dashboard for managing six businesses and personal life from a single command center.
 
 - **Master dashboard** with daily AI briefing, today's priorities, money, alerts, calendar, inboxes, ideas, business health.
-- **Six business dashboards** — Lexus sales, fitness coaching, content, phone repair, supplements, personal.
+- **Seven business dashboards** — Lexus sales, fitness coaching, content, phone repair, supplements, eProcurement consulting, personal.
+- **Receipt scanner** — snap a photo on mobile; Claude vision extracts vendor/total/tax/date/card and files an expense.
+- **Mileage tracker** — from/to + reason, business vs personal, automatic IRS-rate deduction estimate.
 - **Global modules** — Tasks, Ideas, Calendar, Pipeline, Customers, Finance, Inventory, Automations, Reports, Notifications, AI Assistant.
 - **10 AI agents** — one Master CEO Agent + 9 specialized agents (Finance, Email, Calendar, Sales, Fitness, Content, Phone Repair, Supplement, Personal).
 - **Integration adapters** for Google Calendar, Gmail, WhatsApp Cloud API, Twilio SMS, Slack — gated behind env vars.

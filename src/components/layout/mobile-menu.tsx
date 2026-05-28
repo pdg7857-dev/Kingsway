@@ -15,6 +15,8 @@ const sections: Array<{ title: string; items: { href: string; label: string }[] 
       { href: "/pipeline", label: "Pipeline" },
       { href: "/customers", label: "Customers" },
       { href: "/finance", label: "Finance" },
+      { href: "/receipts", label: "Scan receipt" },
+      { href: "/mileage", label: "Mileage" },
       { href: "/inventory", label: "Inventory" },
       { href: "/automations", label: "Automations" },
       { href: "/reports", label: "Reports" },
