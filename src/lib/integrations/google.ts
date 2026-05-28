@@ -12,7 +12,38 @@ export async function getGoogleAccessToken(userId: string): Promise<string | nul
     where: { userId, provider: "google" },
     orderBy: { id: "desc" },
   });
-  return acct?.access_token ?? null;
+  if (!acct?.access_token) return null;
+
+  const now = Math.floor(Date.now() / 1000);
+  // token still valid (>60s left) — use it
+  if (acct.expires_at && acct.expires_at > now + 60) return acct.access_token;
+
+  // expired (or no expiry recorded) — refresh if we can
+  if (!acct.refresh_token || !process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    return acct.access_token;
+  }
+  try {
+    const res = await fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        grant_type: "refresh_token",
+        refresh_token: acct.refresh_token,
+      }),
+    });
+    if (!res.ok) return acct.access_token;
+    const data = await res.json();
+    if (!data.access_token) return acct.access_token;
+    await prisma.account.update({
+      where: { id: acct.id },
+      data: { access_token: data.access_token, expires_at: now + (data.expires_in ?? 3600) },
+    });
+    return data.access_token as string;
+  } catch {
+    return acct.access_token;
+  }
 }
 
 export async function listCalendarEvents(userId: string, params: { timeMin: Date; timeMax: Date }) {
