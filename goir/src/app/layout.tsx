@@ -16,13 +16,15 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Link the brand back to the marketing site when deployed alongside it.
+  const marketingUrl = process.env.NEXT_PUBLIC_MARKETING_URL || "/";
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className="font-sans antialiased">
         <div className="min-h-dvh flex flex-col">
           <header className="sticky top-0 z-40 border-b border-border-subtle bg-bg/70 backdrop-blur-xl">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
-              <Link href="/" className="flex items-center gap-2.5">
+              <Link href={marketingUrl} className="flex items-center gap-2.5">
                 <div className="relative grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-accent to-violet shadow-[0_0_20px_-4px_hsl(184_100%_52%_/_0.7)]">
                   <span className="font-mono text-[11px] font-bold text-bg">GO</span>
                 </div>
