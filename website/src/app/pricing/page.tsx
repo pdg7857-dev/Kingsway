@@ -19,7 +19,11 @@ const PRICING_FAQS = [
   },
   {
     q: "What counts as a jurisdiction?",
-    a: "A province or a state. Federal opportunities (CanadaBuys and SAM.gov, GSA eBuy and the rest) are bundled into National coverage in each country, and I can add federal to a smaller plan when it makes sense for you.",
+    a: "A province or a state. State and local opportunities (counties, cities, school and special districts) are covered at every plan level for the states you choose.",
+  },
+  {
+    q: "How do I get federal or U.S. military contract coverage?",
+    a: "In the United States, federal and military / Department of Defense contracts (SAM.gov, GSA eBuy and the rest) are included only on the National plan. The single-state, regional and multi-state plans cover state and local work. If federal or military work is your focus, National is the plan for you. In Canada, federal procurement (CanadaBuys) is included with National coverage.",
   },
   {
     q: "Can I cover both Canada and the United States?",

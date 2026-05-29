@@ -84,9 +84,14 @@ function PlanCard({ plan }: { plan: Plan }) {
           </li>
         ))}
       </ul>
+      {plan.footnote && (
+        <p className="mt-4 rounded-md bg-paper-soft px-3 py-2 text-xs leading-snug text-slate-500">
+          {plan.footnote}
+        </p>
+      )}
       <Link
         href={SITE.bookingUrl}
-        className={`mt-6 w-full ${plan.featured ? "btn-primary" : "btn-ghost"} py-2.5`}
+        className={`mt-4 w-full ${plan.featured ? "btn-primary" : "btn-ghost"} py-2.5`}
       >
         Start with this plan
       </Link>

@@ -12,6 +12,8 @@ export type Plan = {
   features: string[];
   featured?: boolean;
   startingAt?: boolean;
+  /** Small clarifying line under the features (e.g. federal/military rules). */
+  footnote?: string;
 };
 
 export const INCLUDED_EVERYWHERE: string[] = [
@@ -76,22 +78,23 @@ export const USA_PLANS: Plan[] = [
     name: "Single State Coverage",
     price: "$599",
     priceNote: "/month",
-    scope: "One state",
+    scope: "One state (state & local)",
     blurb: "Full intelligence coverage for your home state.",
     features: [
       "Monitoring across every platform serving your state",
-      "Opportunity discovery & screening",
+      "State, county, municipal & special-district opportunities",
       "Bid document review",
       "Fit qualification",
       "Opportunity summaries",
       "Direct bid links",
     ],
+    footnote: "State and local only. Federal and U.S. military / DoD contracts require National coverage.",
   },
   {
     name: "Regional Coverage",
     price: "$999",
     priceNote: "/month",
-    scope: "2-4 states",
+    scope: "2-4 states (state & local)",
     blurb: "For contractors working a regional cluster of states.",
     features: [
       "Everything in Single State",
@@ -100,12 +103,13 @@ export const USA_PLANS: Plan[] = [
       "Consolidated weekly intelligence",
       "Priority on time-sensitive opportunities",
     ],
+    footnote: "State and local only. Federal and U.S. military / DoD contracts require National coverage.",
   },
   {
     name: "Multi-State Coverage",
     price: "$1,499",
     priceNote: "/month",
-    scope: "5-12 states",
+    scope: "5-12 states (state & local)",
     blurb: "Built for regional and national field operations.",
     featured: true,
     features: [
@@ -114,21 +118,24 @@ export const USA_PLANS: Plan[] = [
       "Portfolio-level prioritization",
       "Dedicated intelligence cadence",
     ],
+    footnote: "State and local only. Federal and U.S. military / DoD contracts require National coverage.",
   },
   {
     name: "National Coverage",
     price: "$2,999",
     priceNote: "/month",
     startingAt: true,
-    scope: "All states + federal",
-    blurb: "Nationwide coverage including federal procurement.",
+    scope: "All states + federal & military",
+    blurb: "Nationwide coverage, including federal and U.S. military contracts.",
     features: [
       "Everything in Multi-State",
       "All 50 states",
-      "Federal opportunities (SAM.gov, GSA eBuy & more)",
+      "Federal contracts (SAM.gov, GSA eBuy & more)",
+      "U.S. military and Department of Defense contracts",
       "Priority intelligence",
       "Dedicated intelligence cadence",
     ],
+    footnote: "The only U.S. plan that includes federal and military / DoD coverage.",
   },
 ];
 

@@ -34,6 +34,8 @@ export function PlatformAuthority({ slug }: { slug: string }) {
   const related = PLATFORMS.filter((x) => x.slug !== platform.slug && x.country === platform.country).slice(0, 3);
   const industries = platform.industries.map(getIndustry).filter(Boolean).slice(0, 5);
   const path = platformPath(platform.slug);
+  // U.S. federal and military platforms are covered on the National plan only.
+  const isUsFederal = ["sam-gov", "gsa-ebuy", "usaspending"].includes(platform.slug);
 
   return (
     <>
@@ -176,8 +178,17 @@ export function PlatformAuthority({ slug }: { slug: string }) {
           <p className="eyebrow justify-center">Coverage</p>
           <h2 className="mt-3 text-3xl font-semibold text-ink">Simple, public pricing</h2>
           <p className="mt-4 text-lg text-slate-600">
-            {platform.shortName} monitoring is included in every coverage plan for the jurisdictions
-            you choose. No per-platform fees.
+            {isUsFederal ? (
+              <>
+                {platform.shortName} is U.S. federal coverage, included with the National plan, which
+                adds federal and U.S. military contracts on top of all 50 states. No per-platform fees.
+              </>
+            ) : (
+              <>
+                {platform.shortName} monitoring is included in every coverage plan for the jurisdictions
+                you choose. No per-platform fees.
+              </>
+            )}
           </p>
         </div>
         <div className="mt-12">
