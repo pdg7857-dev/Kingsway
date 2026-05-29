@@ -34,6 +34,7 @@ export default async function OiDashboard() {
         <div className="flex gap-2">
           <Link href="/oi/prospects" className="pill bg-accent-soft text-accent ring-1 ring-accent/30">All prospects →</Link>
           <Link href="/oi/waste" className="pill bg-bg-raised text-fg-muted ring-1 ring-border">Waste calculator</Link>
+          <a href="/goii" target="_blank" rel="noreferrer" className="pill bg-bg-raised text-fg-muted ring-1 ring-border">Public site ↗</a>
         </div>
       </div>
 
