@@ -2,6 +2,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { Panel, PanelHeader, PanelBody } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ICloudConnect } from "@/components/integrations/icloud-connect";
+import { TestAlertButton } from "@/components/settings/test-alert-button";
 import { requireCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -38,6 +39,19 @@ export default async function SettingsPage() {
             />
             <p className="mt-3 text-[11px] text-fg-subtle">
               On your iPhone, make sure iCloud Calendar &amp; Reminders are on (Settings → [your name] → iCloud). Kingsway events sync to your Calendar and tasks with due dates sync to Reminders. Events you create on your iPhone flow back here.
+            </p>
+          </PanelBody>
+        </Panel>
+
+        <Panel>
+          <PanelHeader title="Alerts & daily briefing" hint="SMS via Twilio · daily text at 6:30am" />
+          <PanelBody className="space-y-3">
+            <p className="text-sm text-fg-muted">
+              SMS alerts go to <code>ALERT_TO_NUMBER</code> via Twilio. The daily briefing runs every morning (Vercel cron) and texts you a summary with the day's overdue tasks, bills due soon, low stock, and AI-budget warnings.
+            </p>
+            <TestAlertButton />
+            <p className="text-[11px] text-fg-subtle">
+              To enable: add <code>TWILIO_ACCOUNT_SID</code>, <code>TWILIO_AUTH_TOKEN</code>, <code>TWILIO_FROM_NUMBER</code>, and <code>ALERT_TO_NUMBER</code> in Vercel, then redeploy. Slack is optional via <code>SLACK_WEBHOOK_URL</code>.
             </p>
           </PanelBody>
         </Panel>
