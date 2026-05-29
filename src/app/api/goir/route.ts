@@ -4,6 +4,8 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { runGoir } from "@/lib/goir/engine";
 import { generateNarrative } from "@/lib/goir/narrative";
+import { goirEmail } from "@/lib/goir/email";
+import { sendEmail } from "@/lib/integrations/email";
 import type { GoirInput } from "@/lib/goir/types";
 
 export const runtime = "nodejs";
@@ -82,7 +84,16 @@ export async function POST(req: NextRequest) {
       },
       select: { id: true },
     });
-    return NextResponse.json({ ok: true, id: report.id });
+
+    // Email the report link to the prospect (no-op when email isn't configured).
+    const origin = (() => {
+      try { return new URL(req.url).origin; } catch { return process.env.NEXTAUTH_URL ?? ""; }
+    })();
+    const reportUrl = `${origin}/goir/${report.id}`;
+    const { subject, html, text } = goirEmail(result, reportUrl);
+    const mail = await sendEmail({ to: input.email, subject, html, text }).catch(() => ({ ok: false }));
+
+    return NextResponse.json({ ok: true, id: report.id, emailed: !!(mail as any).ok });
   } catch (e: any) {
     return NextResponse.json(
       { ok: false, error: `Could not save report: ${e?.message ?? e}` },
