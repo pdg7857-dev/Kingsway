@@ -27,6 +27,17 @@ const sections: Array<{ title: string; items: { href: string; label: string }[] 
       { href: "/settings", label: "Settings" },
     ],
   },
+  {
+    title: "Opportunity Intelligence",
+    items: [
+      { href: "/oi", label: "OI Dashboard" },
+      { href: "/oi/prospects", label: "Prospects" },
+      { href: "/oi/renewals", label: "Renewals" },
+      { href: "/oi/buyers", label: "Buyers" },
+      { href: "/oi/platforms", label: "Platforms" },
+      { href: "/oi/waste", label: "Waste Calculator" },
+    ],
+  },
 ];
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {

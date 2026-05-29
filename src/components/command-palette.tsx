@@ -6,11 +6,18 @@ import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
   Boxes, Zap, BarChart3, Sparkles, Bell, Search, Car, ReceiptText, Mail, Coins, Settings,
+  Gauge, Target, CalendarClock, Building2, Layers, Flame,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Master Dashboard", icon: LayoutDashboard },
+  { href: "/oi", label: "Opportunity Intelligence", icon: Gauge },
+  { href: "/oi/prospects", label: "OI · Prospects", icon: Target },
+  { href: "/oi/renewals", label: "OI · Renewals", icon: CalendarClock },
+  { href: "/oi/buyers", label: "OI · Buyers", icon: Building2 },
+  { href: "/oi/platforms", label: "OI · Platforms", icon: Layers },
+  { href: "/oi/waste", label: "OI · Waste Calculator", icon: Flame },
   { href: "/tasks", label: "Tasks", icon: ListTodo },
   { href: "/calendar", label: "Calendar", icon: Calendar },
   { href: "/ideas", label: "Ideas inbox", icon: Lightbulb },
