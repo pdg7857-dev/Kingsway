@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "git": { "deploymentEnabled": { "claude/gov-opportunity-intelligence-site-4mTJ7": true } }
+}
