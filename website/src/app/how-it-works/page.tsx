@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Search, FileSearch, Filter, Send, ArrowRight, Clock } from "lucide-react";
 import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
+import { VideoFeature } from "@/components/site/video-feature";
 import { LeadForm } from "@/components/site/lead-form";
 import { FaqAccordion } from "@/components/site/faq";
 import { SITE } from "@/lib/site/config";
@@ -184,6 +185,8 @@ export default function HowItWorksPage() {
           <LeadForm variant="call" />
         </div>
       </Section>
+
+      <VideoFeature heading="See how it works, in two minutes" />
 
       {/* FAQ */}
       <Section muted>

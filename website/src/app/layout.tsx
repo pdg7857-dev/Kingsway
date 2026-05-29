@@ -8,13 +8,13 @@ import { JsonLd, organizationJsonLd } from "@/lib/site/seo";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: "Government Opportunity Intelligence | Phil finds the bids worth winning",
-    template: "%s | Phil, Government Opportunity Intelligence",
+    default: "Government Opportunity Intelligence | Phil Dave finds the bids worth winning",
+    template: "%s | Phil Dave, Government Opportunity Intelligence",
   },
   description:
-    "Phil monitors every procurement platform, reads the documents and qualifies the fit, so contractors across Canada and the U.S. stop searching portals and start bidding the work that is worth winning.",
+    "Phil Dave monitors every procurement platform, reads the documents and qualifies the fit, so contractors across Canada and the U.S. stop wasting estimator time and bid only the work worth winning.",
   applicationName: SITE.brandFull,
-  authors: [{ name: "Phil" }],
+  authors: [{ name: "Phil Dave" }],
   robots: { index: true, follow: true },
 };
 

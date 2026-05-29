@@ -5,6 +5,9 @@ import {
   Building2, Sparkles, ArrowRight, CheckCircle2,
 } from "lucide-react";
 import { Section, SectionHead, StatStrip, CtaBand, FeatureCard } from "@/components/site/ui";
+import { TrustBar } from "@/components/site/trust-bar";
+import { VideoFeature } from "@/components/site/video-feature";
+import { StatCallout } from "@/components/site/cite";
 import { CostCalculator } from "@/components/site/cost-calculator";
 import { PricingTables } from "@/components/site/pricing-tables";
 import { FaqAccordion } from "@/components/site/faq";
@@ -34,9 +37,9 @@ export default function HomePage() {
               <span className="block text-brand-300">I focus on finding them.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              I am Phil. I watch every procurement platform that matters, read the bid documents,
-              and qualify the fit, so your estimators stop drowning in portals and notifications
-              and start working only the opportunities worth pursuing.
+              I am Phil Dave. I watch every procurement platform that matters, read the bid
+              documents, and qualify the fit, so your estimators stop drowning in portals and
+              notifications and start working only the opportunities worth pursuing.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3.5 text-base">
@@ -88,13 +91,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Authority / logos band */}
+      {/* Authority / credentials band */}
       <section className="border-b border-line bg-paper-soft">
         <div className="container py-10">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          <TrustBar />
+          <p className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
             Fluent in the platforms your buyers actually use
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-ink-600">
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-ink-600">
             {["MERX", "BidNet Direct", "CanadaBuys", "SAM.gov", "Bonfire", "Biddingo", "bids&tenders", "PlanetBids", "GSA eBuy"].map(
               (n) => (
                 <span key={n} className="opacity-80">{n}</span>
@@ -103,6 +107,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Intro video */}
+      <VideoFeature heading="Meet Phil Dave" />
 
       {/* Problem */}
       <Section muted>
@@ -182,7 +189,12 @@ export default function HomePage() {
           title="The search has a price. You are already paying it."
           lede="Every hour an estimator or proposal manager spends monitoring portals, opening documents and triaging alerts is an hour not spent winning. Here is what that hour is worth."
         />
-        <div className="mx-auto mt-12 max-w-4xl">
+        <div className="mx-auto mt-10 max-w-3xl">
+          <StatCallout id="response-hours" />
+          <StatCallout id="estimator-hiring" />
+          <StatCallout id="blended-rate" />
+        </div>
+        <div className="mx-auto mt-4 max-w-4xl">
           <CostCalculator />
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">

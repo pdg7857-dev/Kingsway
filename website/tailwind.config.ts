@@ -72,8 +72,9 @@ const config: Config = {
         lift: "0 24px 60px -28px rgba(11,27,58,0.35)",
       },
       borderRadius: {
-        xl: "0.9rem",
-        "2xl": "1.25rem",
+        lg: "0.5rem",
+        xl: "0.7rem",
+        "2xl": "0.95rem",
       },
       keyframes: {
         "fade-up": {

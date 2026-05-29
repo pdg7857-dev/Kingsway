@@ -21,6 +21,7 @@ import {
   StatStrip,
   Pill,
 } from "@/components/site/ui";
+import { VideoFeature } from "@/components/site/video-feature";
 import { SITE } from "@/lib/site/config";
 import {
   pageMeta,
@@ -30,9 +31,9 @@ import {
 } from "@/lib/site/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "About Phil: Government Opportunity Intelligence",
+  title: "About Phil Dave: Government Opportunity Intelligence",
   description:
-    "I am Phil. I find, read and qualify government contract opportunities across Canada and the U.S. so you bid the work worth winning instead of searching procurement portals all day.",
+    "I am Phil Dave. I find, read and qualify government contract opportunities across Canada and the U.S. so you bid the work worth winning instead of searching procurement portals all day.",
   path: "/about",
   keywords: [
     "government opportunity intelligence",
@@ -67,7 +68,7 @@ export default function AboutPage() {
               I find the government work worth bidding. You go win it.
             </h1>
             <p className="mt-5 text-lg leading-8 text-slate-300">
-              I am Phil. I spend my days inside the platforms where governments post their work, and
+              I am Phil Dave. I spend my days inside the platforms where governments post their work, and
               I have spent years learning how each one really behaves. I monitor them, read the
               documents, and qualify the fit, so the opportunities that land on your desk are the
               ones actually worth your estimator's time.
@@ -87,7 +88,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Who Phil is / what he does */}
+      {/* Who Phil Dave is / what he does */}
       <Section>
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
@@ -328,6 +329,8 @@ export default function AboutPage() {
           </div>
         </div>
       </Section>
+
+      <VideoFeature heading="Meet Phil Dave" />
 
       <CtaBand />
     </>

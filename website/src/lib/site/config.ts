@@ -7,9 +7,11 @@
  */
 
 export const SITE = {
-  // Phil-first personal brand.
-  brand: "Phil",
-  brandFull: "Phil, Government Opportunity Intelligence",
+  // Personal authority brand.
+  brand: "Phil Dave",
+  brandFull: "Phil Dave, Government Opportunity Intelligence",
+  // Square monogram used in the seal/logo lockup.
+  monogram: "PD",
   tagline: "Government Opportunity Intelligence",
   // First-person promise that runs through the whole site.
   promise: "You focus on winning contracts. I focus on finding them.",
@@ -21,6 +23,17 @@ export const SITE = {
   bookingUrl: "/book",
   sampleUrl: "/sample-opportunity",
   founded: 2014,
+  /**
+   * Intro video. Drop in a YouTube, Vimeo or direct .mp4 URL and it goes live
+   * everywhere the VideoFeature appears (home, about, how it works). While
+   * `url` is null, a polished "coming soon" placeholder renders in its place.
+   */
+  video: {
+    url: null as string | null,
+    poster: null as string | null, // optional poster image path in /public
+    title: "Meet Phil Dave",
+    caption: "Two minutes on what I do, how it works, and why it changes your bidding.",
+  },
 } as const;
 
 export type NavItem = { label: string; href: string; children?: NavItem[] };

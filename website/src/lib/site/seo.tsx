@@ -46,7 +46,7 @@ export function organizationJsonLd(): Json {
       "Government procurement", "Bid monitoring", "MERX", "BidNet Direct",
       "CanadaBuys", "SAM.gov", "Government opportunity intelligence",
     ],
-    founder: { "@type": "Person", name: "Phil" },
+    founder: { "@type": "Person", name: "Phil Dave" },
   };
 }
 
