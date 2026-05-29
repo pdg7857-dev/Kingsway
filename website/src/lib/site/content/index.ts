@@ -1,5 +1,6 @@
 import type { LongForm, Section } from "./types";
 import { PLATFORM_FACTS, type PlatformFacts } from "./platform-facts";
+import { CORNERSTONE_CONTENT } from "./cornerstones";
 import { getPlatform } from "../platforms";
 
 /**
@@ -155,6 +156,8 @@ function buildFromFacts(slug: string): LongForm {
 
 /** Public accessor used by the platform page. */
 export function getPlatformLongForm(slug: string): LongForm | null {
+  // Cornerstone platforms have hand-authored deep bodies that take precedence.
+  if (CORNERSTONE_CONTENT[slug]) return CORNERSTONE_CONTENT[slug];
   if (!PLATFORM_FACTS[slug]) return null;
   return buildFromFacts(slug);
 }
