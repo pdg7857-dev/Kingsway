@@ -8,6 +8,7 @@
 export type PlatformCategory =
   | "Canadian aggregator"
   | "Canadian government"
+  | "U.S. aggregator"
   | "U.S. federal"
   | "eProcurement SaaS"
   | "Market intelligence";
@@ -49,11 +50,11 @@ export const PLATFORMS: Platform[] = [
     slug: "bidnet-direct",
     name: "BidNet Direct",
     shortName: "BidNet Direct",
-    category: "Canadian aggregator",
-    country: "Both",
+    category: "U.S. aggregator",
+    country: "United States",
     priority: 1,
     oneLiner:
-      "A regional purchasing-group network used by hundreds of agencies across the U.S. and Canada to post solicitations.",
+      "A U.S. regional purchasing-group network used by hundreds of state and local agencies to post solicitations and notify vendors.",
     keywords: [
       "bidnet direct consultant", "bidnet direct expert", "bidnet monitoring",
       "bidnet opportunities", "bidnet contract opportunities", "bidnet alerts",

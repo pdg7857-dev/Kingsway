@@ -48,10 +48,10 @@ export const PLATFORM_FACTS: Record<string, PlatformFacts> = {
   },
   "bidnet-direct": {
     whatItIs:
-      "BidNet Direct runs regional purchasing groups that hundreds of state, provincial, county and municipal agencies use to post solicitations and notify registered vendors. Many buyers post there exclusively.",
+      "BidNet Direct runs regional purchasing groups that hundreds of U.S. state, county, municipal and special-district agencies use to post solicitations and notify registered vendors. Many buyers post there exclusively.",
     whoUses: [
       "Regional purchasing groups and cooperatives", "Counties and municipalities",
-      "School districts and special districts", "Some state and provincial agencies",
+      "School districts and special districts", "Some state agencies",
     ],
     categorization:
       "Vendors register against commodity codes and a region, and notifications are driven off that match. The codes a buyer tags, and the codes you registered under, have to line up for the alert to fire.",

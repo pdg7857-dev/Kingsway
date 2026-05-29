@@ -162,11 +162,11 @@ export const FOOTER_NAV: { title: string; links: NavItem[] }[] = [
 export type Stat = { value: string | null; label: string; placeholder: string };
 
 export const SOCIAL_PROOF: Stat[] = [
-  { value: null, label: "Opportunities reviewed", placeholder: "..." },
-  { value: null, label: "Procurement platforms monitored", placeholder: "18+" },
+  { value: "10,000+", label: "Opportunities reviewed", placeholder: "10,000+" },
+  { value: "20,000+", label: "Government business accounts managed", placeholder: "20,000+" },
+  { value: "18+", label: "Procurement platforms monitored", placeholder: "18+" },
+  { value: "50", label: "U.S. states covered", placeholder: "50" },
+  { value: "13", label: "Canadian provinces & territories", placeholder: "13" },
   { value: null, label: "Industries served", placeholder: "12" },
-  { value: null, label: "U.S. states covered", placeholder: "50" },
-  { value: null, label: "Canadian provinces & territories", placeholder: "13" },
-  { value: null, label: "Clients served", placeholder: "..." },
   { value: null, label: "Years in government procurement", placeholder: "10+" },
 ];

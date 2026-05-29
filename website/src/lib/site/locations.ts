@@ -24,7 +24,9 @@ export type State = {
   blurb: string;
 };
 
-const CA_FEDERAL = ["canadabuys", "merx", "bidnet-direct"];
+// Pan-Canadian platforms surfaced for every province/territory (BidNet Direct
+// is U.S.-only, so it is intentionally not here).
+const CA_FEDERAL = ["canadabuys", "merx"];
 
 export const PROVINCES: Province[] = [
   {

@@ -131,13 +131,13 @@ export const CORNERSTONE_CONTENT: Record<string, LongForm> = {
   "bidnet-direct": {
     readMins: 16,
     intro:
-      "BidNet Direct is one of the most important platforms most contractors underuse. It runs the regional purchasing groups that hundreds of state, provincial, county and municipal agencies rely on to post solicitations and notify vendors, and many of those buyers post there and nowhere else. I know how BidNet Direct routes work by commodity code and region, where its notifications quietly fail, and how good bids fall through the cracks between groups. This is the full picture, and how I make sure you stop missing the work meant for you.",
+      "BidNet Direct is one of the most important U.S. platforms most contractors underuse. It runs the regional purchasing groups that hundreds of state, county, municipal and special-district agencies rely on to post solicitations and notify vendors, and many of those buyers post there and nowhere else. I know how BidNet Direct routes work by commodity code and region, where its notifications quietly fail, and how good bids fall through the cracks between groups. This is the full picture, and how I make sure you stop missing the work meant for you.",
     sections: [
       {
         id: "what-is-bidnet",
         heading: "What BidNet Direct is",
         blocks: [
-          { type: "p", text: "BidNet Direct is the engine behind a large network of regional purchasing groups across the United States and Canada. Instead of every agency standing up its own portal, groups of agencies share a regional BidNet Direct platform where they post solicitations and notify registered vendors. For a contractor, that means a single platform can be your window onto dozens or hundreds of buyers in a region, which is powerful, and also the source of its quirks." },
+          { type: "p", text: "BidNet Direct is the engine behind a large network of regional purchasing groups across the United States. Instead of every agency standing up its own portal, groups of agencies share a regional BidNet Direct platform where they post solicitations and notify registered vendors. For a contractor, that means a single platform can be your window onto dozens or hundreds of buyers in a region, which is powerful, and also the source of its quirks." },
           { type: "p", text: "Crucially, many agencies post on BidNet Direct exclusively. If you are not registered in the right group, or registered under the wrong commodity codes, those opportunities simply never reach you. The platform is doing its job. It just cannot read your mind about which codes describe your work, and it will only notify you about what your registration says you want." },
           { type: "callout", text: "BidNet Direct sends alerts based on commodity-code overlap. I read past the code to the actual scope, which is where the fit, and the catch, actually live." },
         ],
@@ -151,7 +151,7 @@ export const CORNERSTONE_CONTENT: Record<string, LongForm> = {
             "Regional purchasing groups and cooperatives, which bundle many agencies under one platform.",
             "Counties and municipalities, often the bulk of the volume in any given region.",
             "School districts and special districts, which run on their own cycles and use their own language.",
-            "Some state and provincial agencies, which cross-post or post directly to the relevant group.",
+            "Some state agencies, which cross-post or post directly to the relevant group.",
           ] },
           { type: "p", text: "Because the platform is organized by region, your coverage is only as good as your map of which groups your buyers belong to. A contractor who works a metro area that straddles two purchasing groups, or who would gladly serve the county next door, has to be registered in each relevant group to see the work. Miss a group and you have a blind spot you do not even know is there." },
         ],

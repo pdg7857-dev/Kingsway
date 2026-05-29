@@ -304,18 +304,18 @@ export default function HomePage() {
       <Section muted>
         <SectionHead
           center
-          eyebrow="By the numbers"
-          title="A big, noisy market. That is exactly the point."
-          lede="Government buyers spend enormous sums across thousands of opportunities and dozens of platforms. The scale is the opportunity, and the reason no team can watch it all alone."
+          eyebrow="Track record"
+          title="Over 10,000 opportunities reviewed. Over 20,000 accounts managed."
+          lede="I have spent years inside government procurement across Canada and the United States, reviewing opportunities and managing government business accounts. That experience is what turns a flood of notices into a short list of winnable work."
         />
         <div className="mx-auto mt-10 max-w-5xl">
           <StatStrip />
           <p className="mt-4 text-center text-xs text-slate-400">
-            Figures shown are placeholders pending verified sourcing. See{" "}
+            My track record and coverage at a glance. Market-wide figures and their sources are on the{" "}
             <Link href="/government-procurement-statistics" className="font-medium text-brand-700 underline">
-              Government Contracting by the Numbers
-            </Link>
-            .
+              government procurement statistics
+            </Link>{" "}
+            page.
           </p>
         </div>
       </Section>
