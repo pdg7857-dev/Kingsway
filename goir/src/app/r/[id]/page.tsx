@@ -29,7 +29,6 @@ export default async function GoirReportPage({ params }: { params: { id: string 
   if (!report) notFound();
 
   const result = report.result as unknown as GoirResult;
-  // older rows may predate companyName on the result — backfill from the row.
   if (result && !result.companyName) result.companyName = report.companyName;
   const narrative = (report.narrative as unknown as GoirNarrative) ?? null;
 
@@ -37,7 +36,7 @@ export default async function GoirReportPage({ params }: { params: { id: string 
     <>
       <GoirReportView id={report.id} result={result} narrative={narrative} requested={report.consultationRequested} />
       <div className="mx-auto max-w-5xl px-4 pb-10 lg:px-6 text-center">
-        <Link href="/goir" className="text-xs text-fg-subtle hover:text-accent">← Run another report</Link>
+        <Link href="/" className="text-xs text-fg-subtle hover:text-accent">← Run another report</Link>
       </div>
     </>
   );

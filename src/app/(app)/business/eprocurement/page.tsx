@@ -21,6 +21,9 @@ export default async function EProcurementDashboard() {
   const snap = await getBusinessSnapshot(user.id, "eprocurement");
   if (!snap) return null;
 
+  // The public GOIR report builder is a separate Vercel deployment.
+  const goirSiteUrl = (process.env.NEXT_PUBLIC_GOIR_URL ?? "").replace(/\/$/, "");
+
   const [clients, contracts] = await Promise.all([
     prisma.procurementClient.findMany({ where: { userId: user.id }, orderBy: { updatedAt: "desc" } }),
     prisma.govContract.findMany({ where: { userId: user.id }, orderBy: { responseDueAt: "asc" }, include: { client: true } }),
@@ -60,12 +63,14 @@ export default async function EProcurementDashboard() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-fg">Government Opportunity Intelligence Report™</div>
-                <div className="text-xs text-fg-subtle">Your lead magnet, sales tool & data engine — share the public builder or review captured leads.</div>
+                <div className="text-xs text-fg-subtle">Your lead magnet, sales tool & data engine — runs as a separate site; review captured leads here.</div>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Link href="/goir-leads" className="inline-flex items-center gap-1.5 rounded-lg bg-bg-raised px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-bg-hover">View leads</Link>
-              <Link href="/goir" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-bg hover:bg-accent-glow"><ExternalLink className="h-3.5 w-3.5" /> Open builder</Link>
+              {goirSiteUrl ? (
+                <Link href={goirSiteUrl} target="_blank" className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-bg hover:bg-accent-glow"><ExternalLink className="h-3.5 w-3.5" /> Open GOIR site</Link>
+              ) : null}
             </div>
           </PanelBody>
         </Panel>

@@ -87,9 +87,9 @@ export async function POST(req: NextRequest) {
 
     // Email the report link to the prospect (no-op when email isn't configured).
     const origin = (() => {
-      try { return new URL(req.url).origin; } catch { return process.env.NEXTAUTH_URL ?? ""; }
+      try { return new URL(req.url).origin; } catch { return process.env.NEXT_PUBLIC_SITE_URL ?? ""; }
     })();
-    const reportUrl = `${origin}/goir/${report.id}`;
+    const reportUrl = `${origin}/r/${report.id}`;
     const { subject, html, text } = goirEmail(result, reportUrl);
     const mail = await sendEmail({ to: input.email, subject, html, text }).catch(() => ({ ok: false }));
 

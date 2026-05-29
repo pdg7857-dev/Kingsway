@@ -15,6 +15,10 @@ const tierTone: Record<string, "success" | "accent" | "warn" | "danger" | "muted
 };
 
 export default async function GoirLeadsPage() {
+  // The public report site is a separate Vercel deployment.
+  const siteUrl = (process.env.NEXT_PUBLIC_GOIR_URL ?? "").replace(/\/$/, "");
+  const reportHref = (id: string) => (siteUrl ? `${siteUrl}/r/${id}` : undefined);
+
   let reports: Awaited<ReturnType<typeof prisma.goirReport.findMany>> = [];
   try {
     reports = await prisma.goirReport.findMany({ orderBy: { createdAt: "desc" }, take: 200 });
@@ -35,13 +39,17 @@ export default async function GoirLeadsPage() {
             <h1 className="text-xl font-semibold tracking-tight text-fg">GOIR Leads</h1>
             <p className="text-sm text-fg-subtle">Government Opportunity Intelligence Report™ — captured prospects & scores.</p>
           </div>
-          <Link
-            href="/goir"
-            target="_blank"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-xs font-medium text-bg hover:bg-accent-glow"
-          >
-            <ExternalLink className="h-3.5 w-3.5" /> Open public report builder
-          </Link>
+          {siteUrl ? (
+            <Link
+              href={siteUrl}
+              target="_blank"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-xs font-medium text-bg hover:bg-accent-glow"
+            >
+              <ExternalLink className="h-3.5 w-3.5" /> Open public report site
+            </Link>
+          ) : (
+            <span className="text-[11px] text-fg-subtle">Set <code className="text-fg-muted">NEXT_PUBLIC_GOIR_URL</code> to link the public site</span>
+          )}
         </div>
       </div>
 
@@ -58,7 +66,7 @@ export default async function GoirLeadsPage() {
           <PanelBody>
             {total === 0 ? (
               <div className="py-6 text-sm text-fg-subtle">
-                No reports yet. Share <Link href="/goir" target="_blank" className="text-accent hover:underline">/goir</Link> to start collecting intelligence and leads.
+                No reports yet. Share {siteUrl ? <Link href={siteUrl} target="_blank" className="text-accent hover:underline">your GOIR site</Link> : "your public GOIR site"} to start collecting intelligence and leads.
               </div>
             ) : (
               <div className="overflow-x-auto">
@@ -94,9 +102,13 @@ export default async function GoirLeadsPage() {
                         </td>
                         <td className="py-2.5 pr-3 text-[11px] text-fg-subtle">{relTime(r.createdAt)}</td>
                         <td className="py-2.5">
-                          <Link href={`/goir/${r.id}`} target="_blank" className="inline-flex items-center gap-1 text-xs text-accent hover:underline">
-                            View <ExternalLink className="h-3 w-3" />
-                          </Link>
+                          {reportHref(r.id) ? (
+                            <Link href={reportHref(r.id)!} target="_blank" className="inline-flex items-center gap-1 text-xs text-accent hover:underline">
+                              View <ExternalLink className="h-3 w-3" />
+                            </Link>
+                          ) : (
+                            <span className="text-[11px] text-fg-subtle">—</span>
+                          )}
                         </td>
                       </tr>
                     ))}
