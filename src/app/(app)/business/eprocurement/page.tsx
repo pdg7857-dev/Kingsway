@@ -2,6 +2,7 @@ import { Panel, PanelHeader, PanelBody } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BusinessHeader } from "@/components/business/business-header";
 import { TaskList } from "@/components/dashboard/task-list";
+import { ProcurementClients } from "@/components/procurement/client-actions";
 import { requireCurrentUser } from "@/lib/auth";
 import { getBusinessSnapshot } from "@/lib/data/business";
 import { prisma } from "@/lib/prisma";
@@ -103,6 +104,23 @@ export default async function EProcurementDashboard() {
                 );
               })}
             </div>
+          </PanelBody>
+        </Panel>
+
+        <Panel>
+          <PanelHeader title="All clients" hint="Log touches and move stage inline" />
+          <PanelBody>
+            <ProcurementClients
+              clients={clients.map((c) => ({
+                id: c.id,
+                name: c.name,
+                company: c.company,
+                industry: c.industry,
+                status: c.status,
+                touchCount: c.touchCount,
+                monthlyFeeCents: c.monthlyFeeCents,
+              }))}
+            />
           </PanelBody>
         </Panel>
 

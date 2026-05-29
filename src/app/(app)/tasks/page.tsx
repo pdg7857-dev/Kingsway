@@ -1,6 +1,6 @@
 import { Topbar } from "@/components/layout/topbar";
 import { Panel, PanelHeader, PanelBody } from "@/components/ui/card";
-import { TaskList } from "@/components/dashboard/task-list";
+import { InteractiveTaskList } from "@/components/tasks/interactive-task-list";
 import { requireCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { KpiCard } from "@/components/ui/kpi-card";
@@ -71,7 +71,16 @@ export default async function TasksPage({ searchParams }: { searchParams: { view
         <Panel>
           <PanelHeader title={`${view} · ${tasks.length} task${tasks.length === 1 ? "" : "s"}`} />
           <PanelBody>
-            <TaskList tasks={tasks} />
+            <InteractiveTaskList
+              tasks={tasks.map((t) => ({
+                id: t.id,
+                title: t.title,
+                status: t.status,
+                priority: t.priority,
+                dueAt: t.dueAt ? t.dueAt.toISOString() : null,
+                businessSlug: t.business?.slug ?? null,
+              }))}
+            />
           </PanelBody>
         </Panel>
       </div>
