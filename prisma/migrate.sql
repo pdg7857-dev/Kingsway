@@ -44,3 +44,31 @@ CREATE TABLE IF NOT EXISTS "IntegrationCredential" (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS "IntegrationCredential_userId_provider_key"
   ON "IntegrationCredential"("userId", "provider");
+
+-- Government Opportunity Intelligence Report™ (GOIR) — public lead magnet
+CREATE TABLE IF NOT EXISTS "GoirReport" (
+  "id" TEXT NOT NULL,
+  "companyName" TEXT NOT NULL,
+  "website" TEXT,
+  "industry" TEXT NOT NULL,
+  "region" TEXT NOT NULL,
+  "email" TEXT NOT NULL,
+  "platformsUsed" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+  "annualBidVolume" INTEGER,
+  "employees" INTEGER,
+  "index" INTEGER NOT NULL,
+  "tier" TEXT NOT NULL,
+  "scores" JSONB NOT NULL,
+  "result" JSONB NOT NULL,
+  "narrative" JSONB,
+  "consultationRequested" BOOLEAN NOT NULL DEFAULT false,
+  "consultRequestedAt" TIMESTAMP(3),
+  "convertedClientId" TEXT,
+  "source" TEXT NOT NULL DEFAULT 'web',
+  "ipHash" TEXT,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "GoirReport_pkey" PRIMARY KEY ("id")
+);
+CREATE INDEX IF NOT EXISTS "GoirReport_industry_createdAt_idx" ON "GoirReport"("industry", "createdAt");
+CREATE INDEX IF NOT EXISTS "GoirReport_email_idx" ON "GoirReport"("email");

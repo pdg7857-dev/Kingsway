@@ -1236,3 +1236,38 @@ model GovContract {
   @@index([userId, status])
   @@index([userId, industry])
 }
+
+// ─────────────────────────────────────────────────────────────
+// Government Opportunity Intelligence Report™ (GOIR)
+// Public lead-magnet assessments. No auth — captured from prospects.
+// ─────────────────────────────────────────────────────────────
+
+model GoirReport {
+  id          String   @id @default(cuid())
+  // Intake
+  companyName String
+  website     String?
+  industry    String   // see src/lib/goir/industries.ts keys
+  region      String   // province / state (free text or code)
+  email       String
+  platformsUsed   String[] @default([])
+  annualBidVolume Int?
+  employees       Int?
+  // Computed headline
+  index       Int      // Government Opportunity Intelligence Index™ 0–100
+  tier        String   // Elite | Advanced | Strong | Developing | Emerging | At Risk
+  scores      Json     // category breakdown { government, award, waste, ... }
+  result      Json     // full computed report payload (all 10 sections)
+  narrative   Json?    // optional AI-written prose layered on top
+  // Lead lifecycle
+  consultationRequested Boolean   @default(false)
+  consultRequestedAt    DateTime?
+  convertedClientId     String?
+  source      String   @default("web")
+  ipHash      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([industry, createdAt])
+  @@index([email])
+}
