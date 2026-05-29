@@ -5,12 +5,14 @@ import { INDUSTRIES } from "@/lib/site/industries";
 import { PROVINCES, STATES } from "@/lib/site/locations";
 import { BLOG_TOPICS } from "@/lib/site/blog";
 import { RESOURCES } from "@/lib/site/resources";
+import { MONEY_PAGES } from "@/lib/site/money-pages";
+import { platformPath, industryPath } from "@/lib/site/links";
 
 /**
- * Full XML sitemap for the site. Static cornerstone routes are enumerated by
- * hand with intent-based priorities; dynamic platform/industry/geo/blog/resource
- * routes are generated from the same data files the pages render from, so the
- * sitemap can never drift out of sync with what is actually published.
+ * Full XML sitemap. Static cornerstone routes are enumerated by hand with
+ * intent-based priorities; dynamic platform/industry/geo/blog/resource and
+ * money-page routes are generated from the same data files the pages render
+ * from, so the sitemap can never drift out of sync with what is published.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.domain;
@@ -27,12 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   });
 
-  // Home + cornerstone pages.
   const cornerstone: MetadataRoute.Sitemap = [
     entry("", 1.0, "weekly"),
+    entry("/government-opportunity-intelligence", 0.95, "monthly"),
+    entry("/government-opportunity-intelligence-report", 0.95, "weekly"),
     entry("/how-it-works", 0.9, "monthly"),
-    entry("/government-opportunity-intelligence", 0.9, "monthly"),
     entry("/pricing", 0.9, "monthly"),
+    entry("/opportunity-waste-calculator", 0.85, "monthly"),
+    entry("/government-procurement-statistics", 0.8, "monthly"),
     entry("/platforms", 0.8, "weekly"),
     entry("/industries", 0.8, "weekly"),
     entry("/coverage", 0.7, "weekly"),
@@ -40,34 +44,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/coverage/usa", 0.7, "weekly"),
   ];
 
-  // Conversion + supporting pages.
   const supporting: MetadataRoute.Sitemap = [
     entry("/book", 0.8, "monthly"),
     entry("/sample-opportunity", 0.8, "monthly"),
     entry("/contact", 0.6, "monthly"),
     entry("/faq", 0.6, "monthly"),
     entry("/about", 0.6, "monthly"),
-    entry("/statistics", 0.6, "monthly"),
-    entry("/tools/opportunity-cost-calculator", 0.7, "monthly"),
     entry("/resources", 0.7, "weekly"),
     entry("/blog", 0.7, "daily"),
   ];
 
-  // Legal.
   const legal: MetadataRoute.Sitemap = [
     entry("/privacy", 0.3, "yearly"),
     entry("/terms", 0.3, "yearly"),
   ];
 
-  // Dynamic: platforms (0.8) and industries (0.8).
-  const platforms: MetadataRoute.Sitemap = PLATFORMS.map((p) =>
-    entry(`/platforms/${p.slug}`, 0.8, "monthly"),
-  );
-  const industries: MetadataRoute.Sitemap = INDUSTRIES.map((i) =>
-    entry(`/industries/${i.slug}`, 0.8, "monthly"),
+  // Money, renewal and authority pages (flat URLs).
+  const moneyPriority: Record<string, number> = { money: 0.85, renewal: 0.8, authority: 0.75 };
+  const money: MetadataRoute.Sitemap = MONEY_PAGES.map((p) =>
+    entry(`/${p.slug}`, moneyPriority[p.group] ?? 0.7, "monthly"),
   );
 
-  // Dynamic: geography (0.6).
+  // Platform authority pages (flat /{slug}-expert).
+  const platforms: MetadataRoute.Sitemap = PLATFORMS.map((p) =>
+    entry(platformPath(p.slug), 0.85, "monthly"),
+  );
+  // Industry pages (flat /{slug}-government-contracts).
+  const industries: MetadataRoute.Sitemap = INDUSTRIES.map((i) =>
+    entry(industryPath(i.slug), 0.8, "monthly"),
+  );
+
   const provinces: MetadataRoute.Sitemap = PROVINCES.map((p) =>
     entry(`/coverage/canada/${p.slug}`, 0.6, "monthly"),
   );
@@ -75,7 +81,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry(`/coverage/usa/${s.slug}`, 0.6, "monthly"),
   );
 
-  // Dynamic: blog (0.6) and resources (0.7).
   const blog: MetadataRoute.Sitemap = BLOG_TOPICS.map((b) =>
     entry(`/blog/${b.slug}`, 0.6, "weekly"),
   );
@@ -87,6 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cornerstone,
     ...supporting,
     ...legal,
+    ...money,
     ...platforms,
     ...industries,
     ...provinces,

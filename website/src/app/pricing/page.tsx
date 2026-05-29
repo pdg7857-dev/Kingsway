@@ -140,7 +140,7 @@ export default function PricingPage() {
         </div>
         <p className="mt-6 text-center text-sm text-slate-500">
           Run your own numbers with the{" "}
-          <Link href="/tools/opportunity-cost-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
             Opportunity Cost Calculator
           </Link>
           .

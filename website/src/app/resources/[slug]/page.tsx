@@ -85,7 +85,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
 
             {isCalculator && (
               <Link
-                href="/tools/opportunity-cost-calculator"
+                href="/opportunity-waste-calculator"
                 className="btn-primary mt-8 inline-flex items-center gap-2 px-5 py-3"
               >
                 <Calculator className="h-4 w-4" />

@@ -34,9 +34,9 @@ export const DEEP_BODIES: Record<string, BlogBody> = {
     readMins: 11,
     leadVariant: "call",
     related: [
-      { label: "MERX expert", href: "/platforms/merx" },
+      { label: "MERX expert", href: "/merx-expert" },
       { label: "Ontario government contracts", href: "/blog/ontario-government-contracts-guide" },
-      { label: "Construction opportunities", href: "/industries/construction" },
+      { label: "Construction opportunities", href: "/construction-government-contracts" },
     ],
     sections: [
       {
@@ -327,7 +327,7 @@ export const DEEP_BODIES: Record<string, BlogBody> = {
     readMins: 10,
     leadVariant: "sample",
     related: [
-      { label: "Construction industry coverage", href: "/industries/construction" },
+      { label: "Construction industry coverage", href: "/construction-government-contracts" },
       { label: "MERX guide", href: "/blog/merx-complete-guide" },
       { label: "Bid bonds and insurance", href: "/blog/understanding-bid-bonds-and-insurance" },
     ],

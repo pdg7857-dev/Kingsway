@@ -1,0 +1,127 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { Check, FileBarChart, Gauge, Layers, RefreshCw, Timer } from "lucide-react";
+import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
+import { LeadForm } from "@/components/site/lead-form";
+import { FaqAccordion } from "@/components/site/faq";
+import { GOIR_INCLUDES } from "@/components/site/goir-cta";
+import { pageMeta, JsonLd, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/site/seo";
+
+const DELIVERABLES = [
+  { icon: Gauge, title: "GOII Score", body: "Your Government Opportunity Intelligence Index: a single, honest read on how well you find, qualify and pursue public work." },
+  { icon: Timer, title: "Opportunity Waste Estimate", body: "An estimate of the estimator hours your current process loses to poor-fit opportunities, in dollars." },
+  { icon: Layers, title: "Platform Coverage Analysis", body: "Which of the platforms your buyers use you are actually covering, and where the blind spots are." },
+  { icon: RefreshCw, title: "Renewal Opportunity Analysis", body: "Recurring contracts in your space likely to rebid, so you can position before they post." },
+  { icon: FileBarChart, title: "Maturity Assessment", body: "A clear view of your government-contracting maturity and the highest-leverage gaps to close first." },
+];
+
+const FAQS = [
+  { q: "Is the report really free?", a: "Yes. The Government Opportunity Intelligence Report is free and there is no obligation. It is how I show the value of this work before you ever pay for coverage." },
+  { q: "What do you need from me?", a: "Just the basics: your trades, where you bid, and the platforms you use today. The more you share, the sharper the report." },
+  { q: "How long does it take?", a: "I prepare each report personally, so allow a short turnaround. You will hear from me directly, usually within a couple of business days." },
+  { q: "Will this turn into a sales pitch?", a: "You get a genuinely useful report either way. If it makes sense to work together, we can talk. If not, the report is still yours to act on." },
+];
+
+export const metadata: Metadata = pageMeta({
+  title: "Free Government Opportunity Intelligence Report (GOIR)",
+  description:
+    "Get your free Government Opportunity Intelligence Report: GOII score, opportunity waste estimate, platform coverage analysis, renewal opportunities and a maturity assessment.",
+  path: "/government-opportunity-intelligence-report",
+  keywords: ["government opportunity intelligence report", "GOIR", "free bid assessment", "procurement coverage analysis"],
+});
+
+export default function GoirPage() {
+  return (
+    <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Government Opportunity Intelligence Report", path: "/government-opportunity-intelligence-report" }]),
+          serviceJsonLd("Government Opportunity Intelligence Report", "A free assessment of opportunity waste, platform coverage and renewal opportunities.", "/government-opportunity-intelligence-report"),
+          faqJsonLd(FAQS),
+        ]}
+      />
+
+      <section className="relative overflow-hidden border-b border-line bg-ink-900">
+        <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.16]" />
+        <div className="container relative grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+          <div>
+            <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Free GOIR" }]} />
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-gold-400">
+              <FileBarChart className="h-3.5 w-3.5" /> Free assessment
+            </p>
+            <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
+              Your free Government Opportunity Intelligence Report
+            </h1>
+            <p className="mt-5 text-lg leading-8 text-slate-300">
+              In one report, see exactly where your team wastes estimator time, which platforms you
+              are under-covering, and which contracts in your market are about to rebid. Scored,
+              prioritized, and specific to your business.
+            </p>
+            <ul className="mt-7 space-y-2.5">
+              {GOIR_INCLUDES.map((i) => (
+                <li key={i} className="flex gap-2.5 text-slate-200">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" />
+                  {i}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:pt-10">
+            <LeadForm variant="sample" />
+          </div>
+        </div>
+      </section>
+
+      <Section>
+        <SectionHead center eyebrow="What you receive" title="Five things most contractors have never measured" />
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {DELIVERABLES.map((d) => (
+            <div key={d.title} className="card p-6">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+                <d.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-ink">{d.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{d.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section muted>
+        <SectionHead center eyebrow="How it works" title="Three steps to your report" />
+        <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-3">
+          {[
+            ["01", "Tell me about your bidding", "Your trades, your jurisdictions, the platforms you use now."],
+            ["02", "I do the analysis", "I assess your coverage, estimate your waste, and scan your market for renewals."],
+            ["03", "You get the report", "A clear, prioritized read you can act on, with or without working together."],
+          ].map(([n, t, d]) => (
+            <div key={n} className="rounded-2xl border border-line bg-white p-6">
+              <span className="text-2xl font-bold text-brand-200">{n}</span>
+              <h3 className="mt-2 text-lg font-semibold text-ink">{t}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-slate-600">{d}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-sm text-slate-500">
+          Prefer to estimate it yourself first? Try the{" "}
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+            Opportunity Waste Calculator
+          </Link>
+          .
+        </p>
+      </Section>
+
+      <Section>
+        <SectionHead title="GOIR questions" />
+        <div className="mt-8 max-w-3xl">
+          <FaqAccordion faqs={FAQS} />
+        </div>
+      </Section>
+
+      <CtaBand
+        title="Get the report. See what you are missing."
+        sub="It is free, it is specific to your business, and it is the fastest way to understand your opportunity waste and coverage gaps."
+      />
+    </>
+  );
+}

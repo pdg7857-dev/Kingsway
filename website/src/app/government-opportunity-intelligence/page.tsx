@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPath, industryPath } from "@/lib/site/links";
 import type { Metadata } from "next";
 import { Clock, ArrowRight } from "lucide-react";
 import { Breadcrumbs, CtaBand, Section } from "@/components/site/ui";
@@ -133,7 +134,7 @@ export default function GoiPage() {
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Go deeper on the platforms</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {CORNERSTONE_PLATFORMS.map((p) => (
-                  <Link key={p.slug} href={`/platforms/${p.slug}`} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700">
+                  <Link key={p.slug} href={platformPath(p.slug)} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700">
                     {p.shortName} <ArrowRight className="h-3.5 w-3.5 opacity-50" />
                   </Link>
                 ))}

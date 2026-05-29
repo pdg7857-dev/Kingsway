@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPath, industryPath } from "@/lib/site/links";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { PLATFORMS, platformsByCategory } from "@/lib/site/platforms";
@@ -48,7 +49,7 @@ export default function PlatformsIndex() {
                 {list.map((p) => (
                   <Link
                     key={p.slug}
-                    href={`/platforms/${p.slug}`}
+                    href={platformPath(p.slug)}
                     className="card group flex flex-col p-6"
                   >
                     <div className="flex items-center justify-between">

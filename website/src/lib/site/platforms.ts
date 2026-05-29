@@ -227,15 +227,30 @@ export const PLATFORMS: Platform[] = [
   },
   {
     slug: "periscope",
-    name: "Periscope S2G",
-    shortName: "Periscope",
+    name: "Periscope S2G / BidSync",
+    shortName: "Periscope S2G",
     category: "eProcurement SaaS",
     country: "United States",
     priority: 3,
     oneLiner:
-      "A supplier network (Periscope / mygovwatch lineage) tied to many state and local eProcurement systems.",
-    keywords: ["periscope s2g", "periscope holdings bids", "periscope supplier network"],
+      "The supplier network behind Periscope S2G and BidSync, tied to many state and local eProcurement systems.",
+    keywords: ["periscope s2g", "bidsync", "periscope holdings bids", "bidsync opportunities", "periscope supplier network"],
     industries: ["construction", "facilities-maintenance", "mro"],
+  },
+  {
+    slug: "constructconnect",
+    name: "ConstructConnect",
+    shortName: "ConstructConnect",
+    category: "Market intelligence",
+    country: "Both",
+    priority: 2,
+    oneLiner:
+      "A construction project-intelligence network that surfaces public and private projects, plans and bidding data early.",
+    keywords: [
+      "constructconnect", "constructconnect bids", "construction project leads",
+      "constructconnect vs dodge", "construction bid opportunities",
+    ],
+    industries: ["construction", "hvac", "electrical", "plumbing", "facilities-maintenance"],
   },
   {
     slug: "gsa-ebuy",

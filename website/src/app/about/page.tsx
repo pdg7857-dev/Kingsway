@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPath, industryPath } from "@/lib/site/links";
 import type { Metadata } from "next";
 import {
   Eye,
@@ -222,7 +223,7 @@ export default function AboutPage() {
           {CORNERSTONE_PLATFORMS.map((p) => (
             <Link
               key={p.slug}
-              href={`/platforms/${p.slug}`}
+              href={platformPath(p.slug)}
               className="card group flex flex-col p-6"
             >
               <div className="flex items-center justify-between">
@@ -269,7 +270,7 @@ export default function AboutPage() {
           {PRIMARY_INDUSTRIES.map((ind) => (
             <Link
               key={ind.slug}
-              href={`/industries/${ind.slug}`}
+              href={industryPath(ind.slug)}
               className="card group flex items-start gap-3 p-5"
             >
               <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">

@@ -59,11 +59,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Link href={SITE.sampleUrl} className="btn-ghost px-4 py-2 text-sm">
-            Sample opportunity
+          <Link href="/opportunity-waste-calculator" className="btn-ghost px-4 py-2 text-sm">
+            Waste calculator
           </Link>
-          <Link href={SITE.bookingUrl} className="btn-primary px-4 py-2 text-sm">
-            Book a call
+          <Link href="/government-opportunity-intelligence-report" className="btn-primary px-4 py-2 text-sm">
+            Free GOIR
           </Link>
         </div>
 
@@ -107,11 +107,11 @@ export function SiteHeader() {
               </div>
             ))}
             <div className="flex gap-2 pt-3">
-              <Link href={SITE.sampleUrl} className="btn-ghost flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
-                Sample
+              <Link href="/opportunity-waste-calculator" className="btn-ghost flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
+                Waste calc
               </Link>
-              <Link href={SITE.bookingUrl} className="btn-primary flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
-                Book a call
+              <Link href="/government-opportunity-intelligence-report" className="btn-primary flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
+                Free GOIR
               </Link>
             </div>
           </div>

@@ -358,9 +358,32 @@ export const PLATFORM_FACTS: Record<string, PlatformFacts> = {
     ],
     missTitleExample: "A forecasted recompete you would have pursued, lost in a sea of tracked opportunities.",
   },
+  constructconnect: {
+    whatItIs:
+      "ConstructConnect is a construction project-intelligence network. Rather than a single bid portal, it aggregates public and private projects, plan rooms and bidding data, often surfacing work earlier in the lifecycle than a tender notice would.",
+    whoUses: ["General contractors and subs", "Trade contractors (HVAC, electrical, plumbing)", "Suppliers and distributors", "Estimators tracking plan rooms"],
+    categorization:
+      "Projects are organized by stage, type, region and value, with leads and plan documents tied to your profile and filters. The breadth is the point, and also the noise: it tracks far more than you can pursue.",
+    alertLimits: [
+      "Lead volume is enormous and needs heavy filtering to your real lane",
+      "Early-stage project signals require judgment to act on, not just receipt",
+      "It surfaces activity, not a qualified decision about what to chase",
+    ],
+    searchLimits: [
+      "Filtering to genuinely winnable public work takes practice",
+      "Public solicitations still live on the issuing platforms you must also watch",
+      "Plan-room detail is deep, and reading it is the real work",
+    ],
+    howPhilHelps: [
+      "I turn ConstructConnect's early signals into a short list of public opportunities that fit you",
+      "I cross-check against the issuing platform so you act on the real solicitation",
+      "I qualify scope, timing and fit so your estimators are not buried in leads",
+    ],
+    missTitleExample: "An early-stage public project you could have positioned for, lost in a flood of untriaged leads.",
+  },
   periscope: {
     whatItIs:
-      "Periscope (S2G and its supplier network) underpins many state and local eProcurement systems, connecting suppliers to public buyers.",
+      "Periscope (the S2G and BidSync supplier network) underpins many state and local eProcurement systems, connecting suppliers to public buyers. BidSync is the long-running notification side of the same lineage.",
     whoUses: ["State and local agencies", "Suppliers on connected systems"],
     categorization: "Supplier-network registration and commodity matching drive notifications from connected buyers.",
     alertLimits: ["Notices depend on network registration and codes", "Coverage varies by connected system", "Volume buries fits"],

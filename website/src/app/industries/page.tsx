@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPath, industryPath } from "@/lib/site/links";
 import type { Metadata } from "next";
 import { ArrowRight, Building2 } from "lucide-react";
 import { INDUSTRIES, PRIMARY_INDUSTRIES } from "@/lib/site/industries";
@@ -39,7 +40,7 @@ export default function IndustriesIndex() {
         <SectionHead eyebrow="Primary focus" title="Industries I work with most" />
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {PRIMARY_INDUSTRIES.map((i) => (
-            <Link key={i.slug} href={`/industries/${i.slug}`} className="card group p-6">
+            <Link key={i.slug} href={industryPath(i.slug)} className="card group p-6">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
                 <Building2 className="h-5 w-5" />
               </div>
@@ -59,7 +60,7 @@ export default function IndustriesIndex() {
           {secondary.map((i) => (
             <Link
               key={i.slug}
-              href={`/industries/${i.slug}`}
+              href={industryPath(i.slug)}
               className="flex items-center justify-between rounded-xl border border-line bg-white px-5 py-4 hover:border-brand-300"
             >
               <span className="font-medium text-ink">{i.name}</span>

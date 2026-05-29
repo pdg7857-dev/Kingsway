@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPath, industryPath } from "@/lib/site/links";
 import {
   Search, FileSearch, Filter, Send, Bell, Layers, Clock, AlertTriangle,
   Building2, Sparkles, ArrowRight, CheckCircle2,
@@ -38,19 +39,20 @@ export default function HomePage() {
               and start working only the opportunities worth pursuing.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3.5 text-base">
-                Book a discovery call <ArrowRight className="h-4 w-4" />
+              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3.5 text-base">
+                Get your free GOIR <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href={SITE.sampleUrl}
+                href="/opportunity-waste-calculator"
                 className="btn-ghost border-white/20 bg-white/5 px-6 py-3.5 text-base text-white hover:border-white/40 hover:text-white"
               >
-                Request a sample opportunity
+                Calculate your opportunity waste
               </Link>
             </div>
             <p className="mt-5 text-sm text-slate-400">
-              Public pricing from <span className="font-semibold text-white">$599/month</span>. Month
-              to month. Canada and the United States.
+              Free Government Opportunity Intelligence Report, or{" "}
+              <Link href={SITE.bookingUrl} className="font-medium text-white underline">book a strategy call</Link>.
+              Public pricing from <span className="font-semibold text-white">$599/month</span>.
             </p>
           </div>
 
@@ -185,7 +187,7 @@ export default function HomePage() {
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
           Want the long version, with bid-preparation cost and a printable worksheet? Use the{" "}
-          <Link href="/tools/opportunity-cost-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
             full Opportunity Cost Calculator
           </Link>
           .
@@ -236,7 +238,7 @@ export default function HomePage() {
           {CORNERSTONE_PLATFORMS.map((p) => (
             <Link
               key={p.slug}
-              href={`/platforms/${p.slug}`}
+              href={platformPath(p.slug)}
               className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brand-400/50 hover:bg-white/[0.06]"
             >
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-300">{p.category}</p>
@@ -266,7 +268,7 @@ export default function HomePage() {
           {PRIMARY_INDUSTRIES.map((ind) => (
             <Link
               key={ind.slug}
-              href={`/industries/${ind.slug}`}
+              href={industryPath(ind.slug)}
               className="group flex items-start gap-4 rounded-2xl border border-line bg-white p-5 transition hover:border-brand-300 hover:shadow-card"
             >
               <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700">
@@ -298,7 +300,7 @@ export default function HomePage() {
           <StatStrip />
           <p className="mt-4 text-center text-xs text-slate-400">
             Figures shown are placeholders pending verified sourcing. See{" "}
-            <Link href="/statistics" className="font-medium text-brand-700 underline">
+            <Link href="/government-procurement-statistics" className="font-medium text-brand-700 underline">
               Government Contracting by the Numbers
             </Link>
             .

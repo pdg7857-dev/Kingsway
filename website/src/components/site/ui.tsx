@@ -91,8 +91,8 @@ export function StatStrip({ dark = false }: { dark?: boolean }) {
 
 /** Final call-to-action band used at the bottom of most pages. */
 export function CtaBand({
-  title = "Stop searching portals. Start bidding what is worth winning.",
-  sub = "Book a 20-minute discovery call and I will show you, in your jurisdictions, the opportunities your current setup is missing.",
+  title = "Stop wasting estimator time on the wrong bids.",
+  sub = "Get your free Government Opportunity Intelligence Report and see your opportunity waste, coverage gaps and upcoming renewals, specific to your business.",
 }: {
   title?: string;
   sub?: string;
@@ -106,13 +106,20 @@ export function CtaBand({
             <h2 className="text-balance text-3xl font-semibold text-white sm:text-4xl">{title}</h2>
             <p className="mt-4 text-lg leading-8 text-slate-300">{sub}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3 text-base">
-                Book a discovery call
+              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3 text-base">
+                Get your free GOIR
               </Link>
-              <Link href={SITE.sampleUrl} className="btn-ghost border-white/20 bg-white/5 px-6 py-3 text-base text-white hover:border-white/40 hover:text-white">
-                Request a sample opportunity
+              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-6 py-3 text-base text-white hover:border-white/40 hover:text-white">
+                Calculate your opportunity waste
               </Link>
             </div>
+            <p className="mt-4 text-sm text-slate-400">
+              Prefer to talk first?{" "}
+              <Link href={SITE.bookingUrl} className="font-medium text-brand-300 hover:text-white">
+                Book a strategy call
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </div>
