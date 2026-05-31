@@ -74,8 +74,8 @@ export function IndustryAuthority({ slug }: { slug: string }) {
               winning.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-5 py-3">
-                Get your free Opportunity Intelligence Report
+              <Link href="/book" className="btn-gold px-5 py-3">
+                Book a meeting
               </Link>
               <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste

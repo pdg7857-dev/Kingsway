@@ -64,14 +64,14 @@ export function PlatformAuthority({ slug }: { slug: string }) {
             <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">The {platform.shortName} Expert</h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">{content.intro}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-5 py-3">
-                Get your free Opportunity Intelligence Report
+              <Link href={SITE.bookingUrl} className="btn-gold px-5 py-3">
+                Book a meeting
               </Link>
               <Link
-                href={SITE.bookingUrl}
+                href="/opportunity-waste-calculator"
                 className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg"
               >
-                Book a strategy call
+                Calculate your opportunity waste
               </Link>
               <span className="inline-flex items-center gap-1.5 text-sm text-fg-subtle">
                 <Clock className="h-4 w-4" /> {content.readMins} min read
@@ -90,11 +90,11 @@ export function PlatformAuthority({ slug }: { slug: string }) {
               <div className="mt-8 rounded-2xl border border-border bg-bg-subtle p-5">
                 <p className="text-sm font-semibold text-fg">Skip the reading</p>
                 <p className="mt-1.5 text-sm text-fg-muted">
-                  Get a free report on what your {platform.shortName} coverage is missing, scored and
-                  prioritized.
+                  Book a call and I&apos;ll show you what your {platform.shortName} coverage is missing,
+                  with live opportunities in your market.
                 </p>
-                <Link href="/government-opportunity-intelligence-report" className="btn-primary mt-4 w-full py-2.5 text-sm">
-                  Get the report
+                <Link href="/book" className="btn-primary mt-4 w-full py-2.5 text-sm">
+                  Book a meeting
                 </Link>
               </div>
             </div>

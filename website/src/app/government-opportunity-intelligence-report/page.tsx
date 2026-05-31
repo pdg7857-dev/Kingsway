@@ -2,10 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Check, FileBarChart, Gauge, Layers, RefreshCw, Timer } from "lucide-react";
 import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
-import { LeadForm } from "@/components/site/lead-form";
+import { CalendlyEmbed } from "@/components/site/calendly-embed";
 import { FaqAccordion } from "@/components/site/faq";
 import { GOIR_INCLUDES } from "@/components/site/goir-cta";
-import { REPORT_URL, GOIR_ENABLED, SITE } from "@/lib/site/config";
+import { SITE } from "@/lib/site/config";
 import { pageMeta, JsonLd, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/site/seo";
 
 const DELIVERABLES = [
@@ -17,18 +17,18 @@ const DELIVERABLES = [
 ];
 
 const FAQS = [
-  { q: "Is the report really free?", a: "Yes. The Government Opportunity Intelligence Report is free and there is no obligation. It is how I show the value of this work before you ever pay for coverage." },
-  { q: "What do you need from me?", a: "Just the basics: your trades, where you bid, and the platforms you use today. The more you share, the sharper the report." },
-  { q: "How long does it take?", a: "I prepare each report personally, so allow a short turnaround. You will hear from me directly, usually within a couple of business days." },
-  { q: "Will this turn into a sales pitch?", a: "You get a genuinely useful report either way. If it makes sense to work together, we can talk. If not, the report is still yours to act on." },
+  { q: "Is the call really free?", a: "Yes. The discovery call is free and there is no obligation. It is how I show the value of this work before you ever pay for coverage." },
+  { q: "What do you need from me?", a: "Just the basics: your trades, where you bid, and the platforms you use today. The more you share, the sharper the call." },
+  { q: "How long is the call?", a: "About twenty minutes. You will hear from me directly, and I'll come ready with live opportunities in your jurisdictions." },
+  { q: "Will this turn into a sales pitch?", a: "You get genuinely useful opportunities either way. If it makes sense to work together, we can talk. If not, what I show you is still yours to pursue." },
 ];
 
 export const metadata: Metadata = pageMeta({
-  title: "Free Government Opportunity Intelligence Report (GOIR)",
+  title: "Government Opportunity Intelligence",
   description:
-    "Get your free Government Opportunity Intelligence Report: GOII score, opportunity waste estimate, platform coverage analysis, renewal opportunities and a maturity assessment.",
+    "Book a discovery call to see your opportunity-waste, platform coverage gaps and upcoming renewals — with live, qualified government opportunities specific to your business.",
   path: "/government-opportunity-intelligence-report",
-  keywords: ["government opportunity intelligence report", "GOIR", "free bid assessment", "procurement coverage analysis"],
+  keywords: ["government opportunity intelligence", "government bid discovery call", "procurement coverage analysis"],
 });
 
 export default function GoirPage() {
@@ -37,7 +37,7 @@ export default function GoirPage() {
       <JsonLd
         data={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Government Opportunity Intelligence Report", path: "/government-opportunity-intelligence-report" }]),
-          serviceJsonLd("Government Opportunity Intelligence Report", "A free assessment of opportunity waste, platform coverage and renewal opportunities.", "/government-opportunity-intelligence-report"),
+          serviceJsonLd("Government Opportunity Intelligence", "A free discovery call covering opportunity waste, platform coverage and renewal opportunities.", "/government-opportunity-intelligence-report"),
           faqJsonLd(FAQS),
         ]}
       />
@@ -46,17 +46,17 @@ export default function GoirPage() {
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.16]" />
         <div className="container relative grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div>
-            <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Free GOIR" }]} />
+            <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Opportunity Intelligence" }]} />
             <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-warn">
-              <FileBarChart className="h-3.5 w-3.5" /> Free assessment
+              <FileBarChart className="h-3.5 w-3.5" /> Discovery call
             </p>
             <h1 className="mt-4 text-4xl font-bold text-fg sm:text-5xl">
-              Your free Government Opportunity Intelligence Report
+              Government Opportunity Intelligence, on a call
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
-              In one report, see exactly where your team wastes estimator time, which platforms you
-              are under-covering, and which contracts in your market are about to rebid. Scored,
-              prioritized, and specific to your business.
+              On a 20-minute call, I&apos;ll show you exactly where your team wastes estimator time, which
+              platforms you are under-covering, and which contracts in your market are about to rebid —
+              with live opportunities specific to your business.
             </p>
             <ul className="mt-7 space-y-2.5">
               {GOIR_INCLUDES.map((i) => (
@@ -67,18 +67,16 @@ export default function GoirPage() {
               ))}
             </ul>
             <div className="mt-8">
-              <Link href={GOIR_ENABLED ? REPORT_URL : SITE.bookingUrl} className="btn-gold px-6 py-3 text-base">
-                {GOIR_ENABLED ? "Request my free report" : "Book a call with Phil"}
+              <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3 text-base">
+                Book a meeting
               </Link>
               <p className="mt-2 text-sm text-fg-subtle">
-                {GOIR_ENABLED
-                  ? "Free and personally prepared. Phil delivers your report — with your access code — within 24 hours."
-                  : "Prefer to talk it through? Book a free call and I'll walk you through your opportunities directly."}
+                Twenty minutes, no cost. I&apos;ll walk you through your opportunities directly.
               </p>
             </div>
           </div>
           <div className="lg:pt-10">
-            <LeadForm variant="sample" />
+            <CalendlyEmbed url={SITE.calendlyUrl} />
           </div>
         </div>
       </section>
@@ -99,12 +97,12 @@ export default function GoirPage() {
       </Section>
 
       <Section muted>
-        <SectionHead center eyebrow="How it works" title="Three steps to your report" />
+        <SectionHead center eyebrow="How it works" title="Three steps to your call" />
         <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-3">
           {[
-            ["01", "Tell me about your bidding", "Your trades, your jurisdictions, the platforms you use now."],
-            ["02", "I do the analysis", "I assess your coverage, estimate your waste, and scan your market for renewals."],
-            ["03", "You get the report", "A clear, prioritized read you can act on, with or without working together."],
+            ["01", "Book a time", "Pick a 20-minute slot and tell me your trades, jurisdictions and platforms."],
+            ["02", "I do the analysis", "Before we talk, I assess your coverage, estimate your waste, and scan your market for renewals."],
+            ["03", "We meet", "I walk you through live, qualified opportunities you can act on, with or without working together."],
           ].map(([n, t, d]) => (
             <div key={n} className="rounded-2xl border border-border bg-bg-panel p-6">
               <span className="text-2xl font-bold text-accent">{n}</span>
@@ -123,14 +121,14 @@ export default function GoirPage() {
       </Section>
 
       <Section>
-        <SectionHead title="GOIR questions" />
+        <SectionHead title="Common questions" />
         <div className="mt-8 max-w-3xl">
           <FaqAccordion faqs={FAQS} />
         </div>
       </Section>
 
       <CtaBand
-        title="Get the report. See what you are missing."
+        title="Book a meeting. See what you are missing."
         sub="It is free, it is specific to your business, and it is the fastest way to understand your opportunity waste and coverage gaps."
       />
     </>

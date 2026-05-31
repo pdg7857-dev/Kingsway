@@ -92,7 +92,7 @@ export function StatStrip({ dark = false }: { dark?: boolean }) {
 /** Final call-to-action band used at the bottom of most pages. */
 export function CtaBand({
   title = "Stop wasting estimator time on the wrong bids.",
-  sub = "Get your free Government Opportunity Intelligence Report and see your opportunity waste, coverage gaps and upcoming renewals, specific to your business.",
+  sub = "Book a 20-minute discovery call and I'll bring real, qualified opportunities in your trade and jurisdictions, so you can see the quality before you pay a cent.",
 }: {
   title?: string;
   sub?: string;

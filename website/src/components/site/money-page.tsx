@@ -46,8 +46,8 @@ export function MoneyPageView({ slug }: { slug: string }) {
             <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">{p.h1}</h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">{p.lede}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-5 py-3">
-                Get your free Opportunity Intelligence Report
+              <Link href="/book" className="btn-gold px-5 py-3">
+                Book a meeting
               </Link>
               <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
@@ -63,12 +63,12 @@ export function MoneyPageView({ slug }: { slug: string }) {
             <div className="sticky top-24">
               <TableOfContents sections={p.sections} />
               <div className="mt-8 rounded-2xl border border-border bg-bg-subtle p-5">
-                <p className="text-sm font-semibold text-fg">Free assessment</p>
+                <p className="text-sm font-semibold text-fg">Free discovery call</p>
                 <p className="mt-1.5 text-sm text-fg-muted">
-                  Get your GOII score, opportunity-waste estimate and coverage gaps in one report.
+                  Twenty minutes. I&apos;ll bring real, qualified opportunities in your trade and jurisdictions.
                 </p>
-                <Link href="/government-opportunity-intelligence-report" className="btn-primary mt-4 w-full py-2.5 text-sm">
-                  Get the GOIR
+                <Link href="/book" className="btn-primary mt-4 w-full py-2.5 text-sm">
+                  Book a meeting
                 </Link>
               </div>
             </div>

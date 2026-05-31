@@ -29,7 +29,7 @@ export type MoneyPage = {
 
 const RELATED_CORE = [
   { label: "Government Opportunity Intelligence", href: "/government-opportunity-intelligence" },
-  { label: "Get your free GOIR", href: "/government-opportunity-intelligence-report" },
+  { label: "Book a meeting", href: "/book" },
   { label: "Opportunity Waste Calculator", href: "/opportunity-waste-calculator" },
 ];
 
@@ -539,11 +539,11 @@ export const MONEY_PAGES: MoneyPage[] = [
       },
     ],
     faqs: [
-      { q: "How do I get my GOII score?", a: "Request a free Government Opportunity Intelligence Report. The score and the gaps behind it are included." },
+      { q: "How do I get my GOII score?", a: "Book a discovery call. I'll walk you through where you stand and the gaps behind your score." },
       { q: "Is the index a sales gimmick?", a: "It is a genuine diagnostic. Even firms that never work with me find the gaps it surfaces useful." },
     ],
     related: [
-      { label: "Get your free GOIR", href: "/government-opportunity-intelligence-report" },
+      { label: "Book a meeting", href: "/book" },
       { label: "Opportunity waste report", href: "/opportunity-waste-report" },
       ...RELATED_CORE,
     ],

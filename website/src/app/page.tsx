@@ -39,8 +39,8 @@ export default function HomePage() {
               and start working only the opportunities worth pursuing.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3.5 text-base">
-                Get your free GOIR <ArrowRight className="h-4 w-4" />
+              <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3.5 text-base">
+                Book a meeting <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/opportunity-waste-calculator"
@@ -50,9 +50,7 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="mt-5 text-sm text-fg-subtle">
-              Free Government Opportunity Intelligence Report, or{" "}
-              <Link href={SITE.bookingUrl} className="font-medium text-fg underline">book a strategy call</Link>.
-              Public pricing from <span className="font-semibold text-fg">$599/month</span>.
+              Twenty-minute discovery call, no cost. Public pricing from <span className="font-semibold text-fg">$599/month</span>.
             </p>
           </div>
 
