@@ -1250,6 +1250,8 @@ model GoirReport {
   industry    String   // see src/lib/goir/industries.ts keys
   region      String   // province / state (free text or code)
   email       String
+  contactName String?
+  phone       String?
   platformsUsed   String[] @default([])
   annualBidVolume Int?
   employees       Int?
@@ -1259,6 +1261,11 @@ model GoirReport {
   scores      Json     // category breakdown { government, award, waste, ... }
   result      Json     // full computed report payload (all 10 sections)
   narrative   Json?    // optional AI-written prose layered on top
+  // Manual delivery — prospect views the report with an access code Phil sends.
+  accessCode    String   @unique
+  status        String   @default("SUBMITTED") // SUBMITTED | DELIVERED | VIEWED
+  deliveredAt   DateTime?
+  firstViewedAt DateTime?
   // Lead lifecycle
   consultationRequested Boolean   @default(false)
   consultRequestedAt    DateTime?
@@ -1269,5 +1276,6 @@ model GoirReport {
   updatedAt   DateTime @updatedAt
 
   @@index([industry, createdAt])
+  @@index([status, createdAt])
   @@index([email])
 }

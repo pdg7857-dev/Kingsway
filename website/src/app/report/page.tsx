@@ -37,7 +37,7 @@ export default function GoirLanding() {
         <div>
           <div className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-[11px] font-medium text-accent ring-1 ring-accent/30">
             <Sparkles className="h-3.5 w-3.5" />
-            Free · Instant · Personalized
+            Free · Personally prepared · 24-hour delivery
           </div>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
             How strong is your{" "}
@@ -46,7 +46,8 @@ export default function GoirLanding() {
           <p className="mt-4 max-w-xl text-base text-fg-muted">
             The <strong className="text-fg">Government Opportunity Intelligence Report™</strong> scores your
             company across eight dimensions, estimates how much opportunity you&apos;re wasting, maps the
-            platforms and buyers that matter, and hands you a prioritized action plan — in about 15 seconds.
+            platforms and buyers that matter, and hands you a prioritized action plan — personally
+            prepared and delivered within 24 hours.
           </p>
           <ul className="mt-6 space-y-2 text-sm text-fg-muted">
             {[
@@ -113,7 +114,7 @@ export default function GoirLanding() {
               ["0–100", "Intelligence Index™"],
               ["8", "Scored dimensions"],
               ["10", "Report sections"],
-              ["~15s", "To your results"],
+              ["24h", "To your report"],
             ].map(([v, l]) => (
               <div key={l}>
                 <div className="stat-value text-gradient-accent">{v}</div>

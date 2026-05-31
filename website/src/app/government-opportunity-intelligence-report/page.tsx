@@ -68,11 +68,11 @@ export default function GoirPage() {
             </ul>
             {REPORT_URL !== REPORT_LANDING ? (
               <div className="mt-8">
-                <Link href={REPORT_URL} target="_blank" rel="noopener" className="btn-gold px-6 py-3 text-base">
-                  Generate my report instantly
+                <Link href={REPORT_URL} className="btn-gold px-6 py-3 text-base">
+                  Request my free report
                 </Link>
                 <p className="mt-2 text-sm text-slate-400">
-                  Instant, self-serve. Or have Phil prepare it personally below.
+                  Free and personally prepared. Phil delivers your report — with your access code — within 24 hours.
                 </p>
               </div>
             ) : null}

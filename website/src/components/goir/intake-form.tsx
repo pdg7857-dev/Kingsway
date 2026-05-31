@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { INDUSTRIES } from "@/lib/goir/industries";
 import { PLATFORMS } from "@/lib/goir/platforms";
-import { Loader2, ArrowRight, ShieldCheck, ChevronDown } from "lucide-react";
+import { Loader2, ArrowRight, ShieldCheck, ChevronDown, CheckCircle2 } from "lucide-react";
 
 const REGIONS = [
   { group: "Canada", items: [
@@ -23,9 +22,9 @@ const REGIONS = [
 ];
 
 export function IntakeForm() {
-  const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
   const [platforms, setPlatforms] = useState<string[]>([]);
 
@@ -43,6 +42,8 @@ export function IntakeForm() {
       industry: String(fd.get("industry") ?? ""),
       region: String(fd.get("region") ?? ""),
       email: String(fd.get("email") ?? ""),
+      contactName: String(fd.get("contactName") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
       platformsUsed: platforms,
       annualBidVolume: fd.get("annualBidVolume") ? Number(fd.get("annualBidVolume")) : null,
       employees: fd.get("employees") ? Number(fd.get("employees")) : null,
@@ -60,7 +61,7 @@ export function IntakeForm() {
         setPending(false);
         return;
       }
-      router.push(`/report/${json.id}`);
+      setSubmitted(true);
     } catch {
       setError("Network error. Please try again.");
       setPending(false);
@@ -70,6 +71,21 @@ export function IntakeForm() {
   const labelCls = "block text-[11px] font-medium uppercase tracking-[0.14em] text-fg-subtle mb-1.5";
   const selectCls =
     "h-9 w-full rounded-lg bg-bg-raised px-3 text-sm text-fg ring-1 ring-border focus:ring-accent focus:outline-none transition-shadow appearance-none";
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center gap-3 rounded-xl bg-success-soft/30 px-6 py-10 text-center ring-1 ring-success/30">
+        <CheckCircle2 className="h-10 w-10 text-success" />
+        <h3 className="text-xl font-semibold text-fg">Request received</h3>
+        <p className="max-w-md text-sm text-fg-muted">
+          We&apos;re preparing your Government Opportunity Intelligence Report™. Within{" "}
+          <strong className="text-fg">24 hours</strong> you&apos;ll get a call, email or text with your
+          private <strong className="text-accent">access code</strong> to view it. No account needed.
+        </p>
+        <p className="text-[11px] text-fg-subtle">Check your inbox for a confirmation.</p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
@@ -110,10 +126,18 @@ export function IntakeForm() {
             <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-subtle" />
           </div>
         </div>
+        <div>
+          <label className={labelCls} htmlFor="contactName">Your name</label>
+          <Input id="contactName" name="contactName" placeholder="First & last name" />
+        </div>
+        <div>
+          <label className={labelCls} htmlFor="phone">Phone</label>
+          <Input id="phone" name="phone" type="tel" placeholder="So we can reach you with your code" />
+        </div>
         <div className="sm:col-span-2">
           <label className={labelCls} htmlFor="email">Work email *</label>
           <Input id="email" name="email" type="email" required placeholder="you@company.com" />
-          <p className="mt-1.5 text-[11px] text-fg-subtle">We email your report link here. No spam — your data stays private.</p>
+          <p className="mt-1.5 text-[11px] text-fg-subtle">Where we send your confirmation. No spam — your data stays private.</p>
         </div>
       </div>
 
@@ -168,11 +192,11 @@ export function IntakeForm() {
 
       <Button type="submit" size="lg" disabled={pending} className="w-full">
         {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-        {pending ? "Building your intelligence report…" : "Generate my free report"}
+        {pending ? "Submitting your request…" : "Request my free report"}
       </Button>
       <p className="flex items-center justify-center gap-1.5 text-[11px] text-fg-subtle">
         <ShieldCheck className="h-3.5 w-3.5 text-success" />
-        Takes ~15 seconds · No credit card · Instant results
+        Free · Personally prepared · Delivered within 24 hours
       </p>
     </form>
   );

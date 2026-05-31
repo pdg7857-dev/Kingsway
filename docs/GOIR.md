@@ -23,19 +23,26 @@ See [`website/README.md`](../website/README.md) for Vercel setup. Link the OS to
 the public site with `NEXT_PUBLIC_GOIR_URL` (the in-app leads view opens
 `<that>/report/<id>`).
 
-## Flow
+## Flow (manual delivery with an access code)
 
 1. SEO/money pages funnel to the GOIR landing page, whose CTA opens **`/report`**
-   — the intake form (company, website, industry, province/state, email, plus
-   optional platforms, bid volume, headcount).
+   — the intake form (company, website, industry, province/state, email, name,
+   phone, plus optional platforms, bid volume, headcount).
 2. `POST /api/goir` validates input, runs the deterministic engine, optionally
-   layers AI prose, persists a `GoirReport` row, emails the report link, and
-   returns its id.
-3. Prospect lands on **`/report/[id]`** — the full 10-section report with the
-   headline **Government Opportunity Intelligence Index™** (0–100).
-4. The closing CTA (`POST /api/goir/[id]/consult`) marks the report and drops a
-   `LEAD` into the operator's eProcurement pipeline.
-5. The operator reviews captured demand at **`/goir-leads`** in Kingsway OS.
+   layers AI prose, persists a `GoirReport` (status `SUBMITTED`) with a unique
+   **access code**, and emails the prospect a *receipt* (not the report). The
+   prospect sees a "delivered within 24 hours" confirmation — no instant access.
+3. The operator reviews each request at **`/goir-leads`** in Kingsway OS, preps
+   the research, then calls / emails / texts the prospect their access code (the
+   leads view shows the code and a ready-to-send `…/report/<id>?code=<code>` link).
+4. The prospect enters the code at **`/access`** (or opens the link) → the report
+   is shown at **`/report/[id]?code=<code>`**. Wrong/missing code → a locked gate.
+   First view flips status to `VIEWED`. No account is ever created.
+5. The closing CTA (`POST /api/goir/[id]/consult`) drops a `LEAD` into the
+   operator's eProcurement pipeline.
+
+The `GoirReport` table is provisioned by the public site's own token-gated
+`GET /api/setup?token=<SETUP_TOKEN>` (or Kingsway OS's `/api/setup`).
 
 ## Scoring engine — `website/src/lib/goir/`
 
