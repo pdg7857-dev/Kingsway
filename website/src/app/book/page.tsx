@@ -7,7 +7,7 @@ import {
   Section,
   SectionHead,
 } from "@/components/site/ui";
-import { LeadForm } from "@/components/site/lead-form";
+import { CalendlyEmbed } from "@/components/site/calendly-embed";
 import { FaqAccordion } from "@/components/site/faq";
 import { SITE } from "@/lib/site/config";
 import {
@@ -164,16 +164,8 @@ export default function BookPage() {
             </div>
           </div>
 
-          <div className="lg:sticky lg:top-24">
-            {/*
-              CALENDAR EMBED GOES HERE.
-              When a real scheduling tool is chosen, an operator should embed the
-              Calendly / SavvyCal (or similar) booking widget in this slot, replacing
-              or supplementing the LeadForm below. Until then, this form collects the
-              same intent and routes it to Phil so he can schedule the 20-minute call
-              manually. See SITE.bookingUrl in src/lib/site/config.ts.
-            */}
-            <LeadForm variant="call" />
+          <div className="lg:sticky lg:top-24" id="book">
+            <CalendlyEmbed url={SITE.calendlyUrl} />
           </div>
         </div>
       </Section>

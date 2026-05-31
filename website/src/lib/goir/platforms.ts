@@ -12,7 +12,7 @@ export type PlatformDef = {
 export const PLATFORMS: PlatformDef[] = [
   { key: "merx",         name: "MERX",          scope: "CA", tier: "core",  note: "Largest Canadian public-tender aggregator — federal, provincial, MASH." },
   { key: "canadabuys",   name: "CanadaBuys",    scope: "CA", tier: "core",  note: "Government of Canada's official tendering service (replaced Buyandsell)." },
-  { key: "bidnet",       name: "BidNet Direct", scope: "BOTH", tier: "broad", note: "Regional purchasing groups across Canada and the US." },
+  { key: "bidnet",       name: "BidNet Direct", scope: "US", tier: "broad", note: "Regional purchasing groups across U.S. state and local agencies." },
   { key: "samgov",       name: "SAM.gov",       scope: "US", tier: "core",  note: "US federal contracting system of record." },
   { key: "bonfire",      name: "Bonfire",       scope: "BOTH", tier: "core", note: "Sourcing portal used by hundreds of municipalities and institutions." },
   { key: "biddingo",     name: "Biddingo",      scope: "CA", tier: "broad", note: "Strong in Ontario MASH — municipalities, school boards, hospitals." },

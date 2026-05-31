@@ -5,7 +5,7 @@ import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui
 import { LeadForm } from "@/components/site/lead-form";
 import { FaqAccordion } from "@/components/site/faq";
 import { GOIR_INCLUDES } from "@/components/site/goir-cta";
-import { REPORT_URL, REPORT_LANDING } from "@/lib/site/config";
+import { REPORT_URL, GOIR_ENABLED, SITE } from "@/lib/site/config";
 import { pageMeta, JsonLd, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/site/seo";
 
 const DELIVERABLES = [
@@ -66,16 +66,16 @@ export default function GoirPage() {
                 </li>
               ))}
             </ul>
-            {REPORT_URL !== REPORT_LANDING ? (
-              <div className="mt-8">
-                <Link href={REPORT_URL} className="btn-gold px-6 py-3 text-base">
-                  Request my free report
-                </Link>
-                <p className="mt-2 text-sm text-fg-subtle">
-                  Free and personally prepared. Phil delivers your report — with your access code — within 24 hours.
-                </p>
-              </div>
-            ) : null}
+            <div className="mt-8">
+              <Link href={GOIR_ENABLED ? REPORT_URL : SITE.bookingUrl} className="btn-gold px-6 py-3 text-base">
+                {GOIR_ENABLED ? "Request my free report" : "Book a call with Phil"}
+              </Link>
+              <p className="mt-2 text-sm text-fg-subtle">
+                {GOIR_ENABLED
+                  ? "Free and personally prepared. Phil delivers your report — with your access code — within 24 hours."
+                  : "Prefer to talk it through? Book a free call and I'll walk you through your opportunities directly."}
+              </p>
+            </div>
           </div>
           <div className="lg:pt-10">
             <LeadForm variant="sample" />

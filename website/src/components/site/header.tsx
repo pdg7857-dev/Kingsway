@@ -62,8 +62,8 @@ export function SiteHeader() {
           <Link href="/opportunity-waste-calculator" className="btn-ghost px-4 py-2 text-sm">
             Waste calculator
           </Link>
-          <Link href="/government-opportunity-intelligence-report" className="btn-primary px-4 py-2 text-sm">
-            Free GOIR
+          <Link href={SITE.bookingUrl} className="btn-primary px-4 py-2 text-sm">
+            Book a call
           </Link>
         </div>
 
@@ -110,8 +110,8 @@ export function SiteHeader() {
               <Link href="/opportunity-waste-calculator" className="btn-ghost flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
                 Waste calc
               </Link>
-              <Link href="/government-opportunity-intelligence-report" className="btn-primary flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
-                Free GOIR
+              <Link href={SITE.bookingUrl} className="btn-primary flex-1 py-2.5 text-sm" onClick={() => setMobileOpen(false)}>
+                Book a call
               </Link>
             </div>
           </div>

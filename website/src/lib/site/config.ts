@@ -16,21 +16,33 @@ export const SITE = {
   // Update before launch.
   domain: "https://www.governmentopportunityintelligence.com",
   email: "phil@governmentopportunityintelligence.com",
-  // Discovery-call booking destination (Calendly/SavvyCal/etc.). Internal route
-  // /book falls back to the contact form until this is wired to a real calendar.
+  // Internal booking page (renders the Calendly embed below). All CTAs point here.
   bookingUrl: "/book",
+  // Phil's Calendly scheduling link, embedded on /book.
+  calendlyUrl: "https://calendly.com/pdg7857/phil-dave-government-opportunity-intelligence",
   sampleUrl: "/sample-opportunity",
   founded: 2014,
 } as const;
 
 /**
- * The interactive GOIR assessment now lives on this same site at /report.
- * REPORT_LANDING is the SEO explainer page; REPORT_URL is where "Get your free
- * report" CTAs send people (the live assessment). Override with
- * NEXT_PUBLIC_REPORT_URL only if you ever host the app on a separate domain.
+ * GOIR lead-magnet master switch.
+ *
+ * OFF (default): the interactive report is hidden — /report, /report/[id] and
+ * /access redirect to the booking page, and every "free report" CTA points to
+ * booking instead. The SEO/marketing pages stay up. Flip back on by setting
+ * NEXT_PUBLIC_GOIR_ENABLED="true" in the environment (no code change).
+ */
+export const GOIR_ENABLED = process.env.NEXT_PUBLIC_GOIR_ENABLED === "true";
+
+/**
+ * The interactive GOIR assessment lives on this same site at /report.
+ * REPORT_LANDING is the SEO explainer page; REPORT_URL is where the primary
+ * CTAs send people. While the lead magnet is OFF, CTAs go to booking.
  */
 export const REPORT_LANDING = "/government-opportunity-intelligence-report";
-export const REPORT_URL = process.env.NEXT_PUBLIC_REPORT_URL || "/report";
+export const REPORT_URL = GOIR_ENABLED
+  ? process.env.NEXT_PUBLIC_REPORT_URL || "/report"
+  : SITE.bookingUrl;
 
 export type NavItem = { label: string; href: string; children?: NavItem[] };
 
@@ -87,7 +99,6 @@ export const PRIMARY_NAV: NavItem[] = [
     label: "Resources",
     href: "/resources",
     children: [
-      { label: "Free GOIR", href: "/government-opportunity-intelligence-report" },
       { label: "Opportunity Waste Calculator", href: "/opportunity-waste-calculator" },
       { label: "Procurement Statistics", href: "/government-procurement-statistics" },
       { label: "The GOII Index", href: "/government-opportunity-intelligence-index" },
@@ -141,7 +152,6 @@ export const FOOTER_NAV: { title: string; links: NavItem[] }[] = [
   {
     title: "Resources",
     links: [
-      { label: "Free GOIR", href: "/government-opportunity-intelligence-report" },
       { label: "Opportunity waste calculator", href: "/opportunity-waste-calculator" },
       { label: "Procurement statistics", href: "/government-procurement-statistics" },
       { label: "Coverage map", href: "/coverage" },

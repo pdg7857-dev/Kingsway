@@ -106,19 +106,15 @@ export function CtaBand({
             <h2 className="text-balance text-3xl font-semibold text-fg sm:text-4xl">{title}</h2>
             <p className="mt-4 text-lg leading-8 text-fg-muted">{sub}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3 text-base">
-                Get your free GOIR
+              <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3 text-base">
+                Book a discovery call
               </Link>
               <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-6 py-3 text-base text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
             </div>
             <p className="mt-4 text-sm text-fg-subtle">
-              Prefer to talk first?{" "}
-              <Link href={SITE.bookingUrl} className="font-medium text-accent hover:text-fg">
-                Book a strategy call
-              </Link>
-              .
+              Twenty minutes, no cost. I&apos;ll bring real opportunities in your jurisdictions.
             </p>
           </div>
         </div>

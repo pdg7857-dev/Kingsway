@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Panel } from "@/components/ui/card";
 import { IntakeForm } from "@/components/goir/intake-form";
+import { GOIR_ENABLED, SITE } from "@/lib/site/config";
 import {
   Gauge, TrendingDown, Layers, Award, Building2, RefreshCw,
   BarChart3, DollarSign, ListChecks, Sparkles, ArrowDown, KeyRound,
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
   description:
     "Score your company across eight dimensions of government-contracting maturity, estimate your opportunity waste, and get a prioritized action plan — free, in about 15 seconds.",
   alternates: { canonical: "/report" },
+  robots: { index: false, follow: false },
 };
 
 const SECTIONS = [
@@ -30,6 +33,7 @@ const SECTIONS = [
 ];
 
 export default function GoirLanding() {
+  if (!GOIR_ENABLED) redirect(SITE.bookingUrl);
   return (
     <div className="goir-dark">
     <div className="mx-auto max-w-6xl px-4 lg:px-6 py-6">
