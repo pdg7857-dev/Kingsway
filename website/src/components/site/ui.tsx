@@ -70,11 +70,11 @@ export function Breadcrumbs({ items }: { items: { name: string; href?: string }[
   );
 }
 
-/** Social-proof strip. Renders placeholders; never fabricates numbers. */
+/** Coverage-facts strip (verifiable numbers only; never fabricated). */
 export function StatStrip({ dark = false }: { dark?: boolean }) {
-  const items = SOCIAL_PROOF.slice(0, 5);
+  const items = SOCIAL_PROOF.slice(0, 4);
   return (
-    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-5 ${dark ? "border-white/10 bg-white/10" : "border-border bg-border"}`}>
+    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-4 ${dark ? "border-white/10 bg-white/10" : "border-border bg-border"}`}>
       {items.map((s) => (
         <div key={s.label} className={`${dark ? "bg-bg" : "bg-bg-panel"} p-5 text-center`}>
           <div className={`text-2xl font-bold tabular-nums ${dark ? "text-fg" : "text-fg"}`}>

@@ -24,7 +24,7 @@ export type State = {
   blurb: string;
 };
 
-const CA_FEDERAL = ["canadabuys", "merx", "bidnet-direct"];
+const CA_FEDERAL = ["canadabuys", "merx"];
 
 export const PROVINCES: Province[] = [
   {

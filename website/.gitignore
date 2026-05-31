@@ -8,7 +8,7 @@ build
 .env.local
 .env.*.local
 *.log
-coverage
+/coverage
 .prisma
 next-env.d.ts
 tsconfig.tsbuildinfo

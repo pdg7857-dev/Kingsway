@@ -8,7 +8,7 @@ build
 .env.local
 .env.*.local
 *.log
-coverage
+/coverage
 .prisma
 prisma/migrations/dev.db*
 next-env.d.ts

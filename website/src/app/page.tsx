@@ -297,11 +297,11 @@ export default function HomePage() {
         <div className="mx-auto mt-10 max-w-5xl">
           <StatStrip />
           <p className="mt-4 text-center text-xs text-fg-subtle">
-            Figures shown are placeholders pending verified sourcing. See{" "}
+            See{" "}
             <Link href="/government-procurement-statistics" className="font-medium text-accent underline">
               Government Contracting by the Numbers
-            </Link>
-            .
+            </Link>{" "}
+            for the market data behind this.
           </p>
         </div>
       </Section>

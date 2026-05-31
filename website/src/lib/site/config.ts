@@ -167,12 +167,11 @@ export const FOOTER_NAV: { title: string; links: NavItem[] }[] = [
  */
 export type Stat = { value: string | null; label: string; placeholder: string };
 
+// Verifiable coverage facts (true from the site's own platform/coverage data).
+// No fabricated track-record numbers.
 export const SOCIAL_PROOF: Stat[] = [
-  { value: null, label: "Opportunities reviewed", placeholder: "..." },
-  { value: null, label: "Procurement platforms monitored", placeholder: "18+" },
-  { value: null, label: "Industries served", placeholder: "12" },
-  { value: null, label: "U.S. states covered", placeholder: "50" },
-  { value: null, label: "Canadian provinces & territories", placeholder: "13" },
-  { value: null, label: "Clients served", placeholder: "..." },
-  { value: null, label: "Years in government procurement", placeholder: "10+" },
+  { value: "19", label: "Procurement platforms monitored", placeholder: "19" },
+  { value: "12", label: "Industries served", placeholder: "12" },
+  { value: "50", label: "U.S. states covered", placeholder: "50" },
+  { value: "13", label: "Canadian provinces & territories", placeholder: "13" },
 ];
