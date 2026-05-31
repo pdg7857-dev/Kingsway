@@ -131,10 +131,10 @@ export default function GoiPage() {
             <LongFormBody sections={SECTIONS} />
 
             <div className="mt-12 rounded-2xl border border-line bg-paper-soft p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">Go deeper on the platforms</h3>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Go deeper on the platforms</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {CORNERSTONE_PLATFORMS.map((p) => (
-                  <Link key={p.slug} href={platformPath(p.slug)} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper-muted px-3 py-1.5 text-sm font-medium text-slate-200 hover:border-brand-300 hover:text-brand-300">
+                  <Link key={p.slug} href={platformPath(p.slug)} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700">
                     {p.shortName} <ArrowRight className="h-3.5 w-3.5 opacity-50" />
                   </Link>
                 ))}
@@ -142,7 +142,7 @@ export default function GoiPage() {
             </div>
 
             <div className="mt-12">
-              <h2 className="text-2xl font-semibold text-white sm:text-3xl">Common questions</h2>
+              <h2 className="text-2xl font-semibold text-ink sm:text-3xl">Common questions</h2>
               <div className="mt-6"><FaqAccordion faqs={FAQS} /></div>
             </div>
           </div>
@@ -153,8 +153,8 @@ export default function GoiPage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">See it for yourself</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">Intelligence beats data. Let me prove it.</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <h2 className="mt-3 text-3xl font-semibold text-ink">Intelligence beats data. Let me prove it.</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">
               Request a sample and I will send back a live opportunity in your trade and territory,
               read and qualified, so you can feel the difference between a notice and an intelligent
               shortlist.

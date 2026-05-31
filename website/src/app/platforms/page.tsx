@@ -53,17 +53,17 @@ export default function PlatformsIndex() {
                     className="card group flex flex-col p-6"
                   >
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white group-hover:text-brand-300">
+                      <h3 className="text-lg font-semibold text-ink group-hover:text-brand-700">
                         {p.name}
                       </h3>
                       {p.priority === 1 && (
-                        <span className="rounded-full bg-gold-500/10 px-2 py-0.5 text-[10px] font-semibold text-gold-400">
+                        <span className="rounded-full bg-gold-50 px-2 py-0.5 text-[10px] font-semibold text-gold-600">
                           Cornerstone
                         </span>
                       )}
                     </div>
-                    <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{p.oneLiner}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
+                    <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{p.oneLiner}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
                       {p.shortName} guide <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                     </span>
                   </Link>

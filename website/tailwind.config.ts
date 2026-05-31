@@ -43,16 +43,14 @@ const config: Config = {
           500: "#c8932f",
           600: "#a6781f",
         },
-        // Dark theme surfaces. paper = page base, soft = muted sections,
-        // muted = card / panel surface (each a step lighter than ink-900).
         paper: {
-          DEFAULT: "#0a1a38",
-          soft: "#0e2145",
-          muted: "#15294b",
+          DEFAULT: "#ffffff",
+          soft: "#f7f9fc",
+          muted: "#eef2f8",
         },
         line: {
-          DEFAULT: "#263c61",
-          strong: "#34496e",
+          DEFAULT: "#e2e8f2",
+          strong: "#cdd7e6",
         },
       },
       fontFamily: {

@@ -37,7 +37,7 @@ export default function TermsPage() {
 
       <Section>
         <div className="prose-site max-w-3xl">
-          <p className="text-sm text-slate-400">Last updated: {LAST_UPDATED}</p>
+          <p className="text-sm text-slate-500">Last updated: {LAST_UPDATED}</p>
 
           <p>
             These terms govern your use of this website, operated by {SITE.brandFull} (referred to
@@ -131,7 +131,7 @@ export default function TermsPage() {
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
 
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500">
             Note for the operator: these are general, good-faith terms and are not legal advice. Have
             qualified counsel review and tailor them, including the governing-law and dispute-resolution
             provisions, to your jurisdictions before launch.

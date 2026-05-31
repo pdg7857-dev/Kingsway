@@ -17,7 +17,7 @@ export const SITE = {
   promise: "You focus on winning contracts. I focus on finding them.",
   // Update before launch.
   domain: "https://www.governmentopportunityintelligence.com",
-  email: "phil@governmentopportunityintelligence.com",
+  email: "win@phildave.com",
   // Discovery-call booking destination (Calendly/SavvyCal/etc.). Internal route
   // /book falls back to the contact form until this is wired to a real calendar.
   bookingUrl: "/book",

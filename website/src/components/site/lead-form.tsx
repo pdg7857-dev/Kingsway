@@ -46,8 +46,8 @@ export function LeadForm({
         <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-green-100 text-green-700">
           <Check className="h-6 w-6" />
         </div>
-        <h3 className="mt-4 text-xl font-semibold text-white">Got it. Talk soon.</h3>
-        <p className="mt-2 text-sm text-slate-300">
+        <h3 className="mt-4 text-xl font-semibold text-ink">Got it. Talk soon.</h3>
+        <p className="mt-2 text-sm text-slate-600">
           Thanks for reaching out. I read every message myself and reply personally, usually the
           same business day.
         </p>
@@ -57,8 +57,8 @@ export function LeadForm({
 
   return (
     <form onSubmit={onSubmit} className={`card p-6 sm:p-8 ${className}`}>
-      <h3 className="text-xl font-semibold text-white">{copy.title}</h3>
-      <p className="mt-1.5 text-sm text-slate-300">{copy.sub}</p>
+      <h3 className="text-xl font-semibold text-ink">{copy.title}</h3>
+      <p className="mt-1.5 text-sm text-slate-600">{copy.sub}</p>
 
       <div className="mt-6 space-y-4">
         {variant !== "guide" && (
@@ -75,7 +75,7 @@ export function LeadForm({
               <Field label="Where you bid" name="region" placeholder="e.g. Ontario + NY" />
             </div>
             <label className="block">
-              <span className="text-sm font-medium text-white">What are you chasing?</span>
+              <span className="text-sm font-medium text-ink">What are you chasing?</span>
               <textarea
                 name="notes"
                 rows={3}
@@ -112,7 +112,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium text-white">
+      <span className="text-sm font-medium text-ink">
         {label}
         {required && <span className="text-brand-600"> *</span>}
       </span>

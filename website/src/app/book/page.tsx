@@ -96,46 +96,46 @@ export default function BookPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">What happens on the call</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">
+            <h2 className="mt-3 text-3xl font-semibold text-ink">
               I prove the value first, then we talk
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <p className="mt-4 text-lg leading-8 text-slate-600">
               Most discovery calls are a sales script. This one is a working session. Here is exactly
               how the twenty minutes go.
             </p>
 
             <ol className="mt-8 space-y-6">
               <li className="flex gap-4">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-500/10 text-sm font-semibold text-brand-300">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">
                   1
                 </span>
                 <div>
-                  <h3 className="font-semibold text-white">You tell me what you chase</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">
+                  <h3 className="font-semibold text-ink">You tell me what you chase</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
                     Your trades, your jurisdictions, the size and type of work you want more of. A
                     couple of minutes is enough to point me in the right direction.
                   </p>
                 </div>
               </li>
               <li className="flex gap-4">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-500/10 text-sm font-semibold text-brand-300">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">
                   2
                 </span>
                 <div>
-                  <h3 className="font-semibold text-white">I show you real, current opportunities</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">
+                  <h3 className="font-semibold text-ink">I show you real, current opportunities</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
                     Live notices in your area that fit your trade, already read and qualified the way
                     I do it for clients. This is the part most people are surprised by.
                   </p>
                 </div>
               </li>
               <li className="flex gap-4">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-500/10 text-sm font-semibold text-brand-300">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">
                   3
                 </span>
                 <div>
-                  <h3 className="font-semibold text-white">We decide if it is worth continuing</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">
+                  <h3 className="font-semibold text-ink">We decide if it is worth continuing</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
                     If the opportunities are clearly worth it, I explain coverage for your area. If
                     not, you keep what I showed you and we shake hands. No pressure either way.
                   </p>
@@ -144,9 +144,9 @@ export default function BookPage() {
             </ol>
 
             <div className="mt-10 rounded-2xl border border-line bg-paper-soft p-6">
-              <div className="flex items-center gap-2 text-brand-300">
+              <div className="flex items-center gap-2 text-brand-700">
                 <ListChecks className="h-5 w-5" />
-                <h3 className="font-semibold text-white">What to bring</h3>
+                <h3 className="font-semibold text-ink">What to bring</h3>
               </div>
               <ul className="mt-4 space-y-2.5">
                 {[
@@ -155,7 +155,7 @@ export default function BookPage() {
                   "Any bonding, licensing or capacity limits worth knowing up front",
                   "A sense of the contract size that fits your shop",
                 ].map((item) => (
-                  <li key={item} className="flex gap-2.5 text-sm text-slate-200">
+                  <li key={item} className="flex gap-2.5 text-sm text-ink-700">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
                     {item}
                   </li>
@@ -181,13 +181,13 @@ export default function BookPage() {
       {/* Reassurance band */}
       <Section muted>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-          <div className="grid h-12 w-12 place-items-center rounded-full bg-brand-500/10 text-brand-300">
+          <div className="grid h-12 w-12 place-items-center rounded-full bg-brand-50 text-brand-700">
             <CalendarCheck className="h-6 w-6" />
           </div>
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+          <h2 className="text-2xl font-semibold text-ink sm:text-3xl">
             Twenty minutes to find out what you have been missing
           </h2>
-          <p className="text-lg leading-8 text-slate-300">
+          <p className="text-lg leading-8 text-slate-600">
             The contractors I work with almost always see at least one opportunity on the call they
             would have missed on their own. That is the whole point. Worst case, you spend twenty
             minutes and leave with real leads. Best case, you stop searching portals for good.

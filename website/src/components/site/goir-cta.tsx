@@ -23,20 +23,20 @@ export function GoirCta({
 }) {
   if (variant === "inline") {
     return (
-      <div className={`rounded-2xl border-l-4 border-gold-500 bg-gold-500/15 p-6 ${className}`}>
+      <div className={`rounded-2xl border-l-4 border-gold-500 bg-gold-50/60 p-6 ${className}`}>
         <div className="flex items-start gap-3">
-          <FileBarChart className="mt-0.5 h-6 w-6 shrink-0 text-gold-400" />
+          <FileBarChart className="mt-0.5 h-6 w-6 shrink-0 text-gold-600" />
           <div>
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-lg font-semibold text-ink">
               Get your free Government Opportunity Intelligence Report
             </h3>
-            <p className="mt-1.5 text-slate-200">
+            <p className="mt-1.5 text-ink-700">
               See your opportunity waste, your platform coverage gaps and the renewals you are not
               tracking, scored and prioritized. No cost, no obligation.
             </p>
             <Link
               href="/government-opportunity-intelligence-report"
-              className="mt-4 inline-flex items-center gap-1.5 font-semibold text-brand-300 hover:text-brand-800"
+              className="mt-4 inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-800"
             >
               Request your report <ArrowRight className="h-4 w-4" />
             </Link>

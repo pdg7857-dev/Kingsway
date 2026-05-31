@@ -37,7 +37,7 @@ export default function PrivacyPage() {
 
       <Section>
         <div className="prose-site max-w-3xl">
-          <p className="text-sm text-slate-400">Last updated: {LAST_UPDATED}</p>
+          <p className="text-sm text-slate-500">Last updated: {LAST_UPDATED}</p>
 
           <p>
             This site is operated by {SITE.brandFull}, an independent practice (referred to here as
@@ -130,7 +130,7 @@ export default function PrivacyPage() {
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
 
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500">
             Note for the operator: this is a general, good-faith policy template and is not legal
             advice. Have qualified counsel review and tailor it to your jurisdictions and tools before
             launch.

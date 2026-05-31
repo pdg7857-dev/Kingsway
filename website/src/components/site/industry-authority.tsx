@@ -89,13 +89,13 @@ export function IndustryAuthority({ slug }: { slug: string }) {
       <Section>
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <div className="flex items-center gap-2 text-brand-300">
+            <div className="flex items-center gap-2 text-brand-700">
               <Building2 className="h-5 w-5" />
-              <h2 className="text-xl font-semibold text-white">Who buys this work</h2>
+              <h2 className="text-xl font-semibold text-ink">Who buys this work</h2>
             </div>
             <ul className="mt-5 space-y-2.5">
               {ind.buyers.map((b) => (
-                <li key={b} className="flex gap-2.5 text-slate-200">
+                <li key={b} className="flex gap-2.5 text-ink-700">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
                   {b}
                 </li>
@@ -103,19 +103,19 @@ export function IndustryAuthority({ slug }: { slug: string }) {
             </ul>
           </div>
           <div>
-            <div className="flex items-center gap-2 text-brand-300">
+            <div className="flex items-center gap-2 text-brand-700">
               <ListChecks className="h-5 w-5" />
-              <h2 className="text-xl font-semibold text-white">The work you will see</h2>
+              <h2 className="text-xl font-semibold text-ink">The work you will see</h2>
             </div>
             <ul className="mt-5 space-y-2.5">
               {ind.workTypes.map((w) => (
-                <li key={w} className="flex gap-2.5 text-slate-200">
+                <li key={w} className="flex gap-2.5 text-ink-700">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
                   {w}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex items-start gap-2 rounded-xl border border-line bg-paper-soft p-4 text-sm text-slate-300">
+            <div className="mt-6 flex items-start gap-2 rounded-xl border border-line bg-paper-soft p-4 text-sm text-slate-600">
               <Tag className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
               <span>
                 Buyers usually file this under {ind.codes.join(" and ")}. Knowing the codes is half
@@ -139,9 +139,9 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           {ind.missedBecause.map((m) => (
-            <div key={m} className="flex gap-3 rounded-2xl border border-line bg-paper-muted p-5">
+            <div key={m} className="flex gap-3 rounded-2xl border border-line bg-white p-5">
               <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-gold-500" />
-              <p className="text-slate-200">{m}</p>
+              <p className="text-ink-700">{m}</p>
             </div>
           ))}
         </div>
@@ -161,7 +161,7 @@ export function IndustryAuthority({ slug }: { slug: string }) {
                 <Link
                   key={p.slug}
                   href={platformPath(p.slug)}
-                  className="inline-flex items-center gap-2 rounded-full border border-line bg-paper-muted px-4 py-2 text-sm font-medium text-slate-200 hover:border-brand-300 hover:text-brand-300"
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700"
                 >
                   {p.name}
                   <ArrowRight className="h-3.5 w-3.5 opacity-50" />
@@ -173,13 +173,13 @@ export function IndustryAuthority({ slug }: { slug: string }) {
           <div className="flex items-start gap-3">
             <RefreshCw className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
             <div>
-              <h3 className="font-semibold text-white">Renewal intelligence for {ind.plural}</h3>
-              <p className="mt-1.5 text-sm text-slate-300">
+              <h3 className="font-semibold text-ink">Renewal intelligence for {ind.plural}</h3>
+              <p className="mt-1.5 text-sm text-slate-600">
                 Much of the best {ind.name.toLowerCase()} work is already held by an incumbent and
                 will rebid on a cycle you cannot see from a portal. I track those expirations so you
                 can position before the solicitation posts.
               </p>
-              <Link href="/government-contract-renewals" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
+              <Link href="/government-contract-renewals" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
                 How renewal intelligence works <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -194,8 +194,8 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Try it</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">Get a real {ind.name.toLowerCase()} opportunity, qualified</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <h2 className="mt-3 text-3xl font-semibold text-ink">Get a real {ind.name.toLowerCase()} opportunity, qualified</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">
               Tell me your scope and where you work. I will send back a live opportunity for {ind.plural},
               already read and qualified, so you can see exactly what this looks like.
             </p>

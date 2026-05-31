@@ -84,7 +84,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-center text-xs text-slate-400">
+              <p className="mt-4 text-center text-xs text-slate-500">
                 Reviewed, qualified, linked. Sample illustration.
               </p>
             </div>
@@ -96,10 +96,10 @@ export default function HomePage() {
       <section className="border-b border-line bg-paper-soft">
         <div className="container py-10">
           <TrustBar />
-          <p className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+          <p className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
             Fluent in the platforms your buyers actually use
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-slate-300">
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-ink-600">
             {["MERX", "BidNet Direct", "CanadaBuys", "SAM.gov", "Bonfire", "Biddingo", "bids&tenders", "PlanetBids", "GSA eBuy"].map(
               (n) => (
                 <span key={n} className="opacity-80">{n}</span>
@@ -115,8 +115,120 @@ export default function HomePage() {
       {/* Companies worked with in eProcurement */}
       <ClientLogos />
 
-      {/* Problem */}
+      {/* Pricing (moved up to convert early) */}
+      <Section>
+        <SectionHead
+          center
+          eyebrow="Pricing"
+          title="Public pricing, structured as coverage."
+          lede="No sales games and nothing to unlock on a call. You choose the geographic coverage you need and I cover everything inside it, on a three-month commitment from $599/month."
+        />
+        <div className="mt-12">
+          <PricingTables />
+        </div>
+        <p className="mt-8 text-center text-sm text-slate-500">
+          Full details, what is included, and FAQs on the{" "}
+          <Link href="/pricing" className="font-medium text-brand-700 underline">
+            pricing page
+          </Link>
+          .
+        </p>
+      </Section>
+
+      {/* Cost of doing it yourself + calculator (justifies the price above) */}
       <Section muted>
+        <SectionHead
+          center
+          eyebrow="The cost of doing it yourself"
+          title="That price is a fraction of what searching already costs you."
+          lede="Every hour an estimator or proposal manager spends monitoring portals, opening documents and triaging alerts is an hour not spent winning. Here is what that hour is worth."
+        />
+        <div className="mx-auto mt-10 max-w-3xl">
+          <StatCallout id="response-hours" />
+          <StatCallout id="estimator-hiring" />
+          <StatCallout id="blended-rate" />
+        </div>
+        <div className="mx-auto mt-4 max-w-4xl">
+          <CostCalculator />
+        </div>
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
+          Want the long version, with bid-preparation cost and a printable worksheet? Use the{" "}
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+            full Opportunity Waste Calculator
+          </Link>
+          .
+        </p>
+      </Section>
+
+      {/* How it works */}
+      <Section>
+        <SectionHead
+          center
+          eyebrow="How it works"
+          title="Four steps. I run the first three."
+          lede="You stay focused on pricing and proposals. I take care of everything that happens before a bid is worth your team's time."
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: Search, n: "01", t: "Monitor", d: "I watch every platform that serves your jurisdictions, continuously, so nothing depends on you remembering to log in." },
+            { icon: FileSearch, n: "02", t: "Review", d: "I open the documents and read them: scope, requirements, evaluation criteria, site meetings, addenda, the catch." },
+            { icon: Filter, n: "03", t: "Qualify", d: "I judge fit against your trades, capacity and footprint, and set aside the bids that were never right for you." },
+            { icon: Send, n: "04", t: "Deliver", d: "You get a short, plain-language summary and a direct link to the source bid. Your team prices and submits." },
+          ].map((s) => (
+            <div key={s.n} className="card relative p-6">
+              <span className="text-xs font-bold text-brand-300">{s.n}</span>
+              <div className="mt-3 grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
+                <s.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-ink">{s.t}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{s.d}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link href="/how-it-works" className="btn-dark px-6 py-3">
+            See the full process <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </Section>
+
+      {/* Positioning: platforms vs Phil */}
+      <Section muted>
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div>
+            <SectionHead
+              eyebrow="The difference"
+              title="Platforms show you everything. I show you what matters."
+              lede="Government Opportunity Intelligence is a different job than running a portal. The platforms hand you data. I hand you a decision."
+            />
+            <Link href="/government-opportunity-intelligence" className="btn-ghost mt-6 px-5 py-2.5 text-sm">
+              What is opportunity intelligence? <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-line">
+            {[
+              ["Platforms show opportunities.", "I identify the ones worth pursuing."],
+              ["Platforms provide data.", "I provide intelligence."],
+              ["Platforms send alerts.", "I qualify the fit."],
+              ["Platforms show everything.", "I show what matters."],
+            ].map(([a, b], i) => (
+              <div
+                key={i}
+                className={`grid grid-cols-2 divide-x divide-line ${i % 2 ? "bg-white" : "bg-paper-soft"}`}
+              >
+                <div className="p-4 text-sm text-slate-500">{a}</div>
+                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-ink">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-600" />
+                  {b}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Problem */}
+      <Section>
         <SectionHead
           eyebrow="The problem"
           title="Bidding does not fail at the proposal. It fails at the search."
@@ -147,98 +259,6 @@ export default function HomePage() {
             More data has not made bidding easier. It has made it noisier. Volume is not the
             problem. Knowing what is worth your time is.
           </FeatureCard>
-        </div>
-      </Section>
-
-      {/* Positioning: platforms vs Phil */}
-      <Section>
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHead
-              eyebrow="The difference"
-              title="Platforms show you everything. I show you what matters."
-              lede="Government Opportunity Intelligence is a different job than running a portal. The platforms hand you data. I hand you a decision."
-            />
-            <Link href="/government-opportunity-intelligence" className="btn-ghost mt-6 px-5 py-2.5 text-sm">
-              What is opportunity intelligence? <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="overflow-hidden rounded-2xl border border-line">
-            {[
-              ["Platforms show opportunities.", "I identify the ones worth pursuing."],
-              ["Platforms provide data.", "I provide intelligence."],
-              ["Platforms send alerts.", "I qualify the fit."],
-              ["Platforms show everything.", "I show what matters."],
-            ].map(([a, b], i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-2 divide-x divide-line ${i % 2 ? "bg-paper-muted" : "bg-paper-soft"}`}
-              >
-                <div className="p-4 text-sm text-slate-400">{a}</div>
-                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-white">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-600" />
-                  {b}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Cost of doing it yourself + calculator */}
-      <Section muted>
-        <SectionHead
-          center
-          eyebrow="The cost of doing it yourself"
-          title="The search has a price. You are already paying it."
-          lede="Every hour an estimator or proposal manager spends monitoring portals, opening documents and triaging alerts is an hour not spent winning. Here is what that hour is worth."
-        />
-        <div className="mx-auto mt-10 max-w-3xl">
-          <StatCallout id="response-hours" />
-          <StatCallout id="estimator-hiring" />
-          <StatCallout id="blended-rate" />
-        </div>
-        <div className="mx-auto mt-4 max-w-4xl">
-          <CostCalculator />
-        </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-400">
-          Want the long version, with bid-preparation cost and a printable worksheet? Use the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-300 underline">
-            full Opportunity Cost Calculator
-          </Link>
-          .
-        </p>
-      </Section>
-
-      {/* How it works */}
-      <Section>
-        <SectionHead
-          center
-          eyebrow="How it works"
-          title="Four steps. I run the first three."
-          lede="You stay focused on pricing and proposals. I take care of everything that happens before a bid is worth your team's time."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            { icon: Search, n: "01", t: "Monitor", d: "I watch every platform that serves your jurisdictions, continuously, so nothing depends on you remembering to log in." },
-            { icon: FileSearch, n: "02", t: "Review", d: "I open the documents and read them: scope, requirements, evaluation criteria, site meetings, addenda, the catch." },
-            { icon: Filter, n: "03", t: "Qualify", d: "I judge fit against your trades, capacity and footprint, and set aside the bids that were never right for you." },
-            { icon: Send, n: "04", t: "Deliver", d: "You get a short, plain-language summary and a direct link to the source bid. Your team prices and submits." },
-          ].map((s) => (
-            <div key={s.n} className="card relative p-6">
-              <span className="text-xs font-bold text-brand-300">{s.n}</span>
-              <div className="mt-3 grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-white">{s.t}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{s.d}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <Link href="/how-it-works" className="btn-dark px-6 py-3">
-            See the full process <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </Section>
 
@@ -285,26 +305,26 @@ export default function HomePage() {
             <Link
               key={ind.slug}
               href={industryPath(ind.slug)}
-              className="group flex items-start gap-4 rounded-2xl border border-line bg-paper-muted p-5 transition hover:border-brand-300 hover:shadow-card"
+              className="group flex items-start gap-4 rounded-2xl border border-line bg-white p-5 transition hover:border-brand-300 hover:shadow-card"
             >
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-500/10 text-brand-300">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700">
                 <Building2 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-white group-hover:text-brand-300">{ind.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-300">{ind.oneLiner}</p>
+                <h3 className="font-semibold text-ink group-hover:text-brand-700">{ind.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{ind.oneLiner}</p>
               </div>
             </Link>
           ))}
         </div>
         <div className="mt-8">
-          <Link href="/industries" className="text-sm font-semibold text-brand-300 hover:text-brand-800">
+          <Link href="/industries" className="text-sm font-semibold text-brand-700 hover:text-brand-800">
             See every industry I cover &rarr;
           </Link>
         </div>
       </Section>
 
-      {/* Stats */}
+      {/* Track record */}
       <Section muted>
         <SectionHead
           center
@@ -316,7 +336,7 @@ export default function HomePage() {
           <StatStrip />
           <p className="mt-4 text-center text-xs text-slate-400">
             My track record and coverage at a glance. Market-wide figures and their sources are on the{" "}
-            <Link href="/government-procurement-statistics" className="font-medium text-brand-300 underline">
+            <Link href="/government-procurement-statistics" className="font-medium text-brand-700 underline">
               government procurement statistics
             </Link>{" "}
             page.
@@ -324,35 +344,15 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Pricing */}
-      <Section>
-        <SectionHead
-          center
-          eyebrow="Pricing"
-          title="Public pricing, structured as coverage."
-          lede="Not per opportunity. Not per portal. Not hourly. You choose the geographic coverage you need and I cover everything inside it."
-        />
-        <div className="mt-12">
-          <PricingTables />
-        </div>
-        <p className="mt-8 text-center text-sm text-slate-400">
-          Full details, FAQs and what is included on the{" "}
-          <Link href="/pricing" className="font-medium text-brand-300 underline">
-            pricing page
-          </Link>
-          .
-        </p>
-      </Section>
-
       {/* FAQ + lead form */}
-      <Section muted>
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <SectionHead eyebrow="Questions" title="The things contractors ask me first." />
             <div className="mt-8">
               <FaqAccordion faqs={GENERAL_FAQS.slice(0, 6)} />
             </div>
-            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-brand-300">
+            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-brand-700">
               Read every question &rarr;
             </Link>
           </div>

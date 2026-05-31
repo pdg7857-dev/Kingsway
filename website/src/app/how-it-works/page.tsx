@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
       <Section>
         <div className="space-y-6">
           {STEPS.map((s, i) => (
-            <div key={s.n} className="grid items-start gap-6 rounded-2xl border border-line bg-paper-muted p-6 sm:p-8 lg:grid-cols-[auto_1fr]">
+            <div key={s.n} className="grid items-start gap-6 rounded-2xl border border-line bg-white p-6 sm:p-8 lg:grid-cols-[auto_1fr]">
               <div className="flex items-center gap-4 lg:flex-col lg:items-start">
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-white">
                   <s.icon className="h-6 w-6" />
@@ -126,18 +126,18 @@ export default function HowItWorksPage() {
                 <span className="text-3xl font-bold text-brand-200">{s.n}</span>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-white">{s.t}</h2>
-                <p className="mt-1 text-lg text-brand-300">{s.lead}</p>
+                <h2 className="text-2xl font-semibold text-ink">{s.t}</h2>
+                <p className="mt-1 text-lg text-brand-700">{s.lead}</p>
                 <ul className="mt-4 space-y-2.5">
                   {s.points.map((p) => (
-                    <li key={p} className="flex gap-2.5 text-slate-200">
+                    <li key={p} className="flex gap-2.5 text-ink-700">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
                       {p}
                     </li>
                   ))}
                 </ul>
                 {i === 3 && (
-                  <Link href={SITE.sampleUrl} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-300">
+                  <Link href={SITE.sampleUrl} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
                     See a real qualified opportunity <ArrowRight className="h-4 w-4" />
                   </Link>
                 )}
@@ -151,17 +151,17 @@ export default function HowItWorksPage() {
       <Section muted>
         <SectionHead center eyebrow="Who does what" title="A clean division of labour" lede="You do not hand over control. You hand over the searching." />
         <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          <div className="bg-paper-muted p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">I handle</p>
-            <ul className="mt-4 space-y-2 text-slate-200">
+          <div className="bg-white p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-brand-700">I handle</p>
+            <ul className="mt-4 space-y-2 text-ink-700">
               {["Monitoring every platform", "Discovery and screening", "Reading the documents", "Fit qualification", "Plain-language summaries"].map((t) => (
                 <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />{t}</li>
               ))}
             </ul>
           </div>
-          <div className="bg-paper-muted p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-white">You handle</p>
-            <ul className="mt-4 space-y-2 text-slate-200">
+          <div className="bg-white p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-ink">You handle</p>
+            <ul className="mt-4 space-y-2 text-ink-700">
               {["Bid/no-bid decision", "Pricing and estimating", "Proposal writing", "Submission", "Winning the work"].map((t) => (
                 <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />{t}</li>
               ))}
@@ -175,8 +175,8 @@ export default function HowItWorksPage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow"><Clock className="h-3.5 w-3.5" /> Getting started</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">From call to qualified opportunities, fast</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
+            <h2 className="mt-3 text-3xl font-semibold text-ink">From call to qualified opportunities, fast</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-600">
               On the discovery call I will already have looked at your jurisdictions, so you see
               real, current opportunities before you decide anything. We agree on coverage and
               cadence, I learn your sweet spot, and the qualified work starts flowing.

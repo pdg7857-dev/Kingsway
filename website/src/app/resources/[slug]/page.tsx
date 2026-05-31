@@ -70,7 +70,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
               {resource.bullets.map((b) => (
                 <li key={b} className="flex gap-3">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                  <span className="text-[0.975rem] leading-7 text-slate-300">{b}</span>
+                  <span className="text-[0.975rem] leading-7 text-slate-600">{b}</span>
                 </li>
               ))}
             </ul>

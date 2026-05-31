@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Who I am</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">
+            <h2 className="mt-3 text-3xl font-semibold text-ink">
               An opportunity intelligence practice, run by one person who knows it cold
             </h2>
             <div className="prose-site mt-5 max-w-none">
@@ -150,7 +150,7 @@ export default function AboutPage() {
       <Section>
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">The philosophy</p>
-          <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-ink sm:text-4xl">
             Platforms show everything. I show what matters.
           </h2>
           <div className="prose-site mt-6 max-w-none">
@@ -187,25 +187,25 @@ export default function AboutPage() {
         />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-300">Step one</div>
-            <h3 className="mt-2 text-lg font-semibold text-white">We map your fit</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
+            <div className="text-sm font-semibold text-brand-700">Step one</div>
+            <h3 className="mt-2 text-lg font-semibold text-ink">We map your fit</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               On a short call, you tell me your trades, your jurisdictions, your bonding and your
               capacity. I translate that into how buyers actually describe the work, codes included.
             </p>
           </div>
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-300">Step two</div>
-            <h3 className="mt-2 text-lg font-semibold text-white">I watch and read</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
+            <div className="text-sm font-semibold text-brand-700">Step two</div>
+            <h3 className="mt-2 text-lg font-semibold text-ink">I watch and read</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               Every platform that serves your area, every day. When something fits, I open the
               documents and check the parts that decide whether a bid is even possible for you.
             </p>
           </div>
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-300">Step three</div>
-            <h3 className="mt-2 text-lg font-semibold text-white">You get the short list</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
+            <div className="text-sm font-semibold text-brand-700">Step three</div>
+            <h3 className="mt-2 text-lg font-semibold text-ink">You get the short list</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               Qualified opportunities, with the context that matters and time left on the clock.
               You make the go or no-go call. You prepare and submit. I keep watching.
             </p>
@@ -228,15 +228,15 @@ export default function AboutPage() {
               className="card group flex flex-col p-6"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-white group-hover:text-brand-300">
+                <h3 className="text-lg font-semibold text-ink group-hover:text-brand-700">
                   {p.name}
                 </h3>
-                <span className="rounded-full bg-gold-500/10 px-2 py-0.5 text-[10px] font-semibold text-gold-400">
+                <span className="rounded-full bg-gold-50 px-2 py-0.5 text-[10px] font-semibold text-gold-600">
                   Cornerstone
                 </span>
               </div>
-              <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{p.oneLiner}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
+              <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{p.oneLiner}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
                 {p.shortName} guide{" "}
                 <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </span>
@@ -244,7 +244,7 @@ export default function AboutPage() {
           ))}
         </div>
         <div className="mt-8">
-          <p className="text-sm font-medium text-slate-200">Plus the rest of the ecosystem:</p>
+          <p className="text-sm font-medium text-ink-700">Plus the rest of the ecosystem:</p>
           <div className="mt-4 flex flex-wrap gap-2.5">
             {others.map((p) => (
               <Pill key={p.slug}>{p.name}</Pill>
@@ -252,7 +252,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/platforms"
-            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand-300 hover:text-brand-800"
+            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand-700 hover:text-brand-800"
           >
             See how I read every one of them{" "}
             <ArrowRight className="h-3.5 w-3.5" />
@@ -274,19 +274,19 @@ export default function AboutPage() {
               href={industryPath(ind.slug)}
               className="card group flex items-start gap-3 p-5"
             >
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
                 <Building2 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-white group-hover:text-brand-300">{ind.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-300">{ind.oneLiner}</p>
+                <h3 className="font-semibold text-ink group-hover:text-brand-700">{ind.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">{ind.oneLiner}</p>
               </div>
             </Link>
           ))}
         </div>
-        <p className="mt-8 text-sm text-slate-300">
+        <p className="mt-8 text-sm text-slate-600">
           Not on this list? I cover more trades than I can fit here.{" "}
-          <Link href="/industries" className="font-medium text-brand-300 hover:text-brand-800">
+          <Link href="/industries" className="font-medium text-brand-700 hover:text-brand-800">
             See every industry I serve
           </Link>
           .
@@ -296,7 +296,7 @@ export default function AboutPage() {
       {/* Personal closing */}
       <Section>
         <div className="mx-auto max-w-3xl">
-          <div className="flex items-center gap-2 text-brand-300">
+          <div className="flex items-center gap-2 text-brand-700">
             <Eye className="h-5 w-5" />
             <p className="eyebrow">Why I do this</p>
           </div>

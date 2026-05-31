@@ -46,8 +46,8 @@ export default function GovernmentProcurementStatisticsPage() {
       </section>
 
       <Section muted>
-        <div className="flex flex-col gap-5 rounded-2xl border border-line bg-paper-muted p-6 sm:flex-row sm:items-start sm:p-8">
-          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
+        <div className="flex flex-col gap-5 rounded-2xl border border-line bg-white p-6 sm:flex-row sm:items-start sm:p-8">
+          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <div className="prose-site max-w-3xl">
@@ -92,18 +92,18 @@ export default function GovernmentProcurementStatisticsPage() {
                     <div key={claim.label} className="card flex flex-col p-6">
                       <div className="flex items-baseline justify-between gap-3">
                         {verified ? (
-                          <span className="text-3xl font-bold tabular-nums text-white">{claim.value}</span>
+                          <span className="text-3xl font-bold tabular-nums text-ink">{claim.value}</span>
                         ) : (
-                          <span className="rounded-full bg-gold-500/10 px-3 py-1 text-xs font-semibold text-gold-400">
+                          <span className="rounded-full bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-600">
                             Pending verified source
                           </span>
                         )}
                       </div>
-                      <h3 className="mt-3 text-base font-semibold text-white">{claim.label}</h3>
-                      <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{claim.context}</p>
+                      <h3 className="mt-3 text-base font-semibold text-ink">{claim.label}</h3>
+                      <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{claim.context}</p>
                       <p className="mt-4 text-xs text-slate-400">
                         {claim.sourceUrl ? (
-                          <a href={claim.sourceUrl} className="hover:text-brand-300" target="_blank" rel="noopener noreferrer">
+                          <a href={claim.sourceUrl} className="hover:text-brand-700" target="_blank" rel="noopener noreferrer">
                             Source: {claim.sourceType}
                           </a>
                         ) : (
