@@ -15,11 +15,15 @@ const PRICING_FAQS = [
   },
   {
     q: "Is there a setup fee or a contract?",
-    a: "No setup fee, and no long lock-in. Coverage runs month to month. It should pay for itself by putting more winnable work in front of you than it costs, and if it ever stops doing that, you stop.",
+    a: "No setup fee. Coverage starts with a three-month commitment, then continues month to month until you stop. Three months is the minimum because that is the window where qualified pipeline actually builds. After that, it should keep paying for itself, and if it ever stops doing that, you stop.",
   },
   {
     q: "What counts as a jurisdiction?",
     a: "A province or a state. State and local opportunities (counties, cities, school and special districts) are covered at every plan level for the states you choose.",
+  },
+  {
+    q: "How does Atlantic Canada work?",
+    a: "If you are in Atlantic Canada, the four Atlantic provinces (Nova Scotia, New Brunswick, Prince Edward Island, and Newfoundland and Labrador) count as a single province on the Single Province plan. Many contractors there work across all four, so it would not be fair to charge four times for one regional market.",
   },
   {
     q: "How do I get federal or U.S. military contract coverage?",
@@ -42,7 +46,7 @@ const PRICING_FAQS = [
 export const metadata: Metadata = pageMeta({
   title: "Pricing: Government Opportunity Intelligence Coverage Plans",
   description:
-    "Public pricing from $599/month, structured as geographic coverage. Single province or state, regional, multi-state, and national plans for Canada and the U.S. No per-opportunity fees, no lock-in.",
+    "Public pricing from $599/month, structured as geographic coverage on a three-month commitment. Single province or state, regional, multi-state, and national plans for Canada and the U.S. No per-opportunity fees.",
   path: "/pricing",
   keywords: ["government bid monitoring pricing", "opportunity intelligence cost", "bid alert service pricing"],
 });
@@ -80,7 +84,7 @@ export default function PricingPage() {
         <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-line bg-paper-soft p-6">
           <div className="grid gap-3 sm:grid-cols-2">
             {PRICING_PRINCIPLES.map((p) => (
-              <div key={p} className="flex gap-2.5 text-sm text-ink-700">
+              <div key={p} className="flex gap-2.5 text-sm text-slate-200">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                 {p}
               </div>
@@ -101,9 +105,9 @@ export default function PricingPage() {
           </div>
           <ul className="space-y-3">
             {INCLUDED_EVERYWHERE.map((f) => (
-              <li key={f} className="flex gap-3 rounded-xl border border-line bg-white p-4">
+              <li key={f} className="flex gap-3 rounded-xl border border-line bg-paper-muted p-4">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <span className="text-ink-700">{f}</span>
+                <span className="text-slate-200">{f}</span>
               </li>
             ))}
           </ul>
@@ -119,9 +123,9 @@ export default function PricingPage() {
           lede="Compare flat coverage against what manual monitoring and triage actually cost in estimator time."
         />
         <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          <div className="bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Doing it yourself</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-slate-600">
+          <div className="bg-paper-muted p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate-400">Doing it yourself</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-slate-300">
               {["Estimator hours lost to portals", "Notifications to triage daily", "Documents nobody has time to read", "Good bids missed under odd titles", "Bid/no-bid guesswork"].map((t) => (
                 <li key={t} className="flex gap-2.5">
                   <X className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
@@ -142,9 +146,9 @@ export default function PricingPage() {
             </ul>
           </div>
         </div>
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-slate-400">
           Run your own numbers with the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-300 underline">
             Opportunity Cost Calculator
           </Link>
           .
@@ -156,9 +160,9 @@ export default function PricingPage() {
         <SectionHead title="Pricing questions" />
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_0.8fr]">
           <FaqAccordion faqs={PRICING_FAQS} />
-          <div className="rounded-2xl border border-line bg-white p-8">
-            <h3 className="text-xl font-semibold text-ink">Not sure which plan fits?</h3>
-            <p className="mt-2 text-slate-600">
+          <div className="rounded-2xl border border-line bg-paper-muted p-8">
+            <h3 className="text-xl font-semibold text-white">Not sure which plan fits?</h3>
+            <p className="mt-2 text-slate-300">
               Tell me where you bid and what you chase. I will recommend the smallest plan that
               actually covers your footprint, and show you live opportunities on the call.
             </p>

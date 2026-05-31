@@ -50,8 +50,8 @@ export function VideoFeature({
       <div className="container py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow justify-center">{eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-semibold text-ink sm:text-4xl">{heading ?? title}</h2>
-          <p className="mt-4 text-lg leading-8 text-slate-600">{caption}</p>
+          <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{heading ?? title}</h2>
+          <p className="mt-4 text-lg leading-8 text-slate-300">{caption}</p>
         </div>
 
         <div className="mx-auto mt-10 max-w-4xl">
@@ -83,7 +83,7 @@ export function VideoFeature({
             {/* Play / placeholder */}
             <div className="absolute inset-0 grid place-items-center">
               <div className="flex flex-col items-center">
-                <span className="grid h-20 w-20 place-items-center rounded-full bg-white/95 text-ink shadow-lift transition group-hover:scale-105 group-disabled:opacity-70">
+                <span className="grid h-20 w-20 place-items-center rounded-full bg-white/95 text-white shadow-lift transition group-hover:scale-105 group-disabled:opacity-70">
                   {hasVideo ? <Play className="h-8 w-8 translate-x-0.5 fill-ink" /> : <Film className="h-8 w-8" />}
                 </span>
                 <span className="mt-4 rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur">

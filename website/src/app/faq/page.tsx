@@ -99,8 +99,8 @@ export default function FaqPage() {
           <aside className="lg:pt-2">
             <div className="sticky top-24 space-y-6">
               <div className="rounded-2xl border border-line bg-paper-soft p-6">
-                <h3 className="text-lg font-semibold text-ink">Still have a question?</h3>
-                <p className="mt-2 text-sm text-slate-600">Ask me directly. I answer personally, usually the same business day.</p>
+                <h3 className="text-lg font-semibold text-white">Still have a question?</h3>
+                <p className="mt-2 text-sm text-slate-300">Ask me directly. I answer personally, usually the same business day.</p>
                 <Link href={SITE.bookingUrl} className="btn-primary mt-4 w-full py-2.5 text-sm">Book a discovery call</Link>
                 <Link href="/contact" className="btn-ghost mt-2 w-full py-2.5 text-sm">Send a message</Link>
               </div>

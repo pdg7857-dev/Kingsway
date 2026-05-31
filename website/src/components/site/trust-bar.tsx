@@ -22,7 +22,7 @@ export function TrustBar({ dark = false }: { dark?: boolean }) {
       {ITEMS.map((it) => (
         <div
           key={it.label}
-          className={`flex items-center gap-2.5 p-4 ${dark ? "bg-ink-900 text-slate-200" : "bg-white text-ink-700"}`}
+          className={`flex items-center gap-2.5 p-4 ${dark ? "bg-ink-900 text-slate-200" : "bg-paper-muted text-slate-200"}`}
         >
           <it.icon className={`h-5 w-5 shrink-0 ${dark ? "text-brand-300" : "text-brand-600"}`} />
           <span className="text-[13px] font-medium leading-tight">{it.label}</span>

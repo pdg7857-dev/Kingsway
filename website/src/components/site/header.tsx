@@ -26,15 +26,15 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-line bg-ink-900/85 backdrop-blur">
         <div className="container flex h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3" aria-label={`${SITE.brand} home`}>
             <span className="grid h-10 w-10 place-items-center rounded-md bg-ink text-sm font-bold tracking-tight text-white ring-1 ring-inset ring-white/15">
               {SITE.monogram}
             </span>
             <span className="leading-tight">
-              <span className="block text-[15px] font-bold tracking-tight text-ink">{SITE.brand}</span>
-              <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-700">
+              <span className="block text-[15px] font-bold tracking-tight text-white">{SITE.brand}</span>
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-300">
                 Government Opportunity Intelligence
               </span>
             </span>
@@ -46,17 +46,17 @@ export function SiteHeader() {
                 <div key={item.label} className="group relative">
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-ink-700 transition hover:text-brand-700"
+                    className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:text-brand-300"
                   >
                     {item.label}
                     <ChevronDown className="h-3.5 w-3.5 opacity-60" />
                   </Link>
-                  <div className="invisible absolute left-0 top-full w-72 translate-y-1 rounded-lg border border-line bg-white p-2 opacity-0 shadow-lift transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="invisible absolute left-0 top-full w-72 translate-y-1 rounded-lg border border-line bg-paper-muted p-2 opacity-0 shadow-lift transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                     {item.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
-                        className="block rounded-md px-3 py-2 text-sm text-ink-700 transition hover:bg-paper-soft hover:text-brand-700"
+                        className="block rounded-md px-3 py-2 text-sm text-slate-200 transition hover:bg-paper-soft hover:text-brand-300"
                       >
                         {c.label}
                       </Link>
@@ -67,7 +67,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-md px-3 py-2 text-sm font-medium text-ink-700 transition hover:text-brand-700"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:text-brand-300"
                 >
                   {item.label}
                 </Link>
@@ -96,13 +96,13 @@ export function SiteHeader() {
         </div>
 
         {mobileOpen && (
-          <div className="border-t border-line bg-white lg:hidden">
+          <div className="border-t border-line bg-paper-muted lg:hidden">
             <div className="container space-y-1 py-4">
               {PRIMARY_NAV.map((item) => (
                 <div key={item.label}>
                   <Link
                     href={item.href}
-                    className="block rounded-md px-3 py-2 text-sm font-semibold text-ink"
+                    className="block rounded-md px-3 py-2 text-sm font-semibold text-white"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -113,7 +113,7 @@ export function SiteHeader() {
                         <Link
                           key={c.href}
                           href={c.href}
-                          className="block rounded-md px-3 py-1.5 text-sm text-ink-700"
+                          className="block rounded-md px-3 py-1.5 text-sm text-slate-200"
                           onClick={() => setMobileOpen(false)}
                         >
                           {c.label}

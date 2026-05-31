@@ -71,7 +71,7 @@ export default function OpportunityWasteCalculatorPage() {
               "Qualifying opportunities by hand",
               "Context-switching across many platforms",
             ].map((t) => (
-              <li key={t} className="rounded-xl border border-line bg-white p-4 text-sm text-ink-700">{t}</li>
+              <li key={t} className="rounded-xl border border-line bg-paper-muted p-4 text-sm text-slate-200">{t}</li>
             ))}
           </ul>
           <References ids={["response-hours", "estimator-hiring"]} />
@@ -83,9 +83,9 @@ export default function OpportunityWasteCalculatorPage() {
       <Section>
         <SectionHead title="Questions" />
         <div className="mt-8 max-w-3xl"><FaqAccordion faqs={FAQS} /></div>
-        <p className="mt-8 text-sm text-slate-500">
+        <p className="mt-8 text-sm text-slate-400">
           Want the full picture? Get your{" "}
-          <Link href="/government-opportunity-intelligence-report" className="font-medium text-brand-700 underline">
+          <Link href="/government-opportunity-intelligence-report" className="font-medium text-brand-300 underline">
             free Government Opportunity Intelligence Report
           </Link>{" "}
           for a tailored opportunity-waste figure.

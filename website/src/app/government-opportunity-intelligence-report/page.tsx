@@ -77,11 +77,11 @@ export default function GoirPage() {
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {DELIVERABLES.map((d) => (
             <div key={d.title} className="card p-6">
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
                 <d.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{d.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{d.body}</p>
+              <h3 className="mt-4 text-lg font-semibold text-white">{d.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{d.body}</p>
             </div>
           ))}
         </div>
@@ -95,16 +95,16 @@ export default function GoirPage() {
             ["02", "I do the analysis", "I assess your coverage, estimate your waste, and scan your market for renewals."],
             ["03", "You get the report", "A clear, prioritized read you can act on, with or without working together."],
           ].map(([n, t, d]) => (
-            <div key={n} className="rounded-2xl border border-line bg-white p-6">
+            <div key={n} className="rounded-2xl border border-line bg-paper-muted p-6">
               <span className="text-2xl font-bold text-brand-200">{n}</span>
-              <h3 className="mt-2 text-lg font-semibold text-ink">{t}</h3>
-              <p className="mt-1.5 text-sm leading-6 text-slate-600">{d}</p>
+              <h3 className="mt-2 text-lg font-semibold text-white">{t}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-slate-300">{d}</p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-center text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-slate-400">
           Prefer to estimate it yourself first? Try the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-300 underline">
             Opportunity Waste Calculator
           </Link>
           .

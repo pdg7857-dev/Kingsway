@@ -37,11 +37,11 @@ export function SectionHead({
   return (
     <div className={`${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
       {eyebrow && <p className={`eyebrow ${dark ? "text-brand-300" : ""}`}>{eyebrow}</p>}
-      <h2 className={`mt-3 text-3xl font-semibold sm:text-4xl ${dark ? "text-white" : "text-ink"}`}>
+      <h2 className={`mt-3 text-3xl font-semibold sm:text-4xl ${dark ? "text-white" : "text-white"}`}>
         {title}
       </h2>
       {lede && (
-        <p className={`mt-4 text-lg leading-8 ${dark ? "text-slate-300" : "text-slate-600"}`}>
+        <p className={`mt-4 text-lg leading-8 ${dark ? "text-slate-300" : "text-slate-300"}`}>
           {lede}
         </p>
       )}
@@ -51,16 +51,16 @@ export function SectionHead({
 
 export function Breadcrumbs({ items }: { items: { name: string; href?: string }[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+    <nav aria-label="Breadcrumb" className="text-sm text-slate-400">
       <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((it, i) => (
           <li key={i} className="flex items-center gap-1.5">
             {it.href ? (
-              <Link href={it.href} className="hover:text-brand-700">
+              <Link href={it.href} className="hover:text-brand-300">
                 {it.name}
               </Link>
             ) : (
-              <span className="text-ink">{it.name}</span>
+              <span className="text-white">{it.name}</span>
             )}
             {i < items.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
           </li>
@@ -76,11 +76,11 @@ export function StatStrip({ dark = false }: { dark?: boolean }) {
   return (
     <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-5 ${dark ? "border-white/10 bg-white/10" : "border-line bg-line"}`}>
       {items.map((s) => (
-        <div key={s.label} className={`${dark ? "bg-ink-900" : "bg-white"} p-5 text-center`}>
-          <div className={`text-2xl font-bold tabular-nums ${dark ? "text-white" : "text-ink"}`}>
+        <div key={s.label} className={`${dark ? "bg-ink-900" : "bg-paper-muted"} p-5 text-center`}>
+          <div className={`text-2xl font-bold tabular-nums ${dark ? "text-white" : "text-white"}`}>
             {s.value ?? s.placeholder}
           </div>
-          <div className={`mt-1 text-xs leading-snug ${dark ? "text-slate-400" : "text-slate-500"}`}>
+          <div className={`mt-1 text-xs leading-snug ${dark ? "text-slate-400" : "text-slate-400"}`}>
             {s.label}
           </div>
         </div>
@@ -139,19 +139,19 @@ export function FeatureCard({
   return (
     <div className="card p-6">
       {Icon && (
-        <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+        <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
           <Icon className="h-5 w-5" />
         </div>
       )}
-      <h3 className="text-lg font-semibold text-ink">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{children}</p>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{children}</p>
     </div>
   );
 }
 
 export function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-line bg-paper-soft px-3 py-1 text-xs font-medium text-ink-700">
+    <span className="inline-flex items-center rounded-full border border-line bg-paper-soft px-3 py-1 text-xs font-medium text-slate-200">
       {children}
     </span>
   );

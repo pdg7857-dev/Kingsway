@@ -49,14 +49,14 @@ export default function ResourcesIndex() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {RESOURCES.map((r) => (
             <Link key={r.slug} href={`/resources/${r.slug}`} className="card group flex flex-col p-6">
-              <span className="self-start rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-semibold text-brand-700">
+              <span className="self-start rounded-full bg-brand-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-brand-300">
                 {r.kind}
               </span>
-              <h3 className="mt-4 text-lg font-semibold text-ink group-hover:text-brand-700">
+              <h3 className="mt-4 text-lg font-semibold text-white group-hover:text-brand-300">
                 {r.title}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{r.summary}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+              <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{r.summary}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
                 {r.cta} <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </span>
             </Link>

@@ -30,7 +30,7 @@ export const CANADA_PLANS: Plan[] = [
     name: "Single Province Coverage",
     price: "$599",
     priceNote: "/month",
-    scope: "One province",
+    scope: "One province (Atlantic counts as one)",
     blurb: "Full intelligence coverage for the province where you do most of your work.",
     features: [
       "Monitoring across every platform that serves your province",
@@ -40,6 +40,7 @@ export const CANADA_PLANS: Plan[] = [
       "Opportunity summaries",
       "Direct bid links",
     ],
+    footnote: "The four Atlantic provinces (Nova Scotia, New Brunswick, PEI and Newfoundland and Labrador) count as a single province on this plan.",
   },
   {
     name: "Multi-Province Coverage",
@@ -142,6 +143,6 @@ export const USA_PLANS: Plan[] = [
 export const PRICING_PRINCIPLES = [
   "Priced as coverage, not per opportunity. Review as many as it takes.",
   "Never hourly. You never watch a clock or ration questions.",
-  "Month-to-month. Coverage should earn its place every month.",
+  "Three-month commitment, long enough to build real pipeline, then continue or stop.",
   "One flat plan replaces estimator hours, missed bids and portal fatigue.",
 ];

@@ -81,11 +81,11 @@ export default function BlogIndex() {
                       href={`/blog/${t.slug}`}
                       className="card group flex flex-col p-6"
                     >
-                      <h3 className="text-base font-semibold leading-snug text-ink group-hover:text-brand-700">
+                      <h3 className="text-base font-semibold leading-snug text-white group-hover:text-brand-300">
                         {t.title}
                       </h3>
-                      <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{t.excerpt}</p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                      <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{t.excerpt}</p>
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
                         Read{" "}
                         <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                       </span>

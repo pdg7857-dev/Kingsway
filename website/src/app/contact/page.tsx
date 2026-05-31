@@ -55,8 +55,8 @@ export default function ContactPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Reach me directly</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">A real person reads this</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <h2 className="mt-3 text-3xl font-semibold text-white">A real person reads this</h2>
+            <p className="mt-4 text-lg leading-8 text-slate-300">
               There is no support desk and no auto-responder loop here. It is just me. Use the form,
               or email me straight away if that is easier.
             </p>
@@ -66,44 +66,44 @@ export default function ContactPage() {
                 href={`mailto:${SITE.email}`}
                 className="card group flex items-start gap-4 p-5"
               >
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-ink group-hover:text-brand-700">Email me</h3>
-                  <p className="mt-1 break-all text-sm text-slate-600">{SITE.email}</p>
+                  <h3 className="font-semibold text-white group-hover:text-brand-300">Email me</h3>
+                  <p className="mt-1 break-all text-sm text-slate-300">{SITE.email}</p>
                 </div>
               </a>
 
               <div className="card flex items-start gap-4 p-5">
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
                   <Clock className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-ink">Response time</h3>
-                  <p className="mt-1 text-sm text-slate-600">
+                  <h3 className="font-semibold text-white">Response time</h3>
+                  <p className="mt-1 text-sm text-slate-300">
                     I reply personally, usually within the same business day.
                   </p>
                 </div>
               </div>
 
               <div className="card flex items-start gap-4 p-5">
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-500/10 text-brand-300">
                   <MessageSquare className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-ink">Rather see it in action?</h3>
-                  <p className="mt-1 text-sm text-slate-600">
+                  <h3 className="font-semibold text-white">Rather see it in action?</h3>
+                  <p className="mt-1 text-sm text-slate-300">
                     <Link
                       href={SITE.bookingUrl}
-                      className="font-medium text-brand-700 hover:text-brand-800"
+                      className="font-medium text-brand-300 hover:text-brand-800"
                     >
                       Book a discovery call
                     </Link>{" "}
                     or{" "}
                     <Link
                       href={SITE.sampleUrl}
-                      className="font-medium text-brand-700 hover:text-brand-800"
+                      className="font-medium text-brand-300 hover:text-brand-800"
                     >
                       request a sample opportunity
                     </Link>

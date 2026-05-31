@@ -94,8 +94,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="sticky top-24">
               <TableOfContents sections={body.sections} />
               <div className="mt-8 rounded-2xl border border-line bg-paper-soft p-5">
-                <p className="text-sm font-semibold text-ink">Want to skip the reading?</p>
-                <p className="mt-1.5 text-sm text-slate-600">
+                <p className="text-sm font-semibold text-white">Want to skip the reading?</p>
+                <p className="mt-1.5 text-sm text-slate-300">
                   I will show you live, qualified opportunities in your trade and jurisdictions on a
                   call.
                 </p>
@@ -112,7 +112,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             {/* Cross-links */}
             {body.related && body.related.length > 0 && (
               <div className="mt-14 rounded-2xl border border-line bg-paper-soft p-6">
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
                   Keep reading
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -120,7 +120,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <Link
                       key={r.href}
                       href={r.href}
-                      className="rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700"
+                      className="rounded-full border border-line bg-paper-muted px-3 py-1.5 text-sm font-medium text-slate-200 hover:border-brand-300 hover:text-brand-300"
                     >
                       {r.label}
                     </Link>
@@ -131,7 +131,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* FAQ */}
             <div className="mt-14">
-              <h2 className="text-2xl font-semibold text-ink sm:text-3xl">
+              <h2 className="text-2xl font-semibold text-white sm:text-3xl">
                 Questions I hear about this
               </h2>
               <div className="mt-6">
@@ -147,10 +147,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Get started</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">
+            <h2 className="mt-3 text-3xl font-semibold text-white">
               See what your setup is missing
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <p className="mt-4 text-lg leading-8 text-slate-300">
               Reading is a good start. Seeing real opportunities in your own trade and jurisdictions
               is better. Tell me where you bid and what you chase, and I will show you the picture as
               it actually looks for you.
@@ -163,15 +163,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* Related posts */}
       {related.length > 0 && (
         <Section>
-          <h2 className="text-2xl font-semibold text-ink">More on {topic.category.toLowerCase()}</h2>
+          <h2 className="text-2xl font-semibold text-white">More on {topic.category.toLowerCase()}</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {related.map((r) => (
               <Link key={r.slug} href={`/blog/${r.slug}`} className="card group flex flex-col p-6">
-                <h3 className="text-base font-semibold leading-snug text-ink group-hover:text-brand-700">
+                <h3 className="text-base font-semibold leading-snug text-white group-hover:text-brand-300">
                   {r.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{r.excerpt}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                <p className="mt-2 flex-1 text-sm leading-6 text-slate-300">{r.excerpt}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
                   Read <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </Link>

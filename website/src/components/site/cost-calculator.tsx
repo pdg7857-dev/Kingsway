@@ -32,7 +32,7 @@ export function CostCalculator({ compact = false }: { compact?: boolean }) {
         <div className="space-y-6 p-6 sm:p-8">
           <div>
             <p className="eyebrow">Opportunity cost calculator</p>
-            <h3 className="mt-2 text-xl font-semibold text-ink">What is searching costing you?</h3>
+            <h3 className="mt-2 text-xl font-semibold text-white">What is searching costing you?</h3>
           </div>
 
           <Range
@@ -100,7 +100,7 @@ export function CostCalculator({ compact = false }: { compact?: boolean }) {
           <Link href={SITE.bookingUrl} className="btn-gold w-full py-3">
             See what you are missing
           </Link>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-400">
             Your inputs only. This is an estimate to start a conversation, not a quote.
           </p>
         </div>
@@ -129,8 +129,8 @@ function Range({
   return (
     <label className="block">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-ink">{label}</span>
-        <span className="rounded-md bg-brand-50 px-2 py-0.5 text-sm font-semibold text-brand-700">
+        <span className="text-sm font-medium text-white">{label}</span>
+        <span className="rounded-md bg-brand-500/10 px-2 py-0.5 text-sm font-semibold text-brand-300">
           {display}
         </span>
       </div>

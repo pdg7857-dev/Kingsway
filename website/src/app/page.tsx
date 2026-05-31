@@ -7,6 +7,7 @@ import {
 import { Section, SectionHead, StatStrip, CtaBand, FeatureCard } from "@/components/site/ui";
 import { TrustBar } from "@/components/site/trust-bar";
 import { VideoFeature } from "@/components/site/video-feature";
+import { ClientLogos } from "@/components/site/client-logos";
 import { StatCallout } from "@/components/site/cite";
 import { CostCalculator } from "@/components/site/cost-calculator";
 import { PricingTables } from "@/components/site/pricing-tables";
@@ -83,7 +84,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-center text-xs text-slate-500">
+              <p className="mt-4 text-center text-xs text-slate-400">
                 Reviewed, qualified, linked. Sample illustration.
               </p>
             </div>
@@ -95,10 +96,10 @@ export default function HomePage() {
       <section className="border-b border-line bg-paper-soft">
         <div className="container py-10">
           <TrustBar />
-          <p className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          <p className="mt-8 text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
             Fluent in the platforms your buyers actually use
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-ink-600">
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-slate-300">
             {["MERX", "BidNet Direct", "CanadaBuys", "SAM.gov", "Bonfire", "Biddingo", "bids&tenders", "PlanetBids", "GSA eBuy"].map(
               (n) => (
                 <span key={n} className="opacity-80">{n}</span>
@@ -110,6 +111,9 @@ export default function HomePage() {
 
       {/* Intro video */}
       <VideoFeature heading="Meet Phil Dave" />
+
+      {/* Companies worked with in eProcurement */}
+      <ClientLogos />
 
       {/* Problem */}
       <Section muted>
@@ -168,10 +172,10 @@ export default function HomePage() {
             ].map(([a, b], i) => (
               <div
                 key={i}
-                className={`grid grid-cols-2 divide-x divide-line ${i % 2 ? "bg-white" : "bg-paper-soft"}`}
+                className={`grid grid-cols-2 divide-x divide-line ${i % 2 ? "bg-paper-muted" : "bg-paper-soft"}`}
               >
-                <div className="p-4 text-sm text-slate-500">{a}</div>
-                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-ink">
+                <div className="p-4 text-sm text-slate-400">{a}</div>
+                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-white">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-600" />
                   {b}
                 </div>
@@ -197,9 +201,9 @@ export default function HomePage() {
         <div className="mx-auto mt-4 max-w-4xl">
           <CostCalculator />
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-400">
           Want the long version, with bid-preparation cost and a printable worksheet? Use the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-300 underline">
             full Opportunity Cost Calculator
           </Link>
           .
@@ -226,8 +230,8 @@ export default function HomePage() {
               <div className="mt-3 grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
                 <s.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{s.t}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{s.d}</p>
+              <h3 className="mt-4 text-lg font-semibold text-white">{s.t}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{s.d}</p>
             </div>
           ))}
         </div>
@@ -281,20 +285,20 @@ export default function HomePage() {
             <Link
               key={ind.slug}
               href={industryPath(ind.slug)}
-              className="group flex items-start gap-4 rounded-2xl border border-line bg-white p-5 transition hover:border-brand-300 hover:shadow-card"
+              className="group flex items-start gap-4 rounded-2xl border border-line bg-paper-muted p-5 transition hover:border-brand-300 hover:shadow-card"
             >
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-500/10 text-brand-300">
                 <Building2 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-ink group-hover:text-brand-700">{ind.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{ind.oneLiner}</p>
+                <h3 className="font-semibold text-white group-hover:text-brand-300">{ind.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{ind.oneLiner}</p>
               </div>
             </Link>
           ))}
         </div>
         <div className="mt-8">
-          <Link href="/industries" className="text-sm font-semibold text-brand-700 hover:text-brand-800">
+          <Link href="/industries" className="text-sm font-semibold text-brand-300 hover:text-brand-800">
             See every industry I cover &rarr;
           </Link>
         </div>
@@ -312,7 +316,7 @@ export default function HomePage() {
           <StatStrip />
           <p className="mt-4 text-center text-xs text-slate-400">
             My track record and coverage at a glance. Market-wide figures and their sources are on the{" "}
-            <Link href="/government-procurement-statistics" className="font-medium text-brand-700 underline">
+            <Link href="/government-procurement-statistics" className="font-medium text-brand-300 underline">
               government procurement statistics
             </Link>{" "}
             page.
@@ -331,9 +335,9 @@ export default function HomePage() {
         <div className="mt-12">
           <PricingTables />
         </div>
-        <p className="mt-8 text-center text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-slate-400">
           Full details, FAQs and what is included on the{" "}
-          <Link href="/pricing" className="font-medium text-brand-700 underline">
+          <Link href="/pricing" className="font-medium text-brand-300 underline">
             pricing page
           </Link>
           .
@@ -348,7 +352,7 @@ export default function HomePage() {
             <div className="mt-8">
               <FaqAccordion faqs={GENERAL_FAQS.slice(0, 6)} />
             </div>
-            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-brand-700">
+            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-brand-300">
               Read every question &rarr;
             </Link>
           </div>

@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="bg-white">
+    <section className="bg-paper-muted">
       <div className="container flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
         <p className="eyebrow">Error 404</p>
-        <h1 className="mt-4 text-4xl font-bold text-ink sm:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
           I could not find that page
         </h1>
-        <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+        <p className="mt-5 max-w-xl text-lg leading-8 text-slate-300">
           The link may be old, or I may have moved things around. Nothing is lost.
           Let me point you to the parts of the site people use most. If you were
           looking for something specific, tell me and I will track it down for you.
@@ -37,9 +37,9 @@ export default function NotFound() {
           </Link>
         </div>
 
-        <p className="mt-8 text-sm text-slate-500">
+        <p className="mt-8 text-sm text-slate-400">
           Or head back to the{" "}
-          <Link href="/" className="font-semibold text-brand-700 underline">
+          <Link href="/" className="font-semibold text-brand-300 underline">
             home page
           </Link>
           .
