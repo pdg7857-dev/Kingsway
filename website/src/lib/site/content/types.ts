@@ -6,7 +6,9 @@ export type Block =
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "ol"; items: string[] }
-  | { type: "callout"; text: string };
+  | { type: "callout"; text: string }
+  /** Renders a cited statistic by citation id (see lib/site/citations). */
+  | { type: "stat"; id: string };
 
 export type Section = {
   id: string;

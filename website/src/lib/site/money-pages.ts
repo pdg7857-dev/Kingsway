@@ -25,6 +25,8 @@ export type MoneyPage = {
   faqs: Faq[];
   /** Related flat links shown at the foot of the page. */
   related: { label: string; href: string }[];
+  /** Optional embedded library rendered after the body, before the FAQ. */
+  library?: "no-bid";
 };
 
 const RELATED_CORE = [
@@ -256,6 +258,7 @@ export const MONEY_PAGES: MoneyPage[] = [
       { label: "Tender review service", href: "/tender-review-service" },
       ...RELATED_CORE,
     ],
+    library: "no-bid",
   },
   {
     slug: "tender-review-service",
@@ -338,6 +341,7 @@ export const MONEY_PAGES: MoneyPage[] = [
       { label: "Government bid monitoring", href: "/government-bid-monitoring" },
       ...RELATED_CORE,
     ],
+    library: "no-bid",
   },
 
   // ---------------------------------------------------------------- RENEWAL

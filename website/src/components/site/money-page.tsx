@@ -8,6 +8,7 @@ import { LongFormBody, TableOfContents } from "@/components/site/longform";
 import { FaqAccordion } from "@/components/site/faq";
 import { StatCallout, References } from "@/components/site/cite";
 import { GoirCta } from "@/components/site/goir-cta";
+import { NoBidLibrary } from "@/components/site/no-bid-library";
 import { LeadForm } from "@/components/site/lead-form";
 import { pageMeta, JsonLd, breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/site/seo";
 
@@ -86,6 +87,19 @@ export function MoneyPageView({ slug }: { slug: string }) {
             <LongFormBody sections={p.sections} />
 
             <GoirCta className="mt-12" variant="inline" />
+
+            {p.library === "no-bid" && (
+              <div className="mt-14">
+                <h2 className="text-2xl font-semibold text-ink sm:text-3xl">The no-bid library</h2>
+                <p className="mt-3 text-lg leading-8 text-slate-600">
+                  These are the lenses I read every opportunity through. When enough of them
+                  point the wrong way, the disciplined move is to walk away early.
+                </p>
+                <div className="mt-6">
+                  <NoBidLibrary />
+                </div>
+              </div>
+            )}
 
             <div className="mt-14">
               <h2 className="text-2xl font-semibold text-ink sm:text-3xl">Common questions</h2>

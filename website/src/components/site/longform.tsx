@@ -1,4 +1,5 @@
 import type { Block, Section } from "@/lib/site/content/types";
+import { StatCallout } from "@/components/site/cite";
 
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
@@ -28,6 +29,8 @@ function BlockView({ block }: { block: Block }) {
           {block.text}
         </div>
       );
+    case "stat":
+      return <StatCallout id={block.id} />;
   }
 }
 
