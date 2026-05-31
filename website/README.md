@@ -9,8 +9,13 @@ every report and consultation request flows into the OS eProcurement pipeline
 | Area | Routes |
 |------|--------|
 | Marketing / SEO | `/` plus ~177 service, platform, industry, renewal, blog and pricing pages |
-| Report (lead magnet) | `/report` (intake form), `/report/[id]` (the generated report) |
-| API | `POST /api/goir` (score + persist + email link), `POST /api/goir/[id]/consult` (capture a CRM lead) |
+| Report (lead magnet) | `/report` (intake form), `/report/[id]?code=…` (the report, unlocked by access code), `/access` (enter a code) |
+| Operator dashboard | `/leads` — password-protected list of all requests, their access codes and statuses (set `LEADS_PASSWORD`) |
+| API | `POST /api/goir` (score + persist + receipt email), `POST /api/goir/[id]/consult` (capture a CRM lead), `GET /api/setup` (provision the table + demo report), `POST /api/leads/login` |
+
+This single deployment serves everything: marketing, the report, and the leads
+dashboard. (Kingsway OS also keeps a `/goir-leads` view for when it's deployed,
+but it isn't required — `/leads` here is self-contained.)
 
 The report is a dark "tool" surface inside the light marketing header/footer.
 The scoring engine and report UI live in `src/lib/goir` and `src/components/goir`;
