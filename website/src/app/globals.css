@@ -8,19 +8,29 @@
 }
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-paper text-ink antialiased;
+    @apply bg-bg text-fg antialiased;
     text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+      radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+      linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
+    background-attachment: fixed;
+    min-height: 100dvh;
   }
   ::selection {
-    background: rgba(29, 99, 216, 0.18);
+    background: hsl(184 100% 52% / 0.30);
+    color: white;
   }
   h1, h2, h3, h4 {
-    @apply font-semibold tracking-tight text-ink;
+    @apply font-semibold tracking-tight text-fg;
     text-wrap: balance;
   }
 }
@@ -30,34 +40,34 @@
     @apply container max-w-5xl;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-700;
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
   }
   .btn-primary {
-    @apply btn bg-brand-600 text-white shadow-sm hover:bg-brand-700;
+    @apply btn bg-accent text-bg shadow-[0_0_24px_-8px_hsl(186_100%_55%_/_0.6)] hover:bg-accent-glow;
   }
   .btn-gold {
-    @apply btn bg-gold-500 text-ink-900 hover:bg-gold-600 hover:text-white;
+    @apply btn bg-warn text-bg hover:brightness-110;
   }
   .btn-ghost {
-    @apply btn border border-line-strong bg-white text-ink hover:border-brand-300 hover:text-brand-700;
+    @apply btn border border-border bg-bg-raised text-fg hover:border-accent/50 hover:text-accent;
   }
   .btn-dark {
-    @apply btn bg-ink text-white hover:bg-ink-700;
+    @apply btn bg-bg-raised text-fg ring-1 ring-border hover:bg-bg-hover;
   }
   .card {
-    @apply rounded-2xl border border-line bg-white shadow-card;
+    @apply rounded-2xl border border-border bg-bg-panel/60 shadow-panel backdrop-blur-xl;
   }
   .prose-site {
-    @apply text-[1.0625rem] leading-8 text-slate-700;
+    @apply text-[1.0625rem] leading-8 text-fg-muted;
   }
   .prose-site h2 {
-    @apply mt-12 mb-4 text-2xl font-semibold text-ink sm:text-3xl;
+    @apply mt-12 mb-4 text-2xl font-semibold text-fg sm:text-3xl;
   }
   .prose-site h3 {
-    @apply mt-9 mb-3 text-xl font-semibold text-ink;
+    @apply mt-9 mb-3 text-xl font-semibold text-fg;
   }
   .prose-site p {
     @apply mb-5;
@@ -70,13 +80,13 @@
   }
   .prose-site ul > li::before {
     content: "";
-    @apply absolute left-0 top-3 h-1.5 w-1.5 rounded-full bg-brand-500;
+    @apply absolute left-0 top-3 h-1.5 w-1.5 rounded-full bg-accent;
   }
   .prose-site a {
-    @apply font-medium text-brand-700 underline decoration-brand-200 underline-offset-2 hover:decoration-brand-500;
+    @apply font-medium text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent;
   }
   .prose-site strong {
-    @apply font-semibold text-ink;
+    @apply font-semibold text-fg;
   }
 }
 
@@ -85,8 +95,8 @@
     text-wrap: balance;
   }
   .bg-grid {
-    background-image: linear-gradient(rgba(11, 27, 58, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(11, 27, 58, 0.045) 1px, transparent 1px);
+    background-image: linear-gradient(hsl(184 100% 52% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(184 100% 52% / 0.05) 1px, transparent 1px);
     background-size: 36px 36px;
   }
 }

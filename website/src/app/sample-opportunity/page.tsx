@@ -47,17 +47,17 @@ export default function SampleOpportunityPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs
             items={[{ name: "Home", href: "/" }, { name: "Sample opportunity" }]}
           />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">See it before you buy</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            <p className="eyebrow text-accent">See it before you buy</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">
               Let me send you one real opportunity, already qualified
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               Tell me your trade and where you bid. I will go find a live government opportunity in
               your jurisdiction, read the documents, and send it back to you the way I deliver to
               clients. No mock-up, no sample template. An actual opportunity you could pursue.
@@ -68,7 +68,7 @@ export default function SampleOpportunityPage() {
               </Link>
               <Link
                 href={SITE.bookingUrl}
-                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white"
+                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg"
               >
                 Or book a discovery call
               </Link>
@@ -86,41 +86,41 @@ export default function SampleOpportunityPage() {
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           <div className="card p-6">
-            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
               <FileSearch className="h-5 w-5" />
             </div>
-            <h3 className="text-lg font-semibold text-ink">A live opportunity</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <h3 className="text-lg font-semibold text-fg">A live opportunity</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               Current and real, pulled from whichever platform your buyers actually use for your
               kind of work, not a stale example.
             </p>
           </div>
           <div className="card p-6">
-            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
               <MapPin className="h-5 w-5" />
             </div>
-            <h3 className="text-lg font-semibold text-ink">In your jurisdiction</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <h3 className="text-lg font-semibold text-fg">In your jurisdiction</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               Matched to the provinces, states or cities where you can actually deliver, so it is
               something you could genuinely bid.
             </p>
           </div>
           <div className="card p-6">
-            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
               <FileText className="h-5 w-5" />
             </div>
-            <h3 className="text-lg font-semibold text-ink">Already read</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <h3 className="text-lg font-semibold text-fg">Already read</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               I open the documents and pull out the scope, the closing date, the key requirements and
               the fine print that decides if you can bid.
             </p>
           </div>
           <div className="card p-6">
-            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+            <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
               <Filter className="h-5 w-5" />
             </div>
-            <h3 className="text-lg font-semibold text-ink">And qualified</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <h3 className="text-lg font-semibold text-fg">And qualified</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               With my honest read on the fit for your shop, so you can see how I separate signal from
               noise before you ever pay.
             </p>
@@ -132,7 +132,7 @@ export default function SampleOpportunityPage() {
       <Section muted>
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">Why I do this</p>
-          <h2 className="mt-3 text-3xl font-semibold text-ink sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-fg sm:text-4xl">
             The best way to judge my work is to see it on yours
           </h2>
           <div className="prose-site mt-6 max-w-none">
@@ -161,14 +161,14 @@ export default function SampleOpportunityPage() {
         <div id="request" className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Request it</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">
               Tell me your trade and where you bid
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               The more specific you are about the work you want and the jurisdictions you serve, the
               sharper the opportunity I can send back. A sentence or two is plenty.
             </p>
-            <p className="mt-4 text-sm text-slate-600">
+            <p className="mt-4 text-sm text-fg-muted">
               I read every request myself and reply personally, usually the same business day. Your
               details come straight to me, and nowhere else.
             </p>

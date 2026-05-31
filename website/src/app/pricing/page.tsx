@@ -53,15 +53,15 @@ export default function PricingPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Pricing" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">Opportunity intelligence coverage</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            <p className="eyebrow text-accent">Opportunity intelligence coverage</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">
               Public pricing. Priced as coverage, not per bid.
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               One flat monthly plan covers the geography you choose: every relevant platform, every
               opportunity I find inside it, read and qualified. No per-portal fees. No
               per-opportunity charges. No clock to watch.
@@ -73,11 +73,11 @@ export default function PricingPage() {
       {/* Tables */}
       <Section>
         <PricingTables />
-        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-line bg-paper-soft p-6">
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-border bg-bg-subtle p-6">
           <div className="grid gap-3 sm:grid-cols-2">
             {PRICING_PRINCIPLES.map((p) => (
-              <div key={p} className="flex gap-2.5 text-sm text-ink-700">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+              <div key={p} className="flex gap-2.5 text-sm text-fg-muted">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 {p}
               </div>
             ))}
@@ -97,9 +97,9 @@ export default function PricingPage() {
           </div>
           <ul className="space-y-3">
             {INCLUDED_EVERYWHERE.map((f) => (
-              <li key={f} className="flex gap-3 rounded-xl border border-line bg-white p-4">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <span className="text-ink-700">{f}</span>
+              <li key={f} className="flex gap-3 rounded-xl border border-border bg-bg-panel p-4">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                <span className="text-fg-muted">{f}</span>
               </li>
             ))}
           </ul>
@@ -114,33 +114,33 @@ export default function PricingPage() {
           title="One plan replaces a job's worth of searching"
           lede="Compare flat coverage against what manual monitoring and triage actually cost in estimator time."
         />
-        <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          <div className="bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Doing it yourself</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-slate-600">
+        <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+          <div className="bg-bg-panel p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-fg-muted">Doing it yourself</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-fg-muted">
               {["Estimator hours lost to portals", "Notifications to triage daily", "Documents nobody has time to read", "Good bids missed under odd titles", "Bid/no-bid guesswork"].map((t) => (
                 <li key={t} className="flex gap-2.5">
-                  <X className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-fg-subtle" />
                   {t}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-ink-900 p-6 text-white">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">Coverage from $599/mo</p>
-            <ul className="mt-4 space-y-2.5 text-sm text-slate-200">
+          <div className="bg-bg p-6 text-fg">
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent">Coverage from $599/mo</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-fg">
               {["Every platform watched for you", "A short list, not a firehose", "Documents read and summarized", "Mis-titled fits caught", "Fit qualified before you bid"].map((t) => (
                 <li key={t} className="flex gap-2.5">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   {t}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-fg-muted">
           Run your own numbers with the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-accent underline">
             Opportunity Cost Calculator
           </Link>
           .
@@ -152,9 +152,9 @@ export default function PricingPage() {
         <SectionHead title="Pricing questions" />
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_0.8fr]">
           <FaqAccordion faqs={PRICING_FAQS} />
-          <div className="rounded-2xl border border-line bg-white p-8">
-            <h3 className="text-xl font-semibold text-ink">Not sure which plan fits?</h3>
-            <p className="mt-2 text-slate-600">
+          <div className="rounded-2xl border border-border bg-bg-panel p-8">
+            <h3 className="text-xl font-semibold text-fg">Not sure which plan fits?</h3>
+            <p className="mt-2 text-fg-muted">
               Tell me where you bid and what you chase. I will recommend the smallest plan that
               actually covers your footprint, and show you live opportunities on the call.
             </p>

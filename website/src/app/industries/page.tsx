@@ -19,14 +19,14 @@ export default function IndustriesIndex() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Industries", path: "/industries" }])} />
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Industries" }]} />
           <div className="mt-6 max-w-3xl">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">
+            <h1 className="text-4xl font-bold text-fg sm:text-5xl">
               Built around how your trade actually gets bid
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               A roofing job and a janitorial contract are not found the same way. They live on
               different platforms, hide under different titles, and run on different cycles. Pick
               your trade to see where the work lives and how it slips past contractors who only
@@ -41,12 +41,12 @@ export default function IndustriesIndex() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {PRIMARY_INDUSTRIES.map((i) => (
             <Link key={i.slug} href={industryPath(i.slug)} className="card group p-6">
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
                 <Building2 className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink group-hover:text-brand-700">{i.name}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{i.oneLiner}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+              <h3 className="mt-4 text-lg font-semibold text-fg group-hover:text-accent">{i.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-fg-muted">{i.oneLiner}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
                 Read the guide <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </span>
             </Link>
@@ -61,10 +61,10 @@ export default function IndustriesIndex() {
             <Link
               key={i.slug}
               href={industryPath(i.slug)}
-              className="flex items-center justify-between rounded-xl border border-line bg-white px-5 py-4 hover:border-brand-300"
+              className="flex items-center justify-between rounded-xl border border-border bg-bg-panel px-5 py-4 hover:border-accent"
             >
-              <span className="font-medium text-ink">{i.name}</span>
-              <ArrowRight className="h-4 w-4 text-brand-600" />
+              <span className="font-medium text-fg">{i.name}</span>
+              <ArrowRight className="h-4 w-4 text-accent" />
             </Link>
           ))}
         </div>

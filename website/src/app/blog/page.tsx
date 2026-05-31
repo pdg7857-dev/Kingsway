@@ -50,15 +50,15 @@ export default function BlogIndex() {
       />
 
       {/* Hero */}
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">Resources</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            <p className="eyebrow text-accent">Resources</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">
               Government opportunity intelligence, explained
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               No fluff and no theory. These are {BLOG_TOPICS.length} plain-English guides drawn from
               how I actually monitor portals, read bid documents and qualify fit for the people I
               work with. Pick a topic and dig in.
@@ -81,11 +81,11 @@ export default function BlogIndex() {
                       href={`/blog/${t.slug}`}
                       className="card group flex flex-col p-6"
                     >
-                      <h3 className="text-base font-semibold leading-snug text-ink group-hover:text-brand-700">
+                      <h3 className="text-base font-semibold leading-snug text-fg group-hover:text-accent">
                         {t.title}
                       </h3>
-                      <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{t.excerpt}</p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                      <p className="mt-2 flex-1 text-sm leading-6 text-fg-muted">{t.excerpt}</p>
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
                         Read{" "}
                         <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                       </span>

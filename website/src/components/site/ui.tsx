@@ -13,7 +13,7 @@ export function Section({
   muted?: boolean;
   dark?: boolean;
 }) {
-  const bg = dark ? "bg-ink-900 text-slate-200" : muted ? "bg-paper-soft" : "bg-paper";
+  const bg = dark ? "bg-bg text-fg" : muted ? "bg-bg-subtle" : "bg-bg";
   return (
     <section className={`${bg} ${className}`}>
       <div className="container py-16 sm:py-20">{children}</div>
@@ -36,12 +36,12 @@ export function SectionHead({
 }) {
   return (
     <div className={`${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
-      {eyebrow && <p className={`eyebrow ${dark ? "text-brand-300" : ""}`}>{eyebrow}</p>}
-      <h2 className={`mt-3 text-3xl font-semibold sm:text-4xl ${dark ? "text-white" : "text-ink"}`}>
+      {eyebrow && <p className={`eyebrow ${dark ? "text-accent" : ""}`}>{eyebrow}</p>}
+      <h2 className={`mt-3 text-3xl font-semibold sm:text-4xl ${dark ? "text-fg" : "text-fg"}`}>
         {title}
       </h2>
       {lede && (
-        <p className={`mt-4 text-lg leading-8 ${dark ? "text-slate-300" : "text-slate-600"}`}>
+        <p className={`mt-4 text-lg leading-8 ${dark ? "text-fg-muted" : "text-fg-muted"}`}>
           {lede}
         </p>
       )}
@@ -51,18 +51,18 @@ export function SectionHead({
 
 export function Breadcrumbs({ items }: { items: { name: string; href?: string }[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+    <nav aria-label="Breadcrumb" className="text-sm text-fg-muted">
       <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((it, i) => (
           <li key={i} className="flex items-center gap-1.5">
             {it.href ? (
-              <Link href={it.href} className="hover:text-brand-700">
+              <Link href={it.href} className="hover:text-accent">
                 {it.name}
               </Link>
             ) : (
-              <span className="text-ink">{it.name}</span>
+              <span className="text-fg">{it.name}</span>
             )}
-            {i < items.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
+            {i < items.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-fg-subtle" />}
           </li>
         ))}
       </ol>
@@ -74,13 +74,13 @@ export function Breadcrumbs({ items }: { items: { name: string; href?: string }[
 export function StatStrip({ dark = false }: { dark?: boolean }) {
   const items = SOCIAL_PROOF.slice(0, 5);
   return (
-    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-5 ${dark ? "border-white/10 bg-white/10" : "border-line bg-line"}`}>
+    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-5 ${dark ? "border-white/10 bg-white/10" : "border-border bg-border"}`}>
       {items.map((s) => (
-        <div key={s.label} className={`${dark ? "bg-ink-900" : "bg-white"} p-5 text-center`}>
-          <div className={`text-2xl font-bold tabular-nums ${dark ? "text-white" : "text-ink"}`}>
+        <div key={s.label} className={`${dark ? "bg-bg" : "bg-bg-panel"} p-5 text-center`}>
+          <div className={`text-2xl font-bold tabular-nums ${dark ? "text-fg" : "text-fg"}`}>
             {s.value ?? s.placeholder}
           </div>
-          <div className={`mt-1 text-xs leading-snug ${dark ? "text-slate-400" : "text-slate-500"}`}>
+          <div className={`mt-1 text-xs leading-snug ${dark ? "text-fg-subtle" : "text-fg-muted"}`}>
             {s.label}
           </div>
         </div>
@@ -98,24 +98,24 @@ export function CtaBand({
   sub?: string;
 }) {
   return (
-    <section className="bg-ink-900">
+    <section className="bg-bg">
       <div className="container py-16 sm:py-20">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-900 px-6 py-12 text-center sm:px-12">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-bg-panel to-bg px-6 py-12 text-center sm:px-12">
           <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
           <div className="relative mx-auto max-w-2xl">
-            <h2 className="text-balance text-3xl font-semibold text-white sm:text-4xl">{title}</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">{sub}</p>
+            <h2 className="text-balance text-3xl font-semibold text-fg sm:text-4xl">{title}</h2>
+            <p className="mt-4 text-lg leading-8 text-fg-muted">{sub}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href="/government-opportunity-intelligence-report" className="btn-gold px-6 py-3 text-base">
                 Get your free GOIR
               </Link>
-              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-6 py-3 text-base text-white hover:border-white/40 hover:text-white">
+              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-6 py-3 text-base text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
             </div>
-            <p className="mt-4 text-sm text-slate-400">
+            <p className="mt-4 text-sm text-fg-subtle">
               Prefer to talk first?{" "}
-              <Link href={SITE.bookingUrl} className="font-medium text-brand-300 hover:text-white">
+              <Link href={SITE.bookingUrl} className="font-medium text-accent hover:text-fg">
                 Book a strategy call
               </Link>
               .
@@ -139,19 +139,19 @@ export function FeatureCard({
   return (
     <div className="card p-6">
       {Icon && (
-        <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+        <div className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
           <Icon className="h-5 w-5" />
         </div>
       )}
-      <h3 className="text-lg font-semibold text-ink">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{children}</p>
+      <h3 className="text-lg font-semibold text-fg">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-fg-muted">{children}</p>
     </div>
   );
 }
 
 export function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-line bg-paper-soft px-3 py-1 text-xs font-medium text-ink-700">
+    <span className="inline-flex items-center rounded-full border border-border bg-bg-subtle px-3 py-1 text-xs font-medium text-fg-muted">
       {children}
     </span>
   );

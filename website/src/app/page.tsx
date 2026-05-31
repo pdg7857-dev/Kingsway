@@ -21,19 +21,19 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(GENERAL_FAQS.map((f) => ({ q: f.q, a: f.a })))} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-line bg-ink-900">
+      <section className="relative overflow-hidden border-b border-border bg-bg">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.18]" />
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-brand-600/20 blur-3xl" />
         <div className="container relative grid gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-brand-200">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-accent">
               <Sparkles className="h-3.5 w-3.5" /> Government Opportunity Intelligence
             </p>
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] text-fg sm:text-5xl lg:text-[3.4rem]">
               You focus on winning contracts.
-              <span className="block text-brand-300">I focus on finding them.</span>
+              <span className="block text-accent">I focus on finding them.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-fg-muted">
               I am Phil. I watch every procurement platform that matters, read the bid documents,
               and qualify the fit, so your estimators stop drowning in portals and notifications
               and start working only the opportunities worth pursuing.
@@ -44,21 +44,21 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/opportunity-waste-calculator"
-                className="btn-ghost border-white/20 bg-white/5 px-6 py-3.5 text-base text-white hover:border-white/40 hover:text-white"
+                className="btn-ghost border-white/20 bg-white/5 px-6 py-3.5 text-base text-fg hover:border-white/40 hover:text-fg"
               >
                 Calculate your opportunity waste
               </Link>
             </div>
-            <p className="mt-5 text-sm text-slate-400">
+            <p className="mt-5 text-sm text-fg-subtle">
               Free Government Opportunity Intelligence Report, or{" "}
-              <Link href={SITE.bookingUrl} className="font-medium text-white underline">book a strategy call</Link>.
-              Public pricing from <span className="font-semibold text-white">$599/month</span>.
+              <Link href={SITE.bookingUrl} className="font-medium text-fg underline">book a strategy call</Link>.
+              Public pricing from <span className="font-semibold text-fg">$599/month</span>.
             </p>
           </div>
 
           <div className="flex items-center">
             <div className="w-full rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
                 What lands in your inbox
               </p>
               <div className="mt-4 space-y-3">
@@ -70,17 +70,17 @@ export default function HomePage() {
                   <div key={c.t} className="rounded-xl border border-white/10 bg-ink-800/60 p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="text-sm font-semibold text-white">{c.t}</p>
-                        <p className="mt-0.5 text-xs text-slate-400">{c.s}</p>
+                        <p className="text-sm font-semibold text-fg">{c.t}</p>
+                        <p className="mt-0.5 text-xs text-fg-subtle">{c.s}</p>
                       </div>
-                      <span className="shrink-0 rounded-full bg-brand-500/15 px-2 py-0.5 text-[10px] font-semibold text-brand-200">
+                      <span className="shrink-0 rounded-full bg-brand-500/15 px-2 py-0.5 text-[10px] font-semibold text-accent">
                         {c.fit}
                       </span>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-center text-xs text-slate-500">
+              <p className="mt-4 text-center text-xs text-fg-muted">
                 Reviewed, qualified, linked. Sample illustration.
               </p>
             </div>
@@ -89,12 +89,12 @@ export default function HomePage() {
       </section>
 
       {/* Authority / logos band */}
-      <section className="border-b border-line bg-paper-soft">
+      <section className="border-b border-border bg-bg-subtle">
         <div className="container py-10">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-fg-muted">
             Fluent in the platforms your buyers actually use
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-ink-600">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-fg-muted">
             {["MERX", "BidNet Direct", "CanadaBuys", "SAM.gov", "Bonfire", "Biddingo", "bids&tenders", "PlanetBids", "GSA eBuy"].map(
               (n) => (
                 <span key={n} className="opacity-80">{n}</span>
@@ -152,7 +152,7 @@ export default function HomePage() {
               What is opportunity intelligence? <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-line">
+          <div className="overflow-hidden rounded-2xl border border-border">
             {[
               ["Platforms show opportunities.", "I identify the ones worth pursuing."],
               ["Platforms provide data.", "I provide intelligence."],
@@ -161,11 +161,11 @@ export default function HomePage() {
             ].map(([a, b], i) => (
               <div
                 key={i}
-                className={`grid grid-cols-2 divide-x divide-line ${i % 2 ? "bg-white" : "bg-paper-soft"}`}
+                className={`grid grid-cols-2 divide-x divide-border ${i % 2 ? "bg-bg-panel" : "bg-bg-subtle"}`}
               >
-                <div className="p-4 text-sm text-slate-500">{a}</div>
-                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-ink">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-600" />
+                <div className="p-4 text-sm text-fg-muted">{a}</div>
+                <div className="flex items-center gap-2 p-4 text-sm font-semibold text-fg">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
                   {b}
                 </div>
               </div>
@@ -185,9 +185,9 @@ export default function HomePage() {
         <div className="mx-auto mt-12 max-w-4xl">
           <CostCalculator />
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-fg-muted">
           Want the long version, with bid-preparation cost and a printable worksheet? Use the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-accent underline">
             full Opportunity Cost Calculator
           </Link>
           .
@@ -210,12 +210,12 @@ export default function HomePage() {
             { icon: Send, n: "04", t: "Deliver", d: "You get a short, plain-language summary and a direct link to the source bid. Your team prices and submits." },
           ].map((s) => (
             <div key={s.n} className="card relative p-6">
-              <span className="text-xs font-bold text-brand-300">{s.n}</span>
-              <div className="mt-3 grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
+              <span className="text-xs font-bold text-accent">{s.n}</span>
+              <div className="mt-3 grid h-11 w-11 place-items-center rounded-xl bg-bg-panel text-fg">
                 <s.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{s.t}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{s.d}</p>
+              <h3 className="mt-4 text-lg font-semibold text-fg">{s.t}</h3>
+              <p className="mt-2 text-sm leading-6 text-fg-muted">{s.d}</p>
             </div>
           ))}
         </div>
@@ -241,17 +241,17 @@ export default function HomePage() {
               href={platformPath(p.slug)}
               className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brand-400/50 hover:bg-white/[0.06]"
             >
-              <p className="text-xs font-semibold uppercase tracking-wide text-brand-300">{p.category}</p>
-              <h3 className="mt-2 text-xl font-semibold text-white">{p.shortName} expert</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{p.oneLiner}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-300">
+              <p className="text-xs font-semibold uppercase tracking-wide text-accent">{p.category}</p>
+              <h3 className="mt-2 text-xl font-semibold text-fg">{p.shortName} expert</h3>
+              <p className="mt-2 text-sm leading-6 text-fg-subtle">{p.oneLiner}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
                 Read the guide <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </span>
             </Link>
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Link href="/platforms" className="text-sm font-semibold text-brand-300 hover:text-white">
+          <Link href="/platforms" className="text-sm font-semibold text-accent hover:text-fg">
             View all {PLATFORMS.length} platforms covered &rarr;
           </Link>
         </div>
@@ -269,20 +269,20 @@ export default function HomePage() {
             <Link
               key={ind.slug}
               href={industryPath(ind.slug)}
-              className="group flex items-start gap-4 rounded-2xl border border-line bg-white p-5 transition hover:border-brand-300 hover:shadow-card"
+              className="group flex items-start gap-4 rounded-2xl border border-border bg-bg-panel p-5 transition hover:border-accent hover:shadow-card"
             >
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
                 <Building2 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-ink group-hover:text-brand-700">{ind.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{ind.oneLiner}</p>
+                <h3 className="font-semibold text-fg group-hover:text-accent">{ind.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-fg-muted">{ind.oneLiner}</p>
               </div>
             </Link>
           ))}
         </div>
         <div className="mt-8">
-          <Link href="/industries" className="text-sm font-semibold text-brand-700 hover:text-brand-800">
+          <Link href="/industries" className="text-sm font-semibold text-accent hover:text-accent">
             See every industry I cover &rarr;
           </Link>
         </div>
@@ -298,9 +298,9 @@ export default function HomePage() {
         />
         <div className="mx-auto mt-10 max-w-5xl">
           <StatStrip />
-          <p className="mt-4 text-center text-xs text-slate-400">
+          <p className="mt-4 text-center text-xs text-fg-subtle">
             Figures shown are placeholders pending verified sourcing. See{" "}
-            <Link href="/government-procurement-statistics" className="font-medium text-brand-700 underline">
+            <Link href="/government-procurement-statistics" className="font-medium text-accent underline">
               Government Contracting by the Numbers
             </Link>
             .
@@ -319,9 +319,9 @@ export default function HomePage() {
         <div className="mt-12">
           <PricingTables />
         </div>
-        <p className="mt-8 text-center text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-fg-muted">
           Full details, FAQs and what is included on the{" "}
-          <Link href="/pricing" className="font-medium text-brand-700 underline">
+          <Link href="/pricing" className="font-medium text-accent underline">
             pricing page
           </Link>
           .
@@ -336,7 +336,7 @@ export default function HomePage() {
             <div className="mt-8">
               <FaqAccordion faqs={GENERAL_FAQS.slice(0, 6)} />
             </div>
-            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-brand-700">
+            <Link href="/faq" className="mt-6 inline-block text-sm font-semibold text-accent">
               Read every question &rarr;
             </Link>
           </div>

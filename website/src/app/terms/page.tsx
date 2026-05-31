@@ -23,12 +23,12 @@ export default function TermsPage() {
         ])}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Terms" }]} />
           <div className="mt-6 max-w-3xl">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">Terms of Service</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <h1 className="text-4xl font-bold text-fg sm:text-5xl">Terms of Service</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               The plain-language terms for using this website and the service it describes.
             </p>
           </div>
@@ -37,7 +37,7 @@ export default function TermsPage() {
 
       <Section>
         <div className="prose-site max-w-3xl">
-          <p className="text-sm text-slate-500">Last updated: {LAST_UPDATED}</p>
+          <p className="text-sm text-fg-muted">Last updated: {LAST_UPDATED}</p>
 
           <p>
             These terms govern your use of this website, operated by {SITE.brandFull} (referred to
@@ -131,7 +131,7 @@ export default function TermsPage() {
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
 
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-fg-muted">
             Note for the operator: these are general, good-faith terms and are not legal advice. Have
             qualified counsel review and tailor them, including the governing-law and dispute-resolution
             provisions, to your jurisdictions before launch.

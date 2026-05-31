@@ -46,8 +46,8 @@ export function LeadForm({
         <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-green-100 text-green-700">
           <Check className="h-6 w-6" />
         </div>
-        <h3 className="mt-4 text-xl font-semibold text-ink">Got it. Talk soon.</h3>
-        <p className="mt-2 text-sm text-slate-600">
+        <h3 className="mt-4 text-xl font-semibold text-fg">Got it. Talk soon.</h3>
+        <p className="mt-2 text-sm text-fg-muted">
           Thanks for reaching out. I read every message myself and reply personally, usually the
           same business day.
         </p>
@@ -57,8 +57,8 @@ export function LeadForm({
 
   return (
     <form onSubmit={onSubmit} className={`card p-6 sm:p-8 ${className}`}>
-      <h3 className="text-xl font-semibold text-ink">{copy.title}</h3>
-      <p className="mt-1.5 text-sm text-slate-600">{copy.sub}</p>
+      <h3 className="text-xl font-semibold text-fg">{copy.title}</h3>
+      <p className="mt-1.5 text-sm text-fg-muted">{copy.sub}</p>
 
       <div className="mt-6 space-y-4">
         {variant !== "guide" && (
@@ -75,11 +75,11 @@ export function LeadForm({
               <Field label="Where you bid" name="region" placeholder="e.g. Ontario + NY" />
             </div>
             <label className="block">
-              <span className="text-sm font-medium text-ink">What are you chasing?</span>
+              <span className="text-sm font-medium text-fg">What are you chasing?</span>
               <textarea
                 name="notes"
                 rows={3}
-                className="mt-1.5 w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+                className="mt-1.5 w-full rounded-lg border border-border px-3 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent"
                 placeholder="A sentence or two on the work you want more of."
               />
             </label>
@@ -90,7 +90,7 @@ export function LeadForm({
       <button type="submit" className="btn-primary mt-6 w-full py-3 text-base">
         {copy.cta}
       </button>
-      <p className="mt-3 text-center text-xs text-slate-400">
+      <p className="mt-3 text-center text-xs text-fg-subtle">
         No spam, no list-selling. Your details come straight to me.
       </p>
     </form>
@@ -112,16 +112,16 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium text-ink">
+      <span className="text-sm font-medium text-fg">
         {label}
-        {required && <span className="text-brand-600"> *</span>}
+        {required && <span className="text-accent"> *</span>}
       </span>
       <input
         type={type}
         name={name}
         required={required}
         placeholder={placeholder}
-        className="mt-1.5 w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
+        className="mt-1.5 w-full rounded-lg border border-border px-3 py-2.5 text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent"
       />
     </label>
   );

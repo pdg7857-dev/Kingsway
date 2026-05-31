@@ -22,14 +22,14 @@ export default function PlatformsIndex() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Platforms", path: "/platforms" }])} />
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Platforms" }]} />
           <div className="mt-6 max-w-3xl">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">
+            <h1 className="text-4xl font-bold text-fg sm:text-5xl">
               The platforms your buyers use, all watched in one place
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               There is no single front door to government work. Opportunities are scattered across
               national aggregators, official government systems, and a different SaaS portal for
               nearly every agency. I know all {PLATFORMS.length} of these, how each one categorizes
@@ -53,17 +53,17 @@ export default function PlatformsIndex() {
                     className="card group flex flex-col p-6"
                   >
                     <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-ink group-hover:text-brand-700">
+                      <h3 className="text-lg font-semibold text-fg group-hover:text-accent">
                         {p.name}
                       </h3>
                       {p.priority === 1 && (
-                        <span className="rounded-full bg-gold-50 px-2 py-0.5 text-[10px] font-semibold text-gold-600">
+                        <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[10px] font-semibold text-warn">
                           Cornerstone
                         </span>
                       )}
                     </div>
-                    <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{p.oneLiner}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                    <p className="mt-2 flex-1 text-sm leading-6 text-fg-muted">{p.oneLiner}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
                       {p.shortName} guide <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
                     </span>
                   </Link>

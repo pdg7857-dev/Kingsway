@@ -58,15 +58,15 @@ export default function AboutPage() {
       />
 
       {/* Hero */}
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "About" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">About</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            <p className="eyebrow text-accent">About</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">
               I find the government work worth bidding. You go win it.
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               I am Phil. I spend my days inside the platforms where governments post their work, and
               I have spent years learning how each one really behaves. I monitor them, read the
               documents, and qualify the fit, so the opportunities that land on your desk are the
@@ -78,7 +78,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href={SITE.sampleUrl}
-                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white"
+                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg"
               >
                 Request a sample opportunity
               </Link>
@@ -92,7 +92,7 @@ export default function AboutPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Who I am</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">
               An opportunity intelligence practice, run by one person who knows it cold
             </h2>
             <div className="prose-site mt-5 max-w-none">
@@ -149,7 +149,7 @@ export default function AboutPage() {
       <Section>
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow">The philosophy</p>
-          <h2 className="mt-3 text-3xl font-semibold text-ink sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold text-fg sm:text-4xl">
             Platforms show everything. I show what matters.
           </h2>
           <div className="prose-site mt-6 max-w-none">
@@ -186,25 +186,25 @@ export default function AboutPage() {
         />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-700">Step one</div>
-            <h3 className="mt-2 text-lg font-semibold text-ink">We map your fit</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <div className="text-sm font-semibold text-accent">Step one</div>
+            <h3 className="mt-2 text-lg font-semibold text-fg">We map your fit</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               On a short call, you tell me your trades, your jurisdictions, your bonding and your
               capacity. I translate that into how buyers actually describe the work, codes included.
             </p>
           </div>
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-700">Step two</div>
-            <h3 className="mt-2 text-lg font-semibold text-ink">I watch and read</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <div className="text-sm font-semibold text-accent">Step two</div>
+            <h3 className="mt-2 text-lg font-semibold text-fg">I watch and read</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               Every platform that serves your area, every day. When something fits, I open the
               documents and check the parts that decide whether a bid is even possible for you.
             </p>
           </div>
           <div className="card p-6">
-            <div className="text-sm font-semibold text-brand-700">Step three</div>
-            <h3 className="mt-2 text-lg font-semibold text-ink">You get the short list</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
+            <div className="text-sm font-semibold text-accent">Step three</div>
+            <h3 className="mt-2 text-lg font-semibold text-fg">You get the short list</h3>
+            <p className="mt-2 text-sm leading-6 text-fg-muted">
               Qualified opportunities, with the context that matters and time left on the clock.
               You make the go or no-go call. You prepare and submit. I keep watching.
             </p>
@@ -227,15 +227,15 @@ export default function AboutPage() {
               className="card group flex flex-col p-6"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-ink group-hover:text-brand-700">
+                <h3 className="text-lg font-semibold text-fg group-hover:text-accent">
                   {p.name}
                 </h3>
-                <span className="rounded-full bg-gold-50 px-2 py-0.5 text-[10px] font-semibold text-gold-600">
+                <span className="rounded-full bg-warn-soft px-2 py-0.5 text-[10px] font-semibold text-warn">
                   Cornerstone
                 </span>
               </div>
-              <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{p.oneLiner}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+              <p className="mt-2 flex-1 text-sm leading-6 text-fg-muted">{p.oneLiner}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
                 {p.shortName} guide{" "}
                 <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
               </span>
@@ -243,7 +243,7 @@ export default function AboutPage() {
           ))}
         </div>
         <div className="mt-8">
-          <p className="text-sm font-medium text-ink-700">Plus the rest of the ecosystem:</p>
+          <p className="text-sm font-medium text-fg-muted">Plus the rest of the ecosystem:</p>
           <div className="mt-4 flex flex-wrap gap-2.5">
             {others.map((p) => (
               <Pill key={p.slug}>{p.name}</Pill>
@@ -251,7 +251,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/platforms"
-            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand-700 hover:text-brand-800"
+            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent"
           >
             See how I read every one of them{" "}
             <ArrowRight className="h-3.5 w-3.5" />
@@ -273,19 +273,19 @@ export default function AboutPage() {
               href={industryPath(ind.slug)}
               className="card group flex items-start gap-3 p-5"
             >
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
                 <Building2 className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-ink group-hover:text-brand-700">{ind.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{ind.oneLiner}</p>
+                <h3 className="font-semibold text-fg group-hover:text-accent">{ind.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-fg-muted">{ind.oneLiner}</p>
               </div>
             </Link>
           ))}
         </div>
-        <p className="mt-8 text-sm text-slate-600">
+        <p className="mt-8 text-sm text-fg-muted">
           Not on this list? I cover more trades than I can fit here.{" "}
-          <Link href="/industries" className="font-medium text-brand-700 hover:text-brand-800">
+          <Link href="/industries" className="font-medium text-accent hover:text-accent">
             See every industry I serve
           </Link>
           .
@@ -295,7 +295,7 @@ export default function AboutPage() {
       {/* Personal closing */}
       <Section>
         <div className="mx-auto max-w-3xl">
-          <div className="flex items-center gap-2 text-brand-700">
+          <div className="flex items-center gap-2 text-accent">
             <Eye className="h-5 w-5" />
             <p className="eyebrow">Why I do this</p>
           </div>

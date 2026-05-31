@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Panel } from "@/components/ui/card";
 import { IntakeForm } from "@/components/goir/intake-form";
 import {
   Gauge, TrendingDown, Layers, Award, Building2, RefreshCw,
-  BarChart3, DollarSign, ListChecks, Sparkles, ArrowDown,
+  BarChart3, DollarSign, ListChecks, Sparkles, ArrowDown, KeyRound,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +33,14 @@ export default function GoirLanding() {
   return (
     <div className="goir-dark">
     <div className="mx-auto max-w-6xl px-4 lg:px-6 py-6">
+      {/* Access-code shortcut for prospects who already received one */}
+      <Link
+        href="/access"
+        className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-accent/30 bg-accent-soft/20 px-4 py-2.5 text-sm text-fg-muted transition-colors hover:bg-accent-soft/30"
+      >
+        <KeyRound className="h-4 w-4 text-accent" />
+        Already have your access code? <span className="font-medium text-accent">Use it here →</span>
+      </Link>
       {/* Hero */}
       <section className="grid grid-cols-1 gap-10 py-12 lg:grid-cols-2 lg:gap-12 lg:py-16">
         <div>

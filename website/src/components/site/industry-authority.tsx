@@ -62,13 +62,13 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Industries", href: "/industries" }, { name: ind.name }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">Industry</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">{ind.name} Government Contracts</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="eyebrow text-accent">Industry</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">{ind.name} Government Contracts</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               {ind.oneLiner} I find, read and qualify government opportunities for {ind.plural}, so
               your estimators stop burning hours on poor-fit bids and only work the ones worth
               winning.
@@ -77,7 +77,7 @@ export function IndustryAuthority({ slug }: { slug: string }) {
               <Link href="/government-opportunity-intelligence-report" className="btn-gold px-5 py-3">
                 Get your free Opportunity Intelligence Report
               </Link>
-              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white">
+              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
             </div>
@@ -89,34 +89,34 @@ export function IndustryAuthority({ slug }: { slug: string }) {
       <Section>
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <div className="flex items-center gap-2 text-brand-700">
+            <div className="flex items-center gap-2 text-accent">
               <Building2 className="h-5 w-5" />
-              <h2 className="text-xl font-semibold text-ink">Who buys this work</h2>
+              <h2 className="text-xl font-semibold text-fg">Who buys this work</h2>
             </div>
             <ul className="mt-5 space-y-2.5">
               {ind.buyers.map((b) => (
-                <li key={b} className="flex gap-2.5 text-ink-700">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                <li key={b} className="flex gap-2.5 text-fg-muted">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {b}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <div className="flex items-center gap-2 text-brand-700">
+            <div className="flex items-center gap-2 text-accent">
               <ListChecks className="h-5 w-5" />
-              <h2 className="text-xl font-semibold text-ink">The work you will see</h2>
+              <h2 className="text-xl font-semibold text-fg">The work you will see</h2>
             </div>
             <ul className="mt-5 space-y-2.5">
               {ind.workTypes.map((w) => (
-                <li key={w} className="flex gap-2.5 text-ink-700">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                <li key={w} className="flex gap-2.5 text-fg-muted">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {w}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex items-start gap-2 rounded-xl border border-line bg-paper-soft p-4 text-sm text-slate-600">
-              <Tag className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+            <div className="mt-6 flex items-start gap-2 rounded-xl border border-border bg-bg-subtle p-4 text-sm text-fg-muted">
+              <Tag className="mt-0.5 h-4 w-4 shrink-0 text-fg-subtle" />
               <span>
                 Buyers usually file this under {ind.codes.join(" and ")}. Knowing the codes is half
                 the battle. Knowing how each buyer bends them is the other half.
@@ -139,9 +139,9 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           {ind.missedBecause.map((m) => (
-            <div key={m} className="flex gap-3 rounded-2xl border border-line bg-white p-5">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-gold-500" />
-              <p className="text-ink-700">{m}</p>
+            <div key={m} className="flex gap-3 rounded-2xl border border-border bg-bg-panel p-5">
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-warn" />
+              <p className="text-fg-muted">{m}</p>
             </div>
           ))}
         </div>
@@ -161,7 +161,7 @@ export function IndustryAuthority({ slug }: { slug: string }) {
                 <Link
                   key={p.slug}
                   href={platformPath(p.slug)}
-                  className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-panel px-4 py-2 text-sm font-medium text-fg-muted hover:border-accent hover:text-accent"
                 >
                   {p.name}
                   <ArrowRight className="h-3.5 w-3.5 opacity-50" />
@@ -169,17 +169,17 @@ export function IndustryAuthority({ slug }: { slug: string }) {
               ),
           )}
         </div>
-        <div className="mt-8 rounded-2xl border border-line bg-paper-soft p-6">
+        <div className="mt-8 rounded-2xl border border-border bg-bg-subtle p-6">
           <div className="flex items-start gap-3">
-            <RefreshCw className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+            <RefreshCw className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
             <div>
-              <h3 className="font-semibold text-ink">Renewal intelligence for {ind.plural}</h3>
-              <p className="mt-1.5 text-sm text-slate-600">
+              <h3 className="font-semibold text-fg">Renewal intelligence for {ind.plural}</h3>
+              <p className="mt-1.5 text-sm text-fg-muted">
                 Much of the best {ind.name.toLowerCase()} work is already held by an incumbent and
                 will rebid on a cycle you cannot see from a portal. I track those expirations so you
                 can position before the solicitation posts.
               </p>
-              <Link href="/government-contract-renewals" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+              <Link href="/government-contract-renewals" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent">
                 How renewal intelligence works <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -194,8 +194,8 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Try it</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">Get a real {ind.name.toLowerCase()} opportunity, qualified</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">Get a real {ind.name.toLowerCase()} opportunity, qualified</h2>
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               Tell me your scope and where you work. I will send back a live opportunity for {ind.plural},
               already read and qualified, so you can see exactly what this looks like.
             </p>

@@ -54,7 +54,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       />
 
       {/* Hero */}
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs
             items={[
@@ -64,22 +64,22 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             ]}
           />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">{topic.category}</p>
-            <h1 className="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <p className="eyebrow text-accent">{topic.category}</p>
+            <h1 className="mt-3 text-3xl font-bold text-fg sm:text-4xl lg:text-5xl">
               {topic.title}
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">{topic.excerpt}</p>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">{topic.excerpt}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link href={SITE.bookingUrl} className="btn-gold px-5 py-3">
                 Book a discovery call
               </Link>
               <Link
                 href={SITE.sampleUrl}
-                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white"
+                className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg"
               >
                 Request a sample opportunity
               </Link>
-              <span className="inline-flex items-center gap-1.5 text-sm text-slate-400">
+              <span className="inline-flex items-center gap-1.5 text-sm text-fg-subtle">
                 <Clock className="h-4 w-4" /> {body.readMins} min read
               </span>
             </div>
@@ -93,9 +93,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <aside className="hidden lg:block">
             <div className="sticky top-24">
               <TableOfContents sections={body.sections} />
-              <div className="mt-8 rounded-2xl border border-line bg-paper-soft p-5">
-                <p className="text-sm font-semibold text-ink">Want to skip the reading?</p>
-                <p className="mt-1.5 text-sm text-slate-600">
+              <div className="mt-8 rounded-2xl border border-border bg-bg-subtle p-5">
+                <p className="text-sm font-semibold text-fg">Want to skip the reading?</p>
+                <p className="mt-1.5 text-sm text-fg-muted">
                   I will show you live, qualified opportunities in your trade and jurisdictions on a
                   call.
                 </p>
@@ -111,8 +111,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* Cross-links */}
             {body.related && body.related.length > 0 && (
-              <div className="mt-14 rounded-2xl border border-line bg-paper-soft p-6">
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              <div className="mt-14 rounded-2xl border border-border bg-bg-subtle p-6">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-fg-muted">
                   Keep reading
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -120,7 +120,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                     <Link
                       key={r.href}
                       href={r.href}
-                      className="rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700"
+                      className="rounded-full border border-border bg-bg-panel px-3 py-1.5 text-sm font-medium text-fg-muted hover:border-accent hover:text-accent"
                     >
                       {r.label}
                     </Link>
@@ -131,7 +131,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             {/* FAQ */}
             <div className="mt-14">
-              <h2 className="text-2xl font-semibold text-ink sm:text-3xl">
+              <h2 className="text-2xl font-semibold text-fg sm:text-3xl">
                 Questions I hear about this
               </h2>
               <div className="mt-6">
@@ -147,10 +147,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Get started</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">
               See what your setup is missing
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               Reading is a good start. Seeing real opportunities in your own trade and jurisdictions
               is better. Tell me where you bid and what you chase, and I will show you the picture as
               it actually looks for you.
@@ -163,15 +163,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       {/* Related posts */}
       {related.length > 0 && (
         <Section>
-          <h2 className="text-2xl font-semibold text-ink">More on {topic.category.toLowerCase()}</h2>
+          <h2 className="text-2xl font-semibold text-fg">More on {topic.category.toLowerCase()}</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {related.map((r) => (
               <Link key={r.slug} href={`/blog/${r.slug}`} className="card group flex flex-col p-6">
-                <h3 className="text-base font-semibold leading-snug text-ink group-hover:text-brand-700">
+                <h3 className="text-base font-semibold leading-snug text-fg group-hover:text-accent">
                   {r.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{r.excerpt}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+                <p className="mt-2 flex-1 text-sm leading-6 text-fg-muted">{r.excerpt}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
                   Read <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </Link>

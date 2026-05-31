@@ -101,20 +101,20 @@ export default function GoiPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Government Opportunity Intelligence" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">The category</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">Government Opportunity Intelligence</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="eyebrow text-accent">The category</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">Government Opportunity Intelligence</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               Platforms provide data. Alerts provide notifications. I provide intelligence: the
               judgment that turns thousands of public-sector notices into the handful actually worth
               your team's time. This is what that means, and why it is its own discipline.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link href={SITE.bookingUrl} className="btn-gold px-5 py-3">Book a discovery call</Link>
-              <span className="inline-flex items-center gap-1.5 text-sm text-slate-400"><Clock className="h-4 w-4" /> 8 min read</span>
+              <span className="inline-flex items-center gap-1.5 text-sm text-fg-subtle"><Clock className="h-4 w-4" /> 8 min read</span>
             </div>
           </div>
         </div>
@@ -130,11 +130,11 @@ export default function GoiPage() {
           <div className="min-w-0 max-w-3xl">
             <LongFormBody sections={SECTIONS} />
 
-            <div className="mt-12 rounded-2xl border border-line bg-paper-soft p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Go deeper on the platforms</h3>
+            <div className="mt-12 rounded-2xl border border-border bg-bg-subtle p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-fg-muted">Go deeper on the platforms</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {CORNERSTONE_PLATFORMS.map((p) => (
-                  <Link key={p.slug} href={platformPath(p.slug)} className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700">
+                  <Link key={p.slug} href={platformPath(p.slug)} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-bg-panel px-3 py-1.5 text-sm font-medium text-fg-muted hover:border-accent hover:text-accent">
                     {p.shortName} <ArrowRight className="h-3.5 w-3.5 opacity-50" />
                   </Link>
                 ))}
@@ -142,7 +142,7 @@ export default function GoiPage() {
             </div>
 
             <div className="mt-12">
-              <h2 className="text-2xl font-semibold text-ink sm:text-3xl">Common questions</h2>
+              <h2 className="text-2xl font-semibold text-fg sm:text-3xl">Common questions</h2>
               <div className="mt-6"><FaqAccordion faqs={FAQS} /></div>
             </div>
           </div>
@@ -153,8 +153,8 @@ export default function GoiPage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">See it for yourself</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">Intelligence beats data. Let me prove it.</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">Intelligence beats data. Let me prove it.</h2>
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               Request a sample and I will send back a live opportunity in your trade and territory,
               read and qualified, so you can feel the difference between a notice and an intelligent
               shortlist.

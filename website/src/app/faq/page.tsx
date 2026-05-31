@@ -73,12 +73,12 @@ export default function FaqPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "FAQ" }]} />
           <div className="mt-6 max-w-3xl">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">Questions, answered plainly</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <h1 className="text-4xl font-bold text-fg sm:text-5xl">Questions, answered plainly</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               The things contractors ask me before we start. If yours is not here, just ask. I read
               and reply to every message myself.
             </p>
@@ -98,9 +98,9 @@ export default function FaqPage() {
           </div>
           <aside className="lg:pt-2">
             <div className="sticky top-24 space-y-6">
-              <div className="rounded-2xl border border-line bg-paper-soft p-6">
-                <h3 className="text-lg font-semibold text-ink">Still have a question?</h3>
-                <p className="mt-2 text-sm text-slate-600">Ask me directly. I answer personally, usually the same business day.</p>
+              <div className="rounded-2xl border border-border bg-bg-subtle p-6">
+                <h3 className="text-lg font-semibold text-fg">Still have a question?</h3>
+                <p className="mt-2 text-sm text-fg-muted">Ask me directly. I answer personally, usually the same business day.</p>
                 <Link href={SITE.bookingUrl} className="btn-primary mt-4 w-full py-2.5 text-sm">Book a discovery call</Link>
                 <Link href="/contact" className="btn-ghost mt-2 w-full py-2.5 text-sm">Send a message</Link>
               </div>

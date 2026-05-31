@@ -92,22 +92,22 @@ export default function HowItWorksPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "How It Works" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">How it works</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">
+            <p className="eyebrow text-accent">How it works</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">
               Four steps. I run the first three.
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               Bidding does not fail at the proposal. It fails at the search, long before anyone
               writes a word. So I take the whole front half off your plate: the monitoring, the
               reading, the qualifying. You keep the part that wins the job.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href={SITE.bookingUrl} className="btn-gold px-5 py-3">Book a discovery call</Link>
-              <Link href="/pricing" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white">See pricing</Link>
+              <Link href="/pricing" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">See pricing</Link>
             </div>
           </div>
         </div>
@@ -117,26 +117,26 @@ export default function HowItWorksPage() {
       <Section>
         <div className="space-y-6">
           {STEPS.map((s, i) => (
-            <div key={s.n} className="grid items-start gap-6 rounded-2xl border border-line bg-white p-6 sm:p-8 lg:grid-cols-[auto_1fr]">
+            <div key={s.n} className="grid items-start gap-6 rounded-2xl border border-border bg-bg-panel p-6 sm:p-8 lg:grid-cols-[auto_1fr]">
               <div className="flex items-center gap-4 lg:flex-col lg:items-start">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-white">
+                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-bg-panel text-fg">
                   <s.icon className="h-6 w-6" />
                 </div>
-                <span className="text-3xl font-bold text-brand-200">{s.n}</span>
+                <span className="text-3xl font-bold text-accent">{s.n}</span>
               </div>
               <div>
-                <h2 className="text-2xl font-semibold text-ink">{s.t}</h2>
-                <p className="mt-1 text-lg text-brand-700">{s.lead}</p>
+                <h2 className="text-2xl font-semibold text-fg">{s.t}</h2>
+                <p className="mt-1 text-lg text-accent">{s.lead}</p>
                 <ul className="mt-4 space-y-2.5">
                   {s.points.map((p) => (
-                    <li key={p} className="flex gap-2.5 text-ink-700">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                    <li key={p} className="flex gap-2.5 text-fg-muted">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                       {p}
                     </li>
                   ))}
                 </ul>
                 {i === 3 && (
-                  <Link href={SITE.sampleUrl} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+                  <Link href={SITE.sampleUrl} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent">
                     See a real qualified opportunity <ArrowRight className="h-4 w-4" />
                   </Link>
                 )}
@@ -149,20 +149,20 @@ export default function HowItWorksPage() {
       {/* Division of labour */}
       <Section muted>
         <SectionHead center eyebrow="Who does what" title="A clean division of labour" lede="You do not hand over control. You hand over the searching." />
-        <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          <div className="bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-700">I handle</p>
-            <ul className="mt-4 space-y-2 text-ink-700">
+        <div className="mx-auto mt-10 grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+          <div className="bg-bg-panel p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-accent">I handle</p>
+            <ul className="mt-4 space-y-2 text-fg-muted">
               {["Monitoring every platform", "Discovery and screening", "Reading the documents", "Fit qualification", "Plain-language summaries"].map((t) => (
-                <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />{t}</li>
+                <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{t}</li>
               ))}
             </ul>
           </div>
-          <div className="bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-ink">You handle</p>
-            <ul className="mt-4 space-y-2 text-ink-700">
+          <div className="bg-bg-panel p-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-fg">You handle</p>
+            <ul className="mt-4 space-y-2 text-fg-muted">
               {["Bid/no-bid decision", "Pricing and estimating", "Proposal writing", "Submission", "Winning the work"].map((t) => (
-                <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />{t}</li>
+                <li key={t} className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-bg-panel" />{t}</li>
               ))}
             </ul>
           </div>
@@ -174,8 +174,8 @@ export default function HowItWorksPage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow"><Clock className="h-3.5 w-3.5" /> Getting started</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">From call to qualified opportunities, fast</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">From call to qualified opportunities, fast</h2>
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               On the discovery call I will already have looked at your jurisdictions, so you see
               real, current opportunities before you decide anything. We agree on coverage and
               cadence, I learn your sweet spot, and the qualified work starts flowing.

@@ -43,7 +43,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs
             items={[
@@ -53,11 +53,11 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
             ]}
           />
           <div className="mt-6 max-w-3xl">
-            <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-brand-300">
+            <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-accent">
               {resource.kind}
             </span>
-            <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">{resource.title}</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">{resource.summary}</p>
+            <h1 className="mt-4 text-4xl font-bold text-fg sm:text-5xl">{resource.title}</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">{resource.summary}</p>
           </div>
         </div>
       </section>
@@ -69,8 +69,8 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
             <ul className="mt-6 space-y-4">
               {resource.bullets.map((b) => (
                 <li key={b} className="flex gap-3">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                  <span className="text-[0.975rem] leading-7 text-slate-600">{b}</span>
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                  <span className="text-[0.975rem] leading-7 text-fg-muted">{b}</span>
                 </li>
               ))}
             </ul>

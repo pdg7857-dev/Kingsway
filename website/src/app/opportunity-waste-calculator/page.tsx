@@ -32,13 +32,13 @@ export default function OpportunityWasteCalculatorPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-14">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Opportunity Waste Calculator" }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">Free tool</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">Opportunity Waste Calculator</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="eyebrow text-accent">Free tool</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">Opportunity Waste Calculator</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               Every hour your team spends monitoring portals and reading poor-fit bids is opportunity
               waste. Put a number on it, then see how it compares to coverage.
             </p>
@@ -71,7 +71,7 @@ export default function OpportunityWasteCalculatorPage() {
               "Qualifying opportunities by hand",
               "Context-switching across many platforms",
             ].map((t) => (
-              <li key={t} className="rounded-xl border border-line bg-white p-4 text-sm text-ink-700">{t}</li>
+              <li key={t} className="rounded-xl border border-border bg-bg-panel p-4 text-sm text-fg-muted">{t}</li>
             ))}
           </ul>
           <References ids={["response-hours", "estimator-hiring"]} />
@@ -83,9 +83,9 @@ export default function OpportunityWasteCalculatorPage() {
       <Section>
         <SectionHead title="Questions" />
         <div className="mt-8 max-w-3xl"><FaqAccordion faqs={FAQS} /></div>
-        <p className="mt-8 text-sm text-slate-500">
+        <p className="mt-8 text-sm text-fg-muted">
           Want the full picture? Get your{" "}
-          <Link href="/government-opportunity-intelligence-report" className="font-medium text-brand-700 underline">
+          <Link href="/government-opportunity-intelligence-report" className="font-medium text-accent underline">
             free Government Opportunity Intelligence Report
           </Link>{" "}
           for a tailored opportunity-waste figure.

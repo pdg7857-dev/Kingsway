@@ -16,7 +16,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "ol":
       return (
-        <ol className="mb-6 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-brand-600">
+        <ol className="mb-6 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-accent">
           {block.items.map((it, i) => (
             <li key={i} className="pl-1">{it}</li>
           ))}
@@ -24,7 +24,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "callout":
       return (
-        <div className="my-7 rounded-2xl border-l-4 border-brand-500 bg-brand-50/60 p-5 text-[1.0625rem] leading-7 text-ink-700">
+        <div className="my-7 rounded-2xl border-l-4 border-accent bg-accent-soft/20 p-5 text-[1.0625rem] leading-7 text-fg-muted">
           {block.text}
         </div>
       );
@@ -49,15 +49,15 @@ export function LongFormBody({ sections }: { sections: Section[] }) {
 export function TableOfContents({ sections }: { sections: Section[] }) {
   return (
     <nav aria-label="On this page" className="text-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-fg-muted">
         On this page
       </p>
-      <ul className="space-y-2 border-l border-line">
+      <ul className="space-y-2 border-l border-border">
         {sections.map((s) => (
           <li key={s.id}>
             <a
               href={`#${s.id}`}
-              className="-ml-px block border-l-2 border-transparent pl-4 text-slate-600 transition hover:border-brand-500 hover:text-brand-700"
+              className="-ml-px block border-l-2 border-transparent pl-4 text-fg-muted transition hover:border-accent hover:text-accent"
             >
               {s.heading}
             </a>

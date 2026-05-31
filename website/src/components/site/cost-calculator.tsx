@@ -32,7 +32,7 @@ export function CostCalculator({ compact = false }: { compact?: boolean }) {
         <div className="space-y-6 p-6 sm:p-8">
           <div>
             <p className="eyebrow">Opportunity cost calculator</p>
-            <h3 className="mt-2 text-xl font-semibold text-ink">What is searching costing you?</h3>
+            <h3 className="mt-2 text-xl font-semibold text-fg">What is searching costing you?</h3>
           </div>
 
           <Range
@@ -64,33 +64,33 @@ export function CostCalculator({ compact = false }: { compact?: boolean }) {
           />
         </div>
 
-        <div className="flex flex-col justify-center gap-5 bg-ink-900 p-6 text-center text-white sm:p-8">
+        <div className="flex flex-col justify-center gap-5 bg-bg p-6 text-center text-fg sm:p-8">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
               Estimated monthly cost of DIY
             </p>
             <p className="mt-2 text-5xl font-bold tabular-nums">
               ${monthly.toLocaleString()}
             </p>
-            <p className="mt-1 text-sm text-slate-400">in estimator time alone, before a single bid is written</p>
+            <p className="mt-1 text-sm text-fg-subtle">in estimator time alone, before a single bid is written</p>
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
             <div className="flex items-center justify-between">
-              <span className="text-slate-300">Single-jurisdiction coverage</span>
-              <span className="font-semibold text-white">${plan}/mo</span>
+              <span className="text-fg-muted">Single-jurisdiction coverage</span>
+              <span className="font-semibold text-fg">${plan}/mo</span>
             </div>
             {delta > 0 ? (
-              <p className="mt-2 text-left text-slate-300">
+              <p className="mt-2 text-left text-fg-muted">
                 That is roughly{" "}
-                <span className="font-semibold text-gold-400">
+                <span className="font-semibold text-warn">
                   ${delta.toLocaleString()}/month
                 </span>{" "}
                 of estimator time you could put back on winnable bids, and you stop reading the
                 ones that were never a fit.
               </p>
             ) : (
-              <p className="mt-2 text-left text-slate-300">
+              <p className="mt-2 text-left text-fg-muted">
                 Even here, coverage buys back the hours and the bids your team never sees, not just
                 the dollars.
               </p>
@@ -100,7 +100,7 @@ export function CostCalculator({ compact = false }: { compact?: boolean }) {
           <Link href={SITE.bookingUrl} className="btn-gold w-full py-3">
             See what you are missing
           </Link>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-fg-muted">
             Your inputs only. This is an estimate to start a conversation, not a quote.
           </p>
         </div>
@@ -129,8 +129,8 @@ function Range({
   return (
     <label className="block">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-ink">{label}</span>
-        <span className="rounded-md bg-brand-50 px-2 py-0.5 text-sm font-semibold text-brand-700">
+        <span className="text-sm font-medium text-fg">{label}</span>
+        <span className="rounded-md bg-accent-soft px-2 py-0.5 text-sm font-semibold text-accent">
           {display}
         </span>
       </div>

@@ -23,12 +23,12 @@ export default function PrivacyPage() {
         ])}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Privacy" }]} />
           <div className="mt-6 max-w-3xl">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">Privacy Policy</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <h1 className="text-4xl font-bold text-fg sm:text-5xl">Privacy Policy</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               Plain English about what I collect, why, and what I will never do with it.
             </p>
           </div>
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
 
       <Section>
         <div className="prose-site max-w-3xl">
-          <p className="text-sm text-slate-500">Last updated: {LAST_UPDATED}</p>
+          <p className="text-sm text-fg-muted">Last updated: {LAST_UPDATED}</p>
 
           <p>
             This site is operated by {SITE.brandFull}, an independent practice (referred to here as
@@ -130,7 +130,7 @@ export default function PrivacyPage() {
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
 
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-fg-muted">
             Note for the operator: this is a general, good-faith policy template and is not legal
             advice. Have qualified counsel review and tailor it to your jurisdictions and tools before
             launch.

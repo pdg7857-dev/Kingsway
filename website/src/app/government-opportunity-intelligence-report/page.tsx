@@ -42,26 +42,26 @@ export default function GoirPage() {
         ]}
       />
 
-      <section className="relative overflow-hidden border-b border-line bg-ink-900">
+      <section className="relative overflow-hidden border-b border-border bg-bg">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.16]" />
         <div className="container relative grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div>
             <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Free GOIR" }]} />
-            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-gold-400">
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-warn">
               <FileBarChart className="h-3.5 w-3.5" /> Free assessment
             </p>
-            <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold text-fg sm:text-5xl">
               Your free Government Opportunity Intelligence Report
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">
+            <p className="mt-5 text-lg leading-8 text-fg-muted">
               In one report, see exactly where your team wastes estimator time, which platforms you
               are under-covering, and which contracts in your market are about to rebid. Scored,
               prioritized, and specific to your business.
             </p>
             <ul className="mt-7 space-y-2.5">
               {GOIR_INCLUDES.map((i) => (
-                <li key={i} className="flex gap-2.5 text-slate-200">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-gold-400" />
+                <li key={i} className="flex gap-2.5 text-fg">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-warn" />
                   {i}
                 </li>
               ))}
@@ -71,7 +71,7 @@ export default function GoirPage() {
                 <Link href={REPORT_URL} className="btn-gold px-6 py-3 text-base">
                   Request my free report
                 </Link>
-                <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-2 text-sm text-fg-subtle">
                   Free and personally prepared. Phil delivers your report — with your access code — within 24 hours.
                 </p>
               </div>
@@ -88,11 +88,11 @@ export default function GoirPage() {
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {DELIVERABLES.map((d) => (
             <div key={d.title} className="card p-6">
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-accent-soft text-accent">
                 <d.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-ink">{d.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{d.body}</p>
+              <h3 className="mt-4 text-lg font-semibold text-fg">{d.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-fg-muted">{d.body}</p>
             </div>
           ))}
         </div>
@@ -106,16 +106,16 @@ export default function GoirPage() {
             ["02", "I do the analysis", "I assess your coverage, estimate your waste, and scan your market for renewals."],
             ["03", "You get the report", "A clear, prioritized read you can act on, with or without working together."],
           ].map(([n, t, d]) => (
-            <div key={n} className="rounded-2xl border border-line bg-white p-6">
-              <span className="text-2xl font-bold text-brand-200">{n}</span>
-              <h3 className="mt-2 text-lg font-semibold text-ink">{t}</h3>
-              <p className="mt-1.5 text-sm leading-6 text-slate-600">{d}</p>
+            <div key={n} className="rounded-2xl border border-border bg-bg-panel p-6">
+              <span className="text-2xl font-bold text-accent">{n}</span>
+              <h3 className="mt-2 text-lg font-semibold text-fg">{t}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-fg-muted">{d}</p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-center text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-fg-muted">
           Prefer to estimate it yourself first? Try the{" "}
-          <Link href="/opportunity-waste-calculator" className="font-medium text-brand-700 underline">
+          <Link href="/opportunity-waste-calculator" className="font-medium text-accent underline">
             Opportunity Waste Calculator
           </Link>
           .

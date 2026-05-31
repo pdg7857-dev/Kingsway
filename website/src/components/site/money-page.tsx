@@ -38,18 +38,18 @@ export function MoneyPageView({ slug }: { slug: string }) {
         ]}
       />
 
-      <section className="border-b border-line bg-ink-900">
+      <section className="border-b border-border bg-bg">
         <div className="container py-12 lg:py-16">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: p.h1 }]} />
           <div className="mt-6 max-w-3xl">
-            <p className="eyebrow text-brand-300">{p.eyebrow || GROUP_LABEL[p.group]}</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl">{p.h1}</h1>
-            <p className="mt-5 text-lg leading-8 text-slate-300">{p.lede}</p>
+            <p className="eyebrow text-accent">{p.eyebrow || GROUP_LABEL[p.group]}</p>
+            <h1 className="mt-3 text-4xl font-bold text-fg sm:text-5xl">{p.h1}</h1>
+            <p className="mt-5 text-lg leading-8 text-fg-muted">{p.lede}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/government-opportunity-intelligence-report" className="btn-gold px-5 py-3">
                 Get your free Opportunity Intelligence Report
               </Link>
-              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-white hover:border-white/40 hover:text-white">
+              <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
             </div>
@@ -62,9 +62,9 @@ export function MoneyPageView({ slug }: { slug: string }) {
           <aside className="hidden lg:block">
             <div className="sticky top-24">
               <TableOfContents sections={p.sections} />
-              <div className="mt-8 rounded-2xl border border-line bg-paper-soft p-5">
-                <p className="text-sm font-semibold text-ink">Free assessment</p>
-                <p className="mt-1.5 text-sm text-slate-600">
+              <div className="mt-8 rounded-2xl border border-border bg-bg-subtle p-5">
+                <p className="text-sm font-semibold text-fg">Free assessment</p>
+                <p className="mt-1.5 text-sm text-fg-muted">
                   Get your GOII score, opportunity-waste estimate and coverage gaps in one report.
                 </p>
                 <Link href="/government-opportunity-intelligence-report" className="btn-primary mt-4 w-full py-2.5 text-sm">
@@ -88,7 +88,7 @@ export function MoneyPageView({ slug }: { slug: string }) {
             <GoirCta className="mt-12" variant="inline" />
 
             <div className="mt-14">
-              <h2 className="text-2xl font-semibold text-ink sm:text-3xl">Common questions</h2>
+              <h2 className="text-2xl font-semibold text-fg sm:text-3xl">Common questions</h2>
               <div className="mt-6">
                 <FaqAccordion faqs={p.faqs} />
               </div>
@@ -96,14 +96,14 @@ export function MoneyPageView({ slug }: { slug: string }) {
 
             {p.statIds && p.statIds.length > 0 && <References ids={p.statIds} />}
 
-            <div className="mt-12 rounded-2xl border border-line bg-paper-soft p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Related</h3>
+            <div className="mt-12 rounded-2xl border border-border bg-bg-subtle p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-fg-muted">Related</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {p.related.map((r) => (
                   <Link
                     key={r.href}
                     href={r.href}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-700 hover:border-brand-300 hover:text-brand-700"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-bg-panel px-3 py-1.5 text-sm font-medium text-fg-muted hover:border-accent hover:text-accent"
                   >
                     {r.label} <ArrowRight className="h-3.5 w-3.5 opacity-50" />
                   </Link>
@@ -118,8 +118,8 @@ export function MoneyPageView({ slug }: { slug: string }) {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="eyebrow">Get started</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">See it in your market</h2>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <h2 className="mt-3 text-3xl font-semibold text-fg">See it in your market</h2>
+            <p className="mt-4 text-lg leading-8 text-fg-muted">
               Request your free Government Opportunity Intelligence Report and I will show you the
               opportunity waste, coverage gaps and renewals specific to your trades and
               jurisdictions.
