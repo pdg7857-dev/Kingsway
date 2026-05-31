@@ -17,7 +17,7 @@ const tierTone: Record<string, "success" | "accent" | "warn" | "danger" | "muted
 export default async function GoirLeadsPage() {
   // The public report site is a separate Vercel deployment.
   const siteUrl = (process.env.NEXT_PUBLIC_GOIR_URL ?? "").replace(/\/$/, "");
-  const reportHref = (id: string) => (siteUrl ? `${siteUrl}/r/${id}` : undefined);
+  const reportHref = (id: string) => (siteUrl ? `${siteUrl}/report/${id}` : undefined);
 
   let reports: Awaited<ReturnType<typeof prisma.goirReport.findMany>> = [];
   try {

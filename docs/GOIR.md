@@ -7,34 +7,37 @@ CRM pipeline.
 
 ## Two deployments, one database
 
-The GOIR runs as its **own Vercel project**, deployed from the **`goir/`** folder
-in this repo (own `package.json`/build). It shares the Kingsway OS database, so
-captured reports and leads land in the same place. Kingsway OS keeps only the
-internal admin view.
+The public presence is the **marketing site + report combined** in the
+**`website/`** folder, deployed as its **own Vercel project** (Root Directory =
+`website`). The interactive report lives on that same site at **`/report`** — a
+dark "tool" surface inside the light marketing shell — so there is one domain and
+no cross-site hops. It shares the Kingsway OS database, so captured reports and
+leads land in the CRM. Kingsway OS keeps only the internal admin view.
 
 | | App | Key routes |
 |---|---|---|
-| **Public site** (`goir/`) | standalone Next.js app, own Vercel project | `/` (intake), `/r/[id]` (report), `POST /api/goir`, `POST /api/goir/[id]/consult` |
+| **Public site** (`website/`) | marketing SEO site + report, own Vercel project | `/` + ~177 SEO pages, `/report` (intake), `/report/[id]` (report), `POST /api/goir`, `POST /api/goir/[id]/consult` |
 | **Kingsway OS** (root) | the main app | `/goir-leads` (admin view of captured reports/leads) |
 
-See [`goir/README.md`](../goir/README.md) for how to set up the second Vercel
-project. Link the OS to the public site with `NEXT_PUBLIC_GOIR_URL`.
+See [`website/README.md`](../website/README.md) for Vercel setup. Link the OS to
+the public site with `NEXT_PUBLIC_GOIR_URL` (the in-app leads view opens
+`<that>/report/<id>`).
 
 ## Flow
 
-1. Prospect visits the public site **`/`** and fills the intake form (company,
-   website, industry, province/state, email — plus optional platforms, bid
-   volume, headcount).
+1. SEO/money pages funnel to the GOIR landing page, whose CTA opens **`/report`**
+   — the intake form (company, website, industry, province/state, email, plus
+   optional platforms, bid volume, headcount).
 2. `POST /api/goir` validates input, runs the deterministic engine, optionally
    layers AI prose, persists a `GoirReport` row, emails the report link, and
    returns its id.
-3. Prospect lands on **`/r/[id]`** — the full 10-section report with the headline
-   **Government Opportunity Intelligence Index™** (0–100).
+3. Prospect lands on **`/report/[id]`** — the full 10-section report with the
+   headline **Government Opportunity Intelligence Index™** (0–100).
 4. The closing CTA (`POST /api/goir/[id]/consult`) marks the report and drops a
    `LEAD` into the operator's eProcurement pipeline.
 5. The operator reviews captured demand at **`/goir-leads`** in Kingsway OS.
 
-## Scoring engine — `goir/src/lib/goir/`
+## Scoring engine — `website/src/lib/goir/`
 
 Fully **deterministic**: identical input → identical report (only `generatedAt`
 varies). A stable per-company seed (`mulberry32` over company+website+industry+region)
@@ -67,18 +70,17 @@ Opportunity **waste** is modeled as recoverable **labor/process inefficiency**
 ## Schema
 
 `GoirReport` lives in the shared schema (`prisma/schema.prisma` in Kingsway OS;
-mirrored in `goir/prisma/schema.prisma`). It's standalone — no required FK, since
-it's filled by anonymous prospects. The table is created idempotently by Kingsway
-OS's `prisma/migrate.sql` (run automatically by `/api/setup`); the public site
-never runs migrations.
+mirrored in `website/prisma/schema.prisma`). It's standalone — no required FK,
+since it's filled by anonymous prospects. The table is created idempotently by
+Kingsway OS's `prisma/migrate.sql` (run automatically by `/api/setup`); the public
+site never runs migrations.
 
-## Extending (edit in `goir/src/lib/goir/`)
+## Extending (edit in `website/src/lib/goir/`)
 
 - Add a sector: append to `INDUSTRIES` in `industries.ts` and (optionally)
   `BENCHMARK_INDUSTRIES`.
 - Add a platform: append to `PLATFORMS` in `platforms.ts`.
 - Add a region's cities: extend `CITIES` in `engine.ts`.
 
-> Note: the engine/components also remain importable types-wise from the OS only
-> via `industries.ts` (used by the `/goir-leads` label lookup). All other GOIR
-> logic lives in the `goir/` app.
+> Note: the OS keeps a copy of `industries.ts` only for the `/goir-leads` label
+> lookup. All other GOIR logic lives in the `website/` app.

@@ -33,11 +33,11 @@ export default async function GoirReportPage({ params }: { params: { id: string 
   const narrative = (report.narrative as unknown as GoirNarrative) ?? null;
 
   return (
-    <>
+    <div className="goir-dark">
       <GoirReportView id={report.id} result={result} narrative={narrative} requested={report.consultationRequested} />
       <div className="mx-auto max-w-5xl px-4 pb-10 lg:px-6 text-center">
-        <Link href="/" className="text-xs text-fg-subtle hover:text-accent">← Run another report</Link>
+        <Link href="/report" className="text-xs text-fg-subtle hover:text-accent">← Run another report</Link>
       </div>
-    </>
+    </div>
   );
 }

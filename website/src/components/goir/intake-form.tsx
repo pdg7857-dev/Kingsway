@@ -60,7 +60,7 @@ export function IntakeForm() {
         setPending(false);
         return;
       }
-      router.push(`/r/${json.id}`);
+      router.push(`/report/${json.id}`);
     } catch {
       setError("Network error. Please try again.");
       setPending(false);

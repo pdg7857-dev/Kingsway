@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Panel } from "@/components/ui/card";
 import { IntakeForm } from "@/components/goir/intake-form";
 import {
@@ -6,6 +7,13 @@ import {
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Generate your free Government Opportunity Intelligence Report™",
+  description:
+    "Score your company across eight dimensions of government-contracting maturity, estimate your opportunity waste, and get a prioritized action plan — free, in about 15 seconds.",
+  alternates: { canonical: "/report" },
+};
 
 const SECTIONS = [
   { icon: Gauge, title: "Intelligence Index™", body: "A single 0–100 score across eight weighted dimensions of contractor maturity." },
@@ -22,7 +30,8 @@ const SECTIONS = [
 
 export default function GoirLanding() {
   return (
-    <div className="mx-auto max-w-6xl px-4 lg:px-6">
+    <div className="goir-dark">
+    <div className="mx-auto max-w-6xl px-4 lg:px-6 py-6">
       {/* Hero */}
       <section className="grid grid-cols-1 gap-10 py-12 lg:grid-cols-2 lg:gap-12 lg:py-16">
         <div>
@@ -114,6 +123,7 @@ export default function GoirLanding() {
           </div>
         </Panel>
       </section>
+    </div>
     </div>
   );
 }

@@ -90,3 +90,52 @@
     background-size: 36px 36px;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   GOIR report surface — the dark "tool" section inside the light
+   marketing shell. Scoped under `.goir-dark` so it never affects
+   the marketing pages.
+   ────────────────────────────────────────────────────────────── */
+.goir-dark {
+  color-scheme: dark;
+  @apply bg-bg text-fg;
+  background-image: radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+    radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+    linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
+}
+/* Neutralize the light base heading color inside the dark surface. */
+.goir-dark :where(h1, h2, h3, h4) {
+  color: inherit;
+}
+
+@layer components {
+  .goir-dark .panel {
+    @apply relative rounded-2xl border border-border bg-bg-panel/60 shadow-panel transition-colors;
+  }
+  .goir-dark .panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-5 top-0 h-px opacity-60;
+    background: linear-gradient(90deg, transparent, hsl(184 100% 52% / 0.45), transparent);
+  }
+  .goir-dark .panel-header {
+    @apply flex items-center justify-between gap-3 px-5 py-3.5 border-b border-border-subtle;
+  }
+  .goir-dark .panel-title {
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-fg-muted;
+  }
+  .goir-dark .stat-value {
+    @apply font-mono text-[1.7rem] font-semibold tracking-tight text-fg tabular-nums;
+  }
+  .goir-dark .lift {
+    @apply transition-transform duration-200 hover:-translate-y-0.5;
+  }
+  .goir-dark .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium;
+  }
+  .goir-dark .text-gradient-accent {
+    background: linear-gradient(90deg, hsl(186 100% 70%), hsl(265 89% 76%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}

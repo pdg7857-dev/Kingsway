@@ -24,13 +24,13 @@ export const SITE = {
 } as const;
 
 /**
- * URL of the interactive GOIR report app (the separate `goir/` Vercel project).
- * Set NEXT_PUBLIC_REPORT_URL to its deployed URL to funnel every report CTA
- * straight into the live assessment. Until then, CTAs fall back to the internal
- * marketing landing page so the funnel still works.
+ * The interactive GOIR assessment now lives on this same site at /report.
+ * REPORT_LANDING is the SEO explainer page; REPORT_URL is where "Get your free
+ * report" CTAs send people (the live assessment). Override with
+ * NEXT_PUBLIC_REPORT_URL only if you ever host the app on a separate domain.
  */
 export const REPORT_LANDING = "/government-opportunity-intelligence-report";
-export const REPORT_URL = process.env.NEXT_PUBLIC_REPORT_URL || REPORT_LANDING;
+export const REPORT_URL = process.env.NEXT_PUBLIC_REPORT_URL || "/report";
 
 export type NavItem = { label: string; href: string; children?: NavItem[] };
 
