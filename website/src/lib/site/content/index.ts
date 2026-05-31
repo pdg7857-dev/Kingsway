@@ -1,7 +1,23 @@
 import type { LongForm, Section } from "./types";
 import { PLATFORM_FACTS, type PlatformFacts } from "./platform-facts";
 import { CORNERSTONE_CONTENT } from "./cornerstones";
+import { FEDERAL_PLATFORM_CONTENT } from "./platforms-federal";
+import { AGGREGATOR_PLATFORM_CONTENT } from "./platforms-aggregators";
+import { SAAS_PLATFORM_CONTENT } from "./platforms-saas";
+import { ENTERPRISE_PLATFORM_CONTENT } from "./platforms-enterprise";
 import { getPlatform } from "../platforms";
+
+/**
+ * Hand-authored deep content for every platform, merged from the cornerstone
+ * file and the four batch files. Keys are platform slugs.
+ */
+const DEEP_PLATFORM_CONTENT: Record<string, LongForm> = {
+  ...CORNERSTONE_CONTENT,
+  ...FEDERAL_PLATFORM_CONTENT,
+  ...AGGREGATOR_PLATFORM_CONTENT,
+  ...SAAS_PLATFORM_CONTENT,
+  ...ENTERPRISE_PLATFORM_CONTENT,
+};
 
 /**
  * Build a complete long-form body for a platform from its structured facts.
@@ -156,8 +172,8 @@ function buildFromFacts(slug: string): LongForm {
 
 /** Public accessor used by the platform page. */
 export function getPlatformLongForm(slug: string): LongForm | null {
-  // Cornerstone platforms have hand-authored deep bodies that take precedence.
-  if (CORNERSTONE_CONTENT[slug]) return CORNERSTONE_CONTENT[slug];
+  // Hand-authored deep bodies take precedence for every covered platform.
+  if (DEEP_PLATFORM_CONTENT[slug]) return DEEP_PLATFORM_CONTENT[slug];
   if (!PLATFORM_FACTS[slug]) return null;
   return buildFromFacts(slug);
 }
