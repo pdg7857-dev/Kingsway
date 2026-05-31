@@ -25,7 +25,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "callout":
       return (
-        <div className="my-7 rounded-2xl border-l-4 border-brand-500 bg-brand-50/60 p-5 text-[1.0625rem] leading-7 text-ink-700">
+        <div className="my-7 rounded-2xl border-l-4 border-brand-500 bg-brand-500/15 p-5 text-[1.0625rem] leading-7 text-slate-200">
           {block.text}
         </div>
       );
@@ -52,7 +52,7 @@ export function LongFormBody({ sections }: { sections: Section[] }) {
 export function TableOfContents({ sections }: { sections: Section[] }) {
   return (
     <nav aria-label="On this page" className="text-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
         On this page
       </p>
       <ul className="space-y-2 border-l border-line">
@@ -60,7 +60,7 @@ export function TableOfContents({ sections }: { sections: Section[] }) {
           <li key={s.id}>
             <a
               href={`#${s.id}`}
-              className="-ml-px block border-l-2 border-transparent pl-4 text-slate-600 transition hover:border-brand-500 hover:text-brand-700"
+              className="-ml-px block border-l-2 border-transparent pl-4 text-slate-300 transition hover:border-brand-500 hover:text-brand-300"
             >
               {s.heading}
             </a>
