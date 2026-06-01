@@ -21,7 +21,8 @@ export const SITE = {
   // Phil's Calendly scheduling link, embedded on /book.
   calendlyUrl: "https://calendly.com/pdg7857/phil-dave-government-opportunity-intelligence",
   sampleUrl: "/sample-opportunity",
-  founded: 2014,
+  // Year Phil started working in government procurement.
+  sectorSince: 2023,
 } as const;
 
 /**

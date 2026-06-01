@@ -67,10 +67,10 @@ export default function AboutPage() {
               I find the government work worth bidding. You go win it.
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
-              I am Phil. I spend my days inside the platforms where governments post their work, and
-              I have spent years learning how each one really behaves. I monitor them, read the
-              documents, and qualify the fit, so the opportunities that land on your desk are the
-              ones actually worth your estimator's time.
+              I am Phil. I have worked in government procurement since {SITE.sectorSince}, and I spend
+              my days inside the platforms where governments post their work, learning how each one
+              really behaves. I monitor them, read the documents, and qualify the fit, so the
+              opportunities that land on your desk are the ones actually worth your estimator's time.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href={SITE.bookingUrl} className="btn-gold px-5 py-3">
