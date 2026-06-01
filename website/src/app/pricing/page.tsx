@@ -15,7 +15,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Is there a setup fee or a contract?",
-    a: "No setup fee, and no long lock-in. Coverage runs month to month. It should pay for itself by putting more winnable work in front of you than it costs, and if it ever stops doing that, you stop.",
+    a: "No setup fee. Coverage is a 12-month commitment, billed monthly. That is deliberate: it takes a full year to catch your complete opportunity cycle — annual contracts, renewals and the seasonal bids that only surface once a year. A few months would only show you part of the picture. The plan should pay for itself many times over across that year by putting winnable work in front of you that you would otherwise miss.",
   },
   {
     q: "What counts as a jurisdiction?",
@@ -23,7 +23,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Can I cover both Canada and the United States?",
-    a: "Yes. Plenty of contractors work both sides of the border. We combine coverage to match your real footprint. Tell me where you bid and I will put together the right mix.",
+    a: "Yes — that is the North America Coverage plan at $3,999/month USD: every Canadian province and U.S. state plus federal procurement on both sides of the border, in one consolidated feed. Like every plan, it runs on a 12-month commitment.",
   },
   {
     q: "What is not included?",
@@ -38,7 +38,7 @@ const PRICING_FAQS = [
 export const metadata: Metadata = pageMeta({
   title: "Pricing: Government Opportunity Intelligence Coverage Plans",
   description:
-    "Public pricing from $599/month, structured as geographic coverage. Single province or state, regional, multi-state, and national plans for Canada and the U.S. No per-opportunity fees, no lock-in.",
+    "Public pricing from $599/month on a 12-month commitment, structured as geographic coverage. Single province or state, regional, national, and full North America (Canada + U.S.) plans. No per-opportunity fees.",
   path: "/pricing",
   keywords: ["government bid monitoring pricing", "opportunity intelligence cost", "bid alert service pricing"],
 });
@@ -62,9 +62,10 @@ export default function PricingPage() {
               Public pricing. Priced as coverage, not per bid.
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
-              One flat monthly plan covers the geography you choose: every relevant platform, every
+              One flat plan covers the geography you choose: every relevant platform, every
               opportunity I find inside it, read and qualified. No per-portal fees. No
-              per-opportunity charges. No clock to watch.
+              per-opportunity charges. No clock to watch. Coverage runs on a 12-month commitment —
+              the time it takes to catch your full opportunity cycle.
             </p>
           </div>
         </div>

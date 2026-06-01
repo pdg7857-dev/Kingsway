@@ -132,9 +132,25 @@ export const USA_PLANS: Plan[] = [
   },
 ];
 
+export const NORTH_AMERICA_PLAN: Plan = {
+  name: "North America Coverage",
+  price: "$3,999",
+  priceNote: "/month USD",
+  scope: "All of Canada + all 50 U.S. states + federal",
+  blurb:
+    "One service for contractors who bid on both sides of the border. Complete coverage of every Canadian province and U.S. state, plus federal procurement in both countries.",
+  features: [
+    "Everything in both National plans",
+    "All 13 provinces & territories and all 50 states",
+    "Federal procurement both sides of the border (CanadaBuys, SAM.gov, GSA eBuy & more)",
+    "Cross-border de-duplication in one consolidated feed",
+    "One point of contact for your entire North American footprint",
+  ],
+};
+
 export const PRICING_PRINCIPLES = [
   "Priced as coverage, not per opportunity. Review as many as it takes.",
   "Never hourly. You never watch a clock or ration questions.",
-  "Month-to-month. Coverage should earn its place every month.",
+  "A 12-month commitment — it takes a full year to catch your complete opportunity cycle, including annual renewals and seasonal bids that only come around once.",
   "One flat plan replaces estimator hours, missed bids and portal fatigue.",
 ];

@@ -31,7 +31,7 @@ export const GENERAL_FAQS: Faq[] = [
     a: "Niche is where this pays off most. The narrower your lane, the more your work hides under generic titles and inside larger packages, and the more a keyword alert misses. I learn how your trade actually gets described by buyers, then watch for it everywhere.",
   },
   {
-    q: "Am I locked into a contract?",
-    a: "No. Coverage runs month to month. It should earn its place every month by putting more winnable work in front of you than it costs. If it does not, you stop.",
+    q: "How long is the commitment?",
+    a: "Coverage is a 12-month commitment, billed monthly. It takes a full year to catch your complete opportunity cycle — annual contracts, renewals and the seasonal bids that only come around once. A shorter window would only ever show you part of the picture.",
   },
 ];
