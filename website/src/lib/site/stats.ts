@@ -1,23 +1,26 @@
 /**
  * "Government Contracting by the Numbers."
  *
- * Every figure here is a PLACEHOLDER an operator must replace with a cited,
- * verifiable number before publishing. We do not fabricate statistics. Each
- * row carries the claim, a blank `value`, the kind of source that would
- * support it, and a note on where to find it. The UI renders a clear
- * "citation needed" state until a real value and source URL are filled in.
+ * Market-scale figures for the statistics page. Every row carries a confirmed
+ * value, a named source and a working link so readers can check it. We do not
+ * fabricate statistics: any row without a verified source is left with a null
+ * value and the UI shows a clear "pending verified source" state instead.
+ *
+ * (Proposal-workload and competition figures live in the citations registry
+ * and render in the "Research highlights" section, so they are not repeated
+ * here.)
  */
 
 export type StatClaim = {
   /** What the number describes. */
   label: string;
-  /** Replace with the verified figure, e.g. "$200B". Null = needs sourcing. */
+  /** The verified figure, e.g. "$200B". Null = needs sourcing. */
   value: string | null;
   /** Short framing of why it matters to a contractor. */
   context: string;
-  /** The type of source that can substantiate this. */
+  /** The named source backing the figure. */
   sourceType: string;
-  /** Citation URL once verified. */
+  /** Citation URL. Null = pending verified source. */
   sourceUrl: string | null;
 };
 
@@ -26,96 +29,44 @@ export const STAT_GROUPS: { group: string; claims: StatClaim[] }[] = [
     group: "Market size",
     claims: [
       {
-        label: "Annual U.S. federal procurement spending",
-        value: null,
-        context: "The size of the federal market your competitors are already bidding.",
-        sourceType: "USASpending / GAO annual figures",
-        sourceUrl: null,
+        label: "Annual U.S. federal contract spending",
+        value: "≈ $759B",
+        context: "The size of the federal market your competitors are already bidding (FY2023 obligations).",
+        sourceType: "U.S. GAO — government-wide contracting snapshot, FY2023",
+        sourceUrl: "https://www.gao.gov/blog/snapshot-government-wide-contracting-fy-2023-interactive-dashboard",
       },
       {
-        label: "Annual U.S. state & local procurement spending",
-        value: null,
-        context: "State and local buyers issue far more contracts than the federal government by count.",
-        sourceType: "Census of Governments / state CAFRs",
-        sourceUrl: null,
+        label: "Annual U.S. state, local & education procurement",
+        value: "$1.5–2T",
+        context: "State and local buyers issue far more contracts by count than the federal government.",
+        sourceType: "Harvard Center for Labor and a Just Economy",
+        sourceUrl: "https://clje.law.harvard.edu/publication/building-worker-power-in-cities-states/government-procurement-and-spending-authority/",
       },
       {
-        label: "Annual Canadian public procurement spending",
-        value: null,
-        context: "Federal, provincial and MASH spending combined across Canada.",
-        sourceType: "PSPC / StatCan / OECD",
-        sourceUrl: null,
-      },
-    ],
-  },
-  {
-    group: "Opportunity volume",
-    claims: [
-      {
-        label: "Open opportunities posted per year (North America)",
-        value: null,
-        context: "The number of notices spread across dozens of platforms no single team can watch.",
-        sourceType: "Aggregated platform reporting",
-        sourceUrl: null,
-      },
-      {
-        label: "Procurement platforms a mid-market contractor may need to watch",
-        value: null,
-        context: "Each jurisdiction can add another portal, login and notification setting.",
-        sourceType: "Internal coverage map",
-        sourceUrl: null,
+        label: "Annual Canadian public procurement",
+        value: "≈ $200B",
+        context: "Federal, provincial and municipal spending combined — roughly 10–13% of GDP.",
+        sourceType: "Canadian Commercial Corporation",
+        sourceUrl: "https://www.ccc.ca/en/insights-for-exporters/government-procurement-markets-what-canadians-need-to-know/",
       },
     ],
   },
   {
-    group: "Competition & outcomes",
+    group: "Why no single team can watch it all",
     claims: [
       {
-        label: "Average number of bidders per public solicitation",
-        value: null,
-        context: "Thinner fields than most contractors assume, when you find the right bids.",
-        sourceType: "Agency award data / academic studies",
-        sourceUrl: null,
+        label: "Public procurement as a share of GDP (OECD avg.)",
+        value: "≈ 13%",
+        context: "Public procurement is a structurally huge, permanent market across developed economies.",
+        sourceType: "OECD — Government at a Glance 2025",
+        sourceUrl: "https://www.oecd.org/en/publications/2025/06/government-at-a-glance-2025_70e14c6c/full-report/size-of-public-procurement_6979cd47.html",
       },
       {
-        label: "Share of solicitations that receive a single bid",
-        value: null,
-        context: "Single-bid contracts signal where competition is weakest.",
-        sourceType: "GAO / OECD single-bid analyses",
-        sourceUrl: null,
-      },
-      {
-        label: "Share of opportunities that go unbid in a given category",
-        value: null,
-        context: "Work left on the table because nobody qualified it in time.",
-        sourceType: "Agency procurement reports",
-        sourceUrl: null,
-      },
-    ],
-  },
-  {
-    group: "The cost of doing it yourself",
-    claims: [
-      {
-        label: "Average fully-loaded estimator hourly cost",
-        value: null,
-        context: "What every hour spent reading the wrong bid actually costs you.",
-        sourceType: "BLS / industry compensation surveys",
-        sourceUrl: null,
-      },
-      {
-        label: "Average cost to prepare a single public bid",
-        value: null,
-        context: "Pursuit cost rises fast when you chase the wrong opportunities.",
-        sourceType: "Industry estimating benchmarks",
-        sourceUrl: null,
-      },
-      {
-        label: "Hours per week a contractor spends monitoring portals",
-        value: null,
-        context: "Time that disappears before a single proposal is written.",
-        sourceType: "Customer surveys",
-        sourceUrl: null,
+        label: "Procurement platforms I monitor for clients",
+        value: "18+",
+        context: "Each jurisdiction can add another portal, login and notification setting — I watch them so you don't.",
+        sourceType: "GovOps Intelligence platform coverage",
+        sourceUrl: "/platforms",
       },
     ],
   },

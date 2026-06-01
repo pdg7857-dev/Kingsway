@@ -16,7 +16,7 @@ export const GENERAL_FAQS: Faq[] = [
   },
   {
     q: "Which platforms do you monitor?",
-    a: "The ones your buyers actually use: MERX, BidNet Direct, CanadaBuys and SAM.gov, plus Bonfire, Biddingo, bids&tenders, Jaggaer, SAP Ariba, Coupa, PlanetBids, OpenGov, DemandStar, Ion Wave, GovWin, Periscope, GSA eBuy, USASpending and the state and provincial systems behind them. Coverage follows your jurisdictions, not a fixed list.",
+    a: "The ones your buyers actually use: MERX, BidNet Direct, CanadaBuys and SAM.gov, plus Bonfire, Biddingo, bids&tenders, Jaggaer, SAP Ariba, PlanetBids, OpenGov, DemandStar, Ion Wave, GovWin, Periscope, GSA eBuy, USASpending and the state and provincial systems behind them. Coverage follows your jurisdictions, not a fixed list.",
   },
   {
     q: "How is pricing structured?",

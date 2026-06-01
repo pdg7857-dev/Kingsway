@@ -7,12 +7,11 @@
  * only shown as "verified" once an operator has confirmed it against the
  * underlying research report and filled in `source`, `year` and `url`.
  *
- * The five claims below were supplied directly by the site owner from their
- * research. The numeric `value` is theirs to stand behind; the `source`,
- * `year` and `url` are left null and `verified: false` until the exact
- * citation is confirmed from the report. The UI renders unverified stats with
- * a visible "source pending verification" state so nothing reads as a hard,
- * falsely-attributed fact.
+ * Each claim below carries a confirmed source, publisher, year and URL, and is
+ * marked `verified: true`. The UI renders a "[src]" link next to every figure
+ * so readers can check it. If a future claim is added without a confirmed
+ * source, leave `verified: false` and the UI falls back to a visible
+ * "source pending verification" state so nothing reads as a hard, fabricated fact.
  *
  * To verify a stat: set source/year/url and flip `verified` to true.
  */
@@ -43,63 +42,58 @@ export type Citation = {
 export const CITATIONS: Record<string, Citation> = {
   "rfp-volume": {
     id: "rfp-volume",
-    claim: "The average organization responds to 166 RFPs per year.",
+    claim: "The average organization now responds to 166 RFPs per year — up from 153 the year before.",
     value: "166",
     unit: "RFPs per year",
-    source: null,
-    publisher: null,
-    year: null,
-    url: null,
-    verified: false,
-    note: "Supplied from owner research. Confirm exact source/year/link before publishing.",
+    source: "RFP Response Trends & Benchmarks Report",
+    publisher: "Loopio",
+    year: 2026,
+    url: "https://loopio.com/trends-report/",
+    verified: true,
   },
   "response-hours": {
     id: "response-hours",
-    claim: "The average proposal response requires 33 to 36 hours of work.",
-    value: "33 to 36 hours",
+    claim: "A single RFP response takes 33–36 hours of work on average — dedicated proposal teams spend 36.",
+    value: "33–36 hrs",
     unit: "per response",
-    source: null,
-    publisher: null,
-    year: null,
-    url: null,
-    verified: false,
-    note: "Supplied from owner research. Confirm exact source/year/link before publishing.",
+    source: "RFP Response Trends & Benchmarks Report",
+    publisher: "Loopio",
+    year: 2026,
+    url: "https://loopio.com/trends-report/",
+    verified: true,
   },
   "workload-increase": {
     id: "workload-increase",
-    claim: "77% of teams report an increased proposal workload.",
-    value: "77%",
-    unit: "of teams report rising proposal workload",
-    source: null,
-    publisher: null,
-    year: null,
-    url: null,
-    verified: false,
-    note: "Supplied from owner research. Confirm exact source/year/link before publishing.",
+    claim: "Proposal volume keeps climbing — the average organization went from 153 to 166 RFP responses per year.",
+    value: "153 → 166",
+    unit: "RFPs per year, year over year",
+    source: "RFP Response Trends & Benchmarks Report",
+    publisher: "Loopio",
+    year: 2026,
+    url: "https://loopio.com/trends-report/",
+    verified: true,
   },
   "estimator-hiring": {
     id: "estimator-hiring",
-    claim: "77% of firms struggle to hire estimators.",
-    value: "77%",
-    unit: "of firms struggle to hire estimators",
-    source: null,
-    publisher: null,
-    year: null,
-    url: null,
-    verified: false,
-    note: "Supplied from owner research. Confirm exact source/year/link before publishing.",
+    claim: "78% of construction firms say estimating roles are hard to fill — among the toughest salaried positions to staff.",
+    value: "78%",
+    unit: "of firms find estimators hard to fill",
+    source: "2024 Workforce Survey",
+    publisher: "Associated General Contractors of America (AGC)",
+    year: 2024,
+    url: "https://www.agc.org/sites/default/files/Files/Communications/2024_Workforce_Survey_Analysis.pdf",
+    verified: true,
   },
   "single-bid-frequency": {
     id: "single-bid-frequency",
-    claim: "One-bid procurements happen far more often than most contractors assume.",
-    value: "One-bid procurements",
-    unit: "are more common than assumed",
-    source: null,
-    publisher: null,
-    year: null,
-    url: null,
-    verified: false,
-    note: "Qualitative claim from owner research. Attach the specific single-bid share and source when available.",
+    claim: "Single-bid awards are common enough to be tracked as a market-health metric: the EU rates any market where more than 20% of contracts draw a single bid as underperforming.",
+    value: ">20%",
+    unit: "single-bid share the EU flags as underperforming",
+    source: "Single Market Scoreboard — Public procurement",
+    publisher: "European Commission",
+    year: 2024,
+    url: "https://single-market-scoreboard.ec.europa.eu/business-framework-conditions/public-procurement_en",
+    verified: true,
   },
 };
 

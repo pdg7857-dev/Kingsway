@@ -24,7 +24,6 @@ export const PLATFORMS: PlatformDef[] = [
   { key: "govwin",       name: "GovWin",        scope: "BOTH", tier: "enterprise", note: "Deltek market intelligence — pre-RFP pipeline visibility." },
   { key: "ariba",        name: "SAP Ariba",     scope: "BOTH", tier: "enterprise", note: "Enterprise/agency e-sourcing network." },
   { key: "jaggaer",      name: "JAGGAER",       scope: "BOTH", tier: "enterprise", note: "Higher-ed and large-institution sourcing suite." },
-  { key: "coupa",        name: "Coupa",         scope: "BOTH", tier: "enterprise", note: "Spend-management suite used by large public buyers." },
 ];
 
 export const PLATFORM_BY_KEY: Record<string, PlatformDef> = Object.fromEntries(

@@ -114,13 +114,6 @@ export const BLOG_TOPICS: BlogTopic[] = [
       "Ariba is enterprise procurement software that public buyers also use. I explain the network, the registration friction, and how I separate real opportunities from noise.",
   },
   {
-    slug: "coupa-supplier-guide",
-    title: "Coupa for Government Suppliers: Where to Look for Opportunities",
-    category: "Platforms",
-    excerpt:
-      "Coupa is spend-management first and sourcing second. Here is how I monitor the public buyers who use it and what I tell clients to expect from the supplier side.",
-  },
-  {
     slug: "planetbids-explained",
     title: "PlanetBids Explained: California Agencies and Beyond",
     category: "Platforms",

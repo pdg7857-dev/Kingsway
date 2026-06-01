@@ -15,6 +15,9 @@ const nextConfig = {
       { source: "/industries/:slug", destination: "/:slug-government-contracts", permanent: true },
       // Consolidated tool + statistics URLs.
       { source: "/statistics", destination: "/government-procurement-statistics", permanent: true },
+      // Coupa is no longer covered; send its old URLs to the relevant hubs.
+      { source: "/coupa-expert", destination: "/platforms", permanent: true },
+      { source: "/blog/coupa-supplier-guide", destination: "/blog", permanent: true },
       {
         source: "/tools/opportunity-cost-calculator",
         destination: "/opportunity-waste-calculator",

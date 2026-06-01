@@ -174,7 +174,7 @@ export type Stat = { value: string | null; label: string; placeholder: string };
 // Verifiable coverage facts (true from the site's own platform/coverage data).
 // No fabricated track-record numbers.
 export const SOCIAL_PROOF: Stat[] = [
-  { value: "19", label: "Procurement platforms monitored", placeholder: "19" },
+  { value: "18", label: "Procurement platforms monitored", placeholder: "18" },
   { value: "12", label: "Industries served", placeholder: "12" },
   { value: "50", label: "U.S. states covered", placeholder: "50" },
   { value: "13", label: "Canadian provinces & territories", placeholder: "13" },

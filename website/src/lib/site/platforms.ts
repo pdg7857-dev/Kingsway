@@ -155,18 +155,6 @@ export const PLATFORMS: Platform[] = [
     industries: ["mro", "industrial-supplies", "facilities-maintenance"],
   },
   {
-    slug: "coupa",
-    name: "Coupa",
-    shortName: "Coupa",
-    category: "eProcurement SaaS",
-    country: "Both",
-    priority: 3,
-    oneLiner:
-      "A spend-management platform increasingly used by public and quasi-public buyers to run sourcing.",
-    keywords: ["coupa supplier", "coupa sourcing", "coupa bids", "coupa rfp"],
-    industries: ["mro", "industrial-supplies", "facilities-maintenance"],
-  },
-  {
     slug: "planetbids",
     name: "PlanetBids",
     shortName: "PlanetBids",
@@ -299,7 +287,6 @@ export const PLATFORM_HOMEPAGE: Record<string, string> = {
   "bids-and-tenders": "https://www.bidsandtenders.ca",
   jaggaer: "https://www.jaggaer.com",
   "sap-ariba": "https://www.ariba.com",
-  coupa: "https://www.coupa.com",
   planetbids: "https://www.planetbids.com",
   opengov: "https://www.opengov.com",
   demandstar: "https://www.demandstar.com",

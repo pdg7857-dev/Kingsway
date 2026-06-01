@@ -242,25 +242,6 @@ export const PLATFORM_FACTS: Record<string, PlatformFacts> = {
     ],
     missTitleExample: "An institutional supply event posted to the Ariba Network outside your existing buyer relationships.",
   },
-  coupa: {
-    whatItIs:
-      "Coupa is a spend-management platform that a growing number of public and quasi-public buyers use to run sourcing alongside their purchasing.",
-    whoUses: ["Quasi-public and institutional buyers", "Agencies modernizing procurement", "Enterprises with public-style sourcing"],
-    categorization:
-      "Buyers run sourcing events and manage suppliers in Coupa; visibility depends on supplier registration and invitations.",
-    alertLimits: [
-      "Event visibility depends on supplier setup with each buyer",
-      "Coverage is fragmented across individual buyers",
-      "Some events are invitation-driven",
-    ],
-    searchLimits: ["No single public feed", "Registration drives visibility", "Scope sits in event documents"],
-    howPhilHelps: [
-      "I track the buyers in your area sourcing through Coupa",
-      "I read the event scope and requirements",
-      "I qualify fit and keep your supplier setup ready",
-    ],
-    missTitleExample: "A facilities sourcing event run in Coupa by a buyer you are not yet set up with.",
-  },
   planetbids: {
     whatItIs:
       "PlanetBids is the portal behind a large share of California public agencies and many municipalities elsewhere. Each agency runs its own PlanetBids vendor portal.",
