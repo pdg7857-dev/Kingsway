@@ -16,8 +16,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: "GovOpps by Phil Dave | I find the bids worth winning",
-    template: "%s | GovOpps by Phil Dave",
+    default: "Phil Dave | I find the government bids worth winning",
+    template: "%s | Phil Dave",
   },
   description:
     "Phil Dave monitors every procurement platform, reads the documents and qualifies the fit, so contractors across Canada and the U.S. stop searching portals and start bidding the work that is worth winning.",

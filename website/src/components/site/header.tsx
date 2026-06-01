@@ -11,15 +11,10 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={`${SITE.brand} home`}>
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-black text-[15px] font-extrabold leading-none tracking-[-0.06em] text-white ring-1 ring-white/15">
-            PD
-          </span>
-          <span className="leading-tight">
-            <span className="block text-sm font-bold tracking-tight text-fg">GovOpps</span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
-              by Phil Dave
-            </span>
+        <Link href="/" className="flex shrink-0 items-baseline gap-2 whitespace-nowrap" aria-label={`${SITE.brand} home`}>
+          <span className="text-lg font-bold tracking-tight text-fg">Phil Dave</span>
+          <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-accent xl:inline">
+            Government Opportunity Intelligence
           </span>
         </Link>
 

@@ -65,7 +65,7 @@ export const STAT_GROUPS: { group: string; claims: StatClaim[] }[] = [
         label: "Procurement platforms I monitor for clients",
         value: "18+",
         context: "Each jurisdiction can add another portal, login and notification setting, I watch them so you don't.",
-        sourceType: "GovOpps platform coverage",
+        sourceType: "Platform coverage I maintain",
         sourceUrl: "/platforms",
       },
     ],

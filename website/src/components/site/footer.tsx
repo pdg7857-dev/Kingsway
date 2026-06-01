@@ -8,11 +8,11 @@ export function SiteFooter() {
       <div className="container py-14">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_repeat(5,minmax(0,1fr))]">
           <div className="max-w-xs">
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-black text-[15px] font-extrabold leading-none tracking-[-0.06em] text-white ring-1 ring-white/15">
-                PD
+            <div className="flex items-baseline gap-2">
+              <span className="text-base font-bold text-fg">{SITE.brand}</span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-accent">
+                Gov Opportunity Intelligence
               </span>
-              <span className="text-sm font-bold text-fg">{SITE.brand}</span>
             </div>
             <p className="mt-4 text-sm leading-6 text-fg-subtle">
               I find, read and qualify government contract opportunities across Canada and the

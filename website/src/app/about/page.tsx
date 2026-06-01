@@ -30,7 +30,7 @@ import {
 } from "@/lib/site/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "About GovOpps by Phil Dave",
+  title: "About Phil Dave",
   description:
     "I am Phil Dave. I find, read and qualify government contract opportunities across Canada and the U.S. so you bid the work worth winning instead of searching procurement portals all day.",
   path: "/about",

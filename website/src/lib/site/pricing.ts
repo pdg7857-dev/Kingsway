@@ -93,7 +93,7 @@ export const PLANS: Plan[] = [
   },
   {
     name: "North America",
-    price: "$4,999",
+    price: "$3,999",
     priceNote: "/month",
     scope: "Canada + United States",
     blurb: "Full cross-border coverage in one consolidated feed.",
