@@ -8,7 +8,7 @@ import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 export const metadata: Metadata = pageMeta({
   title: "Canada Government Procurement Coverage by Province & Territory",
   description:
-    "How I find and qualify government opportunities across every Canadian province and territory — CanadaBuys, MERX, provincial systems and municipal portals.",
+    "How I find and qualify government opportunities across every Canadian province and territory, CanadaBuys, MERX, provincial systems and municipal portals.",
   path: "/coverage/canada",
   keywords: ["canada government procurement", "government bids canada", "provincial procurement", "canadabuys merx coverage"],
 });
@@ -37,7 +37,7 @@ export default function CanadaCoverage() {
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
               Federal opportunities run through CanadaBuys and MERX, but the real volume lives in
-              the provinces — each with its own mandatory system and a deep municipal, school-board
+              the provinces, each with its own mandatory system and a deep municipal, school-board
               and health-authority (MASH) base. Pick a province or territory to see where the work
               lives.
             </p>

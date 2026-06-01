@@ -58,7 +58,7 @@ export default async function LeadsPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
           <div>
             <h1 className="text-xl font-semibold tracking-tight text-fg">GOIR Leads</h1>
-            <p className="text-sm text-fg-subtle">Requests to fulfil — prep each report, then call/text/email the access code.</p>
+            <p className="text-sm text-fg-subtle">Requests to fulfil, prep each report, then call/text/email the access code.</p>
           </div>
           <LogoutButton />
         </div>
@@ -105,7 +105,7 @@ export default async function LeadsPage() {
                           </td>
                           <td className="py-2.5 pr-3 font-medium text-fg">{r.companyName}</td>
                           <td className="py-2.5 pr-3 text-fg-muted">
-                            <div>{r.contactName ?? "—"}</div>
+                            <div>{r.contactName ?? "-"}</div>
                             <div className="text-[11px] text-fg-subtle">{r.email}</div>
                             {r.phone ? <div className="text-[11px] text-fg-subtle">{r.phone}</div> : null}
                           </td>
@@ -114,11 +114,11 @@ export default async function LeadsPage() {
                             <div className="text-[11px] text-fg-subtle">{r.region}</div>
                           </td>
                           <td className="py-2.5 pr-3">
-                            <span className="select-all rounded-md bg-bg-raised px-2 py-1 font-mono text-xs text-accent ring-1 ring-border">{r.accessCode ?? "—"}</span>
+                            <span className="select-all rounded-md bg-bg-raised px-2 py-1 font-mono text-xs text-accent ring-1 ring-border">{r.accessCode ?? "-"}</span>
                           </td>
                           <td className="py-2.5 pr-3">
                             <div className="flex flex-wrap gap-1">
-                              <Badge tone={statusTone[r.status] ?? "muted"}>{(r.status ?? "—").toLowerCase()}</Badge>
+                              <Badge tone={statusTone[r.status] ?? "muted"}>{(r.status ?? "-").toLowerCase()}</Badge>
                               {r.consultationRequested ? <Badge tone="success">consult</Badge> : null}
                             </div>
                           </td>
@@ -129,7 +129,7 @@ export default async function LeadsPage() {
                                 Open <ExternalLink className="h-3 w-3" />
                               </Link>
                             ) : (
-                              <span className="text-[11px] text-fg-subtle">—</span>
+                              <span className="text-[11px] text-fg-subtle">-</span>
                             )}
                           </td>
                         </tr>
@@ -137,7 +137,7 @@ export default async function LeadsPage() {
                     })}
                   </tbody>
                 </table>
-                <p className="mt-3 text-[11px] text-fg-subtle">Tip: the access link (Open) already includes the code — copy it into an email/text, or read the code aloud on a call.</p>
+                <p className="mt-3 text-[11px] text-fg-subtle">Tip: the access link (Open) already includes the code, copy it into an email/text, or read the code aloud on a call.</p>
               </div>
             )}
           </PanelBody>

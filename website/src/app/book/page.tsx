@@ -134,7 +134,7 @@ export default function BookPage() {
                   3
                 </span>
                 <div>
-                  <h3 className="font-semibold text-fg">We decide if it is worth continuing</h3>
+                  <h3 className="font-semibold text-fg">You decide if it is worth continuing</h3>
                   <p className="mt-1 text-sm leading-6 text-fg-muted">
                     If the opportunities are clearly worth it, I explain coverage for your area. If
                     not, you keep what I showed you and we shake hands. No pressure either way.

@@ -38,7 +38,7 @@ export function ConsultCta({ id, requested }: { id: string; requested: boolean }
         <CheckCircle2 className="h-8 w-8 text-success" />
         <div className="text-lg font-semibold text-fg">You&apos;re on the list</div>
         <p className="max-w-md text-sm text-fg-muted">
-          Thanks — we&apos;ll reach out to schedule your free Government Opportunity Intelligence
+          Thanks, we&apos;ll reach out to schedule your free Government Opportunity Intelligence
           Consultation and walk through your full analysis.
         </p>
       </div>

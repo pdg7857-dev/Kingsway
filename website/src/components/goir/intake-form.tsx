@@ -137,7 +137,7 @@ export function IntakeForm() {
         <div className="sm:col-span-2">
           <label className={labelCls} htmlFor="email">Work email *</label>
           <Input id="email" name="email" type="email" required placeholder="you@company.com" />
-          <p className="mt-1.5 text-[11px] text-fg-subtle">Where we send your confirmation. No spam — your data stays private.</p>
+          <p className="mt-1.5 text-[11px] text-fg-subtle">Where we send your confirmation. No spam, your data stays private.</p>
         </div>
       </div>
 

@@ -8,7 +8,7 @@ import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 export const metadata: Metadata = pageMeta({
   title: "U.S. Government Procurement Coverage by State",
   description:
-    "How I find and qualify government opportunities across all 50 U.S. states — state eProcurement systems, BidNet Direct, Bonfire, DemandStar and thousands of local agencies.",
+    "How I find and qualify government opportunities across all 50 U.S. states, state eProcurement systems, BidNet Direct, Bonfire, DemandStar and thousands of local agencies.",
   path: "/coverage/usa",
   keywords: ["us government procurement", "government bids by state", "state procurement systems", "sam.gov bidnet coverage"],
 });
@@ -34,7 +34,7 @@ export default function UsaCoverage() {
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
               Federal work runs through SAM.gov, but most addressable opportunity is state, county
-              and municipal — each state with its own eProcurement system, plus aggregators like
+              and municipal, each state with its own eProcurement system, plus aggregators like
               BidNet Direct, Bonfire and DemandStar covering thousands of local agencies. Pick a
               state to see where the work lives.
             </p>

@@ -1,13 +1,13 @@
-// Government Opportunity Intelligence Report™ — shared types.
+// Government Opportunity Intelligence Report™, shared types.
 // The engine is fully deterministic: identical input → identical report.
 
 export type GoirInput = {
   companyName: string;
   website?: string | null;
-  industry: string; // industry key — see industries.ts
+  industry: string; // industry key, see industries.ts
   region: string; // province / state name or code
   email: string;
-  platformsUsed?: string[]; // platform keys — see platforms.ts
+  platformsUsed?: string[]; // platform keys, see platforms.ts
   annualBidVolume?: number | null;
   employees?: number | null;
 };
@@ -25,7 +25,7 @@ export type ScoreKey =
 export type CategoryScore = {
   key: ScoreKey;
   label: string;
-  score: number; // 0–100
+  score: number; // 0-100
   weight: number; // contribution to the Index
   summary: string;
 };
@@ -125,7 +125,7 @@ export type BenchmarkRow = {
 };
 export type Benchmarking = {
   industryLabel: string;
-  percentile: number; // where the company sits vs peers, 0–100
+  percentile: number; // where the company sits vs peers, 0-100
   rows: BenchmarkRow[];
   positioning: string;
   areasToImprove: string[];

@@ -32,6 +32,6 @@ export const GENERAL_FAQS: Faq[] = [
   },
   {
     q: "How long is the commitment?",
-    a: "Coverage is a 12-month commitment, billed monthly. It takes a full year to catch your complete opportunity cycle — annual contracts, renewals and the seasonal bids that only come around once. A shorter window would only ever show you part of the picture.",
+    a: "Coverage is a 12-month commitment, billed monthly. It takes a full year to catch your complete opportunity cycle, annual contracts, renewals and the seasonal bids that only come around once. A shorter window would only ever show you part of the picture.",
   },
 ];

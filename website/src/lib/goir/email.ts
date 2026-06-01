@@ -17,7 +17,7 @@ export function goirReceivedEmail(companyName: string, brand = "Phil Dave") {
     <h1 style="margin:10px 0 0;font-size:22px">Request received</h1>
     <p style="color:#9aa7b2;line-height:1.6;margin-top:14px">Thanks for requesting your Government Opportunity Intelligence Report for <strong style="color:#e8f1f5">${esc(companyName)}</strong>.</p>
     <p style="color:#9aa7b2;line-height:1.6">${esc(brand)} personally prepares each report. Within <strong style="color:#e8f1f5">24 hours</strong> you'll get a call, email or text with your private <strong style="color:#22d3ee">access code</strong> to view it.</p>
-    <p style="color:#5c6b78;font-size:12px;line-height:1.6;margin-top:20px">No account needed — just the access code. Talk soon.</p>
+    <p style="color:#5c6b78;font-size:12px;line-height:1.6;margin-top:20px">No account needed, just the access code. Talk soon.</p>
   </div></body></html>`;
   const text = `Request received.
 
@@ -28,7 +28,7 @@ ${brand} personally prepares each report. Within 24 hours you'll get a call, ema
 }
 
 export function goirEmail(result: GoirResult, url: string) {
-  const subject = `Your Government Opportunity Intelligence Report™ — ${result.index}/100 (${result.tier})`;
+  const subject = `Your Government Opportunity Intelligence Report™, ${result.index}/100 (${result.tier})`;
 
   const savings = usd(result.waste.potentialAnnualSavingsCents);
   const rows = result.categories

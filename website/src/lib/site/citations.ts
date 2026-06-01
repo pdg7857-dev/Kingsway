@@ -3,7 +3,7 @@
  * ------------------
  * Single source of truth for every statistic used anywhere on the site.
  *
- * HARD RULE: we never invent numbers, source names, years, or URLs. A stat is
+ * HARD RULE: I never invent numbers, source names, years, or URLs. A stat is
  * only shown as "verified" once an operator has confirmed it against the
  * underlying research report and filled in `source`, `year` and `url`.
  *
@@ -42,7 +42,7 @@ export type Citation = {
 export const CITATIONS: Record<string, Citation> = {
   "estimator-hiring": {
     id: "estimator-hiring",
-    claim: "78% of construction firms say estimating roles are hard to fill — among the toughest salaried positions to staff.",
+    claim: "78% of construction firms say estimating roles are hard to fill, among the toughest salaried positions to staff.",
     value: "78%",
     unit: "of firms find estimators hard to fill",
     source: "2024 Workforce Survey",
@@ -67,7 +67,7 @@ export const CITATIONS: Record<string, Citation> = {
     claim: "Single-bid awards are common enough to be tracked as a market-health metric: the EU rates any market where more than 20% of contracts draw a single bid as underperforming.",
     value: ">20%",
     unit: "single-bid share the EU flags as underperforming",
-    source: "Single Market Scoreboard — Public procurement",
+    source: "Single Market Scoreboard, Public procurement",
     publisher: "European Commission",
     year: 2024,
     url: "https://single-market-scoreboard.ec.europa.eu/business-framework-conditions/public-procurement_en",

@@ -1,8 +1,8 @@
-// Transactional email adapter — gated behind env vars, like the other
+// Transactional email adapter, gated behind env vars, like the other
 // integrations. Uses Resend's HTTP API so no SMTP/npm dependency is required.
 //
-//   RESEND_API_KEY  — Resend API key
-//   EMAIL_FROM      — verified sender, e.g. "GOIR <reports@yourdomain.com>"
+//   RESEND_API_KEY , Resend API key
+//   EMAIL_FROM     , verified sender, e.g. "GOIR <reports@yourdomain.com>"
 //
 // When unconfigured, sendEmail() is a graceful no-op so callers never break.
 

@@ -1,5 +1,5 @@
 // Idempotent SQL to provision just the GoirReport table on the shared database.
-// The public site never runs full migrations — this only ensures its own table
+// The public site never runs full migrations, this only ensures its own table
 // exists. Safe to run repeatedly.
 export const GOIR_SQL = `
 CREATE TABLE IF NOT EXISTS "GoirReport" (

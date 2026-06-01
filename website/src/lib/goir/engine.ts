@@ -1,4 +1,4 @@
-// Government Opportunity Intelligence Report™ — deterministic scoring engine.
+// Government Opportunity Intelligence Report™, deterministic scoring engine.
 //
 // Same input always yields the same report. A stable per-company seed adds
 // realistic, defensible variation so two firms in the same sector/region get
@@ -126,7 +126,7 @@ export function runGoir(input: GoirInput): GoirResult {
   const noBids = Math.max(0, reviewed - pursued);
   const pursueShare = pursued / reviewed;
 
-  // ── Category scores (0–100) ──
+  // ── Category scores (0-100) ──
   const government = clamp(
     38 + Math.min(24, employees * 0.7) + coveredRec.length * 3.5 +
     Math.min(12, reviewed / 30) + (hasWebsite ? 5 : 0) + jitter(7), 20, 98);
@@ -190,7 +190,7 @@ export function runGoir(input: GoirInput): GoirResult {
   const noBidLaborCost = r0(noBids * (industry.reviewMinutes / 60) * laborRate * 0.5);
 
   // Waste is modeled as recoverable *labor/process* inefficiency (not contract
-  // value — that upside lives in the Revenue Opportunity section).
+  // value, that upside lives in the Revenue Opportunity section).
   const wasteAnalysis = buildWaste({
     reviewed, qualified, pursued, lost, noBids,
     reviewCost, qualCost, estimatorCost, proposalCost, mgmtCost, noBidLaborCost,
@@ -304,7 +304,7 @@ function buildWaste(a: {
   const topDrivers = [
     {
       title: "Reviewing more opportunities than your criteria warrant",
-      detail: `An estimated ${a.noBids.toLocaleString()} of ${a.reviewed.toLocaleString()} reviewed items never become bids — much of that screening time is recoverable with sharper filters.`,
+      detail: `An estimated ${a.noBids.toLocaleString()} of ${a.reviewed.toLocaleString()} reviewed items never become bids, much of that screening time is recoverable with sharper filters.`,
       savingsCents: r0(screening * 0.6),
     },
     {
@@ -381,11 +381,11 @@ function buildPlatform(a: {
     missedOpportunities: gaps.length
       ? [
           `Solicitations posted only on ${gaps.map((g) => g.name).join(", ")} are likely invisible to your team today.`,
-          `${a.industryLabel} buyers frequently default to ${gaps[0].name} — postings there can close before you ever see them.`,
+          `${a.industryLabel} buyers frequently default to ${gaps[0].name}, postings there can close before you ever see them.`,
         ]
-      : ["Coverage of the core platforms for your sector looks comprehensive — focus on monitoring speed and alert routing."],
+      : ["Coverage of the core platforms for your sector looks comprehensive, focus on monitoring speed and alert routing."],
     strategy: [
-      gaps.length ? `Add monitoring on ${gaps.slice(0, 2).map((g) => g.name).join(" and ")} first — they carry the most relevant ${a.industryLabel.toLowerCase()} volume.` : "Maintain coverage and tighten alert keywords.",
+      gaps.length ? `Add monitoring on ${gaps.slice(0, 2).map((g) => g.name).join(" and ")} first, they carry the most relevant ${a.industryLabel.toLowerCase()} volume.` : "Maintain coverage and tighten alert keywords.",
       "Route new postings to a single intake queue so nothing is screened twice or missed.",
       "Set saved-search alerts by NAICS/UNSPSC and buyer so relevant tenders surface automatically.",
     ],
@@ -447,7 +447,7 @@ function buildAward(a: {
   return {
     experienceScore: a.rawGov, momentumScore, awardsWon: a.awardsWon, totalValueCents: totalValue,
     categories, recent, trend, comparableSuppliers: a.industry.comparableSuppliers,
-    competitorInsight: `In ${a.industry.label.toLowerCase()}, the most active suppliers win by covering the right platforms early and qualifying ruthlessly. Comparable firms typically log ${Math.max(3, r0(a.awardsWon * 0.8))}–${a.awardsWon + 4} public awards before they are seen as a default incumbent.`,
+    competitorInsight: `In ${a.industry.label.toLowerCase()}, the most active suppliers win by covering the right platforms early and qualifying ruthlessly. Comparable firms typically log ${Math.max(3, r0(a.awardsWon * 0.8))}-${a.awardsWon + 4} public awards before they are seen as a default incumbent.`,
   };
 }
 
@@ -465,7 +465,7 @@ function buildRenewals(
     items: Array.from({ length: n }).map(() => {
       const i = idx++;
       return {
-        title: `${cat(i)} — ${types[i % 3] === "Renewal" ? "contract renewal" : types[i % 3] === "Rebid" ? "re-tender expected" : "new requirement likely"}`,
+        title: `${cat(i)}, ${types[i % 3] === "Renewal" ? "contract renewal" : types[i % 3] === "Rebid" ? "re-tender expected" : "new requirement likely"}`,
         buyer: pick(i),
         valueCents: r0(avgContract * (0.4 + rnd() * 0.9)),
         type: types[i % 3],
@@ -476,8 +476,8 @@ function buildRenewals(
     score,
     windows: [mk("Next 3 months", 2), mk("Next 6 months", 3), mk("Next 12 months", 3)],
     priorityMonitoring: [
-      `Flag incumbents in ${industry.awardCategories[0].toLowerCase()} and ${industry.awardCategories[1].toLowerCase()} — these recur on predictable cycles.`,
-      `Set alerts for ${buyers.mostActive[0]?.name ?? "your most active buyer"} 6–9 months ahead of typical contract expiry.`,
+      `Flag incumbents in ${industry.awardCategories[0].toLowerCase()} and ${industry.awardCategories[1].toLowerCase()}, these recur on predictable cycles.`,
+      `Set alerts for ${buyers.mostActive[0]?.name ?? "your most active buyer"} 6-9 months ahead of typical contract expiry.`,
       "Track multi-year awards now so you can position before the rebid posts publicly.",
     ],
   };
@@ -503,10 +503,10 @@ function buildBenchmark(
   const beats = rows.filter((r) => r.you >= r.peerAvg).length;
   const percentile = clamp(r0(((you.maturity - peer.maturity) * 1.3) + 50), 5, 97);
   const positioning = beats >= 3
-    ? `Your firm sits ahead of the typical ${label.toLowerCase()} contractor on most dimensions — the upside is in compounding that lead.`
+    ? `Your firm sits ahead of the typical ${label.toLowerCase()} contractor on most dimensions, the upside is in compounding that lead.`
     : beats === 2
-    ? `Your firm is roughly on par with peers in ${label.toLowerCase()} — targeted moves would separate you from the field.`
-    : `Your firm trails the typical ${label.toLowerCase()} contractor today — the gaps below are also the fastest wins.`;
+    ? `Your firm is roughly on par with peers in ${label.toLowerCase()}, targeted moves would separate you from the field.`
+    : `Your firm trails the typical ${label.toLowerCase()} contractor today, the gaps below are also the fastest wins.`;
   const sortedCats = (Object.keys(raw) as ScoreKey[]).sort((a, b) => raw[a] - raw[b]);
   return {
     industryLabel: label, percentile, rows, positioning,
@@ -553,13 +553,13 @@ function buildExecutive(a: {
   const usd = (c: number) => (c / 100).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
   return {
-    companySummary: `${a.input.companyName} scores ${a.index}/100 on the Government Opportunity Intelligence Index™ — ${a.tier} maturity, in roughly the top ${a.topPercent}% of ${a.industry.label.toLowerCase()} firms we model. The strongest signals are ${top.map((t) => t.label.toLowerCase()).join(" and ")}.`,
+    companySummary: `${a.input.companyName} scores ${a.index}/100 on the Government Opportunity Intelligence Index™, ${a.tier} maturity, in roughly the top ${a.topPercent}% of ${a.industry.label.toLowerCase()} firms we model. The strongest signals are ${top.map((t) => t.label.toLowerCase()).join(" and ")}.`,
     industrySummary: `In ${a.industry.blurb}, public buyers in ${a.regionLabel} reward suppliers who cover the right platforms early and qualify opportunities tightly. The sector rewards consistency and documented past performance more than raw bid volume.`,
     contractingSummary: `Based on the inputs provided, your team appears to review roughly ${a.wasteAnalysis.reviewed.toLocaleString()} opportunities a year and pursue about ${a.wasteAnalysis.pursued.toLocaleString()}. Platform coverage is ${a.platformSection.gapLevel.toLowerCase()}-gap, which shapes both wasted effort and missed opportunity.`,
     keyFindings: [
       `Government Opportunity Intelligence Index™ of ${a.index}/100 (${a.tier}).`,
       `Estimated annual opportunity waste of ${usd(a.wasteAnalysis.totalWasteCents)}, of which ~${usd(a.wasteAnalysis.potentialAnnualSavingsCents)} looks recoverable.`,
-      `Platform coverage gap rated ${a.platformSection.gapLevel} — ${a.platformSection.gaps.length} recommended platform(s) not currently prioritized.`,
+      `Platform coverage gap rated ${a.platformSection.gapLevel}, ${a.platformSection.gaps.length} recommended platform(s) not currently prioritized.`,
       `Modeled revenue opportunity of ${usd(a.revenue.missedOpportunityValueCents + a.revenue.renewalValueCents)} across missed and renewing work.`,
     ],
     majorRisks: [

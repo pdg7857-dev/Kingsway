@@ -6,7 +6,7 @@ import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 export const metadata: Metadata = pageMeta({
   title: "Privacy Policy",
   description:
-    "How this independent practice collects, uses and protects the information you share. We do not sell your data and you can ask us to delete it at any time.",
+    "How this independent practice collects, uses and protects the information you share. I do not sell your data and you can ask me to delete it at any time.",
   path: "/privacy",
 });
 
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
 
           <p>
             This site is operated by {SITE.brandFull}, an independent practice (referred to here as
-            "I", "me" or "we"). This policy explains what information I collect through this website,
+            "I" or "me"). This policy explains what information I collect through this website,
             how I use it, and the choices you have. By using the site or contacting me through it,
             you agree to the practices described below.
           </p>

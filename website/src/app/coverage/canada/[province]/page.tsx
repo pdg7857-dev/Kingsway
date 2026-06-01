@@ -87,7 +87,7 @@ export default function ProvincePage({ params }: { params: { province: string } 
         </div>
         <p className="mt-6 text-sm text-fg-muted">
           I monitor these so you don&apos;t have to log into each one. Postings that match your trade
-          and qualify on fit come to you — not the other way around.
+          and qualify on fit come to you, not the other way around.
         </p>
       </Section>
 
@@ -112,7 +112,7 @@ export default function ProvincePage({ params }: { params: { province: string } 
             <p className="text-sm font-semibold text-fg">Bidding in {p.name}?</p>
             <p className="mt-1.5 text-sm text-fg-muted">
               Book a 20-minute call and I&apos;ll bring real, current opportunities in your trade and
-              region — already found and qualified.
+              region, already found and qualified.
             </p>
             <Link href="/book" className="btn-primary mt-4 w-full py-2.5 text-sm">Book a meeting</Link>
           </div>

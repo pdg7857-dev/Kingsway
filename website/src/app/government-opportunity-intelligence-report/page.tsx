@@ -26,7 +26,7 @@ const FAQS = [
 export const metadata: Metadata = pageMeta({
   title: "Government Opportunity Intelligence",
   description:
-    "Book a discovery call to see your opportunity-waste, platform coverage gaps and upcoming renewals — with live, qualified government opportunities specific to your business.",
+    "Book a discovery call to see your opportunity-waste, platform coverage gaps and upcoming renewals, with live, qualified government opportunities specific to your business.",
   path: "/government-opportunity-intelligence-report",
   keywords: ["government opportunity intelligence", "government bid discovery call", "procurement coverage analysis"],
 });
@@ -55,7 +55,7 @@ export default function GoirPage() {
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
               On a 20-minute call, I&apos;ll show you exactly where your team wastes estimator time, which
-              platforms you are under-covering, and which contracts in your market are about to rebid —
+              platforms you are under-covering, and which contracts in your market are about to rebid,
               with live opportunities specific to your business.
             </p>
             <ul className="mt-7 space-y-2.5">

@@ -198,7 +198,7 @@ export function GoirReportView({
 
       {/* ── 2. Opportunity Waste Analysis ── */}
       <section>
-        <SectionTitle n={2} title="Opportunity Waste Analysis™" icon={TrendingDown} sub="Where bid effort and budget are leaking — and what's recoverable." />
+        <SectionTitle n={2} title="Opportunity Waste Analysis™" icon={TrendingDown} sub="Where bid effort and budget are leaking, and what's recoverable." />
         <Insight text={narrative?.wasteInsight} />
         <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-5">
           <Stat label="Reviewed / yr" value={w.reviewed.toLocaleString()} />
@@ -283,7 +283,7 @@ export function GoirReportView({
 
       {/* ── 4. Platform Coverage ── */}
       <section>
-        <SectionTitle n={4} title="Platform Coverage Analysis™" icon={Layers} sub="The procurement platforms that matter — and where you're exposed." />
+        <SectionTitle n={4} title="Platform Coverage Analysis™" icon={Layers} sub="The procurement platforms that matter, and where you're exposed." />
         <Insight text={narrative?.platformInsight} />
         <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label="Coverage score" value={`${r.platform.score}`} tone={scoreTone(r.platform.score)} />

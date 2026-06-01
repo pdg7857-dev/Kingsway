@@ -15,7 +15,7 @@ export const SITE = {
   tagline: "Government Opportunity Intelligence",
   // First-person promise that runs through the whole site.
   promise: "You focus on winning contracts. I focus on finding them.",
-  // Canonical origin. Apex domain — set phildave.com as the Primary Domain in
+  // Canonical origin. Apex domain, set phildave.com as the Primary Domain in
   // Vercel so www.phildave.com redirects here.
   domain: "https://phildave.com",
   email: "phil@phildave.com",
@@ -31,7 +31,7 @@ export const SITE = {
 /**
  * GOIR lead-magnet master switch.
  *
- * OFF (default): the interactive report is hidden — /report, /report/[id] and
+ * OFF (default): the interactive report is hidden, /report, /report/[id] and
  * /access redirect to the booking page, and every "free report" CTA points to
  * booking instead. The SEO/marketing pages stay up. Flip back on by setting
  * NEXT_PUBLIC_GOIR_ENABLED="true" in the environment (no code change).

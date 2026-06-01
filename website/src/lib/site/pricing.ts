@@ -44,7 +44,7 @@ export const PLANS: Plan[] = [
       "Opportunity monitoring",
       "Opportunity qualification",
       "Weekly delivery",
-      "Up to 1 province/state (Atlantic region counts as 1)",
+      "Up to 1 province/state (Atlantic Canada counts as 1)",
     ],
   },
   {
@@ -62,17 +62,47 @@ export const PLANS: Plan[] = [
     ],
   },
   {
-    name: "Partner",
-    price: "$1,999",
+    name: "Canada",
+    price: "$1,499",
     priceNote: "/month",
-    scope: "National coverage",
-    blurb: "Best for companies relying heavily on government contracts.",
+    scope: "All of Canada",
+    blurb: "Coast-to-coast Canadian coverage, including federal.",
     features: [
       "Everything in Growth",
-      "National coverage",
+      "All 13 provinces & territories",
+      "Federal procurement (CanadaBuys & MERX)",
       "Unlimited opportunities",
       "Custom targeting",
       "Bid pipeline reviews",
+    ],
+  },
+  {
+    name: "USA",
+    price: "$2,999",
+    priceNote: "/month",
+    scope: "All of the United States",
+    blurb: "Nationwide U.S. coverage, including federal.",
+    features: [
+      "Everything in Growth",
+      "All 50 states",
+      "Federal procurement (SAM.gov, GSA eBuy & more)",
+      "Unlimited opportunities",
+      "Custom targeting",
+      "Bid pipeline reviews",
+    ],
+  },
+  {
+    name: "North America",
+    price: "$4,999",
+    priceNote: "/month",
+    scope: "Canada + United States",
+    blurb: "Full cross-border coverage in one consolidated feed.",
+    features: [
+      "Everything in Canada & USA",
+      "Every province, territory and state",
+      "Federal on both sides of the border",
+      "Cross-border de-duplication",
+      "One point of contact for all of North America",
     ],
   },
   {
@@ -92,7 +122,6 @@ export const PLANS: Plan[] = [
 
 export const PRICING_PRINCIPLES = [
   "Priced as coverage, not per opportunity. Review as many as it takes.",
-  "Never hourly. You never watch a clock or ration questions.",
-  "A 12-month commitment — it takes a full year to catch your complete opportunity cycle, including annual renewals and seasonal bids that only come around once.",
+  "A 12-month commitment, it takes a full year to catch your complete opportunity cycle, including annual renewals and seasonal bids that only come around once.",
   "Backed by the Qualified Opportunity Guarantee, so the first 90 days are on me to prove out.",
 ];

@@ -15,7 +15,7 @@ const DEMO_CODE = "GOIR-DEMO24";
  * One-shot, token-gated setup for the public site:
  *   1) ensures the GoirReport table exists on the shared database;
  *   2) seeds a demo report unlocked by the code GOIR-DEMO24.
- * Idempotent — safe to run repeatedly.
+ * Idempotent, safe to run repeatedly.
  *
  *   GET/POST /api/setup?token=<SETUP_TOKEN>
  *

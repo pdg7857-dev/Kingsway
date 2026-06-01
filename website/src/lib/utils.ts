@@ -24,7 +24,7 @@ export const fmtCompact = (n: number) =>
   new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(n);
 
 export function relTime(date: Date | null | undefined) {
-  if (!date) return "—";
+  if (!date) return "-";
   const d = new Date(date).getTime();
   const diff = d - Date.now();
   const abs = Math.abs(diff);

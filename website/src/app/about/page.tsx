@@ -187,7 +187,7 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="card p-6">
             <div className="text-sm font-semibold text-accent">Step one</div>
-            <h3 className="mt-2 text-lg font-semibold text-fg">We map your fit</h3>
+            <h3 className="mt-2 text-lg font-semibold text-fg">I map your fit</h3>
             <p className="mt-2 text-sm leading-6 text-fg-muted">
               On a short call, you tell me your trades, your jurisdictions, your bonding and your
               capacity. I translate that into how buyers actually describe the work, codes included.

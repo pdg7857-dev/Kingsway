@@ -274,7 +274,7 @@ export function getPlatform(slug: string) {
 }
 
 /**
- * Official homepage for each platform we cover, so authority pages can link out
+ * Official homepage for each platform I cover, so authority pages can link out
  * to the real system. Kept here as one map rather than on every Platform object.
  */
 export const PLATFORM_HOMEPAGE: Record<string, string> = {
@@ -303,7 +303,7 @@ export function getPlatformHomepage(slug: string): string | undefined {
   return PLATFORM_HOMEPAGE[slug];
 }
 
-/** "www.merx.com" — the homepage URL with scheme/trailing slash stripped, for display. */
+/** "www.merx.com", the homepage URL with scheme/trailing slash stripped, for display. */
 export function platformHomepageLabel(slug: string): string | undefined {
   const url = PLATFORM_HOMEPAGE[slug];
   return url ? url.replace(/^https?:\/\//, "").replace(/\/$/, "") : undefined;

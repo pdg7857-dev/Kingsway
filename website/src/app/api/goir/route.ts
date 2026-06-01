@@ -13,7 +13,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-// Public intake — no auth. The report is generated and stored, but NOT shown:
+// Public intake, no auth. The report is generated and stored, but NOT shown:
 // it's prepared and delivered manually with an access code within 24 hours.
 const schema = z.object({
   companyName: z.string().min(1, "Company name is required").max(160),
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
       ipHash,
     });
 
-    // Confirm receipt only — the access code is delivered personally, not here.
+    // Confirm receipt only, the access code is delivered personally, not here.
     const { subject, html, text } = goirReceivedEmail(input.companyName);
     await sendEmail({ to: input.email, subject, html, text }).catch(() => ({ ok: false }));
 

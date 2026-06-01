@@ -13,7 +13,7 @@ const ctaHeading = GOIR_ENABLED
   : "See real government opportunities, before you pay a cent";
 const ctaBody = GOIR_ENABLED
   ? "In one report you will see exactly where your team is wasting estimator time, which platforms you are under-covering, and which contracts are about to rebid in your market."
-  : "Book a 20-minute discovery call and I'll bring live, qualified opportunities in your trade and jurisdictions — already found and read for you.";
+  : "Book a 20-minute discovery call and I'll bring live, qualified opportunities in your trade and jurisdictions, already found and read for you.";
 const ctaButton = GOIR_ENABLED ? "Get your free report" : "Book a discovery call";
 const ctaEyebrow = GOIR_ENABLED ? "Free assessment" : "Free discovery call";
 
@@ -30,7 +30,7 @@ export const GOIR_INCLUDES = [
   "A Government Contracting Maturity Assessment",
 ];
 
-// Shown on the CTA while the lead magnet is off — what you get on the call.
+// Shown on the CTA while the lead magnet is off, what you get on the call.
 export const CALL_INCLUDES = [
   "Live opportunities in your trade and jurisdictions",
   "Already found, read and qualified before the call",

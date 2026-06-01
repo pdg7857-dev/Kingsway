@@ -7,7 +7,7 @@ type Variant = "call" | "sample" | "guide";
 const HEADINGS: Record<Variant, { title: string; sub: string }> = {
   call: {
     title: "Book a discovery call",
-    sub: "Tell me where you bid and what you chase. I'll come to the call with real opportunities you can see — already found and qualified.",
+    sub: "Tell me where you bid and what you chase. I'll come to the call with real opportunities you can see, already found and qualified.",
   },
   sample: {
     title: "See a real opportunity",
@@ -15,7 +15,7 @@ const HEADINGS: Record<Variant, { title: string; sub: string }> = {
   },
   guide: {
     title: "Let's talk",
-    sub: "Book a quick call, or email me directly — I read every message myself and reply personally.",
+    sub: "Book a quick call, or email me directly, I read every message myself and reply personally.",
   },
 };
 

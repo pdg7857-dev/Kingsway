@@ -17,7 +17,7 @@ export function PricingTables() {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {PLANS.map((p) => (
           <PlanCard key={p.name} plan={p} />
         ))}
@@ -25,7 +25,7 @@ export function PricingTables() {
 
       <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-fg-muted">
         Paid plans are a <span className="font-semibold text-fg">12-month commitment, billed monthly</span>. It
-        takes a full year to catch your complete opportunity cycle — annual renewals and the seasonal
+        takes a full year to catch your complete opportunity cycle, annual renewals and the seasonal
         bids that only come around once.
       </p>
     </div>

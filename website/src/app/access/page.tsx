@@ -5,8 +5,8 @@ import { KeyRound } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Enter your access code — Government Opportunity Intelligence Report™",
-  description: "Enter the access code we sent you to view your Government Opportunity Intelligence Report.",
+  title: "Enter your access code, Government Opportunity Intelligence Report™",
+  description: "Enter the access code I sent you to view your Government Opportunity Intelligence Report.",
   robots: { index: false, follow: false },
 };
 
@@ -19,7 +19,7 @@ export default function AccessPage({ searchParams }: { searchParams: { code?: st
         </div>
         <h1 className="mt-4 text-2xl font-semibold tracking-tight text-fg">View your report</h1>
         <p className="mt-2 mb-6 max-w-sm text-sm text-fg-muted">
-          Enter the access code we sent you by call, email or text to open your
+          Enter the access code I sent you by call, email or text to open your
           Government Opportunity Intelligence Report™.
         </p>
         <AccessGate defaultCode={searchParams.code ?? ""} />

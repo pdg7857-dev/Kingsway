@@ -60,11 +60,11 @@ export function resolveRegion(input: string): RegionInfo {
   if (/^(canada|can|ca)$/i.test(raw)) return { country: "CA", code: "ON", label: "Canada (national)" };
   if (/^(usa|us|united states)$/i.test(raw)) return { country: "US", code: "DC", label: "United States (national)" };
 
-  // Unknown — default to Canada and echo what they typed.
+  // Unknown, default to Canada and echo what they typed.
   return { country: "CA", code: "ON", label: raw };
 }
 
-// Relative size of the addressable public market by region — feeds revenue
+// Relative size of the addressable public market by region, feeds revenue
 // and geographic-reach estimates. 1.0 = baseline mid-size jurisdiction.
 const CA_MARKET: Record<string, number> = {
   ON: 1.35, QC: 1.15, BC: 1.1, AB: 1.05, MB: 0.8, SK: 0.75, NS: 0.75,

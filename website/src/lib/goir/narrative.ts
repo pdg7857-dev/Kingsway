@@ -1,12 +1,12 @@
 // Optional AI prose layered on top of the deterministic GOIR result.
-// Returns null when no API key is configured — the report renders fully
+// Returns null when no API key is configured, the report renders fully
 // from the deterministic engine either way.
 import { complete } from "@/lib/ai/client";
 import type { GoirInput, GoirResult, GoirNarrative } from "./types";
 
 const SYSTEM = `You are a senior government-procurement intelligence analyst writing the narrative layer of a "Government Opportunity Intelligence Report™" for a company pursuing public-sector contracts.
 
-Voice: authoritative, specific, consultative — never salesy. You are demonstrating expertise, not pitching. Use the supplied numbers; never invent new statistics. Write in second person ("your team"). Each field must be 2–4 sentences of tight, insight-dense prose. Output ONLY minified JSON with exactly these string keys: headline, executive, wasteInsight, platformInsight, closingInsight. No markdown, no preamble.`;
+Voice: authoritative, specific, consultative, never salesy. You are demonstrating expertise, not pitching. Use the supplied numbers; never invent new statistics. Write in second person ("your team"). Each field must be 2-4 sentences of tight, insight-dense prose. Output ONLY minified JSON with exactly these string keys: headline, executive, wasteInsight, platformInsight, closingInsight. No markdown, no preamble.`;
 
 export async function generateNarrative(
   input: GoirInput,

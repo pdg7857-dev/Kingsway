@@ -115,7 +115,7 @@ export default function StatePage({ params }: { params: { state: string } }) {
             <p className="text-sm font-semibold text-fg">Bidding in {s.name}?</p>
             <p className="mt-1.5 text-sm text-fg-muted">
               Book a 20-minute call and I&apos;ll bring real, current opportunities in your trade and
-              region — already found and qualified.
+              region, already found and qualified.
             </p>
             <Link href="/book" className="btn-primary mt-4 w-full py-2.5 text-sm">Book a meeting</Link>
           </div>

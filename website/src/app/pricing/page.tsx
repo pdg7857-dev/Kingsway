@@ -15,7 +15,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Is there a setup fee or a contract?",
-    a: "No setup fee. Coverage is a 12-month commitment, billed monthly. That is deliberate: it takes a full year to catch your complete opportunity cycle — annual contracts, renewals and the seasonal bids that only surface once a year. A few months would only show you part of the picture. The plan should pay for itself many times over across that year by putting winnable work in front of you that you would otherwise miss.",
+    a: "No setup fee. Coverage is a 12-month commitment, billed monthly. That is deliberate: it takes a full year to catch your complete opportunity cycle, annual contracts, renewals and the seasonal bids that only surface once a year. A few months would only show you part of the picture. The plan should pay for itself many times over across that year by putting winnable work in front of you that you would otherwise miss.",
   },
   {
     q: "What counts as a jurisdiction?",
@@ -23,7 +23,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Can I cover both Canada and the United States?",
-    a: "Yes. Partner covers national, and for a full cross-border footprint — or federal, military and municipal programs — Enterprise is scoped and priced to you. Tell me where you bid and I'll put together the right coverage.",
+    a: "Yes. The North America plan at $4,999/month covers every province, territory and state plus federal on both sides of the border, in one consolidated feed. For federal, military or municipal programs with special needs, Enterprise is scoped and priced to you.",
   },
   {
     q: "What is not included?",
@@ -38,7 +38,7 @@ const PRICING_FAQS = [
 export const metadata: Metadata = pageMeta({
   title: "Pricing: Government Opportunity Intelligence Coverage Plans",
   description:
-    "Public pricing from $599/month on a 12-month commitment: Essential, Growth, Partner and custom Enterprise plans for Canada and the U.S. Backed by the Qualified Opportunity Guarantee. No per-opportunity fees.",
+    "Public pricing from $599/month on a 12-month commitment: Essential, Growth, Canada, USA, North America and custom Enterprise plans. Backed by the Qualified Opportunity Guarantee. No per-opportunity fees.",
   path: "/pricing",
   keywords: ["government bid monitoring pricing", "opportunity intelligence cost", "bid alert service pricing"],
 });
@@ -64,7 +64,7 @@ export default function PricingPage() {
             <p className="mt-5 text-lg leading-8 text-fg-muted">
               One flat plan covers the geography you choose: every relevant platform, every
               opportunity I find inside it, read and qualified. No per-portal fees. No
-              per-opportunity charges. No clock to watch. Coverage runs on a 12-month commitment —
+              per-opportunity charges. No clock to watch. Coverage runs on a 12-month commitment,
               the time it takes to catch your full opportunity cycle.
             </p>
           </div>

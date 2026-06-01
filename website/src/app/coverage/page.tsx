@@ -8,7 +8,7 @@ import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 export const metadata: Metadata = pageMeta({
   title: "Coverage Map: Government Procurement Across Canada and the U.S.",
   description:
-    "Where I find and qualify government opportunities — every Canadian province and territory and all 50 U.S. states, with the procurement platforms that matter in each.",
+    "Where I find and qualify government opportunities, every Canadian province and territory and all 50 U.S. states, with the procurement platforms that matter in each.",
   path: "/coverage",
   keywords: ["government procurement coverage", "government bids by province", "government bids by state", "north american procurement"],
 });
@@ -28,8 +28,8 @@ export default function CoverageHub() {
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
               Public work is posted on different systems in every jurisdiction. I monitor the
-              platforms that matter in each — across every Canadian province and territory and all
-              fifty U.S. states — so nothing relevant slips past you. Pick your region to see where
+              platforms that matter in each, across every Canadian province and territory and all
+              fifty U.S. states, so nothing relevant slips past you. Pick your region to see where
               the work lives.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">

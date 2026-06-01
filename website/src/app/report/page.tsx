@@ -14,22 +14,22 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Generate your free Government Opportunity Intelligence Report™",
   description:
-    "Score your company across eight dimensions of government-contracting maturity, estimate your opportunity waste, and get a prioritized action plan — free, in about 15 seconds.",
+    "Score your company across eight dimensions of government-contracting maturity, estimate your opportunity waste, and get a prioritized action plan, free, in about 15 seconds.",
   alternates: { canonical: "/report" },
   robots: { index: false, follow: false },
 };
 
 const SECTIONS = [
-  { icon: Gauge, title: "Intelligence Index™", body: "A single 0–100 score across eight weighted dimensions of contractor maturity." },
-  { icon: TrendingDown, title: "Opportunity Waste Analysis™", body: "Where bid effort and budget are leaking — in dollars, with recoverable savings." },
+  { icon: Gauge, title: "Intelligence Index™", body: "A single 0-100 score across eight weighted dimensions of contractor maturity." },
+  { icon: TrendingDown, title: "Opportunity Waste Analysis™", body: "Where bid effort and budget are leaking, in dollars, with recoverable savings." },
   { icon: Gauge, title: "Contracting Maturity", body: "Beginner to Elite, with strengths, weaknesses and prioritized recommendations." },
-  { icon: Layers, title: "Platform Coverage Analysis™", body: "Which procurement platforms matter for you — and where your coverage gaps are." },
+  { icon: Layers, title: "Platform Coverage Analysis™", body: "Which procurement platforms matter for you, and where your coverage gaps are." },
   { icon: Award, title: "Award Intelligence™", body: "Modeled award history, momentum, categories and comparable suppliers." },
   { icon: Building2, title: "Buyer Intelligence™", body: "The agencies, boards, municipalities and authorities most likely to buy from you." },
   { icon: RefreshCw, title: "Renewal Opportunity Analysis™", body: "Likely renewals and rebids over the next 3, 6 and 12 months." },
   { icon: BarChart3, title: "Industry Benchmarking™", body: "How you compare to peers across construction, janitorial, facilities and more." },
   { icon: DollarSign, title: "Revenue Opportunity Analysis™", body: "Estimated contract potential, missed value and pipeline opportunity." },
-  { icon: ListChecks, title: "Action Plan™", body: "Immediate, 30-day, 90-day and 12-month moves — ranked by impact and effort." },
+  { icon: ListChecks, title: "Action Plan™", body: "Immediate, 30-day, 90-day and 12-month moves, ranked by impact and effort." },
 ];
 
 export default function GoirLanding() {
@@ -59,12 +59,12 @@ export default function GoirLanding() {
           <p className="mt-4 max-w-xl text-base text-fg-muted">
             The <strong className="text-fg">Government Opportunity Intelligence Report™</strong> scores your
             company across eight dimensions, estimates how much opportunity you&apos;re wasting, maps the
-            platforms and buyers that matter, and hands you a prioritized action plan — personally
+            platforms and buyers that matter, and hands you a prioritized action plan, personally
             prepared and delivered within 24 hours.
           </p>
           <ul className="mt-6 space-y-2 text-sm text-fg-muted">
             {[
-              "Your Government Opportunity Intelligence Index™ (0–100)",
+              "Your Government Opportunity Intelligence Index™ (0-100)",
               "A dollar figure for your likely annual opportunity waste",
               "The procurement platforms you're probably missing",
               "A 4-phase action plan ranked by ROI",
@@ -94,7 +94,7 @@ export default function GoirLanding() {
         <div className="mb-8 max-w-2xl">
           <h2 className="text-2xl font-semibold tracking-tight text-fg">What&apos;s inside your report</h2>
           <p className="mt-2 text-sm text-fg-muted">
-            Ten sections of personalized intelligence — the kind most contractors pay consultants for.
+            Ten sections of personalized intelligence, the kind most contractors pay consultants for.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -114,17 +114,17 @@ export default function GoirLanding() {
       <section className="border-t border-border-subtle py-12">
         <Panel className="p-7 lg:p-9 bg-grid-fade">
           <h2 className="text-2xl font-semibold tracking-tight text-fg">
-            Think credit score — for government contractors.
+            Think credit score, for government contractors.
           </h2>
           <p className="mt-3 max-w-3xl text-sm text-fg-muted">
             The Government Opportunity Intelligence Index™ does for public-sector pursuit what a credit
-            score does for lending: a single, comparable number — built from real signals — that tells you
+            score does for lending: a single, comparable number, built from real signals, that tells you
             exactly where you stand and what to fix first. Every report is unique to your company, industry
             and region. No generic templates.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
-              ["0–100", "Intelligence Index™"],
+              ["0-100", "Intelligence Index™"],
               ["8", "Scored dimensions"],
               ["10", "Report sections"],
               ["24h", "To your report"],

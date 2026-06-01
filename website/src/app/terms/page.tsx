@@ -41,7 +41,7 @@ export default function TermsPage() {
 
           <p>
             These terms govern your use of this website, operated by {SITE.brandFull} (referred to
-            here as "I", "me" or "we"). By using the site or engaging the service, you agree to these
+            here as "I" or "me"). By using the site or engaging the service, you agree to these
             terms. If you do not agree, please do not use the site.
           </p>
 
