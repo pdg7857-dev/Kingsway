@@ -13,7 +13,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
  *  - Vercel Speed Insights -> Core Web Vitals (mobile + desktop).
  */
 export function SiteAnalytics() {
-  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
+  // Public Clarity project ID. Committed so heatmaps/recordings work on deploy;
+  // override per-environment with NEXT_PUBLIC_CLARITY_ID if ever needed.
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID || "wzymksdq10";
   return (
     <>
       {clarityId ? (
