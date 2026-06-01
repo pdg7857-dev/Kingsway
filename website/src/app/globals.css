@@ -4,7 +4,6 @@
 
 :root {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-sans);
   --font-serif: Georgia, ui-serif, serif;
 }
 
@@ -20,20 +19,18 @@
     @apply bg-bg text-fg antialiased;
     text-rendering: optimizeLegibility;
     background-image:
-      radial-gradient(900px circle at 6% -8%, hsl(72 95% 56% / 0.08), transparent 45%),
-      radial-gradient(820px circle at 100% -5%, hsl(265 89% 70% / 0.07), transparent 50%),
-      linear-gradient(to bottom, hsl(0 0% 4%), hsl(0 0% 2.5%));
+      radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+      radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+      linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
     background-attachment: fixed;
     min-height: 100dvh;
   }
   ::selection {
-    background: hsl(72 95% 56% / 0.32);
-    color: hsl(0 0% 8%);
+    background: hsl(184 100% 52% / 0.30);
+    color: white;
   }
   h1, h2, h3, h4 {
-    @apply font-bold tracking-tight text-fg;
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    @apply font-semibold tracking-tight text-fg;
     text-wrap: balance;
   }
 }
@@ -49,10 +46,10 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
   }
   .btn-primary {
-    @apply btn bg-accent text-bg shadow-[0_0_30px_-8px_hsl(72_95%_56%_/_0.7)] hover:bg-accent-glow;
+    @apply btn bg-accent text-bg shadow-[0_0_24px_-8px_hsl(186_100%_55%_/_0.6)] hover:bg-accent-glow;
   }
   .btn-gold {
-    @apply btn bg-accent text-bg shadow-[0_0_30px_-8px_hsl(72_95%_56%_/_0.7)] hover:bg-accent-glow;
+    @apply btn bg-warn text-bg hover:brightness-110;
   }
   .btn-ghost {
     @apply btn border border-border bg-bg-raised text-fg hover:border-accent/50 hover:text-accent;
@@ -98,13 +95,9 @@
     text-wrap: balance;
   }
   .bg-grid {
-    background-image: linear-gradient(hsl(72 95% 56% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(72 95% 56% / 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(hsl(184 100% 52% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(184 100% 52% / 0.05) 1px, transparent 1px);
     background-size: 36px 36px;
-  }
-  .font-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
   }
 }
 
@@ -116,9 +109,9 @@
 .goir-dark {
   color-scheme: dark;
   @apply bg-bg text-fg;
-  background-image: radial-gradient(900px circle at 6% -8%, hsl(72 95% 56% / 0.08), transparent 45%),
-    radial-gradient(820px circle at 100% -5%, hsl(265 89% 70% / 0.07), transparent 50%),
-    linear-gradient(to bottom, hsl(0 0% 4%), hsl(0 0% 2.5%));
+  background-image: radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+    radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+    linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
 }
 /* Neutralize the light base heading color inside the dark surface. */
 .goir-dark :where(h1, h2, h3, h4) {
@@ -132,7 +125,7 @@
   .goir-dark .panel::before {
     content: "";
     @apply pointer-events-none absolute inset-x-5 top-0 h-px opacity-60;
-    background: linear-gradient(90deg, transparent, hsl(72 95% 56% / 0.45), transparent);
+    background: linear-gradient(90deg, transparent, hsl(184 100% 52% / 0.45), transparent);
   }
   .goir-dark .panel-header {
     @apply flex items-center justify-between gap-3 px-5 py-3.5 border-b border-border-subtle;
@@ -150,7 +143,7 @@
     @apply inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium;
   }
   .goir-dark .text-gradient-accent {
-    background: linear-gradient(90deg, hsl(72 95% 62%), hsl(265 89% 78%));
+    background: linear-gradient(90deg, hsl(186 100% 70%), hsl(265 89% 76%));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
