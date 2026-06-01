@@ -23,7 +23,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Can I cover both Canada and the United States?",
-    a: "Yes — that is the North America Coverage plan at $3,999/month USD: every Canadian province and U.S. state plus federal procurement on both sides of the border, in one consolidated feed. Like every plan, it runs on a 12-month commitment.",
+    a: "Yes. Partner covers national, and for a full cross-border footprint — or federal, military and municipal programs — Enterprise is scoped and priced to you. Tell me where you bid and I'll put together the right coverage.",
   },
   {
     q: "What is not included?",
@@ -38,7 +38,7 @@ const PRICING_FAQS = [
 export const metadata: Metadata = pageMeta({
   title: "Pricing: Government Opportunity Intelligence Coverage Plans",
   description:
-    "Public pricing from $599/month on a 12-month commitment, structured as geographic coverage. Single province or state, regional, national, and full North America (Canada + U.S.) plans. No per-opportunity fees.",
+    "Public pricing from $599/month on a 12-month commitment: Essential, Growth, Partner and custom Enterprise plans for Canada and the U.S. Backed by the Qualified Opportunity Guarantee. No per-opportunity fees.",
   path: "/pricing",
   keywords: ["government bid monitoring pricing", "opportunity intelligence cost", "bid alert service pricing"],
 });

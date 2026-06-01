@@ -1,6 +1,7 @@
 /**
  * Public coverage pricing. Positioned as Opportunity Intelligence Coverage,
- * never per-province, per-state, per-opportunity, or hourly.
+ * never per-province, per-state, per-opportunity, or hourly. One unified ladder
+ * (Essential → Growth → Partner → Enterprise) covering Canada and the U.S.
  */
 
 export type Plan = {
@@ -12,6 +13,15 @@ export type Plan = {
   features: string[];
   featured?: boolean;
   startingAt?: boolean;
+  /** Custom-priced tier (Enterprise): no fixed price or commitment line. */
+  custom?: boolean;
+};
+
+/** Headline promise shown above the plans. */
+export const GUARANTEE = {
+  title: "Qualified Opportunity Guarantee",
+  body:
+    "If I don't identify at least 3 opportunities that match your approved targeting criteria within the first 90 days, I'll extend your subscription at no cost until the guarantee is fulfilled.",
 };
 
 export const INCLUDED_EVERYWHERE: string[] = [
@@ -23,134 +33,66 @@ export const INCLUDED_EVERYWHERE: string[] = [
   "Direct links to the source bid on the issuing platform",
 ];
 
-export const CANADA_PLANS: Plan[] = [
+export const PLANS: Plan[] = [
   {
-    name: "Single Province Coverage",
+    name: "Essential",
     price: "$599",
     priceNote: "/month",
-    scope: "One province",
-    blurb: "Full intelligence coverage for the province where you do most of your work.",
+    scope: "Up to 1 province / state",
+    blurb: "Best for companies doing occasional government work.",
     features: [
-      "Monitoring across every platform that serves your province",
-      "Opportunity discovery & screening",
-      "Bid document review",
-      "Fit qualification",
-      "Opportunity summaries",
-      "Direct bid links",
+      "Opportunity monitoring",
+      "Opportunity qualification",
+      "Weekly delivery",
+      "Up to 1 province/state (Atlantic region counts as 1)",
     ],
   },
   {
-    name: "Multi-Province Coverage",
+    name: "Growth",
     price: "$999",
     priceNote: "/month",
-    scope: "2-3 provinces",
-    blurb: "For contractors bidding across a regional footprint.",
+    scope: "Up to 3 provinces / states",
+    blurb: "Best for companies actively pursuing government contracts.",
     featured: true,
     features: [
-      "Everything in Single Province",
-      "Coverage across 2-3 provinces",
-      "Cross-jurisdiction de-duplication",
-      "Consolidated weekly intelligence",
-      "Priority on time-sensitive opportunities",
+      "Everything in Essential",
+      "Up to 3 provinces/states",
+      "Daily delivery",
+      "Priority opportunity matching",
     ],
   },
   {
-    name: "National Coverage",
-    price: "$1,799",
+    name: "Partner",
+    price: "$1,999",
     priceNote: "/month",
-    startingAt: true,
-    scope: "All provinces + federal",
-    blurb: "Coast-to-coast coverage including federal procurement.",
+    scope: "National coverage",
+    blurb: "Best for companies relying heavily on government contracts.",
     features: [
-      "Everything in Multi-Province",
-      "All provinces & territories",
-      "Federal opportunities (CanadaBuys & more)",
-      "Priority monitoring",
-      "Dedicated intelligence cadence",
+      "Everything in Growth",
+      "National coverage",
+      "Unlimited opportunities",
+      "Custom targeting",
+      "Bid pipeline reviews",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    custom: true,
+    scope: "Federal, military & municipal programs",
+    blurb: "For organizations with the largest and most specialized public-sector footprints.",
+    features: [
+      "Federal",
+      "Military",
+      "Municipal",
+      "Custom dashboards",
     ],
   },
 ];
-
-export const USA_PLANS: Plan[] = [
-  {
-    name: "Single State Coverage",
-    price: "$599",
-    priceNote: "/month",
-    scope: "One state",
-    blurb: "Full intelligence coverage for your home state.",
-    features: [
-      "Monitoring across every platform serving your state",
-      "Opportunity discovery & screening",
-      "Bid document review",
-      "Fit qualification",
-      "Opportunity summaries",
-      "Direct bid links",
-    ],
-  },
-  {
-    name: "Regional Coverage",
-    price: "$999",
-    priceNote: "/month",
-    scope: "2-4 states",
-    blurb: "For contractors working a regional cluster of states.",
-    features: [
-      "Everything in Single State",
-      "Coverage across 2-4 states",
-      "Cross-state de-duplication",
-      "Consolidated weekly intelligence",
-      "Priority on time-sensitive opportunities",
-    ],
-  },
-  {
-    name: "Multi-State Coverage",
-    price: "$1,499",
-    priceNote: "/month",
-    scope: "5-12 states",
-    blurb: "Built for regional and national field operations.",
-    featured: true,
-    features: [
-      "Everything in Regional",
-      "Coverage across 5-12 states",
-      "Portfolio-level prioritization",
-      "Dedicated intelligence cadence",
-    ],
-  },
-  {
-    name: "National Coverage",
-    price: "$2,999",
-    priceNote: "/month",
-    startingAt: true,
-    scope: "All states + federal",
-    blurb: "Nationwide coverage including federal procurement.",
-    features: [
-      "Everything in Multi-State",
-      "All 50 states",
-      "Federal opportunities (SAM.gov, GSA eBuy & more)",
-      "Priority intelligence",
-      "Dedicated intelligence cadence",
-    ],
-  },
-];
-
-export const NORTH_AMERICA_PLAN: Plan = {
-  name: "North America Coverage",
-  price: "$3,999",
-  priceNote: "/month USD",
-  scope: "All of Canada + all 50 U.S. states + federal",
-  blurb:
-    "One service for contractors who bid on both sides of the border. Complete coverage of every Canadian province and U.S. state, plus federal procurement in both countries.",
-  features: [
-    "Everything in both National plans",
-    "All 13 provinces & territories and all 50 states",
-    "Federal procurement both sides of the border (CanadaBuys, SAM.gov, GSA eBuy & more)",
-    "Cross-border de-duplication in one consolidated feed",
-    "One point of contact for your entire North American footprint",
-  ],
-};
 
 export const PRICING_PRINCIPLES = [
   "Priced as coverage, not per opportunity. Review as many as it takes.",
   "Never hourly. You never watch a clock or ration questions.",
   "A 12-month commitment — it takes a full year to catch your complete opportunity cycle, including annual renewals and seasonal bids that only come around once.",
-  "One flat plan replaces estimator hours, missed bids and portal fatigue.",
+  "Backed by the Qualified Opportunity Guarantee, so the first 90 days are on me to prove out.",
 ];
