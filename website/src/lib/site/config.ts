@@ -15,9 +15,10 @@ export const SITE = {
   tagline: "Government Opportunity Intelligence",
   // First-person promise that runs through the whole site.
   promise: "You focus on winning contracts. I focus on finding them.",
-  // Update before launch.
-  domain: "https://www.governmentopportunityintelligence.com",
-  email: "phil@governmentopportunityintelligence.com",
+  // Canonical origin. Apex domain — set phildave.com as the Primary Domain in
+  // Vercel so www.phildave.com redirects here.
+  domain: "https://phildave.com",
+  email: "phil@phildave.com",
   // Internal booking page (renders the Calendly embed below). All CTAs point here.
   bookingUrl: "/book",
   // Phil Dave's Calendly scheduling link, embedded on /book.
