@@ -8,7 +8,8 @@ import { getBusinessSnapshot } from "@/lib/data/business";
 import { prisma } from "@/lib/prisma";
 import { fmtCents, relTime, cn } from "@/lib/utils";
 import type { ProcurementStatus } from "@prisma/client";
-import { Building2, FileText, Repeat, Target } from "lucide-react";
+import Link from "next/link";
+import { Building2, FileText, Repeat, Target, Gauge, ExternalLink } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,9 @@ export default async function EProcurementDashboard() {
   const user = await requireCurrentUser();
   const snap = await getBusinessSnapshot(user.id, "eprocurement");
   if (!snap) return null;
+
+  // The public GOIR report builder is a separate Vercel deployment.
+  const goirSiteUrl = (process.env.NEXT_PUBLIC_GOIR_URL ?? "").replace(/\/$/, "");
 
   const [clients, contracts] = await Promise.all([
     prisma.procurementClient.findMany({ where: { userId: user.id }, orderBy: { updatedAt: "desc" } }),
@@ -51,6 +55,26 @@ export default async function EProcurementDashboard() {
         openTasks={snap.tasks.length}
       />
       <div className="px-4 lg:px-6 py-4 space-y-4">
+        <Panel className="ring-1 ring-accent/30 bg-grid-fade">
+          <PanelBody className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-bg-raised ring-1 ring-border text-accent">
+                <Gauge className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-fg">Government Opportunity Intelligence Report™</div>
+                <div className="text-xs text-fg-subtle">Your lead magnet, sales tool & data engine — runs as a separate site; review captured leads here.</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Link href="/goir-leads" className="inline-flex items-center gap-1.5 rounded-lg bg-bg-raised px-3 py-2 text-xs font-medium text-fg ring-1 ring-border hover:bg-bg-hover">View leads</Link>
+              {goirSiteUrl ? (
+                <Link href={goirSiteUrl} target="_blank" className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-bg hover:bg-accent-glow"><ExternalLink className="h-3.5 w-3.5" /> Open GOIR site</Link>
+              ) : null}
+            </div>
+          </PanelBody>
+        </Panel>
+
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="panel p-4 ring-1 ring-success/40">
             <div className="flex items-center justify-between"><span className="text-[11px] uppercase tracking-widest text-fg-subtle">MRR</span><Repeat className="h-4 w-4 text-success" /></div>
