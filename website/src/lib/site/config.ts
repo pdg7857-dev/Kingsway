@@ -1,6 +1,6 @@
 /**
  * Single source of truth for brand, contact, navigation, pricing and
- * social-proof placeholders. Brand: GovOps Intelligence, run by Phil Dave.
+ * social-proof placeholders. Brand: GovOpps by Phil Dave.
  *
  * Anything a future operator might want to rename (brand name, email,
  * booking URL, prices) lives here so it can be changed in one place.
@@ -8,8 +8,8 @@
 
 export const SITE = {
   // Brand wordmark shown in the header/footer.
-  brand: "GovOps Intelligence",
-  brandFull: "GovOps Intelligence",
+  brand: "GovOpps by Phil Dave",
+  brandFull: "GovOpps by Phil Dave",
   // The person who runs the practice (used in first-person copy and schema).
   person: "Phil Dave",
   tagline: "Government Opportunity Intelligence",

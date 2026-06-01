@@ -16,9 +16,9 @@ export function SiteHeader() {
             PD
           </span>
           <span className="leading-tight">
-            <span className="block text-sm font-bold tracking-tight text-fg">GovOps</span>
+            <span className="block text-sm font-bold tracking-tight text-fg">GovOpps</span>
             <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
-              Intelligence
+              by Phil Dave
             </span>
           </span>
         </Link>
