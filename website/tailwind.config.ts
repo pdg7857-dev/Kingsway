@@ -56,34 +56,34 @@ const config: Config = {
         //    site never uses these keys. Border default is pinned below so the
         //    light pages keep their existing borders.
         bg: {
-          DEFAULT: "hsl(222 44% 3.5%)",
-          subtle: "hsl(222 40% 5%)",
-          panel: "hsl(222 34% 7%)",
-          raised: "hsl(221 30% 9.5%)",
-          hover: "hsl(221 26% 13%)",
+          DEFAULT: "hsl(0 0% 4%)",
+          subtle: "hsl(0 0% 6.5%)",
+          panel: "hsl(0 0% 9%)",
+          raised: "hsl(0 0% 12.5%)",
+          hover: "hsl(0 0% 17%)",
         },
         border: {
-          DEFAULT: "hsl(220 22% 15%)",
-          subtle: "hsl(220 20% 11%)",
+          DEFAULT: "hsl(0 0% 18%)",
+          subtle: "hsl(0 0% 13%)",
         },
         fg: {
-          DEFAULT: "hsl(200 30% 97%)",
-          muted: "hsl(214 15% 62%)",
-          subtle: "hsl(216 14% 42%)",
+          DEFAULT: "hsl(0 0% 98%)",
+          muted: "hsl(0 0% 66%)",
+          subtle: "hsl(0 0% 46%)",
         },
         accent: {
-          DEFAULT: "hsl(184 100% 52%)",
-          glow: "hsl(184 100% 64%)",
-          soft: "hsl(187 70% 16%)",
+          DEFAULT: "hsl(72 95% 56%)",
+          glow: "hsl(72 95% 68%)",
+          soft: "hsl(72 60% 11%)",
         },
         violet: {
-          DEFAULT: "hsl(265 89% 66%)",
-          soft: "hsl(265 60% 20%)",
+          DEFAULT: "hsl(265 89% 70%)",
+          soft: "hsl(265 60% 18%)",
         },
-        success: { DEFAULT: "hsl(150 80% 50%)", soft: "hsl(150 60% 15%)" },
-        warn: { DEFAULT: "hsl(38 92% 58%)", soft: "hsl(38 60% 18%)" },
-        danger: { DEFAULT: "hsl(0 84% 62%)", soft: "hsl(0 60% 18%)" },
-        info: { DEFAULT: "hsl(210 92% 62%)", soft: "hsl(210 60% 18%)" },
+        success: { DEFAULT: "hsl(140 70% 55%)", soft: "hsl(140 50% 13%)" },
+        warn: { DEFAULT: "hsl(38 92% 58%)", soft: "hsl(38 60% 16%)" },
+        danger: { DEFAULT: "hsl(0 84% 64%)", soft: "hsl(0 60% 16%)" },
+        info: { DEFAULT: "hsl(265 89% 70%)", soft: "hsl(265 60% 18%)" },
       },
       // Keep the marketing site's light default border despite adding the
       // `border` color scale above (used by the dark report via border-border).
@@ -107,12 +107,12 @@ const config: Config = {
       boxShadow: {
         card: "0 1px 2px rgba(11,27,58,0.04), 0 12px 32px -16px rgba(11,27,58,0.18)",
         lift: "0 24px 60px -28px rgba(11,27,58,0.35)",
-        panel: "0 1px 0 hsl(220 30% 16% / 0.6) inset, 0 10px 30px -18px hsl(222 80% 1% / 0.8)",
-        glow: "0 0 0 1px hsl(184 100% 52% / 0.45), 0 0 28px -4px hsl(184 100% 52% / 0.5)",
+        panel: "0 1px 0 hsl(0 0% 100% / 0.04) inset, 0 10px 30px -18px hsl(0 0% 0% / 0.9)",
+        glow: "0 0 0 1px hsl(72 95% 56% / 0.45), 0 0 28px -4px hsl(72 95% 56% / 0.5)",
       },
       backgroundImage: {
         "grid-fade":
-          "radial-gradient(circle at 20% 0%, hsl(265 89% 66% / 0.10), transparent 40%), radial-gradient(circle at 80% 10%, hsl(184 100% 52% / 0.10), transparent 45%)",
+          "radial-gradient(circle at 20% 0%, hsl(265 89% 70% / 0.10), transparent 40%), radial-gradient(circle at 80% 10%, hsl(72 95% 56% / 0.10), transparent 45%)",
       },
       borderRadius: {
         xl: "0.9rem",
@@ -124,8 +124,8 @@ const config: Config = {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 0 0 hsl(186 100% 55% / 0.55)" },
-          "50%": { boxShadow: "0 0 0 8px hsl(186 100% 55% / 0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 hsl(72 95% 56% / 0.55)" },
+          "50%": { boxShadow: "0 0 0 8px hsl(72 95% 56% / 0)" },
         },
       },
       animation: {

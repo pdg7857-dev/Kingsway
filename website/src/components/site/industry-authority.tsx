@@ -135,7 +135,7 @@ export function IndustryAuthority({ slug }: { slug: string }) {
         />
         <div className="mx-auto mt-8 max-w-3xl">
           <StatCallout id="estimator-hiring" />
-          <StatCallout id="response-hours" />
+          <StatCallout id="labor-shortage" />
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           {ind.missedBecause.map((m) => (

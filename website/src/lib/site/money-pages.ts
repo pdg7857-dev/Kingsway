@@ -46,7 +46,7 @@ export const MONEY_PAGES: MoneyPage[] = [
     h1: "Government Bid Monitoring, Done Right",
     lede:
       "Monitoring is not the hard part. Judgment is. I watch every procurement platform your buyers post to, then read and qualify what surfaces, so your team only sees the opportunities worth pursuing.",
-    statIds: ["response-hours", "workload-increase"],
+    statIds: ["labor-shortage", "single-bid-frequency"],
     sections: [
       {
         id: "problem",
@@ -101,7 +101,7 @@ export const MONEY_PAGES: MoneyPage[] = [
     h1: "Government Bid Alerts Without the Noise",
     lede:
       "A keyword alert tells you a notice exists. It does not tell you whether it is worth your time. I qualify every alert before it reaches you, so your inbox becomes a shortlist instead of a chore.",
-    statIds: ["workload-increase", "estimator-hiring"],
+    statIds: ["single-bid-frequency", "estimator-hiring"],
     sections: [
       {
         id: "noise",
@@ -183,7 +183,7 @@ export const MONEY_PAGES: MoneyPage[] = [
     h1: "Government Bid Qualification",
     lede:
       "Qualification is the highest-leverage discipline in public bidding. Done well, it is the difference between a busy proposal team and a winning one.",
-    statIds: ["rfp-volume", "response-hours"],
+    statIds: ["estimator-hiring", "labor-shortage"],
     sections: [
       {
         id: "why",
@@ -268,7 +268,7 @@ export const MONEY_PAGES: MoneyPage[] = [
     h1: "Tender Review Service",
     lede:
       "The decisive details of a public tender live deep in the documents. I read them for you, so nothing important is missed and nothing irrelevant wastes your time.",
-    statIds: ["response-hours"],
+    statIds: ["labor-shortage"],
     sections: [
       {
         id: "read",
@@ -559,7 +559,7 @@ export const MONEY_PAGES: MoneyPage[] = [
     h1: "Opportunity Waste in Government Bidding",
     lede:
       "Opportunity waste is the single most under-measured cost in public bidding: the hours your best people spend on opportunities that were never a fit.",
-    statIds: ["response-hours", "rfp-volume", "estimator-hiring"],
+    statIds: ["labor-shortage", "single-bid-frequency", "estimator-hiring"],
     sections: [
       {
         id: "define",

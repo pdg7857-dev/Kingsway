@@ -68,8 +68,8 @@ export default function GovernmentProcurementStatisticsPage() {
       <Section>
         <SectionHead
           eyebrow="Research highlights"
-          title="The proposal-workload squeeze"
-          lede="The clearest evidence is not about finding more bids. It is about the rising cost of responding to the wrong ones."
+          title="The squeeze contractors actually feel"
+          lede="The hard evidence is not about finding more bids. It is about how thin the staffing is to chase them, and how often competition is weaker than it looks."
         />
         <div className="mx-auto mt-8 max-w-3xl">
           {ALL_CITATIONS.map((c) => (

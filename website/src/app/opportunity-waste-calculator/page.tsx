@@ -60,7 +60,7 @@ export default function OpportunityWasteCalculatorPage() {
           lede="Opportunity waste hides across several roles and tasks. Together they add up to a real, recurring cost."
         />
         <div className="mx-auto mt-10 max-w-3xl">
-          <StatCallout id="response-hours" />
+          <StatCallout id="labor-shortage" />
           <StatCallout id="estimator-hiring" />
           <ul className="mt-2 grid gap-3 sm:grid-cols-2">
             {[
@@ -74,7 +74,7 @@ export default function OpportunityWasteCalculatorPage() {
               <li key={t} className="rounded-xl border border-border bg-bg-panel p-4 text-sm text-fg-muted">{t}</li>
             ))}
           </ul>
-          <References ids={["response-hours", "estimator-hiring"]} />
+          <References ids={["labor-shortage", "estimator-hiring"]} />
         </div>
       </Section>
 
