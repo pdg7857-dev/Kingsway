@@ -1,15 +1,17 @@
 /**
  * Single source of truth for brand, contact, navigation, pricing and
- * social-proof placeholders. Phil-first personal brand.
+ * social-proof placeholders. Brand: GovOps Intelligence, run by Phil Dave.
  *
  * Anything a future operator might want to rename (brand name, email,
  * booking URL, prices) lives here so it can be changed in one place.
  */
 
 export const SITE = {
-  // Phil-first personal brand.
-  brand: "Phil",
-  brandFull: "Phil, Government Opportunity Intelligence",
+  // Brand wordmark shown in the header/footer.
+  brand: "GovOps Intelligence",
+  brandFull: "GovOps Intelligence",
+  // The person who runs the practice (used in first-person copy and schema).
+  person: "Phil Dave",
   tagline: "Government Opportunity Intelligence",
   // First-person promise that runs through the whole site.
   promise: "You focus on winning contracts. I focus on finding them.",
@@ -18,10 +20,10 @@ export const SITE = {
   email: "phil@governmentopportunityintelligence.com",
   // Internal booking page (renders the Calendly embed below). All CTAs point here.
   bookingUrl: "/book",
-  // Phil's Calendly scheduling link, embedded on /book.
+  // Phil Dave's Calendly scheduling link, embedded on /book.
   calendlyUrl: "https://calendly.com/pdg7857/phil-dave-government-opportunity-intelligence",
   sampleUrl: "/sample-opportunity",
-  // Year Phil started working in government procurement.
+  // Year Phil Dave started working in government procurement.
   sectorSince: 2023,
 } as const;
 

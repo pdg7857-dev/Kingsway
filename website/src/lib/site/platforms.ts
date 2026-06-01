@@ -285,6 +285,43 @@ export function getPlatform(slug: string) {
   return PLATFORMS.find((p) => p.slug === slug);
 }
 
+/**
+ * Official homepage for each platform we cover, so authority pages can link out
+ * to the real system. Kept here as one map rather than on every Platform object.
+ */
+export const PLATFORM_HOMEPAGE: Record<string, string> = {
+  merx: "https://www.merx.com",
+  "bidnet-direct": "https://www.bidnetdirect.com",
+  canadabuys: "https://canadabuys.canada.ca",
+  "sam-gov": "https://sam.gov",
+  bonfire: "https://www.bonfirehub.com",
+  biddingo: "https://www.biddingo.com",
+  "bids-and-tenders": "https://www.bidsandtenders.ca",
+  jaggaer: "https://www.jaggaer.com",
+  "sap-ariba": "https://www.ariba.com",
+  coupa: "https://www.coupa.com",
+  planetbids: "https://www.planetbids.com",
+  opengov: "https://www.opengov.com",
+  demandstar: "https://www.demandstar.com",
+  ionwave: "https://www.ionwave.net",
+  govwin: "https://iq.govwin.com",
+  periscope: "https://www.bidsync.com",
+  constructconnect: "https://www.constructconnect.com",
+  "gsa-ebuy": "https://www.ebuy.gsa.gov",
+  usaspending: "https://www.usaspending.gov",
+};
+
+/** Returns the platform's official homepage URL, or undefined if unknown. */
+export function getPlatformHomepage(slug: string): string | undefined {
+  return PLATFORM_HOMEPAGE[slug];
+}
+
+/** "www.merx.com" — the homepage URL with scheme/trailing slash stripped, for display. */
+export function platformHomepageLabel(slug: string): string | undefined {
+  const url = PLATFORM_HOMEPAGE[slug];
+  return url ? url.replace(/^https?:\/\//, "").replace(/\/$/, "") : undefined;
+}
+
 /** Platforms that have hand-authored long-form bodies (cornerstones first). */
 export const CORNERSTONE_PLATFORMS = PLATFORMS.filter((p) => p.priority === 1);
 

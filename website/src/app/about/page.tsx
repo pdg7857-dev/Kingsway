@@ -30,9 +30,9 @@ import {
 } from "@/lib/site/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "About Phil: Government Opportunity Intelligence",
+  title: "About Phil Dave: GovOps Intelligence",
   description:
-    "I am Phil. I find, read and qualify government contract opportunities across Canada and the U.S. so you bid the work worth winning instead of searching procurement portals all day.",
+    "I am Phil Dave. I find, read and qualify government contract opportunities across Canada and the U.S. so you bid the work worth winning instead of searching procurement portals all day.",
   path: "/about",
   keywords: [
     "government opportunity intelligence",
@@ -67,7 +67,7 @@ export default function AboutPage() {
               I find the government work worth bidding. You go win it.
             </h1>
             <p className="mt-5 text-lg leading-8 text-fg-muted">
-              I am Phil. I have worked in government procurement since {SITE.sectorSince}, and I spend
+              I am Phil Dave. I have worked in government procurement since {SITE.sectorSince}, and I spend
               my days inside the platforms where governments post their work, learning how each one
               really behaves. I monitor them, read the documents, and qualify the fit, so the
               opportunities that land on your desk are the ones actually worth your estimator's time.

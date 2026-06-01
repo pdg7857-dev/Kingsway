@@ -32,7 +32,7 @@ export function CalendlyEmbed({ url, className = "" }: { url: string; className?
       />
       <noscript>
         <a href={url} className="block p-4 text-center text-accent underline">
-          Book a call with Phil
+          Book a call with Phil Dave
         </a>
       </noscript>
     </div>

@@ -12,13 +12,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5" aria-label={`${SITE.brand} home`}>
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-accent to-violet text-sm font-bold text-bg shadow-[0_0_20px_-4px_hsl(184_100%_52%_/_0.7)]">
-            P
+          <span className="grid h-9 w-9 place-items-center rounded-lg bg-black text-[15px] font-extrabold leading-none tracking-[-0.06em] text-white ring-1 ring-white/15">
+            PD
           </span>
           <span className="leading-tight">
-            <span className="block text-sm font-bold tracking-tight text-fg">{SITE.brand}</span>
+            <span className="block text-sm font-bold tracking-tight text-fg">GovOps</span>
             <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
-              Opportunity Intelligence
+              Intelligence
             </span>
           </span>
         </Link>

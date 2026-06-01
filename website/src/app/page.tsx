@@ -34,7 +34,7 @@ export default function HomePage() {
               <span className="block text-accent">I focus on finding them.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-fg-muted">
-              I am Phil. I watch every procurement platform that matters, read the bid documents,
+              I am Phil Dave. I watch every procurement platform that matters, read the bid documents,
               and qualify the fit, so your estimators stop drowning in portals and notifications
               and start working only the opportunities worth pursuing.
             </p>

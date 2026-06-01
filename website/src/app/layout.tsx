@@ -16,13 +16,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: "Government Opportunity Intelligence | Phil finds the bids worth winning",
-    template: "%s | Phil, Government Opportunity Intelligence",
+    default: "GovOps Intelligence | Phil Dave finds the bids worth winning",
+    template: "%s | GovOps Intelligence",
   },
   description:
-    "Phil monitors every procurement platform, reads the documents and qualifies the fit, so contractors across Canada and the U.S. stop searching portals and start bidding the work that is worth winning.",
+    "Phil Dave monitors every procurement platform, reads the documents and qualifies the fit, so contractors across Canada and the U.S. stop searching portals and start bidding the work that is worth winning.",
   applicationName: SITE.brandFull,
-  authors: [{ name: "Phil" }],
+  authors: [{ name: "Phil Dave" }],
   robots: { index: true, follow: true },
 };
 

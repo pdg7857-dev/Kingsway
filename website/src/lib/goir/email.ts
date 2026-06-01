@@ -9,7 +9,7 @@ function esc(s: string) {
 
 // Sent immediately after a prospect submits the intake form. The report is
 // prepared and delivered manually with an access code within 24 hours.
-export function goirReceivedEmail(companyName: string, brand = "Phil") {
+export function goirReceivedEmail(companyName: string, brand = "Phil Dave") {
   const subject = "We've received your Government Opportunity Intelligence Report™ request";
   const html = `<!doctype html><html><body style="margin:0;background:#070b10;font-family:ui-sans-serif,system-ui,'Segoe UI',sans-serif">
   <div style="max-width:540px;margin:0 auto;padding:32px 20px;color:#e8f1f5">

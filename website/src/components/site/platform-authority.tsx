@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Clock, Quote } from "lucide-react";
-import { PLATFORMS, getPlatform } from "@/lib/site/platforms";
+import { ArrowRight, Clock, Quote, ExternalLink } from "lucide-react";
+import { PLATFORMS, getPlatform, getPlatformHomepage, platformHomepageLabel } from "@/lib/site/platforms";
 import { getIndustry } from "@/lib/site/industries";
 import { getPlatformLongForm } from "@/lib/site/content";
 import { platformPath, industryPath } from "@/lib/site/links";
@@ -32,6 +32,8 @@ export function PlatformAuthority({ slug }: { slug: string }) {
   if (!platform || !content) notFound();
 
   const related = PLATFORMS.filter((x) => x.slug !== platform.slug && x.country === platform.country).slice(0, 3);
+  const homepage = getPlatformHomepage(slug);
+  const homepageLabel = platformHomepageLabel(slug);
   const industries = platform.industries.map(getIndustry).filter(Boolean).slice(0, 5);
   const path = platformPath(platform.slug);
 
@@ -77,6 +79,20 @@ export function PlatformAuthority({ slug }: { slug: string }) {
                 <Clock className="h-4 w-4" /> {content.readMins} min read
               </span>
             </div>
+            {homepage && (
+              <p className="mt-4 text-sm text-fg-subtle">
+                Official site:{" "}
+                <a
+                  href={homepage}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex items-center gap-1 font-medium text-accent hover:underline"
+                >
+                  {homepageLabel}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </p>
+            )}
           </div>
         </div>
       </section>

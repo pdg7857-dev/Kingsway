@@ -11,9 +11,9 @@ import { SITE } from "@/lib/site/config";
 import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Contact Phil",
+  title: "Contact Phil Dave",
   description:
-    "Get in touch with Phil. Email me directly or send a message and I will reply personally, usually the same business day. I read every message myself.",
+    "Get in touch with Phil Dave. Email me directly or send a message and I will reply personally, usually the same business day. I read every message myself.",
   path: "/contact",
   keywords: [
     "contact government opportunity intelligence",

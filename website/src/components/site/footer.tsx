@@ -9,8 +9,8 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.3fr_repeat(5,minmax(0,1fr))]">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-bg-panel text-sm font-bold text-fg">
-                P
+              <span className="grid h-9 w-9 place-items-center rounded-lg bg-black text-[15px] font-extrabold leading-none tracking-[-0.06em] text-white ring-1 ring-white/15">
+                PD
               </span>
               <span className="text-sm font-bold text-fg">{SITE.brand}</span>
             </div>
