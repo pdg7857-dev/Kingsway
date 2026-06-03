@@ -54,8 +54,8 @@ export default function HomePage() {
             <p className="mt-5 text-sm text-fg-subtle">
               Twenty-minute discovery call, no cost. Public pricing from <span className="font-semibold text-fg">$599/month</span>.
             </p>
-            <div className="mt-5">
-              <RatingBadge />
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-warn/30 bg-warn-soft/30 px-4 py-2">
+              <RatingBadge lg />
             </div>
           </div>
 

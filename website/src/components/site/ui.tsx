@@ -23,12 +23,14 @@ export function Stars({ rating = RATING.score, className = "h-4 w-4" }: { rating
 }
 
 /** Compact inline rating badge: stars + 4.8/5 from 44 clients. */
-export function RatingBadge({ className = "" }: { className?: string }) {
+export function RatingBadge({ className = "", lg = false }: { className?: string; lg?: boolean }) {
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
-      <Stars />
-      <span className="text-sm font-semibold text-fg">{RATING.score.toFixed(1)}/5</span>
-      <span className="text-sm text-fg-muted">from {RATING.count} clients</span>
+      <Stars className={lg ? "h-5 w-5" : "h-4 w-4"} />
+      <span className={`font-bold text-fg ${lg ? "text-lg" : "text-sm font-semibold"}`}>
+        {RATING.score.toFixed(1)}/5
+      </span>
+      <span className="text-sm text-fg-muted">from {RATING.count} client reviews</span>
     </span>
   );
 }
