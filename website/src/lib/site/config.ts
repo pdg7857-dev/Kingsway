@@ -171,9 +171,9 @@ export const FOOTER_NAV: { title: string; links: NavItem[] }[] = [
  */
 export type Stat = { value: string | null; label: string; placeholder: string };
 
-// Coverage facts plus the owner's track record since 2023.
+// Verifiable coverage facts (true from the site's own platform/coverage data).
+// No fabricated track-record numbers.
 export const SOCIAL_PROOF: Stat[] = [
-  { value: "5,000+", label: "Businesses helped since 2023", placeholder: "5,000+" },
   { value: "18", label: "Procurement platforms monitored", placeholder: "18" },
   { value: "12", label: "Industries served", placeholder: "12" },
   { value: "50", label: "U.S. states covered", placeholder: "50" },
