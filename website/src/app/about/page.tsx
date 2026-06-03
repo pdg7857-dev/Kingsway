@@ -110,6 +110,11 @@ export default function AboutPage() {
                 that fit you, read the documents so you do not have to, and tell you which ones are
                 worth chasing. You prepare and submit the bid. That line stays bright on purpose.
               </p>
+              <p>
+                Before going independent, I spent years in government-procurement sales and account
+                management, working directly with Canadian and U.S. businesses to get set up and win
+                public work. That is the experience I bring to your account now.
+              </p>
             </div>
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
