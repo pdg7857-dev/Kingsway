@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { PRIMARY_NAV, SITE } from "@/lib/site/config";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Lock background scroll while the mobile menu is open.
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
@@ -74,7 +82,7 @@ export function SiteHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-border bg-bg-panel lg:hidden">
+        <div className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-border bg-bg-panel shadow-lift lg:hidden">
           <div className="container space-y-1 py-4">
             {PRIMARY_NAV.map((item) => (
               <div key={item.label}>
