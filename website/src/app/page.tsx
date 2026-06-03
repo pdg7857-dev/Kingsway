@@ -98,6 +98,11 @@ export default function HomePage() {
           <div className="mt-8">
             <VideoEmbed id={SITE.youtubeId} />
           </div>
+          <div className="mt-6 flex justify-center">
+            <Link href={SITE.bookingUrl} className="btn-gold px-6 py-3.5 text-base">
+              Book a call <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </Section>
       )}
 
