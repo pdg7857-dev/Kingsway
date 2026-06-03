@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Check, X } from "lucide-react";
 import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
 import { PricingTables } from "@/components/site/pricing-tables";
+import { RatingBadge } from "@/components/site/testimonials";
 import { FaqAccordion } from "@/components/site/faq";
 import { INCLUDED_EVERYWHERE, PRICING_PRINCIPLES } from "@/lib/site/pricing";
 import { SITE } from "@/lib/site/config";
@@ -67,6 +68,9 @@ export default function PricingPage() {
               per-opportunity charges. No clock to watch. Coverage runs on a 12-month commitment,
               the time it takes to catch your full opportunity cycle.
             </p>
+            <div className="mt-6">
+              <RatingBadge />
+            </div>
           </div>
         </div>
       </section>

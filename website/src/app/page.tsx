@@ -7,6 +7,7 @@ import {
 import { Section, SectionHead, StatStrip, CtaBand, FeatureCard } from "@/components/site/ui";
 import { CostCalculator } from "@/components/site/cost-calculator";
 import { PricingTables } from "@/components/site/pricing-tables";
+import { TestimonialsSection, RatingBadge } from "@/components/site/testimonials";
 import { FaqAccordion } from "@/components/site/faq";
 import { LeadForm } from "@/components/site/lead-form";
 import { GENERAL_FAQS } from "@/lib/site/faqs";
@@ -52,6 +53,9 @@ export default function HomePage() {
             <p className="mt-5 text-sm text-fg-subtle">
               Twenty-minute discovery call, no cost. Public pricing from <span className="font-semibold text-fg">$599/month</span>.
             </p>
+            <div className="mt-5">
+              <RatingBadge />
+            </div>
           </div>
 
           <div className="flex items-center">
@@ -305,6 +309,9 @@ export default function HomePage() {
           </p>
         </div>
       </Section>
+
+      {/* Testimonials */}
+      <TestimonialsSection />
 
       {/* Pricing */}
       <Section>
