@@ -91,6 +91,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 2-minute overview video, right below the hero */}
+      {SITE.youtubeId && (
+        <Section muted>
+          <SectionHead center eyebrow="In 2 minutes" title="See how I find the work worth winning" />
+          <div className="mt-8">
+            <VideoEmbed id={SITE.youtubeId} />
+          </div>
+        </Section>
+      )}
+
       {/* Authority / logos band */}
       <section className="border-b border-border bg-bg-subtle">
         <div className="container py-10">
@@ -310,16 +320,6 @@ export default function HomePage() {
           </p>
         </div>
       </Section>
-
-      {/* 2-minute overview video (renders only when SITE.youtubeId is set) */}
-      {SITE.youtubeId && (
-        <Section muted>
-          <SectionHead center eyebrow="In 2 minutes" title="See how I find the work worth winning" />
-          <div className="mt-8">
-            <VideoEmbed id={SITE.youtubeId} />
-          </div>
-        </Section>
-      )}
 
       {/* Testimonials */}
       <TestimonialsSection />

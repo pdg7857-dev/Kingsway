@@ -26,7 +26,7 @@ export const SITE = {
   sampleUrl: "/sample-opportunity",
   // 2-minute overview video. Paste the 11-char unlisted-YouTube video ID here
   // (from youtu.be/XXXXXXXXXXX) and the video section appears automatically.
-  youtubeId: "",
+  youtubeId: "25cfoJsZ0QA",
   // Year Phil Dave started working in government procurement.
   sectorSince: 2023,
 } as const;
