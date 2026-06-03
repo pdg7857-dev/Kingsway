@@ -1,36 +1,9 @@
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { RATING, TESTIMONIALS } from "@/lib/site/testimonials";
-import { Section, SectionHead } from "@/components/site/ui";
+import { Section, SectionHead, Stars, RatingBadge } from "@/components/site/ui";
 
-/** Five stars with a partial fill representing `rating` out of 5. */
-export function Stars({ rating = RATING.score, className = "h-4 w-4" }: { rating?: number; className?: string }) {
-  const pct = Math.max(0, Math.min(100, (rating / 5) * 100));
-  return (
-    <span className="relative inline-flex" role="img" aria-label={`${rating} out of 5 stars`}>
-      <span className="flex text-fg-subtle/30">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className={className} fill="currentColor" strokeWidth={0} />
-        ))}
-      </span>
-      <span className="absolute inset-0 flex overflow-hidden text-warn" style={{ width: `${pct}%` }}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} className={`${className} shrink-0`} fill="currentColor" strokeWidth={0} />
-        ))}
-      </span>
-    </span>
-  );
-}
-
-/** Compact inline rating badge: ★★★★★ 4.8/5 from 44 clients. */
-export function RatingBadge({ className = "" }: { className?: string }) {
-  return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <Stars />
-      <span className="text-sm font-semibold text-fg">{RATING.score.toFixed(1)}/5</span>
-      <span className="text-sm text-fg-muted">from {RATING.count} clients</span>
-    </span>
-  );
-}
+// Re-export the shared primitives so pages can import them from here too.
+export { Stars, RatingBadge };
 
 /** Full testimonials section for the home page. */
 export function TestimonialsSection() {

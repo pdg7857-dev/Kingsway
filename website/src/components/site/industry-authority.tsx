@@ -5,7 +5,7 @@ import { Building2, AlertTriangle, Tag, ListChecks, ArrowRight, RefreshCw } from
 import { getIndustry } from "@/lib/site/industries";
 import { getPlatform } from "@/lib/site/platforms";
 import { platformPath, industryPath } from "@/lib/site/links";
-import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
+import { Breadcrumbs, CtaBand, Section, SectionHead, RatingBadge } from "@/components/site/ui";
 import { LeadForm } from "@/components/site/lead-form";
 import { FaqAccordion } from "@/components/site/faq";
 import { GoirCta } from "@/components/site/goir-cta";
@@ -80,6 +80,9 @@ export function IndustryAuthority({ slug }: { slug: string }) {
               <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
+            </div>
+            <div className="mt-6">
+              <RatingBadge />
             </div>
           </div>
         </div>

@@ -1,6 +1,37 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
 import { SOCIAL_PROOF, SITE } from "@/lib/site/config";
+import { RATING } from "@/lib/site/testimonials";
+
+/** Five stars with a partial fill representing `rating` out of 5. */
+export function Stars({ rating = RATING.score, className = "h-4 w-4" }: { rating?: number; className?: string }) {
+  const pct = Math.max(0, Math.min(100, (rating / 5) * 100));
+  return (
+    <span className="relative inline-flex" role="img" aria-label={`${rating} out of 5 stars`}>
+      <span className="flex text-fg-subtle/30">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star key={i} className={className} fill="currentColor" strokeWidth={0} />
+        ))}
+      </span>
+      <span className="absolute inset-0 flex overflow-hidden text-warn" style={{ width: `${pct}%` }}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star key={i} className={`${className} shrink-0`} fill="currentColor" strokeWidth={0} />
+        ))}
+      </span>
+    </span>
+  );
+}
+
+/** Compact inline rating badge: stars + 4.8/5 from 44 clients. */
+export function RatingBadge({ className = "" }: { className?: string }) {
+  return (
+    <span className={`inline-flex items-center gap-2 ${className}`}>
+      <Stars />
+      <span className="text-sm font-semibold text-fg">{RATING.score.toFixed(1)}/5</span>
+      <span className="text-sm text-fg-muted">from {RATING.count} clients</span>
+    </span>
+  );
+}
 
 export function Section({
   children,
@@ -72,9 +103,9 @@ export function Breadcrumbs({ items }: { items: { name: string; href?: string }[
 
 /** Coverage-facts strip (verifiable numbers only; never fabricated). */
 export function StatStrip({ dark = false }: { dark?: boolean }) {
-  const items = SOCIAL_PROOF.slice(0, 4);
+  const items = SOCIAL_PROOF.slice(0, 5);
   return (
-    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border md:grid-cols-4 ${dark ? "border-white/10 bg-white/10" : "border-border bg-border"}`}>
+    <div className={`grid grid-cols-2 gap-px overflow-hidden rounded-2xl border sm:grid-cols-3 lg:grid-cols-5 ${dark ? "border-white/10 bg-white/10" : "border-border bg-border"}`}>
       {items.map((s) => (
         <div key={s.label} className={`${dark ? "bg-bg" : "bg-bg-panel"} p-5 text-center`}>
           <div className={`text-2xl font-bold tabular-nums ${dark ? "text-fg" : "text-fg"}`}>
@@ -116,6 +147,9 @@ export function CtaBand({
             <p className="mt-4 text-sm text-fg-subtle">
               Twenty minutes, no cost. I&apos;ll bring real opportunities in your jurisdictions.
             </p>
+            <div className="mt-5 flex justify-center">
+              <RatingBadge />
+            </div>
           </div>
         </div>
       </div>

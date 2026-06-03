@@ -6,7 +6,7 @@ import { PLATFORMS, getPlatform, getPlatformHomepage, platformHomepageLabel } fr
 import { getIndustry } from "@/lib/site/industries";
 import { getPlatformLongForm } from "@/lib/site/content";
 import { platformPath, industryPath } from "@/lib/site/links";
-import { Breadcrumbs, CtaBand, Section } from "@/components/site/ui";
+import { Breadcrumbs, CtaBand, Section, RatingBadge } from "@/components/site/ui";
 import { LongFormBody, TableOfContents } from "@/components/site/longform";
 import { FaqAccordion } from "@/components/site/faq";
 import { LeadForm } from "@/components/site/lead-form";
@@ -93,6 +93,9 @@ export function PlatformAuthority({ slug }: { slug: string }) {
                 </a>
               </p>
             )}
+            <div className="mt-5">
+              <RatingBadge />
+            </div>
           </div>
         </div>
       </section>

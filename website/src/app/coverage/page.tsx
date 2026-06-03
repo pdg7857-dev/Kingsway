@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { MapPin, ArrowRight, Flag } from "lucide-react";
 import { PROVINCES, STATES, REGIONS } from "@/lib/site/locations";
-import { Breadcrumbs, CtaBand, Section, SectionHead } from "@/components/site/ui";
+import { Breadcrumbs, CtaBand, Section, SectionHead, StatStrip } from "@/components/site/ui";
 import { pageMeta, JsonLd, breadcrumbJsonLd } from "@/lib/site/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -88,6 +88,12 @@ export default function CoverageHub() {
               </div>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section muted>
+        <div className="mx-auto max-w-5xl">
+          <StatStrip />
         </div>
       </Section>
 

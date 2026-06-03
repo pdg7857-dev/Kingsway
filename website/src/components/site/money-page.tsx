@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { getMoneyPage } from "@/lib/site/money-pages";
-import { Breadcrumbs, CtaBand, Section } from "@/components/site/ui";
+import { Breadcrumbs, CtaBand, Section, RatingBadge } from "@/components/site/ui";
 import { LongFormBody, TableOfContents } from "@/components/site/longform";
 import { FaqAccordion } from "@/components/site/faq";
 import { StatCallout, References } from "@/components/site/cite";
@@ -52,6 +52,9 @@ export function MoneyPageView({ slug }: { slug: string }) {
               <Link href="/opportunity-waste-calculator" className="btn-ghost border-white/20 bg-white/5 px-5 py-3 text-fg hover:border-white/40 hover:text-fg">
                 Calculate your opportunity waste
               </Link>
+            </div>
+            <div className="mt-6">
+              <RatingBadge />
             </div>
           </div>
         </div>
