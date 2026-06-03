@@ -8,6 +8,7 @@ import { Section, SectionHead, StatStrip, CtaBand, FeatureCard } from "@/compone
 import { CostCalculator } from "@/components/site/cost-calculator";
 import { PricingTables } from "@/components/site/pricing-tables";
 import { TestimonialsSection, RatingBadge } from "@/components/site/testimonials";
+import { VideoEmbed } from "@/components/site/video-embed";
 import { FaqAccordion } from "@/components/site/faq";
 import { LeadForm } from "@/components/site/lead-form";
 import { GENERAL_FAQS } from "@/lib/site/faqs";
@@ -309,6 +310,16 @@ export default function HomePage() {
           </p>
         </div>
       </Section>
+
+      {/* 2-minute overview video (renders only when SITE.youtubeId is set) */}
+      {SITE.youtubeId && (
+        <Section muted>
+          <SectionHead center eyebrow="In 2 minutes" title="See how I find the work worth winning" />
+          <div className="mt-8">
+            <VideoEmbed id={SITE.youtubeId} />
+          </div>
+        </Section>
+      )}
 
       {/* Testimonials */}
       <TestimonialsSection />
