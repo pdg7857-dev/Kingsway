@@ -1,10 +1,11 @@
 import { cookies } from "next/headers";
-import { SESSION_COOKIE, SESSION_TTL_MS, createSessionToken, verifySessionToken } from "./session";
+import { SESSION_COOKIE, SESSION_TTL_MS, createSessionToken, verifySessionToken, authBypass } from "./session";
 
 // Server-side helpers that touch the cookie store (Node runtime only).
 // Middleware uses verifySessionToken from ./session directly.
 
 export async function isAuthed(): Promise<boolean> {
+  if (authBypass()) return true;
   return verifySessionToken(cookies().get(SESSION_COOKIE)?.value);
 }
 

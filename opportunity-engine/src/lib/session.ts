@@ -8,6 +8,16 @@ const dec = new TextDecoder();
 export const SESSION_COOKIE = "oie_session";
 export const SESSION_TTL_MS = 1000 * 60 * 60 * 12; // 12 hours
 
+/**
+ * In local development, if the auth secrets are not configured, skip the login
+ * gate so the app is easy to run. Production (NODE_ENV=production, e.g. Vercel)
+ * always enforces auth, so a deploy can never be accidentally left open.
+ */
+export function authBypass(): boolean {
+  if (process.env.NODE_ENV === "production") return false;
+  return !(process.env.OPERATOR_PASSWORD && process.env.TOTP_SECRET && process.env.SESSION_SECRET);
+}
+
 function b64url(bytes: Uint8Array): string {
   let s = "";
   for (const b of bytes) s += String.fromCharCode(b);
