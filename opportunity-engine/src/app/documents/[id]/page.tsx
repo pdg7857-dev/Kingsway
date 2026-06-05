@@ -10,9 +10,14 @@ export const dynamic = "force-dynamic";
 export default async function OpportunityDetail({ params }: { params: { id: string } }) {
   const opp = await prisma.opportunity.findUnique({
     where: { id: params.id },
-    include: { matches: { include: { client: true }, orderBy: { score: "desc" } } },
+    include: {
+      matches: { include: { client: true }, orderBy: { score: "desc" } },
+      documents: { select: { id: true, storagePath: true, pageCount: true } },
+    },
   });
   if (!opp) notFound();
+
+  const hasFile = opp.documents.some((d) => d.storagePath);
 
   const parsed = analysisSchema.safeParse(opp.analysis);
   const a = parsed.success ? parsed.data : null;
@@ -24,6 +29,7 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
       <PageHeader
         title={opp.title}
         sub={[opp.buyer, opp.jurisdiction, opp.platform].filter(Boolean).join(" · ") || undefined}
+        action={hasFile ? <a href={`/documents/${opp.id}/file`} target="_blank" rel="noreferrer" className="btn-ghost">Open original</a> : undefined}
       />
 
       {failed && (

@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    serverActions: { bodySizeLimit: "8mb" },
+    serverActions: { bodySizeLimit: "16mb" },
+    serverComponentsExternalPackages: ["unpdf", "mammoth", "@anthropic-ai/sdk"],
   },
 };
 
