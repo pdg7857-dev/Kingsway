@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LayoutDashboard, Users, Hash, Tags, FileSearch, Award, BarChart3 } from "lucide-react";
+import { LayoutDashboard, Users, Hash, Tags, FileSearch, Award, BarChart3, Download } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Opportunity Intelligence Engine",
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 const NAV = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/documents", label: "Analyze", icon: FileSearch },
+  { href: "/imports", label: "CanadaBuys import", icon: Download },
   { href: "/clients", label: "Clients", icon: Users },
   { href: "/codes", label: "Codes", icon: Hash },
   { href: "/keywords", label: "Keywords", icon: Tags },
