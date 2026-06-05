@@ -1,0 +1,288 @@
+// Opportunity Intelligence Engine — data model.
+// Internal ops tool for Phil Dave, Government Opportunity Intelligence.
+// Postgres + Prisma. pgvector (embeddings) is reserved for a later phase.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Classification codes (UNSPSC / NIGP / GSIN / NAICS) and the keyword taxonomy
+// ---------------------------------------------------------------------------
+
+enum CodeSystem {
+  UNSPSC
+  NIGP
+  GSIN
+  NAICS
+}
+
+model ClassificationCode {
+  id          String     @id @default(cuid())
+  system      CodeSystem
+  code        String
+  title       String
+  description String?
+  parentCode  String? // hierarchy (e.g. UNSPSC segment/family/class/commodity)
+  createdAt   DateTime   @default(now())
+
+  clients ClientCode[]
+
+  @@unique([system, code])
+  @@index([system])
+}
+
+model Industry {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  services Service[]
+  keywords Keyword[]
+}
+
+model Service {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  industry   Industry @relation(fields: [industryId], references: [id])
+  industryId String
+  keywords   Keyword[]
+}
+
+model Keyword {
+  id         String   @id @default(cuid())
+  term       String
+  normalized String // lowercased / trimmed for matching
+  synonyms   String[] @default([])
+  weight     Int      @default(1) // 1 = broad, 3 = primary
+  industry   Industry? @relation(fields: [industryId], references: [id])
+  industryId String?
+  service    Service?  @relation(fields: [serviceId], references: [id])
+  serviceId  String?
+
+  clients ClientKeyword[]
+
+  @@index([normalized])
+}
+
+// ---------------------------------------------------------------------------
+// Clients
+// ---------------------------------------------------------------------------
+
+enum ClientStatus {
+  prospect
+  active
+  paused
+  former
+}
+
+model Client {
+  id            String       @id @default(cuid())
+  name          String
+  contactName   String?
+  contactEmail  String?
+  status        ClientStatus @default(active)
+  planTier      String? // Essential / Growth / National
+  // Coverage: province/state codes the client bids in (e.g. ON, AB, NY).
+  jurisdictions String[]     @default([])
+  trades        String[]     @default([])
+  capacityNote  String?
+  bondingCapacity Decimal?   @db.Decimal(14, 2)
+  clearances    String[]     @default([]) // licenses / certifications / security clearances held
+  valueMin      Decimal?     @db.Decimal(14, 2)
+  valueMax      Decimal?     @db.Decimal(14, 2)
+  notes         String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  codes    ClientCode[]
+  keywords ClientKeyword[]
+  matches  Match[]
+  outcomes ClientOutcome[]
+}
+
+model ClientCode {
+  id       String             @id @default(cuid())
+  client   Client             @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId String
+  code     ClassificationCode @relation(fields: [codeId], references: [id], onDelete: Cascade)
+  codeId   String
+
+  @@unique([clientId, codeId])
+}
+
+model ClientKeyword {
+  id        String  @id @default(cuid())
+  client    Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId  String
+  keyword   Keyword @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+  keywordId String
+  exclude   Boolean @default(false) // suppress this term as a false positive for the client
+
+  @@unique([clientId, keywordId])
+}
+
+// ---------------------------------------------------------------------------
+// Documents, opportunities (solicitations) and AI analysis
+// ---------------------------------------------------------------------------
+
+enum DocType {
+  solicitation
+  addendum
+  award_notice
+  contract
+  qa
+  other
+}
+
+model Document {
+  id            String   @id @default(cuid())
+  title         String
+  docType       DocType  @default(solicitation)
+  source        String? // platform / URL the doc came from
+  sha256        String   @unique
+  storagePath   String? // path in the vault (file storage); null while text-only
+  extractedText String   @db.Text
+  pageCount     Int?
+  createdAt     DateTime @default(now())
+
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  opportunityId String?
+  award         AwardedContract? @relation(fields: [awardId], references: [id])
+  awardId       String?
+}
+
+enum OppStatus {
+  analyzing
+  open
+  closing_soon
+  closed
+  awarded
+}
+
+model Opportunity {
+  id            String     @id @default(cuid())
+  title         String
+  buyer         String?
+  platform      String?
+  jurisdiction  String?
+  solicitationNo String?
+  type          String? // RFP / ITT / RFQ / RFSO ...
+  status        OppStatus  @default(open)
+  closingDate   DateTime?
+  estimatedValue Decimal?  @db.Decimal(14, 2)
+  currency      String     @default("CAD")
+  // Full structured AI analysis (DocumentAnalysis JSON, validated by Zod).
+  analysis      Json?
+  analyzedAt    DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  documents Document[]
+  matches   Match[]
+  outcomes  ClientOutcome[]
+}
+
+enum Recommendation {
+  strong
+  worth_a_look
+  weak
+  no
+}
+
+model Match {
+  id             String         @id @default(cuid())
+  opportunity    Opportunity    @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  opportunityId  String
+  client         Client         @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId       String
+  score          Int // 0-100
+  recommendation Recommendation
+  rationale      String         @db.Text
+  matchedCodes   String[]       @default([])
+  matchedKeywords String[]      @default([])
+  geographyFit   Boolean        @default(false)
+  valueFit       Boolean        @default(false)
+  blockers       String[]       @default([])
+  createdAt      DateTime       @default(now())
+
+  @@unique([opportunityId, clientId])
+  @@index([clientId])
+}
+
+// ---------------------------------------------------------------------------
+// Awarded contracts + renewal forecasting
+// ---------------------------------------------------------------------------
+
+enum AwardStatus {
+  active
+  expiring
+  rebid_open
+  closed
+}
+
+model AwardedContract {
+  id            String      @id @default(cuid())
+  buyer         String
+  supplier      String? // who was awarded (incumbent)
+  title         String
+  jurisdiction  String?
+  platform      String?
+  sourceRef     String? // solicitation / award reference number
+  value         Decimal?    @db.Decimal(14, 2)
+  currency      String      @default("CAD")
+  awardDate     DateTime?
+  startDate     DateTime?
+  endDate       DateTime? // may be estimated when not stated
+  endEstimated  Boolean     @default(false)
+  initialTermMonths Int?
+  optionYears   Int?
+  codes         String[]    @default([]) // classification codes attached to the award
+  // Computed re-bid window start = endDate - RENEWAL_LEAD_MONTHS.
+  rebidWindow   DateTime?
+  status        AwardStatus @default(active)
+  notes         String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  documents Document[]
+}
+
+// ---------------------------------------------------------------------------
+// Performance / outcome tracking
+// ---------------------------------------------------------------------------
+
+model ClientOutcome {
+  id            String      @id @default(cuid())
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  opportunityId String
+  client        Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId      String
+  surfaced      Boolean     @default(true) // I showed this opp to the client
+  surfacedBeforeClose Boolean @default(true) // attribution: surfaced while still actionable
+  didBid        Boolean     @default(false)
+  didWin        Boolean     @default(false)
+  awardedSupplier String?
+  awardValue    Decimal?    @db.Decimal(14, 2)
+  incumbentDisplaced Boolean @default(false)
+  notes         String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([opportunityId, clientId])
+  @@index([clientId])
+}
+
+// Lightweight audit of document access and analysis runs (confidentiality).
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  detail    String?
+  createdAt DateTime @default(now())
+}
