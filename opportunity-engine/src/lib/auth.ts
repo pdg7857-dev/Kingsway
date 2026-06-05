@@ -1,31 +1,32 @@
 import { cookies } from "next/headers";
+import { SESSION_COOKIE, SESSION_TTL_MS, createSessionToken, verifySessionToken } from "./session";
 
-// Minimal single-operator gate. A long random OPERATOR_ACCESS_TOKEN is required
-// to sign in; the same value is stored in an httpOnly cookie. This is a
-// deliberately small v1; swap for NextAuth when a client read-only portal is
-// added (the Client/role model is already reserved for it).
+// Server-side helpers that touch the cookie store (Node runtime only).
+// Middleware uses verifySessionToken from ./session directly.
 
-const COOKIE = "oie_operator";
-
-export function isAuthed(): boolean {
-  const token = process.env.OPERATOR_ACCESS_TOKEN;
-  if (!token) return true; // no token configured (local dev) => open
-  return cookies().get(COOKIE)?.value === token;
+export async function isAuthed(): Promise<boolean> {
+  return verifySessionToken(cookies().get(SESSION_COOKIE)?.value);
 }
 
-export function signIn(candidate: string): boolean {
-  const token = process.env.OPERATOR_ACCESS_TOKEN;
-  if (!token || candidate !== token) return false;
-  cookies().set(COOKIE, token, {
+export async function startSession(): Promise<void> {
+  const token = await createSessionToken();
+  cookies().set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: Math.floor(SESSION_TTL_MS / 1000),
   });
-  return true;
 }
 
-export function signOut() {
-  cookies().delete(COOKIE);
+export function endSession(): void {
+  cookies().delete(SESSION_COOKIE);
+}
+
+/** Constant-time string compare (length is not secret here). */
+export function safeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let r = 0;
+  for (let i = 0; i < a.length; i++) r |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return r === 0;
 }

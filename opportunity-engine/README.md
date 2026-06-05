@@ -7,6 +7,21 @@ Internal ops tool for Phil Dave, Government Opportunity Intelligence. It operati
 ## Stack
 Next.js 14 (App Router) · TypeScript · Tailwind · Prisma + Postgres · Anthropic Claude (structured tool-use). pgvector is reserved for semantic search in a later phase.
 
+## Authentication (required before deploy)
+
+Every route is gated by middleware. Sign-in needs two factors: a password and a
+TOTP code from an authenticator app (Google Authenticator, Authy, 1Password).
+Generate the secrets once:
+
+```bash
+npm run auth:setup "your-strong-password"
+```
+
+Set the printed `OPERATOR_PASSWORD`, `TOTP_SECRET` and `SESSION_SECRET` in your
+environment (local `.env` or Vercel project settings) and add the TOTP secret to
+your authenticator app. Auth fails closed: if these are not set, no one can sign
+in. Sessions are signed HMAC cookies (12h), verified in Edge middleware.
+
 ## Run locally
 ```bash
 npm install
