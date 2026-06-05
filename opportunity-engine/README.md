@@ -30,6 +30,31 @@ npm run dev                 # http://localhost:3000
 - **Performance**: log per-client outcomes (bid / win / incumbent displaced) and
   see surfaced→bid→win rates and value won.
 
+## Importing CanadaBuys awards (large files)
+
+The in-app **CanadaBuys import** page handles small CSVs. For full exports
+(the award/contract-history files are ~90 MB and hundreds of thousands of
+physical lines), use the streaming CLI importer, which has no upload limit:
+
+```bash
+# Preview the mapping and counts without writing anything (no DB needed):
+npx tsx scripts/import-awards.ts ./awards2023.csv --dry-run
+
+# Import contracts worth >= $25k that have dates, into the database:
+npx tsx scripts/import-awards.ts ./awards2023.csv --min-value=25000 --require-dates
+```
+
+Options: `--dry-run`, `--min-value=N`, `--require-dates`, `--no-dedupe`
+(default keeps the latest amendment per contract number), `--limit=N`.
+
+The column mapper (`src/lib/canadabuys.ts`) is validated against the real
+CanadaBuys award schema (compound bilingual headers like
+`title-titre-eng`, `supplierLegalName-nomLegalFournisseur-eng`,
+`contractAwardDate-dateAttributionContrat`). Contract value is taken as the
+larger of `contractAmount` and `totalContractValue` (entities populate one or
+the other). csv-parse handles the embedded newlines in address/description
+fields, so record counts are correct.
+
 ## Architecture
 - `src/lib/analysis-schema.ts` — Zod schema for the AI output.
 - `src/lib/analysis-prompt.ts` — system instructions + Claude tool definition.

@@ -42,7 +42,7 @@ export function headerIndex(header: string[]): Map<string, number> {
 }
 
 /** First non-empty value among the given header aliases. */
-export function pick(row: string[], idx: Map<string, number>, aliases: string[]): string {
+export function pick(row: string[], idx: Map<string, number>, aliases: readonly string[]): string {
   for (const a of aliases) {
     const i = idx.get(normHeader(a));
     if (i != null && row[i] != null && row[i].trim() !== "") return row[i].trim();

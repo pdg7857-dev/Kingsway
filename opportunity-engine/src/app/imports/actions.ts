@@ -69,7 +69,7 @@ export async function importAwards(formData: FormData) {
         jurisdiction: a.jurisdiction || null, platform: "CanadaBuys",
         value: a.value ?? null, awardDate, startDate,
         endDate: f.endDate, endEstimated: f.endEstimated, rebidWindow: f.rebidWindow,
-        status: f.status, codes: a.gsin,
+        status: f.status, codes: [...a.gsin, ...a.unspsc],
       },
     });
     created++;

@@ -26,7 +26,10 @@ export type AwardRow = {
   awardDate: string;
   startDate: string;
   endDate: string;
+  contractNumber: string;
+  amendmentNumber: string;
   gsin: string[];
+  unspsc: string[];
 };
 
 function num(s: string): number | null {
@@ -60,26 +63,65 @@ export function parseTenders(text: string): TenderRow[] {
   return out;
 }
 
+// Header aliases for CanadaBuys award/contract-history exports. Real headers are
+// compound bilingual (name-nom-eng); normHeader strips punctuation so these
+// match regardless of casing or separators.
+export const AWARD_ALIASES = {
+  title: ["title-titre-eng", "title-titre", "title"],
+  buyer: [
+    "contractingEntityName-nomEntitContractante-eng",
+    "endUserEntitiesName-nomEntitesUtilisateurFinal-eng",
+    "procurementEntityName", "organization",
+  ],
+  supplier: ["supplierLegalName-nomLegalFournisseur-eng", "supplierName", "contractorName"],
+  jurisdiction: [
+    "regionsOfDelivery-regionsLivraison-eng",
+    "supplierAddressProvince-fournisseurAdresseProvince-eng",
+    "regionsOfDelivery",
+  ],
+  totalValue: ["totalContractValue-valeurTotaleContrat", "totalContractValue"],
+  contractAmount: ["contractAmount-montantContrat", "contractAmount"],
+  awardDate: ["contractAwardDate-dateAttributionContrat", "publicationDate-datePublication", "awardDate"],
+  startDate: ["contractStartDate-contratDateDebut", "contractStartDate"],
+  endDate: ["contractEndDate-dateFinContrat", "contractEndDate"],
+  contractNumber: ["contractNumber-numeroContrat", "contractNumber"],
+  amendmentNumber: ["amendmentNumber-numeroModification", "amendmentNumber"],
+  gsin: ["gsin-nibs", "gsin"],
+  unspsc: ["unspsc"],
+} as const;
+
+export function mapAwardRow(r: string[], idx: Map<string, number>): AwardRow | null {
+  const title = pick(r, idx, AWARD_ALIASES.title);
+  const buyer = pick(r, idx, AWARD_ALIASES.buyer);
+  if (!title && !buyer) return null;
+  // Entities populate either contractAmount or totalContractValue (the other is
+  // 0.00), so take the larger of the two as the contract value.
+  const value =
+    Math.max(num(pick(r, idx, AWARD_ALIASES.totalValue)) ?? 0, num(pick(r, idx, AWARD_ALIASES.contractAmount)) ?? 0) || null;
+  return {
+    title: title || "Award notice",
+    buyer: buyer || "Unknown",
+    supplier: pick(r, idx, AWARD_ALIASES.supplier),
+    jurisdiction: pick(r, idx, AWARD_ALIASES.jurisdiction),
+    value,
+    awardDate: pick(r, idx, AWARD_ALIASES.awardDate),
+    startDate: pick(r, idx, AWARD_ALIASES.startDate),
+    endDate: pick(r, idx, AWARD_ALIASES.endDate),
+    contractNumber: pick(r, idx, AWARD_ALIASES.contractNumber),
+    amendmentNumber: pick(r, idx, AWARD_ALIASES.amendmentNumber),
+    gsin: codes(pick(r, idx, AWARD_ALIASES.gsin)),
+    unspsc: codes(pick(r, idx, AWARD_ALIASES.unspsc)),
+  };
+}
+
 export function parseAwards(text: string): AwardRow[] {
   const rows = parseCsv(text);
   if (rows.length < 2) return [];
   const idx = headerIndex(rows[0]);
   const out: AwardRow[] = [];
   for (const r of rows.slice(1)) {
-    const title = pick(r, idx, ["title-titre", "title", "tenderDescription-descriptionAppelOffres"]);
-    const buyer = pick(r, idx, ["procurementEntityName", "organization", "contactInfoOrganization"]);
-    if (!title && !buyer) continue;
-    out.push({
-      title: title || "Award notice",
-      buyer: buyer || "Unknown",
-      supplier: pick(r, idx, ["contractorName-nomEntrepreneur", "supplierName", "vendorName", "contractorName"]),
-      jurisdiction: pick(r, idx, ["regionsOfDelivery-regionsDeLivraison", "regionsOfDelivery", "regionOfDelivery"]),
-      value: num(pick(r, idx, ["contractValue-valeurContrat", "totalContractValue", "awardValue", "contractValue"])),
-      awardDate: pick(r, idx, ["contractDate-dateContrat", "awardDate", "publicationDate"]),
-      startDate: pick(r, idx, ["contractStartDate-dateDebutContrat", "contractStartDate", "deliveryDate"]),
-      endDate: pick(r, idx, ["contractEndDate-dateFinContrat", "contractEndDate", "expiryDate"]),
-      gsin: codes(pick(r, idx, ["gsin-nibs", "gsin"])),
-    });
+    const mapped = mapAwardRow(r, idx);
+    if (mapped) out.push(mapped);
   }
   return out;
 }
