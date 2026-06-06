@@ -23,6 +23,17 @@ your authenticator app. Auth fails closed: if these are not set, no one can sign
 in. Sessions are signed HMAC cookies (12h), verified in Edge middleware.
 
 ## Run locally
+
+### Fastest: Docker (one command)
+With Docker Desktop running, from `opportunity-engine/`:
+```bash
+docker compose up        # builds the app + Postgres, creates tables, seeds, serves
+```
+Open http://localhost:3000 (opens straight in; auth is skipped locally). For the
+document analyzer, create a `.env` next to `docker-compose.yml` with
+`ANTHROPIC_API_KEY=sk-ant-...` before running.
+
+### Without Docker
 ```bash
 npm install
 cp .env.example .env        # set DATABASE_URL, DIRECT_URL, ANTHROPIC_API_KEY
