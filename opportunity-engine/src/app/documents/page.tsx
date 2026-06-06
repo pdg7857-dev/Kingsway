@@ -2,7 +2,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { PageHeader } from "@/components/ui";
 import { fmtDate } from "@/lib/text";
-import { analyzeText, analyzeUpload } from "./actions";
+import { analyzeText } from "./actions";
+import { UploadAnalyzer } from "@/components/upload-analyzer";
 
 export const dynamic = "force-dynamic";
 
@@ -15,15 +16,7 @@ export default async function DocumentsPage() {
     <>
       <PageHeader title="Analyze a solicitation" sub="Upload the solicitation file or paste its text. It is summarized, qualified, coded and matched to your clients." />
 
-      <form action={analyzeUpload} className="card mb-6 space-y-3">
-        <h2 className="text-sm font-semibold text-fg">Upload a document</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div><label className="label">File (PDF, DOCX, TXT)</label><input name="file" type="file" accept=".pdf,.docx,.txt" className="input" required /></div>
-          <div><label className="label">Source (platform / URL)</label><input name="source" className="input" placeholder="CanadaBuys" /></div>
-        </div>
-        <button className="btn-primary">Upload, extract and analyze</button>
-        <p className="text-xs text-subtle">Digital PDFs and DOCX are read with page markers for citations. Scanned PDFs are stored and flagged for OCR (next phase).</p>
-      </form>
+      <UploadAnalyzer />
 
       <form action={analyzeText} className="card space-y-3">
         <div className="grid gap-3 sm:grid-cols-2">
