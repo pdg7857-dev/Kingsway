@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-cert
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json ./
+# Copy the Prisma schema before install so the postinstall `prisma generate`
+# (and other install scripts, e.g. esbuild) can run.
+COPY prisma ./prisma
 RUN npm install
 COPY . .
 RUN npx prisma generate
