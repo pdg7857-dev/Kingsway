@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { PageHeader } from "@/components/ui";
-import { createClient } from "./actions";
+import { createClient, importClients } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -62,6 +62,20 @@ export default async function ClientsPage() {
           <button className="btn-primary w-full">Create client</button>
         </form>
       </div>
+
+      <form action={importClients} className="card mt-6 space-y-3">
+        <h2 className="text-sm font-semibold text-fg">Import clients (CSV)</h2>
+        <p className="text-xs text-muted">
+          Header row required. Columns: <code>name, contactEmail, planTier, jurisdictions, trades, clearances, valueMin, valueMax, codes, keywords, notes</code>.
+          Separate multiple values in one cell with <code>;</code> (e.g. <code>ON;QC</code>). Codes use <code>SYSTEM:CODE</code>, e.g. <code>GSIN:S206;UNSPSC:76111501</code>.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div><label className="label">CSV file</label><input name="file" type="file" accept=".csv" className="input" /></div>
+          <div className="flex items-end"><span className="text-xs text-subtle">or paste below</span></div>
+        </div>
+        <textarea name="csv" rows={6} className="input font-mono text-xs" placeholder={"name,jurisdictions,trades,valueMin,valueMax,codes,keywords\nAcme Facility Services,ON;QC,janitorial;facilities,50000,2000000,GSIN:S206;UNSPSC:76111501,janitorial;custodial services"} />
+        <button className="btn-primary w-full">Import clients</button>
+      </form>
     </>
   );
 }

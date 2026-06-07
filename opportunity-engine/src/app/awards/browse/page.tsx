@@ -3,13 +3,14 @@ import { Prisma, AwardStatus } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { PageHeader, BackLink } from "@/components/ui";
 import { money, fmtDate } from "@/lib/text";
+import { INDUSTRY_FILTERS, getIndustryFilter } from "@/lib/industry-filter";
 
 export const dynamic = "force-dynamic";
 
 const PER_PAGE = 50;
 
 type SP = {
-  q?: string; code?: string; jur?: string; min?: string; max?: string;
+  q?: string; ind?: string; code?: string; jur?: string; min?: string; max?: string;
   status?: string; sort?: string; page?: string;
 };
 
@@ -31,25 +32,30 @@ export default async function BrowseAwards({ searchParams }: { searchParams: SP 
   const page = Math.max(1, Number(searchParams.page) || 1);
   const sortKey = searchParams.sort && SORTS[searchParams.sort] ? searchParams.sort : "value_desc";
 
-  const where: Prisma.AwardedContractWhereInput = {};
+  // Each condition is its own group; ANDed together so search + industry +
+  // filters all apply at once.
+  const and: Prisma.AwardedContractWhereInput[] = [];
   const q = searchParams.q?.trim();
   if (q) {
-    where.OR = [
+    and.push({ OR: [
       { title: { contains: q, mode: "insensitive" } },
       { buyer: { contains: q, mode: "insensitive" } },
       { supplier: { contains: q, mode: "insensitive" } },
-    ];
+    ] });
   }
-  if (searchParams.code?.trim()) where.codes = { has: searchParams.code.trim() };
-  if (searchParams.jur?.trim()) where.jurisdiction = { contains: searchParams.jur.trim(), mode: "insensitive" };
+  const industry = getIndustryFilter(searchParams.ind);
+  if (industry) {
+    and.push({ OR: industry.keywords.map((k) => ({ title: { contains: k, mode: "insensitive" as const } })) });
+  }
+  if (searchParams.code?.trim()) and.push({ codes: { has: searchParams.code.trim() } });
+  if (searchParams.jur?.trim()) and.push({ jurisdiction: { contains: searchParams.jur.trim(), mode: "insensitive" } });
   const min = Number(searchParams.min);
   const max = Number(searchParams.max);
   const hasMin = !!searchParams.min && !Number.isNaN(min);
   const hasMax = !!searchParams.max && !Number.isNaN(max);
-  if (hasMin || hasMax) {
-    where.value = { ...(hasMin ? { gte: min } : {}), ...(hasMax ? { lte: max } : {}) };
-  }
-  if (searchParams.status) where.status = searchParams.status as AwardStatus;
+  if (hasMin || hasMax) and.push({ value: { ...(hasMin ? { gte: min } : {}), ...(hasMax ? { lte: max } : {}) } });
+  if (searchParams.status) and.push({ status: searchParams.status as AwardStatus });
+  const where: Prisma.AwardedContractWhereInput = and.length ? { AND: and } : {};
 
   const [total, rows] = await Promise.all([
     prisma.awardedContract.count({ where }).catch(() => 0),
@@ -73,6 +79,13 @@ export default async function BrowseAwards({ searchParams }: { searchParams: SP 
         <div className="lg:col-span-2">
           <label className="label">Search (title, buyer, supplier)</label>
           <input name="q" defaultValue={searchParams.q} className="input" placeholder="e.g. janitorial, City of Toronto, Acme" />
+        </div>
+        <div>
+          <label className="label">Industry</label>
+          <select name="ind" defaultValue={searchParams.ind} className="input">
+            <option value="">Any</option>
+            {INDUSTRY_FILTERS.map((i) => <option key={i.slug} value={i.slug}>{i.name}</option>)}
+          </select>
         </div>
         <div><label className="label">Region contains</label><input name="jur" defaultValue={searchParams.jur} className="input" placeholder="Ontario" /></div>
         <div><label className="label">GSIN / UNSPSC (exact)</label><input name="code" defaultValue={searchParams.code} className="input" placeholder="N7030" /></div>
