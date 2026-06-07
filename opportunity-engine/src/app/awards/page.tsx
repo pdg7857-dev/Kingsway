@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { PageHeader } from "@/components/ui";
 import { money, fmtDate } from "@/lib/text";
@@ -25,7 +26,11 @@ export default async function AwardsPage() {
 
   return (
     <>
-      <PageHeader title="Awards & renewals" sub={`Awarded contracts and projected re-bid windows (lead time ${RENEWAL_LEAD_MONTHS} months).`} />
+      <PageHeader
+        title="Awards & renewals"
+        sub={`Awarded contracts and projected re-bid windows (lead time ${RENEWAL_LEAD_MONTHS} months).`}
+        action={<Link href="/awards/browse" className="btn-primary">Browse all awards</Link>}
+      />
 
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-subtle">Upcoming renewals</h2>
       {renewals.length === 0 ? (
@@ -37,7 +42,7 @@ export default async function AwardsPage() {
             <tbody>
               {renewals.map((a) => (
                 <tr key={a.id}>
-                  <td className="td">{a.title}<div className="text-xs text-subtle">{a.buyer}{a.jurisdiction ? ` · ${a.jurisdiction}` : ""}</div></td>
+                  <td className="td"><Link href={`/awards/${a.id}`} className="text-accent hover:underline">{a.title}</Link><div className="text-xs text-subtle">{a.buyer}{a.jurisdiction ? ` · ${a.jurisdiction}` : ""}</div></td>
                   <td className="td">{a.supplier ?? "n/a"}</td>
                   <td className="td">{fmtDate(a.endDate)}{a.endEstimated && <span className="text-subtle"> (est)</span>}</td>
                   <td className="td">{fmtDate(a.rebidWindow)}</td>
@@ -87,7 +92,7 @@ export default async function AwardsPage() {
             <tbody>
               {recent.map((a) => (
                 <tr key={a.id}>
-                  <td className="td">{a.title}<div className="text-xs text-subtle">{a.buyer}</div></td>
+                  <td className="td"><Link href={`/awards/${a.id}`} className="text-accent hover:underline">{a.title}</Link><div className="text-xs text-subtle">{a.buyer}</div></td>
                   <td className="td">{money(a.value ? Number(a.value) : null, a.currency)}</td>
                   <td className="td">{fmtDate(a.endDate)}{a.endEstimated && <span className="text-subtle"> (est)</span>}</td>
                   <td className="td">{fmtDate(a.rebidWindow)}</td>
