@@ -2,7 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { PageHeader } from "@/components/ui";
 import { fmtDate } from "@/lib/text";
-import { analyzeText } from "./actions";
+import { analyzeText, rematchAll } from "./actions";
 import { UploadAnalyzer } from "@/components/upload-analyzer";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +24,15 @@ export default async function DocumentsPage({ searchParams }: { searchParams: { 
 
   return (
     <>
-      <PageHeader title="Analyze a solicitation" sub="Upload the solicitation file or paste its text. It is summarized, qualified, coded and matched to your clients." />
+      <PageHeader
+        title="Analyze a solicitation"
+        sub="Upload the solicitation file or paste its text. It is summarized, qualified, coded and matched to your clients."
+        action={
+          <form action={rematchAll}>
+            <button className="btn-ghost">Re-match all against clients</button>
+          </form>
+        }
+      />
 
       <UploadAnalyzer />
 

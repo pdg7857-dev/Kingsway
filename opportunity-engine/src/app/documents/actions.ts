@@ -5,6 +5,26 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { Pursuit } from "@prisma/client";
 import { analyzePastedText, analyzeUploadedFile } from "@/lib/analyze-run";
+import { analysisSchema } from "@/lib/analysis-schema";
+import { runMatch } from "@/lib/match-run";
+
+// Re-run client matching across every analyzed opportunity (#bulk). Use after
+// importing or editing clients so past tenders match the current roster.
+export async function rematchAll() {
+  const opps = await prisma.opportunity.findMany({
+    where: { analyzedAt: { not: null } },
+    select: { id: true, jurisdiction: true, estimatedValue: true, analysis: true },
+  });
+  for (const o of opps) {
+    const parsed = analysisSchema.safeParse(o.analysis);
+    if (!parsed.success) continue;
+    await runMatch(o.id, parsed.data, {
+      jurisdiction: o.jurisdiction,
+      estimatedValue: o.estimatedValue ? Number(o.estimatedValue) : null,
+    });
+  }
+  revalidatePath("/documents");
+}
 
 export async function updatePursuit(formData: FormData) {
   const id = String(formData.get("id") ?? "");

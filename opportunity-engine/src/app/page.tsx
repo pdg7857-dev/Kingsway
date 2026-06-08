@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { PageHeader, Stat } from "@/components/ui";
-import { fmtDate } from "@/lib/text";
+import { fmtDate, money } from "@/lib/text";
 
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
-  const [clients, opps, awards, rebidSoon, recent] = await Promise.all([
+  const [clients, opps, awards, rebidSoon, recent, spend] = await Promise.all([
     prisma.client.count(),
     prisma.opportunity.count(),
     prisma.awardedContract.count(),
@@ -16,7 +16,11 @@ export default async function Dashboard() {
       take: 8,
       include: { _count: { select: { matches: true } } },
     }),
-  ]).catch(() => [0, 0, 0, 0, [] as never[]] as const);
+    prisma.opportunity.aggregate({ _sum: { analysisCostUsd: true }, _count: { analysisCostUsd: true } }),
+  ]).catch(() => [0, 0, 0, 0, [] as never[], { _sum: { analysisCostUsd: 0 }, _count: { analysisCostUsd: 0 } }] as const);
+
+  const totalSpend = spend._sum.analysisCostUsd ?? 0;
+  const analyses = spend._count.analysisCostUsd ?? 0;
 
   return (
     <>
@@ -30,11 +34,12 @@ export default async function Dashboard() {
         }
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <Stat label="Clients" value={clients} />
         <Stat label="Opportunities analyzed" value={opps} />
         <Stat label="Awarded contracts tracked" value={awards} />
         <Stat label="Renewals in window" value={rebidSoon} hint="Expiring or re-bid open" />
+        <Stat label="AI spend" value={money(totalSpend)} hint={`${analyses} analyses`} />
       </div>
 
       <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wide text-subtle">
