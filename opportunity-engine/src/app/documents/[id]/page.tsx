@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { PageHeader, BackLink, RecBadge } from "@/components/ui";
 import { money, fmtDate } from "@/lib/text";
 import { analysisSchema } from "@/lib/analysis-schema";
+import { findRelatedAwards } from "@/lib/incumbents-lookup";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,18 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
   const a = parsed.success ? parsed.data : null;
   const failed = !a && opp.analysis && typeof opp.analysis === "object" && "error" in (opp.analysis as object);
 
+  // #1/#7: connect this tender to award history (incumbent + price to beat).
+  const codes = a
+    ? [...a.classification_codes.unspsc, ...a.classification_codes.gsin, ...a.classification_codes.nigp, ...a.classification_codes.naics]
+    : [];
+  const related = await findRelatedAwards({ buyer: opp.buyer, codes, title: opp.title });
+
+  // #6: a one-line bid/no-bid signal from the best client fit + incumbent.
+  const strong = opp.matches.filter((m) => m.recommendation === "strong").length;
+  const worth = opp.matches.filter((m) => m.recommendation === "worth_a_look").length;
+  const fitText = strong ? `Strong fit for ${strong} client${strong > 1 ? "s" : ""}` : worth ? `Worth a look for ${worth} client${worth > 1 ? "s" : ""}` : "No strong client fit yet";
+  const incVal = related.incumbent?.value ? Number(related.incumbent.value) : null;
+
   return (
     <>
       <div className="mb-2"><BackLink href="/documents">← Analyze</BackLink></div>
@@ -37,6 +50,16 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
           Analysis did not complete: {String((opp.analysis as { error?: string }).error)}. Check ANTHROPIC_API_KEY and re-run.
         </div>
       )}
+
+      <div className="card mb-6 border-accent/40">
+        <span className="font-semibold text-fg">Bid signal:</span>{" "}
+        <span className="text-sm text-muted">
+          {fitText}.{" "}
+          {related.incumbent && incVal
+            ? `Incumbent on record: ${related.incumbent.supplier ?? "unknown"} (${money(incVal)}); price to beat is around ${money(related.stats.median)}.`
+            : "No incumbent found in award history."}
+        </span>
+      </div>
 
       {a && (
         <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
@@ -120,6 +143,42 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wide text-subtle">Incumbent & price history</h2>
+      {related.related.length === 0 ? (
+        <div className="card text-sm text-muted">No similar awarded contracts found in history (by buyer, codes, or title). Import more award years to improve this.</div>
+      ) : (
+        <div className="card p-0">
+          <div className="grid gap-4 border-b border-border p-5 sm:grid-cols-3">
+            <div>
+              <div className="text-xs text-subtle">Likely incumbent</div>
+              <div className="text-sm font-semibold text-fg">{related.incumbent?.supplier ?? "n/a"}</div>
+              <div className="text-xs text-muted">{incVal ? money(incVal) : ""}{related.incumbent?.endDate ? ` · ends ${fmtDate(related.incumbent.endDate)}` : ""}</div>
+            </div>
+            <div>
+              <div className="text-xs text-subtle">Price to beat (median)</div>
+              <div className="text-sm font-semibold text-fg">{money(related.stats.median)}</div>
+            </div>
+            <div>
+              <div className="text-xs text-subtle">Range ({related.stats.count} similar)</div>
+              <div className="text-sm text-fg">{money(related.stats.min)} - {money(related.stats.max)}</div>
+            </div>
+          </div>
+          <table className="w-full">
+            <thead><tr><th className="th">Past contract</th><th className="th">Supplier</th><th className="th">Value</th><th className="th">Ended</th></tr></thead>
+            <tbody>
+              {related.related.map((r) => (
+                <tr key={r.id}>
+                  <td className="td"><Link href={`/awards/${r.id}`} className="text-accent hover:underline">{r.title}</Link><div className="text-xs text-subtle">{r.buyer}</div></td>
+                  <td className="td">{r.supplier ?? "n/a"}</td>
+                  <td className="td">{money(r.value ? Number(r.value) : null, r.currency)}</td>
+                  <td className="td">{fmtDate(r.endDate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 
