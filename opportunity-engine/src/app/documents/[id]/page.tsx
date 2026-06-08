@@ -5,6 +5,7 @@ import { PageHeader, BackLink, RecBadge } from "@/components/ui";
 import { money, fmtDate } from "@/lib/text";
 import { analysisSchema } from "@/lib/analysis-schema";
 import { findRelatedAwards } from "@/lib/incumbents-lookup";
+import { similarAwardsForOpportunity } from "@/lib/similar";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,8 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
     ? [...a.classification_codes.unspsc, ...a.classification_codes.gsin, ...a.classification_codes.nigp, ...a.classification_codes.naics]
     : [];
   const related = await findRelatedAwards({ buyer: opp.buyer, codes, title: opp.title });
+  // #8: semantic nearest-neighbours (opt-in; empty unless embeddings are built).
+  const similar = await similarAwardsForOpportunity(opp.id, 8);
 
   // #6: a one-line bid/no-bid signal from the best client fit + incumbent.
   const strong = opp.matches.filter((m) => m.recommendation === "strong").length;
@@ -180,6 +183,27 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
             </tbody>
           </table>
         </div>
+      )}
+
+      {similar.length > 0 && (
+        <>
+          <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wide text-subtle">Similar past contracts (semantic)</h2>
+          <div className="card overflow-x-auto p-0">
+            <table className="w-full">
+              <thead><tr><th className="th">Contract</th><th className="th">Supplier</th><th className="th">Value</th><th className="th">Similarity</th></tr></thead>
+              <tbody>
+                {similar.map((s) => (
+                  <tr key={s.id}>
+                    <td className="td"><Link href={`/awards/${s.id}`} className="text-accent hover:underline">{s.title}</Link><div className="text-xs text-subtle">{s.buyer}</div></td>
+                    <td className="td">{s.supplier ?? "n/a"}</td>
+                    <td className="td">{money(s.value, s.currency)}</td>
+                    <td className="td">{Math.round((1 - s.dist) * 100)}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wide text-subtle">Client matches</h2>

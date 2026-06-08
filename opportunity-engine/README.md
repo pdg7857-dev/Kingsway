@@ -81,6 +81,25 @@ larger of `contractAmount` and `totalContractValue` (entities populate one or
 the other). csv-parse handles the embedded newlines in address/description
 fields, so record counts are correct.
 
+## Semantic search (#8, optional)
+
+Finds similar past contracts by meaning (pgvector + Voyage AI embeddings). It's
+opt-in and non-destructive: nothing changes until you enable it.
+
+1. **Give Postgres pgvector.** To keep existing data, install it into the running
+   db container (no data loss):
+   ```bash
+   docker compose exec db sh -c "apt-get update && apt-get install -y postgresql-16-pgvector"
+   ```
+   (For a fresh setup you can instead change the db image to `pgvector/pgvector:pg16`.)
+2. **Add a key** to `.env`: `VOYAGE_API_KEY=...` (or `EMBEDDINGS_PROVIDER=openai` + `OPENAI_API_KEY`).
+3. **Build the vectors** (self-creates the extension, columns and index):
+   ```bash
+   docker compose exec app npx tsx scripts/embed.ts
+   ```
+Re-run `embed.ts` after importing new awards/opportunities. The "Similar past
+contracts (semantic)" panel then appears on each analyzed tender.
+
 ## Architecture
 - `src/lib/analysis-schema.ts` — Zod schema for the AI output.
 - `src/lib/analysis-prompt.ts` — system instructions + Claude tool definition.
