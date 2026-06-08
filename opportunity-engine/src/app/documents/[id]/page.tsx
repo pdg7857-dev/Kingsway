@@ -6,6 +6,9 @@ import { money, fmtDate } from "@/lib/text";
 import { analysisSchema } from "@/lib/analysis-schema";
 import { findRelatedAwards } from "@/lib/incumbents-lookup";
 import { similarAwardsForOpportunity } from "@/lib/similar";
+import { updatePursuit } from "../actions";
+
+const PURSUIT = ["new", "reviewing", "sent", "bidding", "won", "lost"];
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +41,7 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
   const worth = opp.matches.filter((m) => m.recommendation === "worth_a_look").length;
   const fitText = strong ? `Strong fit for ${strong} client${strong > 1 ? "s" : ""}` : worth ? `Worth a look for ${worth} client${worth > 1 ? "s" : ""}` : "No strong client fit yet";
   const incVal = related.incumbent?.value ? Number(related.incumbent.value) : null;
+  const hasDates = !!(a && (a.key_dates.closing || a.key_dates.site_visit || a.key_dates.questions_due)) || !!opp.closingDate;
 
   return (
     <>
@@ -45,8 +49,33 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
       <PageHeader
         title={opp.title}
         sub={[opp.buyer, opp.jurisdiction, opp.platform].filter(Boolean).join(" · ") || undefined}
-        action={hasFile ? <a href={`/documents/${opp.id}/file`} target="_blank" rel="noreferrer" className="btn-ghost">Open original</a> : undefined}
+        action={
+          <div className="flex gap-2">
+            {hasDates && <a href={`/documents/${opp.id}/calendar`} className="btn-ghost">Add to calendar</a>}
+            {hasFile && <a href={`/documents/${opp.id}/file`} target="_blank" rel="noreferrer" className="btn-ghost">Open original</a>}
+          </div>
+        }
       />
+
+      <div className="card mb-6 flex flex-wrap items-center gap-3">
+        <span className="text-sm text-subtle">Pursuit:</span>
+        <form action={updatePursuit} className="flex items-center gap-2">
+          <input type="hidden" name="id" value={opp.id} />
+          <select name="pursuit" defaultValue={opp.pursuit} className="input max-w-[12rem]">
+            {PURSUIT.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+          <button className="btn-ghost">Save</button>
+        </form>
+        {opp.needsReview && (
+          <form action={updatePursuit} className="ml-auto flex items-center gap-2">
+            <span className="pill border-warn/40 text-warn">Needs review (low confidence)</span>
+            <input type="hidden" name="id" value={opp.id} />
+            <input type="hidden" name="pursuit" value={opp.pursuit} />
+            <input type="hidden" name="clearReview" value="1" />
+            <button className="btn-ghost text-xs">Mark reviewed</button>
+          </form>
+        )}
+      </div>
 
       {failed && (
         <div className="card border-bad/40 text-sm text-bad">

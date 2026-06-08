@@ -1,7 +1,7 @@
 import { prisma } from "./db";
 import { sha256 } from "./text";
 import { analyzeSolicitation } from "./anthropic";
-import { extractFromFile } from "./extract";
+import { extractFromFile, extractFromBuffer, extractFromZip, type BundlePart } from "./extract";
 import { storeFile } from "./storage";
 import { runMatch } from "./match-run";
 
@@ -32,6 +32,7 @@ export async function processSolicitation(oppId: string, text: string, fallbackT
         closingDate: toDate(analysis.key_dates.closing),
         estimatedValue: estimatedValue ?? null,
         currency: analysis.estimated_value.currency || "CAD",
+        needsReview: analysis.confidence_overall < 0.5,
         analysis,
         analyzedAt: new Date(),
       },
@@ -86,5 +87,49 @@ export async function analyzeUploadedFile(file: File, source: string | null, tit
     },
   });
   await processSolicitation(opp.id, extracted.text, title);
+  return opp.id;
+}
+
+/** Analyze one or more uploaded files together (#2). Zips are expanded; all
+ *  extracted text is combined with file markers and analyzed as one tender. */
+export async function analyzeUploadedBundle(files: File[], source: string | null, titleIn?: string): Promise<string> {
+  const parts: BundlePart[] = [];
+  let firstBuf: Buffer | null = null;
+  let firstName = "";
+  for (const file of files) {
+    const buf = Buffer.from(await file.arrayBuffer());
+    if (!firstBuf) { firstBuf = buf; firstName = file.name; }
+    if (/\.zip$/i.test(file.name)) parts.push(...(await extractFromZip(buf)));
+    else {
+      const ex = await extractFromBuffer(buf, file.name);
+      parts.push({ name: file.name, text: ex.text, pageCount: ex.pageCount, needsOcr: ex.needsOcr });
+    }
+  }
+
+  const usable = parts.filter((p) => p.text && p.text.length >= 40);
+  const totalPages = parts.reduce((s, p) => s + (p.pageCount || 0), 0);
+  const longest = [...usable].sort((a, b) => b.text.length - a.text.length)[0];
+  const title = titleIn?.trim() || (longest ? longest.name.replace(/\.[^.]+$/, "") : "") || firstName || "Solicitation bundle";
+  const stored = firstBuf ? await storeFile(firstBuf, firstName) : null;
+
+  if (usable.length === 0) {
+    const opp = await prisma.opportunity.create({
+      data: {
+        title, status: "open", needsReview: true,
+        analysis: { error: "No extractable text in the uploaded files (likely scanned). OCR is not yet wired." },
+        documents: { create: { title, docType: "solicitation", source, sha256: sha256(`${firstName}:${Date.now()}`), storagePath: stored?.storagePath ?? null, pageCount: totalPages, extractedText: "" } },
+      },
+    });
+    return opp.id;
+  }
+
+  const combined = usable.map((p) => `===== FILE: ${p.name} =====\n${p.text}`).join("\n\n");
+  const opp = await prisma.opportunity.create({
+    data: {
+      title, status: "analyzing",
+      documents: { create: { title, docType: "solicitation", source, sha256: sha256(combined), storagePath: stored?.storagePath ?? null, pageCount: totalPages, extractedText: combined } },
+    },
+  });
+  await processSolicitation(opp.id, combined, title);
   return opp.id;
 }

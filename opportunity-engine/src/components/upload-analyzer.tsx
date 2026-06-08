@@ -75,14 +75,18 @@ export function UploadAnalyzer() {
       <h2 className="text-sm font-semibold text-fg">Upload a document</h2>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
-          <label className="label">File (PDF, DOCX, TXT)</label>
+          <label className="label">File(s) or .zip (PDF, DOCX, TXT)</label>
           <input
             name="file"
             type="file"
-            accept=".pdf,.docx,.txt"
+            accept=".pdf,.docx,.txt,.zip"
+            multiple
             className="input"
             disabled={busy}
-            onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+            onChange={(e) => {
+              const n = e.target.files?.length ?? 0;
+              setFileName(n > 1 ? `${n} files` : e.target.files?.[0]?.name ?? "");
+            }}
             required
           />
         </div>

@@ -7,10 +7,20 @@ import { UploadAnalyzer } from "@/components/upload-analyzer";
 
 export const dynamic = "force-dynamic";
 
-export default async function DocumentsPage() {
-  const opps = await prisma.opportunity
-    .findMany({ orderBy: { createdAt: "desc" }, take: 25, include: { _count: { select: { matches: true } } } })
-    .catch(() => []);
+const PURSUIT_COLOR: Record<string, string> = {
+  won: "border-good/40 text-good", lost: "border-bad/40 text-bad",
+  bidding: "border-accent/40 text-accent", sent: "border-accent/40 text-accent",
+};
+
+export default async function DocumentsPage({ searchParams }: { searchParams: { review?: string; pursuit?: string } }) {
+  const where = {
+    ...(searchParams.review ? { needsReview: true } : {}),
+    ...(searchParams.pursuit ? { pursuit: searchParams.pursuit as never } : {}),
+  };
+  const [opps, reviewCount] = await Promise.all([
+    prisma.opportunity.findMany({ where, orderBy: { createdAt: "desc" }, take: 50, include: { _count: { select: { matches: true } } } }).catch(() => []),
+    prisma.opportunity.count({ where: { needsReview: true } }).catch(() => 0),
+  ]);
 
   return (
     <>
@@ -31,17 +41,27 @@ export default async function DocumentsPage() {
         <p className="text-xs text-subtle">Requires ANTHROPIC_API_KEY. PDF upload and OCR are a later phase; paste extracted text for now.</p>
       </form>
 
-      <h2 className="mb-3 mt-8 text-sm font-semibold uppercase tracking-wide text-subtle">Analyzed opportunities</h2>
+      <div className="mb-3 mt-8 flex items-center justify-between gap-3">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-subtle">Analyzed opportunities</h2>
+        <div className="flex gap-2 text-xs">
+          <Link href="/documents" className={`pill ${!searchParams.review && !searchParams.pursuit ? "border-accent/40 text-accent" : ""}`}>All</Link>
+          <Link href="/documents?review=1" className={`pill ${searchParams.review ? "border-warn/40 text-warn" : ""}`}>Needs review ({reviewCount})</Link>
+        </div>
+      </div>
       {opps.length === 0 ? (
         <div className="card text-sm text-muted">None yet.</div>
       ) : (
         <div className="card overflow-x-auto p-0">
           <table className="w-full">
-            <thead><tr><th className="th">Title</th><th className="th">Jurisdiction</th><th className="th">Closing</th><th className="th">Matches</th></tr></thead>
+            <thead><tr><th className="th">Title</th><th className="th">Status</th><th className="th">Jurisdiction</th><th className="th">Closing</th><th className="th">Matches</th></tr></thead>
             <tbody>
               {opps.map((o) => (
                 <tr key={o.id}>
                   <td className="td"><Link href={`/documents/${o.id}`} className="text-accent hover:underline">{o.title}</Link></td>
+                  <td className="td">
+                    <span className={`pill ${PURSUIT_COLOR[o.pursuit] ?? ""}`}>{o.pursuit}</span>
+                    {o.needsReview && <span className="pill ml-1 border-warn/40 text-warn">review</span>}
+                  </td>
                   <td className="td">{o.jurisdiction ?? "n/a"}</td>
                   <td className="td">{fmtDate(o.closingDate)}</td>
                   <td className="td">{o._count.matches}</td>

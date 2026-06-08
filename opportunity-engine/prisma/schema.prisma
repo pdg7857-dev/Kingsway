@@ -166,6 +166,16 @@ enum OppStatus {
   awarded
 }
 
+// Operator pursuit pipeline (#10).
+enum Pursuit {
+  new
+  reviewing
+  sent
+  bidding
+  won
+  lost
+}
+
 model Opportunity {
   id            String     @id @default(cuid())
   title         String
@@ -175,6 +185,8 @@ model Opportunity {
   solicitationNo String?
   type          String? // RFP / ITT / RFQ / RFSO ...
   status        OppStatus  @default(open)
+  pursuit       Pursuit    @default(new)
+  needsReview   Boolean    @default(false)
   closingDate   DateTime?
   estimatedValue Decimal?  @db.Decimal(14, 2)
   currency      String     @default("CAD")
