@@ -1,8 +1,9 @@
 FROM node:20-bookworm-slim
 WORKDIR /app
 
-# Prisma needs openssl on Debian slim.
-RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates \
+# openssl for Prisma; tesseract + poppler for OCR of scanned PDFs (#4).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl ca-certificates tesseract-ocr poppler-utils \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json ./

@@ -1,7 +1,35 @@
 // Document text extraction. Digital PDFs (unpdf) and DOCX (mammoth) are read
 // directly; page markers like [p.N] are inserted so the analyzer can cite pages.
-// Scanned PDFs (little or no extractable text) are flagged needsOcr; wiring an
-// OCR engine (e.g. tesseract.js) is the remaining piece of this phase.
+// Scanned PDFs (no text layer) fall back to OCR via system tesseract + poppler
+// (#4), gated by OCR_ENABLED and degrading gracefully if the tools are absent.
+
+import { execFile } from "child_process";
+import { promisify } from "util";
+import { mkdtemp, readdir, rm, writeFile } from "fs/promises";
+import { tmpdir } from "os";
+import { join } from "path";
+
+const exec = promisify(execFile);
+
+async function ocrPdfBuffer(buf: Buffer, maxPages = 15): Promise<{ text: string; pages: number }> {
+  const dir = await mkdtemp(join(tmpdir(), "oie-ocr-"));
+  try {
+    const pdfPath = join(dir, "in.pdf");
+    await writeFile(pdfPath, buf);
+    await exec("pdftoppm", ["-png", "-r", "200", "-l", String(maxPages), pdfPath, join(dir, "p")], { timeout: 180_000 });
+    const pngs = (await readdir(dir)).filter((f) => f.endsWith(".png")).sort();
+    const parts: string[] = [];
+    let n = 0;
+    for (const f of pngs) {
+      const { stdout } = await exec("tesseract", [join(dir, f), "stdout", "-l", "eng"], { timeout: 90_000, maxBuffer: 16 * 1024 * 1024 });
+      n++;
+      parts.push(`[p.${n}]\n${stdout.trim()}`);
+    }
+    return { text: parts.join("\n\n"), pages: pngs.length };
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+}
 
 export type Extracted = {
   text: string;
@@ -24,6 +52,18 @@ export async function extractFromBuffer(buf: Buffer, name: string): Promise<Extr
     const pages = Array.isArray(text) ? text : [String(text)];
     const joined = pages.map((p, i) => PAGE(i + 1, (p ?? "").trim())).join("\n\n");
     const stripped = joined.replace(/\[p\.\d+\]/g, "").trim();
+
+    // No usable text layer: fall back to OCR (scanned PDF).
+    if (stripped.length < 40 && process.env.OCR_ENABLED !== "false") {
+      try {
+        const ocr = await ocrPdfBuffer(buf);
+        if (ocr.text.replace(/\[p\.\d+\]/g, "").trim().length >= 40) {
+          return { text: ocr.text, pageCount: ocr.pages || totalPages, needsOcr: false, kind: "pdf" };
+        }
+      } catch {
+        /* tesseract/poppler unavailable -> keep the needsOcr result */
+      }
+    }
     return { text: joined, pageCount: totalPages, needsOcr: stripped.length < 40, kind: "pdf" };
   }
 
