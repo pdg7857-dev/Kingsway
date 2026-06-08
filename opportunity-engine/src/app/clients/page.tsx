@@ -64,7 +64,10 @@ export default async function ClientsPage() {
       </div>
 
       <form action={importClients} className="card mt-6 space-y-3">
-        <h2 className="text-sm font-semibold text-fg">Import clients (CSV)</h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-sm font-semibold text-fg">Import clients (CSV)</h2>
+          <a href="/clients/template" className="btn-ghost text-xs">Download CSV template</a>
+        </div>
         <p className="text-xs text-muted">
           Header row required. Columns: <code>name, contactEmail, planTier, jurisdictions, trades, clearances, valueMin, valueMax, codes, keywords, notes</code>.
           Separate multiple values in one cell with <code>;</code> (e.g. <code>ON;QC</code>). Codes use <code>SYSTEM:CODE</code>, e.g. <code>GSIN:S206;UNSPSC:76111501</code>.
