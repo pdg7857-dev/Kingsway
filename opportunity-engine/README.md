@@ -100,6 +100,36 @@ opt-in and non-destructive: nothing changes until you enable it.
 Re-run `embed.ts` after importing new awards/opportunities. The "Similar past
 contracts (semantic)" panel then appears on each analyzed tender.
 
+## Backups (local data safety)
+
+All data lives in the Postgres volume. Snapshot it to a file regularly:
+```bash
+# Windows PowerShell
+.\scripts\backup.ps1
+# macOS / Linux
+./scripts/backup.sh
+```
+Restore a snapshot:
+```bash
+# PowerShell
+Get-Content backup_engine_<ts>.sql | docker compose exec -T db psql -U postgres -d engine
+# bash
+docker compose exec -T db psql -U postgres -d engine < backup_engine_<ts>.sql
+```
+Keep the `.sql` files somewhere off the laptop (cloud drive / external disk).
+
+## Scraper / external ingest
+
+Set `INGEST_TOKEN` to a long random value, then a document scraper can POST
+solicitations to `POST /api/ingest` (separate from the operator login):
+```bash
+curl -X POST http://localhost:3000/api/ingest \
+  -H "x-ingest-token: $INGEST_TOKEN" -H "Content-Type: application/json" \
+  -d '{"title":"Custodial RFP","source":"MERX","text":"<full solicitation text>"}'
+# or multipart: -F file=@solicitation.pdf -F source=CanadaBuys
+```
+It analyzes and matches the document like any upload and returns `{ "id": ... }`.
+
 ## Architecture
 - `src/lib/analysis-schema.ts` — Zod schema for the AI output.
 - `src/lib/analysis-prompt.ts` — system instructions + Claude tool definition.

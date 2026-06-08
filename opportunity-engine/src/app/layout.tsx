@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LayoutDashboard, Users, Hash, Tags, FileSearch, Award, BarChart3, Download, Crosshair, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Hash, Tags, FileSearch, Award, BarChart3, Download, Crosshair, LogOut, CalendarClock, Handshake } from "lucide-react";
 import { isAuthed } from "@/lib/auth";
 import { logout } from "./login/actions";
 
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 const NAV = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/today", label: "Today", icon: CalendarClock },
   { href: "/documents", label: "Analyze", icon: FileSearch },
   { href: "/imports", label: "CanadaBuys import", icon: Download },
   { href: "/clients", label: "Clients", icon: Users },
@@ -19,6 +20,7 @@ const NAV = [
   { href: "/keywords", label: "Keywords", icon: Tags },
   { href: "/awards", label: "Awards & Renewals", icon: Award },
   { href: "/incumbents", label: "Incumbents", icon: Crosshair },
+  { href: "/relationships", label: "Relationships", icon: Handshake },
   { href: "/performance", label: "Performance", icon: BarChart3 },
 ];
 

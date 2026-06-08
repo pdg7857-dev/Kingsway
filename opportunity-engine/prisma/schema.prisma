@@ -301,3 +301,22 @@ model AuditLog {
   detail    String?
   createdAt DateTime @default(now())
 }
+
+// Relationship / outreach tracking on suppliers seen in award history.
+enum RelStatus {
+  cold
+  contacted
+  talking
+  partner
+  declined
+}
+
+model SupplierRelationship {
+  id           String    @id @default(cuid())
+  supplierName String    @unique
+  status       RelStatus @default(cold)
+  lastContact  DateTime?
+  notes        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}

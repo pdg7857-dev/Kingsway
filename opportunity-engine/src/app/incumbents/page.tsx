@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { PageHeader, BackLink } from "@/components/ui";
 import { money } from "@/lib/text";
 import { abbrsFromText } from "@/lib/jurisdictions";
+import { upsertSupplierRelationship } from "@/app/relationships/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -90,9 +91,10 @@ export default async function IncumbentsPage({ searchParams }: { searchParams: S
 }
 
 async function SupplierDrilldown({ supplier }: { supplier: string }) {
-  const contracts = await prisma.awardedContract.findMany({
-    where: { supplier }, orderBy: { value: "desc" }, take: 200,
-  }).catch(() => []);
+  const [contracts, rel] = await Promise.all([
+    prisma.awardedContract.findMany({ where: { supplier }, orderBy: { value: "desc" }, take: 200 }).catch(() => []),
+    prisma.supplierRelationship.findUnique({ where: { supplierName: supplier } }).catch(() => null),
+  ]);
 
   const total = contracts.reduce((s, c) => s + (c.value ? Number(c.value) : 0), 0);
   const codeSet = Array.from(new Set(contracts.flatMap((c) => c.codes))).filter(Boolean);
@@ -116,6 +118,18 @@ async function SupplierDrilldown({ supplier }: { supplier: string }) {
     <>
       <div className="mb-2"><BackLink href="/incumbents">← Incumbents</BackLink></div>
       <PageHeader title={supplier} sub={`${contracts.length} contracts on record · ${money(total)} total`} />
+
+      <form action={upsertSupplierRelationship} className="card mb-6 grid gap-3 sm:grid-cols-[10rem_10rem_1fr_auto] sm:items-end">
+        <input type="hidden" name="supplierName" value={supplier} />
+        <div><label className="label">Relationship</label>
+          <select name="status" defaultValue={rel?.status ?? "cold"} className="input">
+            <option>cold</option><option>contacted</option><option>talking</option><option>partner</option><option>declined</option>
+          </select>
+        </div>
+        <div><label className="label">Last contact</label><input name="lastContact" type="date" defaultValue={rel?.lastContact ? rel.lastContact.toISOString().slice(0, 10) : ""} className="input" /></div>
+        <div><label className="label">Notes</label><input name="notes" defaultValue={rel?.notes ?? ""} className="input" placeholder="e.g. met at trade show, open to subbing" /></div>
+        <button className="btn-ghost">Save</button>
+      </form>
 
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-subtle">Clients who could compete</h2>
       {competitors.length === 0 ? (
