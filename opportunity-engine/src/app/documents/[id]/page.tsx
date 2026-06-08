@@ -164,6 +164,7 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
                 <Row k="Contract term" v={a.term.initial_duration || "n/a"} />
                 <Row k="Est. value" v={`${money(opp.estimatedValue ? Number(opp.estimatedValue) : a.estimated_value.amount, opp.currency)} (${a.estimated_value.basis})`} />
                 <Row k="Confidence" v={`${Math.round(a.confidence_overall * 100)}%`} />
+                {opp.analysisCostUsd != null && <Row k="Analysis cost" v={`~$${opp.analysisCostUsd.toFixed(3)}`} />}
               </dl>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {[...a.classification_codes.unspsc.map((c) => `UNSPSC ${c}`),
@@ -241,13 +242,14 @@ export default async function OpportunityDetail({ params }: { params: { id: stri
       ) : (
         <div className="card overflow-x-auto p-0">
           <table className="w-full">
-            <thead><tr><th className="th">Client</th><th className="th">Fit</th><th className="th">Why</th></tr></thead>
+            <thead><tr><th className="th">Client</th><th className="th">Fit</th><th className="th">Why</th><th className="th">Brief</th></tr></thead>
             <tbody>
               {opp.matches.map((m) => (
                 <tr key={m.id}>
                   <td className="td"><Link href={`/clients/${m.clientId}`} className="text-accent hover:underline">{m.client.name}</Link></td>
                   <td className="td"><RecBadge rec={m.recommendation} score={m.score} /></td>
                   <td className="td text-muted">{m.rationale}{m.blockers.length > 0 && <span className="text-bad"> · blockers: {m.blockers.join("; ")}</span>}</td>
+                  <td className="td"><a href={`/documents/${opp.id}/brief/${m.clientId}`} target="_blank" rel="noreferrer" className="text-accent hover:underline">Brief →</a></td>
                 </tr>
               ))}
             </tbody>

@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         {authed ? (
           <div className="flex min-h-screen">
-            <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-panel2 p-4 lg:flex">
+            <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-panel2 p-4 lg:flex print:hidden">
               <div className="px-2 py-3">
                 <div className="text-sm font-bold text-fg">Opportunity Intelligence</div>
                 <div className="text-xs text-subtle">Engine</div>

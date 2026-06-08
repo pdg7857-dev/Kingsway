@@ -1,6 +1,6 @@
 import { prisma } from "./db";
 import { sha256 } from "./text";
-import { analyzeSolicitation } from "./anthropic";
+import { analyzeSolicitation, costUsd } from "./anthropic";
 import { extractFromFile, extractFromBuffer, extractFromZip, type BundlePart } from "./extract";
 import { storeFile } from "./storage";
 import { runMatch } from "./match-run";
@@ -15,7 +15,7 @@ function toDate(s: string | null | undefined): Date | null {
  *  call from server actions and route handlers alike. */
 export async function processSolicitation(oppId: string, text: string, fallbackTitle: string): Promise<void> {
   try {
-    const analysis = await analyzeSolicitation({ text, filename: fallbackTitle });
+    const { analysis, usage } = await analyzeSolicitation({ text, filename: fallbackTitle });
     const jurisdiction = analysis.solicitation.jurisdiction || null;
     const estimatedValue = analysis.estimated_value.amount;
 
@@ -35,6 +35,9 @@ export async function processSolicitation(oppId: string, text: string, fallbackT
         needsReview: analysis.confidence_overall < 0.5,
         analysis,
         analyzedAt: new Date(),
+        analysisTokensIn: usage.input,
+        analysisTokensOut: usage.output,
+        analysisCostUsd: costUsd(usage),
       },
     });
 

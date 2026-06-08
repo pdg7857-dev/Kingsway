@@ -193,6 +193,9 @@ model Opportunity {
   // Full structured AI analysis (DocumentAnalysis JSON, validated by Zod).
   analysis      Json?
   analyzedAt    DateTime?
+  analysisTokensIn  Int?
+  analysisTokensOut Int?
+  analysisCostUsd   Float?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
 
