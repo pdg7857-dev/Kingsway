@@ -1,21 +1,32 @@
 import { prisma } from "@/lib/db";
+import { Prisma } from "@prisma/client";
 import { PageHeader } from "@/components/ui";
+import { INDUSTRY_FILTERS, getIndustryFilter } from "@/lib/industry-filter";
 import { importCodes } from "./actions";
 
 export const dynamic = "force-dynamic";
 
-export default async function CodesPage({ searchParams }: { searchParams: { q?: string; sys?: string } }) {
+export default async function CodesPage({ searchParams }: { searchParams: { q?: string; sys?: string; ind?: string } }) {
   const q = searchParams.q?.trim();
   const sys = searchParams.sys;
+  const ind = getIndustryFilter(searchParams.ind);
+
+  const where: Prisma.ClassificationCodeWhereInput = {};
+  if (ind) {
+    // UNSPSC is hierarchical, so segment prefixes are an exact industry filter.
+    where.system = "UNSPSC";
+    where.OR = ind.unspscSegments.map((seg) => ({ code: { startsWith: seg } }));
+  } else if (sys) {
+    where.system = sys as Prisma.EnumCodeSystemFilter["equals"];
+  }
+  if (q) {
+    const qOr: Prisma.ClassificationCodeWhereInput[] = [{ code: { contains: q } }, { title: { contains: q, mode: "insensitive" } }];
+    if (where.OR) { where.AND = [{ OR: where.OR }, { OR: qOr }]; delete where.OR; }
+    else where.OR = qOr;
+  }
+
   const codes = await prisma.classificationCode
-    .findMany({
-      where: {
-        ...(sys ? { system: sys as never } : {}),
-        ...(q ? { OR: [{ code: { contains: q } }, { title: { contains: q, mode: "insensitive" } }] } : {}),
-      },
-      orderBy: [{ system: "asc" }, { code: "asc" }],
-      take: 200,
-    })
+    .findMany({ where, orderBy: [{ system: "asc" }, { code: "asc" }], take: 200 })
     .catch(() => []);
 
   const counts = await prisma.classificationCode.groupBy({ by: ["system"], _count: true }).catch(() => []);
@@ -32,10 +43,14 @@ export default async function CodesPage({ searchParams }: { searchParams: { q?: 
 
       <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
-          <form className="mb-3 flex gap-2">
-            <input name="q" defaultValue={q} className="input" placeholder="Search code or title" />
-            <select name="sys" defaultValue={sys} className="input max-w-[10rem]">
-              <option value="">All</option><option>UNSPSC</option><option>NIGP</option><option>GSIN</option><option>NAICS</option>
+          <form className="mb-3 flex flex-wrap gap-2">
+            <input name="q" defaultValue={q} className="input min-w-[10rem] flex-1" placeholder="Search code or title" />
+            <select name="ind" defaultValue={searchParams.ind} className="input max-w-[12rem]">
+              <option value="">Industry (UNSPSC)</option>
+              {INDUSTRY_FILTERS.map((i) => <option key={i.slug} value={i.slug}>{i.name}</option>)}
+            </select>
+            <select name="sys" defaultValue={sys} className="input max-w-[8rem]">
+              <option value="">All systems</option><option>UNSPSC</option><option>NIGP</option><option>GSIN</option><option>NAICS</option>
             </select>
             <button className="btn-ghost">Search</button>
           </form>
