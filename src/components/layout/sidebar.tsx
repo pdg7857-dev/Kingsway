@@ -6,7 +6,17 @@ import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
   Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText, Mail, Coins,
+  Target, Gauge, CalendarClock, Layers, Flame,
 } from "lucide-react";
+
+const intel = [
+  { href: "/oi", label: "OI Dashboard", icon: Gauge },
+  { href: "/oi/prospects", label: "Prospects", icon: Target },
+  { href: "/oi/renewals", label: "Renewals", icon: CalendarClock },
+  { href: "/oi/buyers", label: "Buyers", icon: Building2 },
+  { href: "/oi/platforms", label: "Platforms", icon: Layers },
+  { href: "/oi/waste", label: "Waste Calculator", icon: Flame },
+];
 
 const main = [
   { href: "/", label: "Master", icon: LayoutDashboard },
@@ -48,6 +58,23 @@ export function Sidebar() {
         <ul className="space-y-0.5">
           {main.map(({ href, label, icon: Icon }) => {
             const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+            return (
+              <li key={href}>
+                <Link href={href} className={cn("nav-item", active && "nav-item-active")}>
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span className="truncate">{label}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mb-2 mt-5 px-3 text-[10px] font-medium uppercase tracking-[0.18em] text-fg-subtle">
+          Opportunity Intelligence
+        </div>
+        <ul className="space-y-0.5">
+          {intel.map(({ href, label, icon: Icon }) => {
+            const active = href === "/oi" ? pathname === "/oi" : pathname.startsWith(href);
             return (
               <li key={href}>
                 <Link href={href} className={cn("nav-item", active && "nav-item-active")}>

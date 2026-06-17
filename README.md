@@ -2,6 +2,7 @@
 
 A dark-mode, AI-augmented operations dashboard for managing six businesses and personal life from a single command center.
 
+- **Government Opportunity Intelligence Platform (GOIP)** — ranks contacts into Tier A/B/C/D by likelihood to become recurring clients via the proprietary **GOII Index™**, the **Opportunity Waste Engine**, award/buyer/renewal/platform intelligence, and AI outreach. See [`docs/OPPORTUNITY_INTELLIGENCE.md`](./docs/OPPORTUNITY_INTELLIGENCE.md). Lives under **Opportunity Intelligence** in the sidebar (`/oi`).
 - **Master dashboard** with daily AI briefing, today's priorities, money, alerts, calendar, inboxes, ideas, business health.
 - **Seven business dashboards** — Lexus sales, fitness coaching, content, phone repair, supplements, eProcurement consulting, personal.
 - **Receipt scanner** — snap a photo on mobile; Claude vision extracts vendor/total/tax/date/card and files an expense.

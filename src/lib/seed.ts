@@ -2,6 +2,7 @@ import {
   PrismaClient,
   BusinessSlug,
 } from "@prisma/client";
+import { seedOpportunityIntelligence } from "./oi/seed";
 
 const BUSINESS_SEEDS: Array<{
   slug: BusinessSlug;
@@ -48,6 +49,9 @@ export async function runSeed(prisma: PrismaClient, email = "pdg7857@gmail.com")
   }
 
   if (!isFresh) {
+    // Backfill the Opportunity Intelligence book on existing installs too
+    // (it self-skips when prospects already exist).
+    await seedOpportunityIntelligence(prisma, user.id, businessMap.eprocurement).catch(() => {});
     return { user, businesses: Object.keys(businessMap).length, sampleData: false };
   }
 
@@ -349,6 +353,8 @@ export async function runSeed(prisma: PrismaClient, email = "pdg7857@gmail.com")
       { userId: user.id, name: "Low inventory alert", trigger: "INVENTORY_LOW", config: {}, actions: [{ kind: "task.create" }, { kind: "notification.send" }], enabled: true },
     ],
   });
+
+  await seedOpportunityIntelligence(prisma, user.id, businessMap.eprocurement).catch(() => {});
 
   return { user, businesses: Object.keys(businessMap).length, sampleData: true };
 }

@@ -284,6 +284,11 @@ model User {
   govContracts      GovContract[]
   integrationCredentials IntegrationCredential[]
   aiUsage           AIUsage[]
+  prospects         Prospect[]
+  govAwards         GovAward[]
+  buyers            Buyer[]
+  renewals          Renewal[]
+  prospectOutreach  ProspectOutreach[]
 }
 
 model Account {
@@ -354,6 +359,7 @@ model Business {
   mileageLogs       MileageLog[]
   procurementClients ProcurementClient[]
   govContracts      GovContract[]
+  prospects         Prospect[]
 
   @@unique([userId, slug])
 }
@@ -1235,4 +1241,249 @@ model GovContract {
 
   @@index([userId, status])
   @@index([userId, industry])
+}
+
+// ─────────────────────────────────────────────────────────────
+// Government Opportunity Intelligence Platform
+// ─────────────────────────────────────────────────────────────
+// String columns are used for "enum-like" fields (tier, stage, etc.)
+// so the schema can be provisioned via idempotent raw SQL in
+// prisma/migrate.sql without Postgres enum-type DDL. Allowed values
+// live in src/lib/oi/constants.ts and are enforced at the app layer.
+
+model Prospect {
+  id            String   @id @default(cuid())
+  userId        String
+  businessId    String?
+
+  // ── Identity (import surface) ──
+  companyName   String
+  contactName   String?
+  contactTitle  String?
+  email         String?
+  phone         String?
+  website       String?
+  linkedinUrl   String?
+
+  // ── Classification ──
+  industry      String?
+  subIndustry   String?
+  city          String?
+  region        String?   // province / state
+  country       String?   @default("Canada")
+
+  // ── Module 1: research profile ──
+  companySize          String?
+  employeesEstimate    Int?
+  revenueEstimateDollars Int?
+  locationsCount       Int?
+  govExperience        Boolean  @default(false)
+  govClientTypes       String[] // municipal, provincial, federal, school, healthcare, infrastructure
+  procurementMaturity  String   @default("UNKNOWN") // UNKNOWN | LOW | MEDIUM | HIGH
+  researchNotes        String?  @db.Text
+  researchSources      String[]
+  researchedAt         DateTime?
+
+  // ── Module 3: award rollup (denormalised for fast ranking) ──
+  hasWonGov          Boolean   @default(false)
+  awardCount         Int       @default(0)
+  totalWonDollars    Int       @default(0)
+  largestAwardDollars Int      @default(0)
+  lastAwardAt        DateTime?
+  awardCategories    String[]
+  awardingDepts      String[]
+
+  // ── Module 6: platform relevance ──
+  primaryPlatforms   String[]
+  secondaryPlatforms String[]
+
+  // ── Module 7: Government Opportunity Intelligence Index™ (0-100) ──
+  score                  Int?     // the GOII Index™ — headline score
+  tier                   String?  // A | B | C | D
+  scoreBreakdown         Json?    // the 8 weighted index components
+  govExperienceScore     Int?     // /20
+  awardScore             Int?     // /20
+  wasteScore             Int?     // /20 (from Module 6)
+  laborScarcityScore     Int?     // /15
+  platformComplexityScore Int?    // /10
+  geoComplexityScore     Int?     // /5
+  renewalOppScore        Int?     // /5
+  revenuePotentialScore  Int?     // /5
+  likelihoodToBuy        Int?
+  // ── Module 6: Opportunity Waste Engine ──
+  opportunityWasteCents  Int?     // estimated annual opportunity waste ($)
+  wasteBreakdown         Json?    // top waste drivers + cost lines
+  expectedRoiPct         Int?     // expected ROI on Phil's service (%)
+  // ── Commercials ──
+  estAnnualValueCents    Int?     // Phil's estimated annual service revenue
+  estLtvCents            Int?     // Phil's estimated lifetime value
+  recommendedPricingTier String?  // Starter | Pro | Enterprise
+  recommendedMonthlyFeeCents Int?
+  scoredAt               DateTime?
+
+  // ── CRM ──
+  stage           String    @default("NEW") // NEW | RESEARCHED | SCORED | OUTREACH | ENGAGED | CLIENT | NURTURE | DISQUALIFIED
+  lastContactedAt DateTime?
+  nextActionAt    DateTime?
+  notes           String?   @db.Text
+
+  // ── AI artifacts ──
+  aiSummary     String?   @db.Text
+  aiAccountPlan String?   @db.Text
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business  Business?  @relation(fields: [businessId], references: [id])
+  awards    GovAward[]
+  outreach  ProspectOutreach[]
+  renewals  Renewal[]
+
+  @@index([userId, tier])
+  @@index([userId, score])
+  @@index([userId, industry])
+  @@index([userId, stage])
+}
+
+model GovAward {
+  id            String   @id @default(cuid())
+  userId        String
+  prospectId    String?
+  buyerId       String?
+
+  supplierName  String
+  supplierNorm  String?  // normalised key for matching
+  title         String
+  agency        String?
+  department    String?
+  category      String?
+  region        String?
+  location      String?
+  valueDollars  Int?
+  awardDate     DateTime?
+  startDate     DateTime?
+  endDate       DateTime?
+  contractLengthMonths Int?
+  renewalOption Boolean  @default(false)
+  platform      String?
+  sourceUrl     String?
+  sourceRef     String?  // CanadaBuys reference number
+  raw           Json?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prospect Prospect? @relation(fields: [prospectId], references: [id])
+  buyer    Buyer?    @relation(fields: [buyerId], references: [id])
+  renewals Renewal[]
+
+  @@index([userId, supplierNorm])
+  @@index([userId, awardDate])
+  @@index([userId, endDate])
+}
+
+model Buyer {
+  id            String   @id @default(cuid())
+  userId        String
+
+  organization  String
+  department    String?
+  agency        String?
+  division      String?
+  contactName   String?
+  contactTitle  String?
+  procurementContact String?
+  phone         String?
+  email         String?
+  address       String?
+  website       String?
+  region        String?
+  platform      String?
+  commodityCategories String[]
+  currentSuppliers    String[]
+
+  awardCount         Int     @default(0)
+  totalAwardedDollars Int    @default(0)
+  avgContractDollars  Int    @default(0)
+  typicalCycleMonths  Int?
+  recurringPurchases  String? @db.Text
+
+  buyerRelScore    Int?
+  buyerOppScore    Int?
+  renewalProbScore Int?
+  aiSummary        String? @db.Text
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  awards   GovAward[]
+  renewals Renewal[]
+
+  @@index([userId, organization])
+  @@index([userId, region])
+}
+
+model Renewal {
+  id            String   @id @default(cuid())
+  userId        String
+  buyerId       String?
+  incumbentId   String?  // Prospect acting as incumbent
+  awardId       String?
+
+  title         String
+  agency        String?
+  department    String?
+  category      String?
+  region        String?
+  valueDollars  Int?
+  awardDate     DateTime?
+  startDate     DateTime?
+  endDate       DateTime?
+  contractLengthMonths Int?
+
+  likelyRenewalDate  DateTime?
+  likelyRebidStart   DateTime?
+  incumbentAdvantage Int?     // 0-100
+  likelyPlatform     String?
+  expectedValueDollars Int?
+
+  alertWindow   String?  // M12 | M9 | M6 | M3 | D30 | PAST
+  status        String   @default("WATCHING") // WATCHING | UPCOMING | IMMINENT | REBID_OPEN | CLOSED
+  opportunityBrief String? @db.Text
+  buyerProfile     String? @db.Text
+  incumbentProfile String? @db.Text
+  contractHistory  String? @db.Text
+  monitoringPlan   String? @db.Text
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  buyer     Buyer?    @relation(fields: [buyerId], references: [id])
+  incumbent Prospect? @relation(fields: [incumbentId], references: [id])
+  award     GovAward? @relation(fields: [awardId], references: [id])
+
+  @@index([userId, status])
+  @@index([userId, likelyRebidStart])
+}
+
+model ProspectOutreach {
+  id          String   @id @default(cuid())
+  userId      String
+  prospectId  String
+  kind        String   // COLD_EMAIL | LINKEDIN | COLD_CALL | LOOM | FOLLOWUP
+  subject     String?
+  body        String   @db.Text
+  channelMeta Json?
+  sent        Boolean  @default(false)
+  sentAt      DateTime?
+  createdAt   DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prospect Prospect @relation(fields: [prospectId], references: [id], onDelete: Cascade)
+
+  @@index([userId, prospectId])
 }

@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html, body {
+    @apply bg-bg text-fg;
+  }
+  body {
+    background-image:
+      radial-gradient(900px circle at 8% -8%, hsl(187 90% 45% / 0.07), transparent 45%),
+      radial-gradient(900px circle at 100% -5%, hsl(265 89% 66% / 0.06), transparent 50%),
+      linear-gradient(to bottom, hsl(222 44% 3.5%), hsl(222 46% 2.5%));
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+  ::selection { background: hsl(184 100% 52% / 0.30); color: white; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: hsl(222 24% 18%); border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(222 24% 26%); }
+}
+
+@layer components {
+  .panel {
+    @apply relative rounded-2xl border border-border bg-bg-panel/60 backdrop-blur-xl shadow-panel transition-colors;
+  }
+  .panel::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-5 top-0 h-px opacity-60;
+    background: linear-gradient(90deg, transparent, hsl(184 100% 52% / 0.45), transparent);
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium;
+  }
+  .text-gradient-accent {
+    background: linear-gradient(90deg, hsl(186 100% 70%), hsl(265 89% 76%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
