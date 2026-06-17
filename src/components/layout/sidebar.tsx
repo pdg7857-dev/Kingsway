@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { BUSINESSES } from "@/lib/constants";
 import {
   LayoutDashboard, ListTodo, Calendar, Lightbulb, Users, Briefcase, Wallet,
-  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText, Mail, Coins,
+  Boxes, Zap, BarChart3, Sparkles, Bell, Settings, Building2, Car, ReceiptText, Mail, Coins, Gauge,
 } from "lucide-react";
 
 const main = [
@@ -21,6 +21,7 @@ const main = [
   { href: "/inventory", label: "Inventory", icon: Boxes },
   { href: "/gmail", label: "Gmail", icon: Mail },
   { href: "/automations", label: "Automations", icon: Zap },
+  { href: "/goir-leads", label: "GOIR Leads", icon: Gauge },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/ai", label: "AI Assistant", icon: Sparkles },
   { href: "/ai-usage", label: "AI Usage", icon: Coins },
