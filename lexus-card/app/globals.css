@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colour tokens mirrored from tailwind.config.ts (§4) */
+  --ink: #0a0a0a;
+  --graphite: #1a1a1a;
+  --slate: #6b6b6b;
+  --silver: #c9cbcd;
+  --mist: #f4f4f2;
+  --white: #ffffff;
+  --accent: #8a1f2b;
+
+  --hairline: rgba(201, 203, 205, 0.5);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink font-body antialiased;
+    text-rendering: optimizeLegibility;
+    /* Lenis sets its own scroll; default kept for no-JS. */
+  }
+
+  /* Display headings default to the configured display family. */
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-light;
+    text-wrap: balance;
+  }
+
+  /* Visible, on-brand focus ring everywhere (§13). */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--white);
+  }
+}
+
+@layer components {
+  /* Eyebrow label — wide tracked uppercase (§4). */
+  .eyebrow {
+    @apply font-display text-eyebrow uppercase font-medium text-slate;
+  }
+
+  /* Hairline divider in silver. */
+  .hairline {
+    border-color: var(--hairline);
+  }
+
+  /* Constrained content shell. */
+  .shell {
+    @apply mx-auto w-full max-w-content px-gutter-mobile md:px-gutter;
+  }
+
+  /* Underline-draw link (left→right on hover) — desktop affordance. */
+  .underline-draw {
+    @apply relative inline-block;
+  }
+  .underline-draw::after {
+    content: '';
+    @apply absolute left-0 -bottom-0.5 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-700 ease-luxe;
+  }
+  .underline-draw:hover::after,
+  .underline-draw:focus-visible::after {
+    @apply scale-x-100;
+  }
+}
+
+/* Reduced motion: kill all animation/transition movement (§5, §13). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

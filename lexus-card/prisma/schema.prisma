@@ -1,0 +1,37 @@
+// Lead storage — §10. SQLite for local; swap provider to postgresql for prod.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id               String   @id @default(cuid())
+  createdAt        DateTime @default(now())
+  intent           String // "match" | "test_drive" | "general"
+  condition        String? // new | cpo | either
+  model            String?
+  trim             String?
+  yearMin          Int?
+  yearMax          Int?
+  exteriorColors   String? // JSON array
+  interiorColor    String?
+  maxMileage       Int?
+  purchaseType     String? // finance | lease | cash
+  budgetType       String? // monthly | total
+  budgetAmount     Int?
+  hasTradeIn       Boolean  @default(false)
+  tradeInDetails   String?
+  timeline         String?
+  name             String
+  email            String
+  phone            String
+  preferredContact String?
+  notes            String?
+  consent          Boolean  @default(false)
+  source           String? // "card_qr" | "direct" | utm
+  status           String   @default("new") // new | contacted | matched | closed
+}
