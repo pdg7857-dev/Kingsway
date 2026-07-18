@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Team Vincere — To Conquer. Elite Bodybuilding Coaching.</title>
+<meta name="description" content="Team Vincere is an application-only coaching house for the athletes who refuse to stay ordinary. The best mindset team, proprietary data-driven training software, and a standard most will never meet." />
+<meta property="og:title" content="Team Vincere — To Conquer." />
+<meta property="og:description" content="Application-only elite bodybuilding coaching. The mindset. The science. The standard." />
+<meta property="og:type" content="website" />
+<style>
+/* ============================================================
+   TEAM VINCERE — obsidian & chrome. Single-theme, on purpose.
+   ============================================================ */
+:root{
+  --obsidian:#0A0A0B;
+  --carbon:#0F0F12;
+  --graphite:#17171B;
+  --elevated:#1C1C21;
+  --edge:#26262B;
+  --platinum:#F4F5F7;
+  --silver:#C4C7CE;
+  --steel:#7A7C84;
+  --steel-dim:#54565D;
+  --glow:#B8C4D0;
+  --chrome:linear-gradient(150deg,#F2F3F5 0%,#B9BCC4 26%,#6C6E76 48%,#E4E6EA 68%,#84868E 88%,#D1D3D8 100%);
+  --serif:'Canela','Hoefler Text','Times New Roman',Georgia,serif;
+  --sans:'Helvetica Neue','Segoe UI',Roboto,Arial,sans-serif;
+  --maxw:1240px;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--obsidian);
+  color:var(--silver);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  font-weight:400;
+  letter-spacing:.01em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(184,196,208,.22);color:var(--platinum)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- ATMOSPHERE: grain + vignette ---------- */
+.grain{
+  position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+.vignette{
+  position:fixed;inset:0;z-index:8;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% 30%,transparent 40%,rgba(0,0,0,.55) 100%);
+}
+
+/* ---------- custom cursor ---------- */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+.cur-dot{width:6px;height:6px;background:#fff;transform:translate(-50%,-50%)}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.6);transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
+.cur-ring.hot{width:56px;height:56px;opacity:.5}
+@media (hover:none),(pointer:coarse){.cur-dot,.cur-ring{display:none}}
+
+/* ---------- chrome text ---------- */
+.chrome{
+  background:var(--chrome);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  position:relative;
+}
+.shimmer{animation:shimmer 6s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--steel);display:inline-flex;align-items:center;gap:14px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--steel))}
+h1,h2,h3{font-weight:800;line-height:.98;letter-spacing:-.02em;color:var(--platinum);text-wrap:balance;text-transform:uppercase}
+h2{font-size:clamp(2.1rem,5.4vw,4.1rem)}
+h3{font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:-.01em}
+.lead{font-size:clamp(1.05rem,1.5vw,1.22rem);color:var(--silver);max-width:52ch;line-height:1.7}
+.muted{color:var(--steel)}
+
+/* ---------- layout ---------- */
+section{position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.pad{padding:clamp(90px,14vh,180px) 0}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--edge) 20%,var(--edge) 80%,transparent)}
+
+/* ---------- buttons ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:12px;
+  padding:19px 34px;font-family:var(--sans);font-size:12px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;cursor:pointer;overflow:hidden;
+  border:1px solid var(--edge);background:transparent;color:var(--platinum);
+  transition:border-color .5s var(--ease),color .5s var(--ease);
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(120deg,transparent 30%,rgba(210,215,222,.14) 50%,transparent 70%);
+  background-size:250% 100%;background-position:200% 0;transition:background-position .8s var(--ease);
+}
+.btn:hover{border-color:#5b5d64;color:#fff}
+.btn:hover::before{background-position:-50% 0}
+.btn .arw{transition:transform .5s var(--ease)}
+.btn:hover .arw{transform:translateX(6px)}
+.btn-solid{background:var(--platinum);color:#0A0A0B;border-color:var(--platinum)}
+.btn-solid:hover{color:#0A0A0B}
+.btn-solid::before{background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);background-size:250% 100%;background-position:200% 0}
+.btn:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.09s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.27s}.rv-d4{transition-delay:.36s}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 32px;transition:background .6s var(--ease),padding .6s var(--ease),border-color .6s;
+  border-bottom:1px solid transparent;
+}
+.nav.stuck{background:rgba(9,9,11,.72);backdrop-filter:blur(14px);padding:15px 32px;border-bottom-color:var(--edge)}
+.brand{font-family:var(--serif);font-size:22px;letter-spacing:.42em;text-transform:uppercase;padding-left:.42em}
+.brand .chrome{font-weight:400}
+.nav-links{display:flex;gap:38px;align-items:center}
+.nav-links a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);transition:color .4s}
+.nav-links a:hover{color:var(--platinum)}
+.nav-cta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--platinum);border:1px solid var(--edge);padding:11px 20px;transition:border-color .4s,background .4s}
+.nav-cta:hover{border-color:#5b5d64;background:rgba(255,255,255,.03)}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg::before{ /* cold key light */
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(90% 60% at 68% 8%,rgba(150,168,185,.16),transparent 55%),
+    radial-gradient(70% 70% at 20% 100%,rgba(80,92,105,.14),transparent 60%),
+    linear-gradient(180deg,#0A0A0B 0%,#0C0C0F 50%,#0A0A0B 100%);
+}
+.hero-sheen{position:absolute;inset:-40%;background:conic-gradient(from 210deg at 70% 30%,transparent 0deg,rgba(180,196,208,.07) 40deg,transparent 90deg);animation:spin 34s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-fig{ /* placeholder athlete silhouette — swap for hero image/video */
+  position:absolute;right:0;bottom:0;top:0;width:52%;z-index:1;pointer-events:none;
+  background:linear-gradient(200deg,transparent 30%,rgba(20,22,26,.6) 70%,rgba(8,8,10,.9) 100%);
+  -webkit-mask:radial-gradient(60% 80% at 75% 60%,#000 20%,transparent 72%);
+  mask:radial-gradient(60% 80% at 75% 60%,#000 20%,transparent 72%);
+  opacity:.9;
+}
+.hero-fig::after{content:"ATHLETE / HERO VISUAL";position:absolute;right:8%;bottom:9%;font-size:9px;letter-spacing:.3em;color:var(--steel-dim)}
+.hero .wrap{position:relative;z-index:3;width:100%}
+.hero h1{font-size:clamp(3.1rem,10.4vw,8.3rem);margin:26px 0 0}
+.hero .l1{display:block;color:var(--platinum)}
+.hero .l2{display:block}
+.hero-sub{margin-top:34px;max-width:46ch;font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--silver)}
+.hero-cta{margin-top:44px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.hero-note{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--steel-dim)}
+.scroll-ind{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:12px}
+.scroll-ind span{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--steel)}
+.scroll-ind i{width:1px;height:56px;background:linear-gradient(var(--steel),transparent);position:relative;overflow:hidden}
+.scroll-ind i::after{content:"";position:absolute;top:-56px;left:0;width:1px;height:56px;background:linear-gradient(transparent,var(--platinum));animation:drop 2.4s var(--ease) infinite}
+@keyframes drop{0%{top:-56px}60%,100%{top:56px}}
+
+/* ============================================================
+   MANIFESTO
+   ============================================================ */
+.creed{text-align:center}
+.creed .lines{max-width:900px;margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.6vw,2.9rem);line-height:1.32;letter-spacing:-.01em;color:var(--silver);text-transform:none}
+.creed .lines p{margin:.2em 0}
+.creed .lines .accent{color:var(--platinum);font-style:italic}
+.creed .mark{margin-top:56px;font-family:var(--serif);font-size:clamp(2.4rem,7vw,4.6rem);letter-spacing:.14em;text-transform:uppercase}
+
+/* ============================================================
+   PILLARS / generic 2-col
+   ============================================================ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:48px}}
+.pill-copy h2{margin:22px 0 26px}
+.pill-copy .lead+.lead{margin-top:18px}
+
+/* mindset visual */
+.mind-vis{position:relative;aspect-ratio:4/5;border:1px solid var(--edge);background:
+  radial-gradient(80% 60% at 30% 20%,rgba(150,168,185,.12),transparent 60%),
+  linear-gradient(160deg,#121216,#0B0B0E);overflow:hidden}
+.mind-vis .ph{position:absolute;left:20px;bottom:18px;font-size:9px;letter-spacing:.3em;color:var(--steel-dim)}
+.mind-vis .grid-o{position:absolute;inset:0;background-image:linear-gradient(var(--edge) 1px,transparent 1px),linear-gradient(90deg,var(--edge) 1px,transparent 1px);background-size:44px 44px;opacity:.28;-webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent 78%);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent 78%)}
+.mind-vis .orb{position:absolute;top:16%;left:50%;transform:translateX(-50%);width:58%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(230,235,240,.5),rgba(120,130,142,.12) 45%,transparent 70%);filter:blur(2px);box-shadow:0 0 80px rgba(160,175,190,.14)}
+.mind-list{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:2px}
+.mind-list li{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--edge);align-items:baseline}
+.mind-list li:last-child{border-bottom:1px solid var(--edge)}
+.mind-list .k{font-family:var(--serif);font-size:15px;color:var(--steel);min-width:34px}
+.mind-list .t{color:var(--platinum);font-weight:600;letter-spacing:.01em}
+.mind-list .d{display:block;color:var(--steel);font-size:14.5px;margin-top:3px;font-weight:400}
+
+/* ============================================================
+   SOFTWARE
+   ============================================================ */
+.soft{background:linear-gradient(180deg,#0A0A0B,#0C0D10 50%,#0A0A0B)}
+.soft-head{max-width:640px}
+.soft-head h2{margin:22px 0 24px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:64px;background:var(--edge);border:1px solid var(--edge)}
+@media(max-width:820px){.feat{grid-template-columns:1fr}}
+.feat .cell{background:var(--carbon);padding:34px 30px;transition:background .5s}
+.feat .cell:hover{background:var(--graphite)}
+.feat .ic{width:26px;height:26px;margin-bottom:20px;color:var(--glow);opacity:.9}
+.feat .cell h3{font-size:15px;text-transform:none;letter-spacing:0;font-weight:700;color:var(--platinum);margin-bottom:9px}
+.feat .cell p{font-size:14.5px;color:var(--steel);line-height:1.6}
+
+/* dashboard mockup */
+.dash{margin-top:70px;border:1px solid var(--edge);background:linear-gradient(160deg,#101116,#0A0A0C);border-radius:6px;overflow:hidden;box-shadow:0 40px 120px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.02) inset;position:relative}
+.dash::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 50% at 50% 0%,rgba(184,196,208,.06),transparent 60%)}
+.dash-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--edge);background:rgba(255,255,255,.015)}
+.dash-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--edge)}
+.dash-bar .lbl{margin-left:14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--steel)}
+.dash-bar .live{margin-left:auto;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--glow);display:flex;align-items:center;gap:8px}
+.dash-bar .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px var(--glow);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.dash-body{display:grid;grid-template-columns:1.6fr 1fr;gap:1px;background:var(--edge)}
+@media(max-width:760px){.dash-body{grid-template-columns:1fr}}
+.dash-main,.dash-side{background:#0C0D11;padding:26px}
+.dash-metric{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:8px}
+.dash-metric .big{font-family:var(--sans);font-size:34px;font-weight:800;color:var(--platinum);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.dash-metric .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.dash-metric .delta{color:var(--glow);font-size:12px;font-weight:600}
+.chart{width:100%;height:150px;margin-top:6px}
+.chart .area{fill:url(#g);opacity:.5}
+.chart .line{fill:none;stroke:url(#stroke);stroke-width:1.6;stroke-linecap:round}
+.chart .dotEnd{fill:#fff}
+.chart-x{display:flex;justify-content:space-between;margin-top:10px}
+.chart-x span{font-size:9.5px;letter-spacing:.1em;color:var(--steel-dim)}
+.rings{display:flex;flex-direction:column;gap:22px}
+.ring{display:flex;align-items:center;gap:16px}
+.ring svg{flex:none}
+.ring .rt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+.ring .rv{font-size:19px;color:var(--platinum);font-weight:700;font-variant-numeric:tabular-nums}
+.sync{margin-top:26px;padding-top:22px;border-top:1px solid var(--edge)}
+.sync .sh{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--steel);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:11px;letter-spacing:.06em;color:var(--silver);border:1px solid var(--edge);padding:7px 11px;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.01)}
+.chip i{width:5px;height:5px;border-radius:50%;background:var(--glow);box-shadow:0 0 8px var(--glow)}
+.timeline{grid-column:1/-1;background:#0C0D11;padding:22px 26px;border-top:1px solid var(--edge)}
+.timeline .sh{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--steel);margin-bottom:16px}
+.tl{display:flex;gap:0;position:relative}
+.tl .node{flex:1;position:relative;padding-top:20px;text-align:center}
+.tl .node::before{content:"";position:absolute;top:6px;left:0;right:0;height:1px;background:var(--edge)}
+.tl .node b{position:absolute;top:2px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:#0C0D11;border:1px solid var(--steel)}
+.tl .node.on b{background:var(--glow);border-color:var(--glow);box-shadow:0 0 10px var(--glow)}
+.tl .node span{font-size:10px;color:var(--steel);letter-spacing:.06em}
+.tl .node.on span{color:var(--platinum)}
+
+/* ============================================================
+   PROOF
+   ============================================================ */
+.proof{background:linear-gradient(180deg,#0A0A0B,#0B0B0D)}
+.proof-head{text-align:center;max-width:680px;margin:0 auto}
+.proof-head h2{margin:22px 0}
+.ba{margin-top:64px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch}
+@media(max-width:880px){.ba{grid-template-columns:1fr}}
+.ba-slider{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--edge);cursor:ew-resize;user-select:none;background:#0B0B0D}
+.ba-pane{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ba-before{background:linear-gradient(160deg,#131317,#0A0A0C);}
+.ba-after{background:radial-gradient(70% 60% at 50% 34%,rgba(170,186,200,.16),transparent 62%),linear-gradient(160deg,#1a1c21,#0d0e11);clip-path:inset(0 0 0 50%)}
+.ba-pane .plabel{position:absolute;top:16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--steel)}
+.ba-before .plabel{left:16px}.ba-after .plabel{right:16px;color:var(--glow)}
+.ba-pane .ph{font-size:10px;letter-spacing:.24em;color:var(--steel-dim);text-transform:uppercase}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--platinum);z-index:4;box-shadow:0 0 18px rgba(184,196,208,.5)}
+.ba-handle::after{content:"⟺";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:1px solid var(--platinum);border-radius:50%;background:rgba(10,10,12,.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--platinum)}
+.ba-stage{position:relative;border:1px solid var(--edge);background:radial-gradient(80% 60% at 50% 25%,rgba(180,196,210,.14),transparent 60%),linear-gradient(160deg,#141519,#0A0A0C);display:flex;flex-direction:column;justify-content:flex-end;padding:34px;overflow:hidden}
+.ba-stage .spot{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:70%;aspect-ratio:1;background:radial-gradient(circle,rgba(200,212,224,.18),transparent 60%);pointer-events:none}
+.ba-stage .ph{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.3em;color:var(--steel-dim)}
+.ba-stage .name{font-family:var(--serif);font-size:26px;color:var(--platinum);text-transform:uppercase;letter-spacing:.08em}
+.ba-stage .div{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--glow);margin-top:6px}
+.ba-stage .quote{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--silver);margin-top:20px;line-height:1.5}
+.proof-note{text-align:center;margin-top:34px;font-size:12px;letter-spacing:.04em;color:var(--steel-dim);max-width:60ch;margin-left:auto;margin-right:auto}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:70px;background:var(--edge);border-block:1px solid var(--edge)}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--obsidian);padding:44px 28px;text-align:center}
+.stat .n{font-size:clamp(2.4rem,5vw,3.4rem);font-weight:800;color:var(--platinum);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.stat .n .chrome{font-weight:800}
+.stat .l{margin-top:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel)}
+
+/* ============================================================
+   METHOD
+   ============================================================ */
+.method-head{max-width:600px;margin-bottom:64px}
+.method-head h2{margin:22px 0}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:120px 1fr auto;gap:34px;padding:38px 0;border-top:1px solid var(--edge);align-items:start;transition:padding-left .5s var(--ease)}
+.step:last-child{border-bottom:1px solid var(--edge)}
+.step:hover{padding-left:12px}
+.step .num{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);color:var(--steel-dim);line-height:1}
+.step .num .chrome{font-weight:400}
+.step h3{text-transform:none;letter-spacing:-.01em;margin-bottom:10px}
+.step p{color:var(--steel);max-width:52ch;font-size:15.5px}
+.step .st{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel-dim);white-space:nowrap;padding-top:8px}
+@media(max-width:720px){.step{grid-template-columns:60px 1fr;gap:20px}.step .st{display:none}}
+
+/* ============================================================
+   EXCLUSIVITY BAND
+   ============================================================ */
+.band{text-align:center;background:
+  radial-gradient(60% 100% at 50% 0%,rgba(150,168,185,.1),transparent 60%),
+  linear-gradient(180deg,#0C0D10,#0A0A0B)}
+.band h2{font-size:clamp(1.9rem,4.6vw,3.4rem)}
+.band .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--steel);margin-top:22px}
+.band .spots{margin-top:44px;display:inline-flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);border:1px solid var(--edge);padding:14px 24px}
+.band .spots i{width:7px;height:7px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px var(--glow);animation:pulse 2s infinite}
+
+/* ============================================================
+   APPLICATION
+   ============================================================ */
+.apply{background:linear-gradient(180deg,#0A0A0B,#0C0C0F)}
+.apply-shell{max-width:760px;margin:0 auto}
+.apply-head{text-align:center;margin-bottom:12px}
+.apply-head h2{margin:22px 0 18px}
+.apply-head .lead{margin:0 auto;text-align:center}
+.form-card{margin-top:48px;border:1px solid var(--edge);background:var(--carbon);padding:clamp(28px,4vw,52px);position:relative}
+.progress{display:flex;gap:8px;margin-bottom:40px}
+.progress .seg{flex:1;height:2px;background:var(--edge);position:relative;overflow:hidden}
+.progress .seg::after{content:"";position:absolute;inset:0;background:var(--chrome);transform:translateX(-101%);transition:transform .6s var(--ease)}
+.progress .seg.done::after{transform:none}
+.fstep{display:none}
+.fstep.active{display:block;animation:fade .6s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.fstep .snum{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+.field{margin-bottom:24px}
+.field label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--silver);margin-bottom:11px}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--obsidian);border:1px solid var(--edge);color:var(--platinum);
+  font-family:var(--sans);font-size:15px;padding:15px 16px;transition:border-color .4s,box-shadow .4s;
+}
+.field textarea{resize:vertical;min-height:110px;line-height:1.55}
+.field input::placeholder,.field textarea::placeholder{color:var(--steel-dim)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(184,196,208,.1)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%237A7C84' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:16px}
+.form-nav .back{background:none;border:none;color:var(--steel);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:12px 0;transition:color .4s}
+.form-nav .back:hover{color:var(--platinum)}
+.form-nav .back[hidden]{visibility:hidden}
+.err{color:#d98a8a;font-size:12px;margin-top:8px;letter-spacing:.02em;display:none}
+.field.invalid .err{display:block}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#7a4a4a}
+.confirm{text-align:center;padding:20px 0;display:none}
+.confirm.show{display:block;animation:fade .7s var(--ease)}
+.confirm .mk{font-family:var(--serif);font-size:44px;color:var(--platinum);margin-bottom:18px}
+.confirm h3{text-transform:none;letter-spacing:-.01em;margin-bottom:14px;font-size:24px}
+.confirm p{color:var(--steel);max-width:44ch;margin:0 auto;line-height:1.7}
+
+/* ============================================================
+   FINAL CTA + FOOTER
+   ============================================================ */
+.final{text-align:center;background:radial-gradient(70% 100% at 50% 100%,rgba(150,168,185,.1),transparent 60%)}
+.final h2{font-size:clamp(2.6rem,8vw,6rem);margin-bottom:26px}
+.final p{color:var(--steel);margin-bottom:44px;font-family:var(--serif);font-style:italic;font-size:1.15rem}
+footer{border-top:1px solid var(--edge);padding:64px 0 48px}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.foot .fb{font-family:var(--serif);font-size:26px;letter-spacing:.32em;text-transform:uppercase;padding-left:.32em}
+.foot .tl2{font-family:var(--serif);font-style:italic;color:var(--steel);margin-top:10px;font-size:15px}
+.foot .cols{display:flex;gap:56px;flex-wrap:wrap}
+.foot .col h4{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--steel);margin-bottom:16px}
+.foot .col a{display:block;font-size:13px;color:var(--silver);margin-bottom:9px;transition:color .4s}
+.foot .col a:hover{color:var(--platinum)}
+.foot-btm{display:flex;justify-content:space-between;margin-top:56px;padding-top:26px;border-top:1px solid var(--edge);font-size:11px;letter-spacing:.1em;color:var(--steel-dim);flex-wrap:wrap;gap:12px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="cur-ring" id="cring"></div>
+<div class="cur-dot" id="cdot"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="brand"><span class="chrome">Vincere</span></a>
+  <div class="nav-links">
+    <a href="#creed">Creed</a>
+    <a href="#mindset">Mindset</a>
+    <a href="#software">Software</a>
+    <a href="#proof">Proof</a>
+    <a href="#apply" class="nav-cta" data-hot>Apply</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="hero-sheen"></div>
+  </div>
+  <div class="hero-fig"></div>
+  <div class="wrap">
+    <span class="eyebrow rv in">Elite Bodybuilding Coaching</span>
+    <h1>
+      <span class="l1 rv rv-d1 in">Champions aren't born.</span>
+      <span class="l2 chrome shimmer rv rv-d2 in">They're selected.</span>
+    </h1>
+    <p class="hero-sub rv rv-d3 in">Team Vincere is an application-only coaching house for the athletes who refuse to stay ordinary. The mindset. The science. The standard.</p>
+    <div class="hero-cta rv rv-d4 in">
+      <a href="#apply" class="btn btn-solid" data-hot>Apply for selection <span class="arw">→</span></a>
+      <span class="hero-note">Limited roster · Not everyone gets a reply</span>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>Scroll</span><i></i></div>
+</header>
+
+<!-- CREED -->
+<section class="creed pad" id="creed">
+  <div class="wrap">
+    <div class="lines">
+      <p class="rv">We were named for a single word.</p>
+      <p class="rv rv-d1"><span class="accent">Vincere.</span> To conquer.</p>
+      <p class="rv rv-d2">We do not sell programs. We forge outcomes.</p>
+      <p class="rv rv-d3">We do not chase clients. We choose athletes.</p>
+      <p class="rv rv-d4">If you came to be comfortable, you are in the wrong house.</p>
+    </div>
+    <div class="mark chrome rv rv-d2">Vincere</div>
+  </div>
+</section>
+
+<div class="divider wrap-full"></div>
+
+<!-- MINDSET -->
+<section class="pad" id="mindset">
+  <div class="wrap split">
+    <div class="pill-copy">
+      <span class="eyebrow rv">The head before the body</span>
+      <h2 class="rv rv-d1">The best mindset<br>team in the sport.</h2>
+      <p class="lead rv rv-d2">Every physique that has ever walked a stage was built twice — once in the mind, once under the bar. Most coaches only train the second. We built a dedicated mental-performance team for the first.</p>
+      <p class="lead rv rv-d3">Pressure. Identity. Discipline under fatigue. The psychology of stepping on stage and refusing to blink. This is the work nobody photographs — and the reason our athletes hold when others fold.</p>
+      <ul class="mind-list">
+        <li class="rv rv-d1"><span class="k">01</span><span><span class="t">Identity engineering</span><span class="d">Becoming the athlete before you look like them.</span></span></li>
+        <li class="rv rv-d2"><span class="k">02</span><span><span class="t">Pressure & stage psychology</span><span class="d">Composure when the lights and the stakes rise.</span></span></li>
+        <li class="rv rv-d3"><span class="k">03</span><span><span class="t">Discipline architecture</span><span class="d">Systems that hold when motivation doesn't.</span></span></li>
+      </ul>
+    </div>
+    <div class="mind-vis rv rv-d2">
+      <div class="grid-o"></div>
+      <div class="orb"></div>
+      <span class="ph">Mindset portrait — swap image</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOFTWARE -->
+<section class="soft pad" id="software">
+  <div class="wrap">
+    <div class="soft-head">
+      <span class="eyebrow rv">Proprietary · Built in-house</span>
+      <h2 class="rv rv-d1">Your entire<br>physique — as data.</h2>
+      <p class="lead rv rv-d2">We built our own training and check-in platform so nothing is left to guesswork. It reads from your body, not from a template — an advantage most coaches simply cannot offer.</p>
+    </div>
+
+    <div class="feat">
+      <div class="cell rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><h3>Training Engine</h3><p>Programming delivered, logged, and adjusted in real time against your output.</p></div>
+      <div class="cell rv rv-d1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><h3>Structured Check-Ins</h3><p>Weekly capture of metrics, photos, feedback, and adherence — in one place.</p></div>
+      <div class="cell rv rv-d2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-7-10a4 4 0 018-1 4 4 0 018 1c0 5.5-7 10-7 10z"/></svg><h3>Health Sync</h3><p>Apple Health &amp; Android Health pull sleep, steps, heart rate and recovery — automatically.</p></div>
+      <div class="cell rv"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg><h3>Full-Spectrum Analysis</h3><p>Body composition, nutrition, recovery and readiness — every variable, visualized.</p></div>
+      <div class="cell rv rv-d1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg><h3>Trend Intelligence</h3><p>See plateaus and momentum in the data before they ever show on stage.</p></div>
+      <div class="cell rv rv-d2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>One Command Center</h3><p>Training, nutrition, recovery and coaching — the whole prep on a single screen.</p></div>
+    </div>
+
+    <!-- DASHBOARD MOCKUP -->
+    <div class="dash rv rv-d1" aria-label="Team Vincere platform preview">
+      <div class="dash-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="lbl">Vincere OS — Athlete: Prep 14 of 20</span>
+        <span class="live">Syncing</span>
+      </div>
+      <div class="dash-body">
+        <div class="dash-main">
+          <div class="dash-metric">
+            <div><div class="tag">Body fat — 12-week trend</div><div class="big" data-count="8.4" data-suffix="%">0%</div></div>
+            <div class="delta">▼ 6.2% since intake</div>
+          </div>
+          <svg class="chart" viewBox="0 0 400 150" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8C4D0" stop-opacity=".35"/><stop offset="1" stop-color="#B8C4D0" stop-opacity="0"/></linearGradient>
+              <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6C6E76"/><stop offset="1" stop-color="#EDEFF2"/></linearGradient>
+            </defs>
+            <path class="area" d="M0,30 C40,34 60,55 100,62 C140,69 160,74 200,88 C240,101 260,108 300,118 C340,127 370,131 400,134 L400,150 L0,150 Z"/>
+            <path class="line" d="M0,30 C40,34 60,55 100,62 C140,69 160,74 200,88 C240,101 260,108 300,118 C340,127 370,131 400,134"/>
+            <circle class="dotEnd" cx="400" cy="134" r="3"/>
+          </svg>
+          <div class="chart-x"><span>WK 1</span><span>WK 4</span><span>WK 8</span><span>WK 12</span><span>NOW</span></div>
+        </div>
+        <div class="dash-side">
+          <div class="rings">
+            <div class="ring">
+              <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="19" fill="none" stroke="#26262B" stroke-width="4"/><circle cx="23" cy="23" r="19" fill="none" stroke="#B8C4D0" stroke-width="4" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="18" transform="rotate(-90 23 23)"/></svg>
+              <div><div class="rt">Recovery</div><div class="rv">86</div></div>
+            </div>
+            <div class="ring">
+              <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="19" fill="none" stroke="#26262B" stroke-width="4"/><circle cx="23" cy="23" r="19" fill="none" stroke="#EDEFF2" stroke-width="4" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="34" transform="rotate(-90 23 23)"/></svg>
+              <div><div class="rt">Readiness</div><div class="rv">71</div></div>
+            </div>
+            <div class="ring">
+              <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="19" fill="none" stroke="#26262B" stroke-width="4"/><circle cx="23" cy="23" r="19" fill="none" stroke="#8A9AA8" stroke-width="4" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="8" transform="rotate(-90 23 23)"/></svg>
+              <div><div class="rt">Adherence</div><div class="rv">94</div></div>
+            </div>
+          </div>
+          <div class="sync">
+            <div class="sh">Live health sync</div>
+            <div class="chips">
+              <span class="chip"><i></i>Sleep 7h48</span>
+              <span class="chip"><i></i>HRV 68ms</span>
+              <span class="chip"><i></i>Steps 11.2k</span>
+              <span class="chip"><i></i>RHR 51</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="sh">Check-in timeline</div>
+          <div class="tl">
+            <div class="node on"><b></b><span>Intake</span></div>
+            <div class="node on"><b></b><span>Wk 4</span></div>
+            <div class="node on"><b></b><span>Wk 8</span></div>
+            <div class="node on"><b></b><span>Wk 12</span></div>
+            <div class="node"><b></b><span>Peak</span></div>
+            <div class="node"><b></b><span>Stage</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="proof-note rv">Interface preview. Swap with real product screenshots as the platform ships.</p>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof pad" id="proof">
+  <div class="wrap">
+    <div class="proof-head">
+      <span class="eyebrow rv" style="justify-content:center">Results are the only argument</span>
+      <h2 class="rv rv-d1">This is what<br>conquering looks like.</h2>
+    </div>
+    <div class="ba">
+      <div class="ba-slider" id="baSlider">
+        <div class="ba-pane ba-before"><span class="plabel">Before</span><span class="ph">Before photo</span></div>
+        <div class="ba-pane ba-after" id="baAfter"><span class="plabel">After</span><span class="ph" style="margin-left:auto">After photo</span></div>
+        <div class="ba-handle" id="baHandle"></div>
+      </div>
+      <div class="ba-stage rv rv-d1">
+        <div class="spot"></div>
+        <span class="ph">On-stage photo — swap image</span>
+        <div class="name">The First</div>
+        <div class="div">Men's Physique · Debut Stage</div>
+        <p class="quote">"From the basement to the stage. One standard, kept — no matter what it cost."</p>
+      </div>
+    </div>
+    <p class="proof-note rv">One athlete. One true journey. This is the first name on the wall — and there is room reserved for the next.</p>
+
+    <div class="stats">
+      <div class="stat rv"><div class="n"><span data-count="1">0</span></div><div class="l">Athletes on the wall</div></div>
+      <div class="stat rv rv-d1"><div class="n"><span data-count="100" data-suffix="%">0</span></div><div class="l">Application reviewed personally</div></div>
+      <div class="stat rv rv-d2"><div class="n"><span class="chrome">∞</span></div><div class="l">Standard we hold you to</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="pad" id="method">
+  <div class="wrap">
+    <div class="method-head">
+      <span class="eyebrow rv">The path is narrow</span>
+      <h2 class="rv rv-d1">Selection, in<br>four movements.</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="num"><span class="chrome">01</span></div><div><h3>Apply</h3><p>Submit your application. Tell us who you are, what you're chasing, and why now. Honesty is the only entry requirement that can't be faked.</p></div><div class="st">You / Now</div></div>
+      <div class="step rv rv-d1"><div class="num"><span class="chrome">02</span></div><div><h3>Assessment</h3><p>We review every application ourselves. Most are not a fit, and we'll tell you plainly. This is not rejection — it's the standard protecting itself.</p></div><div class="st">Us / The filter</div></div>
+      <div class="step rv rv-d2"><div class="num"><span class="chrome">03</span></div><div><h3>Selection</h3><p>If accepted, you're onboarded into the Vincere platform and paired with your coaching and mindset team. The roster stays small on purpose.</p></div><div class="st">The house</div></div>
+      <div class="step rv rv-d3"><div class="num"><span class="chrome">04</span></div><div><h3>The Work</h3><p>Data-driven prep. Relentless standard. A championship trajectory measured in every variable that matters — and held to it, week after week.</p></div><div class="st">The trajectory</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXCLUSIVITY BAND -->
+<section class="band pad">
+  <div class="wrap">
+    <h2 class="rv">We keep the roster<br>small on purpose.</h2>
+    <p class="sub rv rv-d1">Attention is the product. It cannot be mass-produced.</p>
+    <div class="spots rv rv-d2"><i></i>Intake open — limited placements this cycle</div>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+<section class="apply pad" id="apply">
+  <div class="wrap apply-shell">
+    <div class="apply-head">
+      <span class="eyebrow rv" style="justify-content:center">By application only</span>
+      <h2 class="rv rv-d1">Begin your<br>application.</h2>
+      <p class="lead rv rv-d2">This is not a checkout. It's a filter. Answer honestly — it's the only version of you we can work with.</p>
+    </div>
+
+    <form class="form-card rv rv-d1" id="applyForm" novalidate>
+      <div class="progress" id="prog">
+        <div class="seg done"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="fstep active" data-step="1">
+        <div class="snum">01 — Who you are</div>
+        <div class="two">
+          <div class="field"><label>Full name</label><input type="text" name="name" placeholder="First and last" required /><span class="err">We need a name to address you by.</span></div>
+          <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required /><span class="err">Enter a valid email so we can reply.</span></div>
+        </div>
+        <div class="field"><label>Instagram / socials</label><input type="text" name="social" placeholder="@yourhandle" /><span class="err"></span></div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="fstep" data-step="2">
+        <div class="snum">02 — Where you stand</div>
+        <div class="two">
+          <div class="field"><label>Age</label><input type="number" name="age" min="16" max="80" placeholder="e.g. 24" required /><span class="err">Enter your age.</span></div>
+          <div class="field"><label>Years training</label><input type="number" name="years" min="0" max="50" placeholder="e.g. 4" required /><span class="err">Enter your training experience.</span></div>
+        </div>
+        <div class="field"><label>Have you competed?</label>
+          <select name="competed" required>
+            <option value="">Select one</option>
+            <option>No — this would be my first stage</option>
+            <option>Yes — Men's Physique</option>
+            <option>Yes — Classic Physique</option>
+            <option>Yes — Bodybuilding</option>
+            <option>Yes — Bikini / Wellness / Figure</option>
+            <option>Yes — other division</option>
+          </select><span class="err">Choose an option.</span>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="fstep" data-step="3">
+        <div class="snum">03 — The vision</div>
+        <div class="field"><label>What are you chasing — and by when?</label><textarea name="goal" placeholder="The stage. The pro card. The transformation. Be specific about the outcome and the timeline." required></textarea><span class="err">Tell us what you're chasing.</span></div>
+        <div class="two">
+          <div class="field"><label>Hours/week you can commit</label>
+            <select name="hours" required><option value="">Select</option><option>10–15</option><option>15–25</option><option>25+</option><option>Whatever it takes</option></select><span class="err">Choose an option.</span>
+          </div>
+          <div class="field"><label>Investment range</label>
+            <select name="budget" required><option value="">Select</option><option>Exploring options</option><option>Ready to invest</option><option>Whatever the standard costs</option></select><span class="err">Choose an option.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="fstep" data-step="4">
+        <div class="snum">04 — The gate</div>
+        <div class="field"><label>Why should Team Vincere select you?</label><textarea name="why" placeholder="Not why you want it. Why you'll earn it — when it stops being exciting and starts being work." required></textarea><span class="err">This is the one question that matters. Answer it.</span></div>
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="back" id="backBtn" hidden>← Back</button>
+        <button type="button" class="btn btn-solid" id="nextBtn" data-hot>Continue <span class="arw">→</span></button>
+      </div>
+    </form>
+
+    <div class="confirm" id="confirm">
+      <div class="mk chrome">Vincere</div>
+      <h3>Received.</h3>
+      <p>Every application is reviewed personally. If you're a fit, you'll hear from us. If you don't — respect the standard, and come back stronger. This is how it begins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final pad">
+  <div class="wrap">
+    <h2 class="rv"><span class="chrome shimmer">Ready to be selected?</span></h2>
+    <p class="rv rv-d1">Applications are reviewed personally. The standard starts now.</p>
+    <a href="#apply" class="btn btn-solid rv rv-d2" data-hot>Begin your application <span class="arw">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="fb"><span class="chrome">Vincere</span></div>
+        <div class="tl2">To conquer.</div>
+      </div>
+      <div class="cols">
+        <div class="col"><h4>House</h4><a href="#creed">Creed</a><a href="#mindset">Mindset team</a><a href="#software">The software</a><a href="#proof">Proof</a></div>
+        <div class="col"><h4>Selection</h4><a href="#method">The path</a><a href="#apply">Apply</a></div>
+        <div class="col"><h4>Contact</h4><a href="#">Instagram</a><a href="#">YouTube</a><a href="mailto:selection@teamvincere.com">selection@teamvincere.com</a></div>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span>© <span id="yr"></span> Team Vincere. By application only.</span>
+      <span>Vincere — To conquer.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* year */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* nav stuck */
+  var nav=document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('stuck', window.scrollY>40); }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* reveals */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv:not(.in)').forEach(function(el){ io.observe(el); });
+
+  /* count-up */
+  function countUp(el){
+    var target=parseFloat(el.getAttribute('data-count'));
+    var suffix=el.getAttribute('data-suffix')||'';
+    var dec=(target%1!==0)?1:0, start=null, dur=1600;
+    if(reduce){ el.textContent=target.toFixed(dec)+suffix; return; }
+    function step(t){ if(!start)start=t; var p=Math.min((t-start)/dur,1);
+      var e=1-Math.pow(1-p,3); el.textContent=(target*e).toFixed(dec)+suffix;
+      if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var cio=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target);} });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+
+  /* custom cursor */
+  if(!reduce && window.matchMedia('(hover:hover)').matches){
+    var dot=document.getElementById('cdot'), ring=document.getElementById('cring');
+    var rx=0,ry=0,mx=0,my=0;
+    window.addEventListener('mousemove',function(e){ mx=e.clientX;my=e.clientY;
+      dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)'; });
+    (function loop(){ rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+      ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button,[data-hot],.ba-slider').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ring.classList.add('hot');});
+      el.addEventListener('mouseleave',function(){ring.classList.remove('hot');});
+    });
+  }
+
+  /* before/after slider */
+  (function(){
+    var s=document.getElementById('baSlider'), after=document.getElementById('baAfter'), h=document.getElementById('baHandle');
+    if(!s)return; var drag=false;
+    function set(x){ var r=s.getBoundingClientRect(); var p=Math.max(0,Math.min(1,(x-r.left)/r.width));
+      var pct=p*100; after.style.clipPath='inset(0 0 0 '+pct+'%)'; h.style.left=pct+'%'; }
+    function down(e){ drag=true; set((e.touches?e.touches[0].clientX:e.clientX)); }
+    function move(e){ if(!drag)return; set((e.touches?e.touches[0].clientX:e.clientX)); if(e.cancelable)e.preventDefault(); }
+    function up(){ drag=false; }
+    s.addEventListener('mousedown',down); s.addEventListener('touchstart',down,{passive:true});
+    window.addEventListener('mousemove',move); window.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('mouseup',up); window.addEventListener('touchend',up);
+    s.addEventListener('mousemove',function(e){ if(!('ontouchstart' in window)) set(e.clientX); });
+  })();
+
+  /* multi-step form */
+  (function(){
+    var form=document.getElementById('applyForm'); if(!form)return;
+    var steps=form.querySelectorAll('.fstep'), segs=document.querySelectorAll('#prog .seg');
+    var nextBtn=document.getElementById('nextBtn'), backBtn=document.getElementById('backBtn');
+    var confirm=document.getElementById('confirm');
+    var cur=0, total=steps.length;
+    function paint(){
+      steps.forEach(function(s,i){ s.classList.toggle('active',i===cur); });
+      segs.forEach(function(s,i){ s.classList.toggle('done',i<=cur); });
+      backBtn.hidden = cur===0;
+      nextBtn.innerHTML = (cur===total-1) ? 'Submit application <span class="arw">→</span>' : 'Continue <span class="arw">→</span>';
+    }
+    function validate(){
+      var ok=true;
+      steps[cur].querySelectorAll('[required]').forEach(function(f){
+        var f2=f.closest('.field'); var v=(f.value||'').trim();
+        var bad = !v || (f.type==='email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+        if(f2){ f2.classList.toggle('invalid',bad); }
+        if(bad)ok=false;
+      });
+      return ok;
+    }
+    steps[cur] && steps[cur].querySelectorAll('input,select,textarea').forEach;
+    form.addEventListener('input',function(e){ var f=e.target.closest('.field'); if(f)f.classList.remove('invalid'); });
+    nextBtn.addEventListener('click',function(){
+      if(!validate())return;
+      if(cur<total-1){ cur++; paint(); form.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }
+      else{ form.style.display='none'; confirm.classList.add('show'); confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }
+    });
+    backBtn.addEventListener('click',function(){ if(cur>0){ cur--; paint(); } });
+    paint();
+  })();
+})();
+</script>
+</body>
+</html>

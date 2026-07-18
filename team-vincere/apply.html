@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apply — Team Vincere</title>
+<meta name="description" content="Apply for selection to Team Vincere. Application-only elite bodybuilding coaching. This is not a checkout. It's a filter." />
+<style>
+:root{
+  --obsidian:#0A0A0B;--carbon:#0F0F12;--edge:#26262B;--platinum:#F4F5F7;--silver:#C4C7CE;
+  --steel:#7A7C84;--steel-dim:#54565D;--glow:#B8C4D0;
+  --chrome:linear-gradient(150deg,#F2F3F5 0%,#B9BCC4 26%,#6C6E76 48%,#E4E6EA 68%,#84868E 88%,#D1D3D8 100%);
+  --serif:'Canela','Hoefler Text','Times New Roman',Georgia,serif;
+  --sans:'Helvetica Neue','Segoe UI',Roboto,Arial,sans-serif;--ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--obsidian);color:var(--silver);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 80% at 50% 20%,transparent 45%,rgba(0,0,0,.6) 100%)}
+.chrome{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:24px 32px;border-bottom:1px solid var(--edge)}
+.brand{font-family:var(--serif);font-size:22px;letter-spacing:.42em;text-transform:uppercase;padding-left:.42em}
+.top a.back{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);transition:color .4s}
+.top a.back:hover{color:var(--platinum)}
+main{position:relative;z-index:2;flex:1;display:flex;align-items:center;justify-content:center;padding:64px 24px}
+.shell{width:100%;max-width:720px}
+.head{text-align:center;margin-bottom:44px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--steel)}
+.head h1{font-family:var(--sans);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(2.2rem,6vw,3.6rem);color:var(--platinum);margin:20px 0 18px;line-height:1}
+.head p{color:var(--silver);max-width:48ch;margin:0 auto;font-size:1.05rem}
+.card{border:1px solid var(--edge);background:var(--carbon);padding:clamp(28px,4vw,52px)}
+.progress{display:flex;gap:8px;margin-bottom:40px}
+.seg{flex:1;height:2px;background:var(--edge);position:relative;overflow:hidden}
+.seg::after{content:"";position:absolute;inset:0;background:var(--chrome);transform:translateX(-101%);transition:transform .6s var(--ease)}
+.seg.done::after{transform:none}
+.fstep{display:none}.fstep.active{display:block;animation:fade .6s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.snum{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+.field{margin-bottom:24px}
+.field label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--silver);margin-bottom:11px}
+.field input,.field select,.field textarea{width:100%;background:var(--obsidian);border:1px solid var(--edge);color:var(--platinum);font-family:var(--sans);font-size:15px;padding:15px 16px;transition:border-color .4s,box-shadow .4s}
+.field textarea{resize:vertical;min-height:110px;line-height:1.55}
+.field input::placeholder,.field textarea::placeholder{color:var(--steel-dim)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(184,196,208,.1)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%237A7C84' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.err{color:#d98a8a;font-size:12px;margin-top:8px;display:none}
+.field.invalid .err{display:block}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#7a4a4a}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:16px}
+.back-btn{background:none;border:none;color:var(--steel);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:12px 0}
+.back-btn:hover{color:var(--platinum)}.back-btn[hidden]{visibility:hidden}
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:18px 32px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;overflow:hidden;background:var(--platinum);color:#0A0A0B;border:1px solid var(--platinum)}
+.btn .arw{transition:transform .5s var(--ease)}.btn:hover .arw{transform:translateX(6px)}
+.btn:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.confirm{text-align:center;display:none}.confirm.show{display:block;animation:fade .7s var(--ease)}
+.confirm .mk{font-family:var(--serif);font-size:44px;margin-bottom:18px}
+.confirm h2{font-family:var(--sans);font-weight:800;text-transform:uppercase;font-size:26px;color:var(--platinum);margin-bottom:14px}
+.confirm p{color:var(--steel);max-width:44ch;margin:0 auto;line-height:1.7}
+footer{position:relative;z-index:2;text-align:center;padding:32px;font-size:11px;letter-spacing:.1em;color:var(--steel-dim);border-top:1px solid var(--edge)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+<header class="top">
+  <a href="index.html" class="brand"><span class="chrome">Vincere</span></a>
+  <a href="index.html" class="back">← Return</a>
+</header>
+<main>
+  <div class="shell">
+    <div class="head">
+      <span class="eyebrow">By application only</span>
+      <h1>Apply for<br>selection.</h1>
+      <p>This is not a checkout. It's a filter. Answer honestly — it's the only version of you we can work with.</p>
+    </div>
+    <form class="card" id="applyForm" novalidate>
+      <div class="progress" id="prog"><div class="seg done"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+      <div class="fstep active" data-step="1">
+        <div class="snum">01 — Who you are</div>
+        <div class="two">
+          <div class="field"><label>Full name</label><input type="text" name="name" placeholder="First and last" required /><span class="err">We need a name to address you by.</span></div>
+          <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required /><span class="err">Enter a valid email so we can reply.</span></div>
+        </div>
+        <div class="field"><label>Instagram / socials</label><input type="text" name="social" placeholder="@yourhandle" /><span class="err"></span></div>
+      </div>
+      <div class="fstep" data-step="2">
+        <div class="snum">02 — Where you stand</div>
+        <div class="two">
+          <div class="field"><label>Age</label><input type="number" name="age" min="16" max="80" placeholder="e.g. 24" required /><span class="err">Enter your age.</span></div>
+          <div class="field"><label>Years training</label><input type="number" name="years" min="0" max="50" placeholder="e.g. 4" required /><span class="err">Enter your training experience.</span></div>
+        </div>
+        <div class="field"><label>Have you competed?</label>
+          <select name="competed" required><option value="">Select one</option><option>No — this would be my first stage</option><option>Yes — Men's Physique</option><option>Yes — Classic Physique</option><option>Yes — Bodybuilding</option><option>Yes — Bikini / Wellness / Figure</option><option>Yes — other division</option></select><span class="err">Choose an option.</span>
+        </div>
+      </div>
+      <div class="fstep" data-step="3">
+        <div class="snum">03 — The vision</div>
+        <div class="field"><label>What are you chasing — and by when?</label><textarea name="goal" placeholder="The stage. The pro card. The transformation. Be specific about the outcome and the timeline." required></textarea><span class="err">Tell us what you're chasing.</span></div>
+        <div class="two">
+          <div class="field"><label>Hours/week you can commit</label><select name="hours" required><option value="">Select</option><option>10–15</option><option>15–25</option><option>25+</option><option>Whatever it takes</option></select><span class="err">Choose an option.</span></div>
+          <div class="field"><label>Investment range</label><select name="budget" required><option value="">Select</option><option>Exploring options</option><option>Ready to invest</option><option>Whatever the standard costs</option></select><span class="err">Choose an option.</span></div>
+        </div>
+      </div>
+      <div class="fstep" data-step="4">
+        <div class="snum">04 — The gate</div>
+        <div class="field"><label>Why should Team Vincere select you?</label><textarea name="why" placeholder="Not why you want it. Why you'll earn it — when it stops being exciting and starts being work." required></textarea><span class="err">This is the one question that matters. Answer it.</span></div>
+      </div>
+      <div class="nav">
+        <button type="button" class="back-btn" id="backBtn" hidden>← Back</button>
+        <button type="button" class="btn" id="nextBtn">Continue <span class="arw">→</span></button>
+      </div>
+    </form>
+    <div class="confirm" id="confirm">
+      <div class="mk chrome">Vincere</div>
+      <h2>Received.</h2>
+      <p>Every application is reviewed personally. If you're a fit, you'll hear from us. If you don't — respect the standard, and come back stronger. This is how it begins.</p>
+    </div>
+  </div>
+</main>
+<footer>© <span id="yr"></span> Team Vincere — To conquer.</footer>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var form=document.getElementById('applyForm');
+  var steps=form.querySelectorAll('.fstep'), segs=document.querySelectorAll('#prog .seg');
+  var nextBtn=document.getElementById('nextBtn'), backBtn=document.getElementById('backBtn'), confirm=document.getElementById('confirm');
+  var cur=0,total=steps.length;
+  function paint(){
+    steps.forEach(function(s,i){s.classList.toggle('active',i===cur)});
+    segs.forEach(function(s,i){s.classList.toggle('done',i<=cur)});
+    backBtn.hidden=cur===0;
+    nextBtn.innerHTML=(cur===total-1)?'Submit application <span class="arw">→</span>':'Continue <span class="arw">→</span>';
+  }
+  function validate(){var ok=true;
+    steps[cur].querySelectorAll('[required]').forEach(function(f){
+      var f2=f.closest('.field'),v=(f.value||'').trim();
+      var bad=!v||(f.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+      if(f2)f2.classList.toggle('invalid',bad); if(bad)ok=false;
+    }); return ok;}
+  form.addEventListener('input',function(e){var f=e.target.closest('.field');if(f)f.classList.remove('invalid')});
+  nextBtn.addEventListener('click',function(){
+    if(!validate())return;
+    if(cur<total-1){cur++;paint();}
+    else{form.style.display='none';confirm.classList.add('show');confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}
+  });
+  backBtn.addEventListener('click',function(){if(cur>0){cur--;paint();}});
+  paint();
+})();
+</script>
+</body>
+</html>
