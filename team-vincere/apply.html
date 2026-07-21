@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Apply — Team Vincere</title>
+<title>Apply. Team Vincere</title>
 <meta name="description" content="Apply for selection to Team Vincere. Application-only elite bodybuilding coaching. This is not a checkout. It's a filter." />
 <style>
 :root{
@@ -75,39 +75,42 @@ footer{position:relative;z-index:2;text-align:center;padding:32px;font-size:11px
     <div class="head">
       <span class="eyebrow">By application only</span>
       <h1>Apply for<br>selection.</h1>
-      <p>This is not a checkout. It's a filter. Answer honestly — it's the only version of you we can work with.</p>
+      <p>This is not a checkout. It's a filter. Answer honestly. It's the only version of you I can work with.</p>
     </div>
     <form class="card" id="applyForm" novalidate>
       <div class="progress" id="prog"><div class="seg done"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
       <div class="fstep active" data-step="1">
-        <div class="snum">01 — Who you are</div>
+        <div class="snum">01 · Who you are</div>
         <div class="two">
-          <div class="field"><label>Full name</label><input type="text" name="name" placeholder="First and last" required /><span class="err">We need a name to address you by.</span></div>
-          <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required /><span class="err">Enter a valid email so we can reply.</span></div>
+          <div class="field"><label>Full name</label><input type="text" name="name" placeholder="First and last" required /><span class="err">I need a name to address you by.</span></div>
+          <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required /><span class="err">Enter a valid email so I can reply.</span></div>
         </div>
-        <div class="field"><label>Instagram / socials</label><input type="text" name="social" placeholder="@yourhandle" /><span class="err"></span></div>
+        <div class="two">
+          <div class="field"><label>Phone number</label><input type="tel" name="phone" placeholder="(000) 000-0000" required /><span class="err">Enter a phone number I can reach you on.</span></div>
+          <div class="field"><label>Instagram / socials</label><input type="text" name="social" placeholder="@yourhandle" /><span class="err"></span></div>
+        </div>
       </div>
       <div class="fstep" data-step="2">
-        <div class="snum">02 — Where you stand</div>
+        <div class="snum">02 · Where you stand</div>
         <div class="two">
           <div class="field"><label>Age</label><input type="number" name="age" min="16" max="80" placeholder="e.g. 24" required /><span class="err">Enter your age.</span></div>
           <div class="field"><label>Years training</label><input type="number" name="years" min="0" max="50" placeholder="e.g. 4" required /><span class="err">Enter your training experience.</span></div>
         </div>
         <div class="field"><label>Have you competed?</label>
-          <select name="competed" required><option value="">Select one</option><option>No — this would be my first stage</option><option>Yes — Men's Physique</option><option>Yes — Classic Physique</option><option>Yes — Bodybuilding</option><option>Yes — Bikini / Wellness / Figure</option><option>Yes — other division</option></select><span class="err">Choose an option.</span>
+          <select name="competed" required><option value="">Select one</option><option>No, this would be my first stage</option><option>Yes, Men's Physique</option><option>Yes, Classic Physique</option><option>Yes, Bodybuilding</option><option>Yes, Bikini / Wellness / Figure</option><option>Yes, other division</option></select><span class="err">Choose an option.</span>
         </div>
       </div>
       <div class="fstep" data-step="3">
-        <div class="snum">03 — The vision</div>
-        <div class="field"><label>What are you chasing — and by when?</label><textarea name="goal" placeholder="The stage. The pro card. The transformation. Be specific about the outcome and the timeline." required></textarea><span class="err">Tell us what you're chasing.</span></div>
+        <div class="snum">03 · The vision</div>
+        <div class="field"><label>What are you chasing, and by when?</label><textarea name="goal" placeholder="The stage. The pro card. The transformation. Be specific about the outcome and the timeline." required></textarea><span class="err">Tell me what you're chasing.</span></div>
         <div class="two">
-          <div class="field"><label>Hours/week you can commit</label><select name="hours" required><option value="">Select</option><option>10–15</option><option>15–25</option><option>25+</option><option>Whatever it takes</option></select><span class="err">Choose an option.</span></div>
+          <div class="field"><label>Hours/week you can commit</label><select name="hours" required><option value="">Select</option><option>10-15</option><option>15-25</option><option>25+</option><option>Whatever it takes</option></select><span class="err">Choose an option.</span></div>
           <div class="field"><label>Investment range</label><select name="budget" required><option value="">Select</option><option>Exploring options</option><option>Ready to invest</option><option>Whatever the standard costs</option></select><span class="err">Choose an option.</span></div>
         </div>
       </div>
       <div class="fstep" data-step="4">
-        <div class="snum">04 — The gate</div>
-        <div class="field"><label>Why should Team Vincere select you?</label><textarea name="why" placeholder="Not why you want it. Why you'll earn it — when it stops being exciting and starts being work." required></textarea><span class="err">This is the one question that matters. Answer it.</span></div>
+        <div class="snum">04 · The gate</div>
+        <div class="field"><label>Why should I select you?</label><textarea name="why" placeholder="Not why you want it. Why you'll earn it, when it stops being exciting and starts being work." required></textarea><span class="err">This is the one question that matters. Answer it.</span></div>
       </div>
       <div class="nav">
         <button type="button" class="back-btn" id="backBtn" hidden>← Back</button>
@@ -117,11 +120,11 @@ footer{position:relative;z-index:2;text-align:center;padding:32px;font-size:11px
     <div class="confirm" id="confirm">
       <div class="mk chrome">Vincere</div>
       <h2>Received.</h2>
-      <p>Every application is reviewed personally. If you're a fit, you'll hear from us. If you don't — respect the standard, and come back stronger. This is how it begins.</p>
+      <p>I review every application personally. If you're a fit, you'll hear from me. If you don't, respect the standard and come back stronger. This is how it begins.</p>
     </div>
   </div>
 </main>
-<footer>© <span id="yr"></span> Team Vincere — To conquer.</footer>
+<footer>© <span id="yr"></span> Team Vincere. To conquer.</footer>
 <script>
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
