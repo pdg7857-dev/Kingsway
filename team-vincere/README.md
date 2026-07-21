@@ -46,7 +46,11 @@ To swap any photo: drop a replacement at the same path (keep it a similar aspect
 
 **Still a hand-built mockup (not a photo):** the software dashboard (`.dash` block) — replace with real product screenshots as the platform ships.
 
-**Grow the wall:** the proof section features one athlete monumentally, with copy ("room reserved for the next") and structure that scale. Duplicate the `.stat` tiles and the stage/medal blocks as the roster grows. Update the athlete's real name in the `.ba-stage .name` ("The First" placeholder) and `selection@teamvincere.com` / social links in the footer.
+**Grow the wall:** the proof section features one athlete (Mark), with copy ("room reserved for the next") and structure that scale. Duplicate the stage/medal blocks as the roster grows, and update the Instagram / YouTube links in the footer.
+
+## Mark's testimonial video
+
+The testimonial section (right under the creed) is wired for a YouTube video (a vertical Short by default). To make it play: open `index.html`, find `var MARK_VIDEO = ""` in the `<script>`, and paste Mark's YouTube link or video ID between the quotes. Full URLs (`youtube.com/shorts/…`, `youtu.be/…`, `watch?v=…`) and bare 11-character IDs all work. Until a link is set, the section shows a "Video coming soon" poster. *(The video is a live YouTube embed, so it plays on the deployed site; it won't load inside the sandboxed artifact preview.)*
 
 ## Wire up the application form
 

@@ -180,6 +180,21 @@ section{position:relative}
 .creed .lines .accent{color:var(--platinum);font-style:italic}
 .creed .mark{margin-top:56px;font-family:var(--serif);font-size:clamp(2.4rem,7vw,4.6rem);letter-spacing:.14em;text-transform:uppercase}
 
+/* ---------- TESTIMONIAL / short video ---------- */
+.testi{text-align:center}
+.testi-h{margin:22px 0 14px}
+.testi-sub{color:var(--steel);font-family:var(--serif);font-style:italic;font-size:1.1rem;margin-bottom:46px}
+.short{position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:9/16;border:1px solid var(--edge);background:#0B0B0D;overflow:hidden;cursor:pointer}
+.short iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.short-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:radial-gradient(70% 45% at 50% 40%,rgba(150,168,185,.14),transparent 60%),linear-gradient(160deg,#141519,#0A0A0C);transition:background .5s}
+.short:hover .short-poster{background:radial-gradient(70% 45% at 50% 40%,rgba(150,168,185,.2),transparent 60%),linear-gradient(160deg,#17181d,#0A0A0C)}
+.short .play{width:64px;height:64px;border-radius:50%;border:1px solid var(--platinum);background:rgba(10,10,12,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;transition:transform .45s var(--ease),background .45s}
+.short:hover .play{transform:scale(1.08);background:rgba(255,255,255,.08)}
+.short .play::after{content:"";margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--platinum)}
+.short-t{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver)}
+.short-s{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel-dim)}
+.short:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+
 /* ============================================================
    PILLARS / generic 2-col
    ============================================================ */
@@ -290,7 +305,7 @@ section{position:relative}
 .proof-note{text-align:center;margin-top:34px;font-size:12px;letter-spacing:.04em;color:var(--steel-dim);max-width:60ch;margin-left:auto;margin-right:auto}
 
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:70px;background:var(--edge);border-block:1px solid var(--edge)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:70px;background:var(--edge);border-block:1px solid var(--edge)}
 @media(max-width:640px){.stats{grid-template-columns:1fr}}
 .stat{background:var(--obsidian);padding:44px 28px;text-align:center}
 .stat .n{font-size:clamp(2.4rem,5vw,3.4rem);font-weight:800;color:var(--platinum);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
@@ -419,10 +434,10 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       <span class="l1 rv rv-d1 in">Champions aren't born.</span>
       <span class="l2 chrome shimmer rv rv-d2 in">They're selected.</span>
     </h1>
-    <p class="hero-sub rv rv-d3 in">I run Team Vincere as an application-only coaching house for athletes who refuse to stay ordinary. The mindset. The science. The standard.</p>
+    <p class="hero-sub rv rv-d3 in">I run Team Vincere for the guys who want to conquer the stage. The mindset. The science. The standard.</p>
     <div class="hero-cta rv rv-d4 in">
       <a href="#apply" class="btn btn-solid" data-hot>Apply for selection <span class="arw">→</span></a>
-      <span class="hero-note">Limited roster · Not everyone gets a reply</span>
+      <span class="hero-note">Limited roster · By application only</span>
     </div>
   </div>
   <div class="scroll-ind"><span>Scroll</span><i></i></div>
@@ -442,6 +457,22 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   </div>
 </section>
 
+<!-- TESTIMONIAL -->
+<section class="pad testi" id="testimonial">
+  <div class="wrap">
+    <span class="eyebrow rv" style="justify-content:center">In his words</span>
+    <h2 class="rv rv-d1 testi-h">Straight from Mark.</h2>
+    <p class="testi-sub rv rv-d1">The work, in the words of the man who lived it.</p>
+    <div class="short rv rv-d1" id="ytShort" role="button" tabindex="0" aria-label="Play Mark's testimonial">
+      <div class="short-poster">
+        <span class="play" aria-hidden="true"></span>
+        <span class="short-t">Mark's testimonial</span>
+        <span class="short-s" id="shortNote">Coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="divider wrap-full"></div>
 
 <!-- MINDSET -->
@@ -449,8 +480,8 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   <div class="wrap split">
     <div class="pill-copy">
       <span class="eyebrow rv">The head before the body</span>
-      <h2 class="rv rv-d1">The best mindset<br>team in the sport.</h2>
-      <p class="lead rv rv-d2">Every physique that has ever walked a stage was built twice. Once in the mind, once under the bar. Most coaches only train the second. I built a dedicated mindset team for the first.</p>
+      <h2 class="rv rv-d1">I build the<br>mind first.</h2>
+      <p class="lead rv rv-d2">Every physique that has ever walked a stage was built twice. Once in the mind, once under the bar. Most coaches only train the second. I train both, and I start with the first.</p>
       <p class="lead rv rv-d3">Pressure. Identity. Discipline under fatigue. The psychology of stepping on stage and refusing to blink. This is the work nobody photographs, and the reason my athletes hold when others fold.</p>
       <ul class="mind-list">
         <li class="rv rv-d1"><span class="k">01</span><span><span class="t">Identity engineering</span><span class="d">Becoming the athlete before you look like them.</span></span></li>
@@ -565,19 +596,18 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
         <img src="assets/img/client-stage.jpg" alt="Team Vincere athlete posing on stage" />
         <div class="name">Mark</div>
         <div class="div">Natural Bodybuilding · Debut Stage</div>
-        <p class="quote">"From the basement to the stage. One standard, kept, no matter what it cost."</p>
+        <p class="quote">"One standard, kept. No matter what it cost."</p>
       </div>
     </div>
     <figure class="proof-medal rv rv-d1">
       <img src="assets/img/client-medal.jpg" alt="Mark with his medal beside me after his debut competition" />
-      <figcaption><b>First show. First hardware.</b>I coached Mark from the basement to the podium. 30 pounds down, stage-ready, and standing on the results. This is what the standard produces.</figcaption>
+      <figcaption><b>First show. First hardware.</b>I coached Mark all the way to the podium. 30 pounds down, stage-ready, and standing on the results. This is what the standard produces.</figcaption>
     </figure>
     <p class="proof-note rv">One athlete. One true journey. Mark is the first name on the wall, and there is room reserved for the next.</p>
 
     <div class="stats">
-      <div class="stat rv"><div class="n"><span data-count="1">0</span></div><div class="l">Athletes on the wall</div></div>
-      <div class="stat rv rv-d1"><div class="n"><span data-count="100" data-suffix="%">0</span></div><div class="l">Application reviewed personally</div></div>
-      <div class="stat rv rv-d2"><div class="n"><span class="chrome">∞</span></div><div class="l">Standard we hold you to</div></div>
+      <div class="stat rv"><div class="n"><span data-count="100" data-suffix="%">0</span></div><div class="l">Application reviewed personally</div></div>
+      <div class="stat rv rv-d1"><div class="n"><span class="chrome">∞</span></div><div class="l">The standard I hold you to</div></div>
     </div>
   </div>
 </section>
@@ -709,7 +739,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       <div class="cols">
         <div class="col"><h4>House</h4><a href="#creed">Creed</a><a href="#mindset">Mindset team</a><a href="#software">The software</a><a href="#proof">Proof</a></div>
         <div class="col"><h4>Selection</h4><a href="#method">The path</a><a href="#apply">Apply</a></div>
-        <div class="col"><h4>Contact</h4><a href="#">Instagram</a><a href="#">YouTube</a><a href="mailto:selection@teamvincere.com">selection@teamvincere.com</a></div>
+        <div class="col"><h4>Contact</h4><a href="#">Instagram</a><a href="#">YouTube</a></div>
       </div>
     </div>
     <div class="foot-btm">
@@ -815,6 +845,21 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     });
     backBtn.addEventListener('click',function(){ if(cur>0){ cur--; paint(); } });
     paint();
+  })();
+
+  /* youtube short testimonial */
+  (function(){
+    var MARK_VIDEO = ""; // <-- paste Mark's YouTube link or video ID here (e.g. "https://youtube.com/shorts/XXXXXXXXXXX")
+    var el=document.getElementById('ytShort'); if(!el)return;
+    function idFrom(s){ if(!s)return ""; s=String(s).trim();
+      var m=s.match(/(?:youtu\.be\/|shorts\/|embed\/|[?&]v=)([\w-]{11})/); if(m)return m[1];
+      if(/^[\w-]{11}$/.test(s))return s; return ""; }
+    var id=idFrom(MARK_VIDEO), note=document.getElementById('shortNote');
+    if(!id){ if(note)note.textContent='Video coming soon'; el.style.cursor='default'; el.removeAttribute('role'); el.removeAttribute('tabindex'); return; }
+    if(note)note.textContent='Tap to play';
+    function play(){ el.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="Mark testimonial" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'; }
+    el.addEventListener('click',play);
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); play(); } });
   })();
 })();
 </script>
