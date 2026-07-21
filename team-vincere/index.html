@@ -381,6 +381,7 @@ section{position:relative}
 .confirm .mk{font-family:var(--serif);font-size:44px;color:var(--platinum);margin-bottom:18px}
 .confirm h3{text-transform:none;letter-spacing:-.01em;margin-bottom:14px;font-size:24px}
 .confirm p{color:var(--steel);max-width:44ch;margin:0 auto;line-height:1.7}
+.confirm-cta{margin-top:32px}
 
 /* ============================================================
    FINAL CTA + FOOTER
@@ -398,6 +399,40 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
 .foot .col a:hover{color:var(--platinum)}
 .foot-btm{display:flex;justify-content:space-between;margin-top:56px;padding-top:26px;border-top:1px solid var(--edge);font-size:11px;letter-spacing:.1em;color:var(--steel-dim);flex-wrap:wrap;gap:12px}
 
+/* ---------- MOBILE ---------- */
+@media (max-width:880px){
+  .ba-stage{aspect-ratio:3/4}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .pad{padding:72px 0}
+  .nav{padding:15px 20px}
+  .nav.stuck{padding:12px 20px}
+  .brand{font-size:18px;letter-spacing:.26em;padding-left:.26em}
+  .nav-cta{padding:10px 15px;font-size:10px}
+  .eyebrow{letter-spacing:.24em;gap:10px}
+  .eyebrow::before{width:22px}
+  .hero{padding-top:92px}
+  .hero h1{font-size:clamp(2.65rem,12.5vw,4rem)}
+  .hero-sub{margin-top:26px}
+  .hero-cta{margin-top:34px;gap:16px}
+  .hero-cta .btn,.final .btn,.confirm-cta{width:100%;justify-content:center}
+  .btn{padding:17px 24px}
+  .creed .lines{font-size:clamp(1.28rem,6.2vw,2rem)}
+  .creed .mark{margin-top:40px}
+  .pill-copy h2{margin:18px 0 22px}
+  .feat .cell{padding:28px 24px}
+  .dash-metric{flex-direction:column;align-items:flex-start;gap:6px}
+  .dash-bar .lbl{font-size:9px;letter-spacing:.12em;margin-left:10px}
+  .dash-main,.dash-side,.timeline{padding:22px 18px}
+  .tl .node span{font-size:9px}
+  .step{padding:26px 0}
+  .step:hover{padding-left:0}
+  .band .spots{padding:12px 18px;letter-spacing:.16em}
+  .form-nav{gap:12px}
+  .testi-h,.method-head h2{margin-bottom:10px}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
@@ -518,14 +553,13 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     <div class="dash rv rv-d1" aria-label="Team Vincere platform preview">
       <div class="dash-bar">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="lbl">Vincere OS · Athlete: 28-week contest prep</span>
-        <span class="live">Live</span>
+        <span class="lbl">Vincere OS · Athlete: Contest prep, week 10</span>
       </div>
       <div class="dash-body">
         <div class="dash-main">
           <div class="dash-metric">
-            <div><div class="tag">Weight lost · 28-week trend</div><div class="big" data-count="30" data-suffix=" lb">0 lb</div></div>
-            <div class="delta">▼ from 161 lb at intake</div>
+            <div><div class="tag">Weight lost · 10-week trend</div><div class="big" data-count="12.4" data-suffix=" lb">0 lb</div></div>
+            <div class="delta">▼ from 197 lb at intake</div>
           </div>
           <svg class="chart" viewBox="0 0 400 150" preserveAspectRatio="none">
             <defs>
@@ -536,7 +570,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
             <path class="line" d="M0,30 C40,34 60,55 100,62 C140,69 160,74 200,88 C240,101 260,108 300,118 C340,127 370,131 400,134"/>
             <circle class="dotEnd" cx="400" cy="134" r="3"/>
           </svg>
-          <div class="chart-x"><span>WK 1</span><span>WK 7</span><span>WK 14</span><span>WK 21</span><span>WK 28</span></div>
+          <div class="chart-x"><span>WK 1</span><span>WK 3</span><span>WK 6</span><span>WK 8</span><span>WK 10</span></div>
         </div>
         <div class="dash-side">
           <div class="rings">
@@ -556,7 +590,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
           <div class="sync">
             <div class="sh">This week's check-in</div>
             <div class="chips">
-              <span class="chip"><i></i>Weight 131 lb</span>
+              <span class="chip"><i></i>Weight 184.6 lb</span>
               <span class="chip"><i></i>Calories 2,240</span>
               <span class="chip"><i></i>Steps target hit</span>
               <span class="chip"><i></i>4 photos logged</span>
@@ -566,12 +600,12 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
         <div class="timeline">
           <div class="sh">Weekly check-ins</div>
           <div class="tl">
-            <div class="node on"><b></b><span>Wk 23</span></div>
-            <div class="node on"><b></b><span>Wk 24</span></div>
-            <div class="node on"><b></b><span>Wk 25</span></div>
-            <div class="node on"><b></b><span>Wk 26</span></div>
-            <div class="node on"><b></b><span>Wk 27</span></div>
-            <div class="node on"><b></b><span>Wk 28</span></div>
+            <div class="node on"><b></b><span>Wk 5</span></div>
+            <div class="node on"><b></b><span>Wk 6</span></div>
+            <div class="node on"><b></b><span>Wk 7</span></div>
+            <div class="node on"><b></b><span>Wk 8</span></div>
+            <div class="node on"><b></b><span>Wk 9</span></div>
+            <div class="node on"><b></b><span>Wk 10</span></div>
           </div>
         </div>
       </div>
@@ -713,7 +747,8 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     <div class="confirm" id="confirm">
       <div class="mk chrome">Vincere</div>
       <h3>Received.</h3>
-      <p>I review every application personally. If you're a fit, you'll hear from me. If you don't, respect the standard and come back stronger. This is how it begins.</p>
+      <p>I review every application personally. Now send me a DM on Instagram letting me know you applied, so I can put a face to your name. This is how it begins.</p>
+      <a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener" class="btn btn-solid confirm-cta" data-hot>DM me @phildaveg_ <span class="arw">→</span></a>
     </div>
   </div>
 </section>
@@ -727,33 +762,14 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <div class="fb"><span class="chrome">Vincere</span></div>
-        <div class="tl2">To conquer.</div>
-      </div>
-      <div class="cols">
-        <div class="col"><h4>House</h4><a href="#creed">Creed</a><a href="#mindset">Mindset team</a><a href="#software">The software</a><a href="#proof">Proof</a></div>
-        <div class="col"><h4>Selection</h4><a href="#method">The path</a><a href="#apply">Apply</a></div>
-        <div class="col"><h4>Contact</h4><a href="#">Instagram</a><a href="#">YouTube</a></div>
-      </div>
-    </div>
-    <div class="foot-btm">
-      <span>© <span id="yr"></span> Team Vincere. By application only.</span>
-      <span>Vincere. To conquer.</span>
-    </div>
-  </div>
-</footer>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  /* year */
-  document.getElementById('yr').textContent = new Date().getFullYear();
+  /* year (footer removed; guard in case) */
+  var yrEl = document.getElementById('yr');
+  if (yrEl) yrEl.textContent = new Date().getFullYear();
 
   /* nav stuck */
   var nav=document.getElementById('nav');
