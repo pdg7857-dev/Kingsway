@@ -113,6 +113,7 @@ section{position:relative}
 .btn:hover .arw{transform:translateX(6px)}
 .btn-solid{background:var(--platinum);color:#0A0A0B;border-color:var(--platinum)}
 .btn-solid:hover{color:#0A0A0B}
+.cta-row{margin-top:clamp(48px,7vh,80px);display:flex;justify-content:center}
 .btn-solid::before{background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);background-size:250% 100%;background-position:200% 0}
 .btn:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
 
@@ -417,7 +418,8 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   .hero h1{font-size:clamp(2.65rem,12.5vw,4rem)}
   .hero-sub{margin-top:26px}
   .hero-cta{margin-top:34px;gap:16px}
-  .hero-cta .btn,.final .btn,.confirm-cta{width:100%;justify-content:center}
+  .hero-cta .btn,.final .btn,.confirm-cta,.cta-row .btn{width:100%;justify-content:center}
+  .cta-row{margin-top:48px}
   .btn{padding:17px 24px}
   .creed .lines{font-size:clamp(1.28rem,6.2vw,2rem)}
   .creed .mark{margin-top:40px}
@@ -482,7 +484,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
 <section class="creed pad" id="creed">
   <div class="wrap">
     <div class="lines">
-      <p class="rv">I named this house for a single word.</p>
+      <p class="rv">I named this team for a single word.</p>
       <p class="rv rv-d1"><span class="accent">Vincere.</span> To conquer.</p>
       <p class="rv rv-d2">I do not sell programs. I forge outcomes.</p>
       <p class="rv rv-d3">I do not chase clients. I choose athletes.</p>
@@ -611,6 +613,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       </div>
     </div>
     <p class="proof-note rv">Interface preview. Swap with real product screenshots as the platform ships.</p>
+    <div class="cta-row rv"><a href="#apply" class="btn btn-solid" data-hot>Put your data to work <span class="arw">→</span></a></div>
   </div>
 </section>
 
@@ -642,6 +645,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       <div class="stat rv"><div class="n"><span data-count="100" data-suffix="%">0</span></div><div class="l">Application reviewed personally</div></div>
       <div class="stat rv rv-d1"><div class="n"><span class="chrome">∞</span></div><div class="l">The standard I hold you to</div></div>
     </div>
+    <div class="cta-row rv"><a href="#apply" class="btn btn-solid" data-hot>Start your transformation <span class="arw">→</span></a></div>
   </div>
 </section>
 
@@ -655,9 +659,10 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     <div class="steps">
       <div class="step rv"><div class="num"><span class="chrome">01</span></div><div><h3>Apply</h3><p>Submit your application. Tell me who you are, what you're chasing, and why now. Honesty is the only entry requirement that can't be faked.</p></div><div class="st">You / Now</div></div>
       <div class="step rv rv-d1"><div class="num"><span class="chrome">02</span></div><div><h3>Assessment</h3><p>I review every application myself. If there's potential, we'll get on a call to see if you're a fit for Team Vincere. Not everyone is, and I'll tell you plainly.</p></div><div class="st">Me / The filter</div></div>
-      <div class="step rv rv-d2"><div class="num"><span class="chrome">03</span></div><div><h3>Selection</h3><p>If accepted, you're onboarded into my app and paired with me and the mindset team. The roster stays small on purpose.</p></div><div class="st">The house</div></div>
+      <div class="step rv rv-d2"><div class="num"><span class="chrome">03</span></div><div><h3>Selection</h3><p>If accepted, you're onboarded into my app and paired with me and the mindset team. The roster stays small on purpose.</p></div><div class="st">The team</div></div>
       <div class="step rv rv-d3"><div class="num"><span class="chrome">04</span></div><div><h3>The Work</h3><p>Data-driven prep. Relentless standard. A championship trajectory measured in every variable that matters, and held to it, week after week.</p></div><div class="st">The trajectory</div></div>
     </div>
+    <div class="cta-row rv"><a href="#apply" class="btn btn-solid" data-hot>Begin your application <span class="arw">→</span></a></div>
   </div>
 </section>
 
@@ -668,6 +673,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     <h2 class="rv">I keep the roster<br>small on purpose.</h2>
     <p class="sub rv rv-d1">Attention is the product. It cannot be mass-produced.</p>
     <div class="spots rv rv-d2"><i></i>Intake open · limited placements this cycle</div>
+    <div class="cta-row rv"><a href="#apply" class="btn btn-solid" data-hot>Claim your place <span class="arw">→</span></a></div>
   </div>
 </section>
 
