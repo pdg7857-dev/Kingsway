@@ -52,17 +52,39 @@ To swap any photo: drop a replacement at the same path (keep it a similar aspect
 
 The testimonial section (right under the creed) is wired for a YouTube video (a vertical Short by default). To make it play: open `index.html`, find `var MARK_VIDEO = ""` in the `<script>`, and paste Mark's YouTube link or video ID between the quotes. Full URLs (`youtube.com/shorts/…`, `youtu.be/…`, `watch?v=…`) and bare 11-character IDs all work. Until a link is set, the section shows a "Video coming soon" poster. *(The video is a live YouTube embed, so it plays on the deployed site; it won't load inside the sandboxed artifact preview.)*
 
-## Wire up the application form
+## Applications to a Google Sheet
 
-The form is front-end only — it validates and shows a prestige confirmation, but does **not** send anywhere yet. To capture submissions, point it at one of:
+Each submitted application is posted to a Google Sheet you own, where you can read, filter, and download it (as CSV or Excel) any time. No server to run. The applicant still gets the "DM me on Instagram" confirmation as the human touchpoint, so a submission never falls through the cracks.
 
-- A form service (Formspree, Basin, Getform) — set the `<form>` `action`/`method`.
-- Your own endpoint / serverless function — `fetch()` the field values on submit (see the submit handler in the `<script>`).
-- An email or CRM webhook.
+**One-time setup (about 5 minutes):**
 
-## Deploy
+1. Create a new **Google Sheet** (this becomes your applications database).
+2. In that sheet: **Extensions to Apps Script**. Delete any starter code, paste the contents of [`google-apps-script.gs`](./google-apps-script.gs), and **Save**.
+3. **Deploy to New deployment**. Choose type **Web app**:
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   - Click **Deploy**, authorize when prompted, and **copy the Web app URL** (it ends in `/exec`).
+4. Open `index.html`, find `var FORM_ENDPOINT = ""` in the `<script>`, and paste the URL between the quotes. Do the same in `apply.html` if you use that page.
+5. Commit and redeploy. Submit a test application and confirm a row lands in the sheet.
 
-Static — host on Vercel, Netlify, Cloudflare Pages, or GitHub Pages. Point the project root at `team-vincere/` (or move the two files to your web root). No environment variables, no database.
+Each row captures: timestamp, name, email, phone, Instagram, age, years training, competed, goal/timeline, training days, investment range, and why they should be selected. To download: in the sheet, **File to Download to CSV** (or Excel).
+
+Until `FORM_ENDPOINT` is set, the form still works and shows the confirmation, it just doesn't record anything.
+
+## Deploy to Vercel
+
+The site is static, so there's no build step.
+
+1. Push this repo to GitHub (already done if you're reading this on the branch).
+2. At [vercel.com](https://vercel.com), **Add New to Project**, import the repo.
+3. In the import settings:
+   - **Root Directory:** `team-vincere`
+   - **Framework Preset:** Other
+   - **Build Command:** leave empty
+   - **Output Directory:** leave as default (`.`)
+4. **Deploy.** Your site goes live at a `*.vercel.app` URL; add a custom domain in **Settings to Domains**.
+
+That's it, no environment variables, no database. (Set `FORM_ENDPOINT` and `MARK_VIDEO` before deploying so the live site has the sheet and video wired in.)
 
 ---
 

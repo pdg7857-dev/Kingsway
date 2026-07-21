@@ -848,12 +848,21 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       });
       return ok;
     }
-    steps[cur] && steps[cur].querySelectorAll('input,select,textarea').forEach;
+    /* Applications post to your Google Sheet. Paste your Apps Script Web App URL below (see README). */
+    var FORM_ENDPOINT = "";
+    function sendToSheet(){
+      if(!FORM_ENDPOINT) return;
+      try{
+        var fd=new FormData(form), data={};
+        fd.forEach(function(v,k){ data[k]=v; });
+        fetch(FORM_ENDPOINT,{method:"POST",body:JSON.stringify(data)}).catch(function(){});
+      }catch(e){}
+    }
     form.addEventListener('input',function(e){ var f=e.target.closest('.field'); if(f)f.classList.remove('invalid'); });
     nextBtn.addEventListener('click',function(){
       if(!validate())return;
       if(cur<total-1){ cur++; paint(); form.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }
-      else{ form.style.display='none'; confirm.classList.add('show'); confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }
+      else{ sendToSheet(); form.style.display='none'; confirm.classList.add('show'); confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}); }
     });
     backBtn.addEventListener('click',function(){ if(cur>0){ cur--; paint(); } });
     paint();

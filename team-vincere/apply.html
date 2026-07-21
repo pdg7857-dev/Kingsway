@@ -147,11 +147,18 @@ footer{position:relative;z-index:2;text-align:center;padding:32px;font-size:11px
       var bad=!v||(f.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
       if(f2)f2.classList.toggle('invalid',bad); if(bad)ok=false;
     }); return ok;}
+  /* Applications post to your Google Sheet. Paste your Apps Script Web App URL below (see README). */
+  var FORM_ENDPOINT = "";
+  function sendToSheet(){
+    if(!FORM_ENDPOINT) return;
+    try{ var fd=new FormData(form), data={}; fd.forEach(function(v,k){ data[k]=v; });
+      fetch(FORM_ENDPOINT,{method:"POST",body:JSON.stringify(data)}).catch(function(){}); }catch(e){}
+  }
   form.addEventListener('input',function(e){var f=e.target.closest('.field');if(f)f.classList.remove('invalid')});
   nextBtn.addEventListener('click',function(){
     if(!validate())return;
     if(cur<total-1){cur++;paint();}
-    else{form.style.display='none';confirm.classList.add('show');confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}
+    else{sendToSheet();form.style.display='none';confirm.classList.add('show');confirm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}
   });
   backBtn.addEventListener('click',function(){if(cur>0){cur--;paint();}});
   paint();
