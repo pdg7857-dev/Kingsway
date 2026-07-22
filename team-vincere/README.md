@@ -2,18 +2,46 @@
 
 > *Vincere.* To conquer. An application-only coaching house for elite bodybuilding.
 
-A hyper-exclusive, luxury dark-mood marketing site. Obsidian & brushed chrome, editorial serif paired with industrial uppercase sans, cinematic scroll. Built as **zero-dependency static HTML/CSS/JS** — no build step, no framework, opens instantly in any browser and deploys anywhere.
+A hyper-exclusive, luxury dark-mood **multi-page** marketing site. Obsidian & brushed chrome, editorial serif paired with industrial uppercase sans, cinematic scroll. Built as **zero-dependency static HTML/CSS/JS**: no build step, no framework, deploys anywhere.
 
-## Files
+## Structure
 
-| File | What it is |
+The site is multi-page, sharing one stylesheet and one script. The nav, footer, and free-ebook funnel (sticky tab + popup) are injected on every page by `assets/js/site.js`, so they stay in sync.
+
+| Page | What it is |
 |---|---|
-| `index.html` | The full landing page — hero, creed/manifesto, mindset team, software showcase (with live-feeling dashboard mockup), before/after proof, selection method, exclusivity band, and an inline multi-step application form. Fully self-contained. |
-| `apply.html` | A dedicated, focused `/apply` page (same design system) for a standalone application route. |
+| `index.html` | Home. Hero, credibility bar, creed, testimonial, the software/app showcase, before/after proof, a "three ways in" card row, an About teaser, and the free-ebook capture. |
+| `about.html` | Coach Phil Dave's full story, credentials, a photo gallery, and the creed. |
+| `coaching.html` | The offer, the **two tiers** (Vincere Standard / Vincere Elite), the mindset section, how selection works, and the FAQ. |
+| `programs.html` | Program cards: the free ebook, the 12-week guide, 1:1 coaching, and a coming-soon challenge. |
+| `shop.html` | Product cards: the guide, the ebook, plus coming-soon apparel and supplements. |
+| `articles.html` | Blog index scaffold with starter post cards (fill in real posts later). |
+| `ebook.html` | The free "Vincere Ebook" lead-magnet page. |
+| `guide.html` | The paid 12-Week Guide product page. |
+| `apply.html` | The multi-step application form. |
+| `assets/css/vincere.css` | The entire design system + components (shared by all pages). |
+| `assets/js/site.js` | Shared nav/footer/funnel injection, all behaviors, and the **CONFIG block** (see below). |
+
+## Configure it (one place)
+
+Open `assets/js/site.js` and set the three values at the top:
+
+```js
+var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + ebook leads)
+var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week Guide
+var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // testimonial
+```
+
+That's the only place these live now, and every page picks them up.
 
 ## View it
 
-Just open `index.html` in a browser. No install, no server needed.
+Because pages link each other, view it through a local server (opening a bare file breaks nav):
+```bash
+cd team-vincere
+python3 -m http.server 8080
+# open http://localhost:8080
+```
 
 Optional local server (nicer for testing):
 ```bash
@@ -50,7 +78,7 @@ To swap any photo: drop a replacement at the same path (keep it a similar aspect
 
 ## Mark's testimonial video
 
-The testimonial section (right under the creed) is wired for a YouTube video (a vertical Short by default). To make it play: open `index.html`, find `var MARK_VIDEO = ""` in the `<script>`, and paste Mark's YouTube link or video ID between the quotes. Full URLs (`youtube.com/shorts/…`, `youtu.be/…`, `watch?v=…`) and bare 11-character IDs all work. Until a link is set, the section shows a "Video coming soon" poster. *(The video is a live YouTube embed, so it plays on the deployed site; it won't load inside the sandboxed artifact preview.)*
+The testimonial section (on the home page) is wired for a YouTube video (a vertical Short by default). To make it play: open `assets/js/site.js`, find `var MARK_VIDEO` in the CONFIG block, and paste Mark's YouTube link or video ID between the quotes. Full URLs (`youtube.com/shorts/…`, `youtu.be/…`, `watch?v=…`) and bare 11-character IDs all work. Until a link is set, the section shows a "Video coming soon" poster. *(The video is a live YouTube embed, so it plays on the deployed site; it won't load inside the sandboxed artifact preview.)*
 
 ## Applications to a Google Sheet
 
@@ -64,7 +92,7 @@ Each submitted application is posted to a Google Sheet you own, where you can re
    - Execute as: **Me**
    - Who has access: **Anyone**
    - Click **Deploy**, authorize when prompted, and **copy the Web app URL** (it ends in `/exec`).
-4. Open `index.html`, find `var FORM_ENDPOINT = ""` near the top of the `<script>` (in the CONFIG block), and paste the URL between the quotes. (This one endpoint handles BOTH coaching applications and free-ebook leads.) Do the same in `apply.html` if you use that page.
+4. Open `assets/js/site.js`, find `var FORM_ENDPOINT = ""` in the CONFIG block at the top, and paste the URL between the quotes. This one endpoint handles BOTH coaching applications and free-ebook leads across every page.
 5. Commit and redeploy. Submit a test application and confirm a row lands in the sheet.
 
 The script auto-creates two tabs in your sheet: **Applications** (timestamp, name, email, phone, Instagram, age, years training, competed, goal/timeline, training days, investment, why) and **Leads** (timestamp, name, email, source) for the free-ebook opt-ins. To download either: **File to Download to CSV** (or Excel).
@@ -77,7 +105,7 @@ Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation,
 
 **The paid 12-Week Transformation Guide.** Sold via a Stripe Payment Link:
 1. Create the product as a **Payment Link** in your Stripe dashboard.
-2. Open `index.html`, find `var STRIPE_LINK = ""` in the CONFIG block, and paste your Payment Link URL. The "Buy" button activates automatically (until then it reads "Coming soon").
+2. Open `assets/js/site.js`, find `var STRIPE_LINK = ""` in the CONFIG block, and paste your Payment Link URL. Every "Buy the guide" button activates automatically (until then they read "Coming soon").
 3. The **price** shown on the page is `$97` in the `.guide-price` block, edit that if your price differs, and set the matching amount in Stripe.
 4. To deliver the PDF after purchase: in the Payment Link settings, turn on **"Don't show confirmation page"** off and set the confirmation/redirect to a download link, or enable Stripe's post-payment email with the file link.
 
