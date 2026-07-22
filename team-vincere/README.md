@@ -64,6 +64,9 @@ Real competition and transformation photos are wired in and optimized under `ass
 | File | Used in |
 |---|---|
 | `hero.jpg` | Hero background — coach on the spotlit stage |
+| `coaching-card.jpg` | Home "Train with me directly" feature card — in the gym |
+| `coach-bicep.jpg` | About gallery — front double-bicep on stage |
+| `podium.jpg` | About — the 2025 Atlantic Championships podium win |
 | `coach-front.jpg` | Mindset section — "led from the front" |
 | `before.jpg` / `after.jpg` | Proof — the 161→131 lb transformation (split from the composite, burned-in labels cropped, replaced with typographic labels) |
 | `client-stage.jpg` | Proof — athlete's debut stage pose |
