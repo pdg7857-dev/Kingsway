@@ -702,3 +702,9 @@ section{position:relative}
 .calc-app-link:hover{color:var(--silver)}
 .calc-disc{color:var(--steel-dim);font-size:12px;line-height:1.6;margin-top:22px}
 .modal-done{display:none}.modal-done.show{display:block}
+
+/* book-cover variant of the small "ways" card (shows the actual cover) */
+.way-book{flex-direction:row;padding:0;gap:0;overflow:hidden}
+.way-book .book-cover{width:42%;max-width:158px;object-fit:cover;object-position:50% 50%;align-self:stretch;border-right:1px solid var(--edge)}
+.way-book .way-body{padding:22px 24px;justify-content:center;gap:9px}
+@media(max-width:820px){.way-book .book-cover{max-width:140px}}
