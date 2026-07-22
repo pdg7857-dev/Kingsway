@@ -8,10 +8,15 @@
  *        - Execute as:      Me
  *        - Who has access:  Anyone
  *      Deploy, authorize, and COPY the Web app URL (it ends in /exec).
- *   4. Paste that URL into  var FORM_ENDPOINT = "..."  in index.html
- *      (and apply.html if you use it).
+ *   4. Paste that URL into  var FORM_ENDPOINT = "..."  in
+ *      assets/js/site.js  (the CONFIG block at the very top).
  *   5. Redeploy the site. Submissions append as rows. Download any time
  *      via  File > Download > CSV (or Microsoft Excel).
+ *
+ * Two tabs are auto-created:
+ *   Applications  - coaching form (apply.html)
+ *   Leads         - free-guide opt-ins, with a Source column so you can see
+ *                   where each came from (Free guide, calculator, popup, etc.)
  * ------------------------------------------------------------------
  */
 
@@ -23,12 +28,12 @@ function doPost(e) {
     var d = JSON.parse(e.postData.contents);
 
     if (d.type === 'lead') {
-      // Free-ebook lead -> "Leads" tab
+      // Free-guide lead -> "Leads" tab
       var leads = ss.getSheetByName('Leads') || ss.insertSheet('Leads');
       if (leads.getLastRow() === 0) {
         leads.appendRow(['Timestamp', 'Name', 'Email', 'Source']);
       }
-      leads.appendRow([new Date(), d.name || '', d.email || '', 'Vincere Ebook']);
+      leads.appendRow([new Date(), d.name || '', d.email || '', d.source || 'Free guide']);
     } else {
       // Coaching application -> "Applications" tab
       var apps = ss.getSheetByName('Applications') || ss.insertSheet('Applications');

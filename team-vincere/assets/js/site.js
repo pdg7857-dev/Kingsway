@@ -3,10 +3,14 @@
    CONFIG: set these three, then you're live.
    ============================================================ */
 (function(){
-  var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + ebook leads)
-  var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week Guide
+  var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + leads)
+  var STRIPE_LINK   = "https://buy.stripe.com/5kQ3cwcn06vwaSp9WRgw000";  // 12-Week program ($97)
   var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // Mark's testimonial
-  var APP_LINK      = "";  // your Vincere app URL (login/signup) for "track it in the app" CTAs
+  var APP_LINK      = "";  // your Vincere app URL (login/signup) for "join / track in the app" CTAs
+  // Coaching (Vincere Standard) Stripe Payment Links, by term:
+  var STRIPE_MONTHLY = "https://buy.stripe.com/7sY6oIfzc6vw0dLb0Vgw001";  // $450 / month
+  var STRIPE_6MONTH  = "https://buy.stripe.com/6oUfZibiW8DE1hP3ytgw002";  // $2,500 / 6 months
+  var STRIPE_YEARLY  = "https://buy.stripe.com/dRm7sM3Qu0781hP4Cxgw003";  // $4,200 / 12 months
   window.VINCERE_FORM_ENDPOINT = FORM_ENDPOINT;  // exposed so standalone pages (calculator) can post leads
   window.VINCERE_APP_LINK = APP_LINK;
 
