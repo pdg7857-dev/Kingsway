@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Welcome to Team Vincere.</title>
-<meta name="description" content="Payment received. Your next step: join the Vincere app and get set up." />
+<meta name="description" content="Payment received. Tell me about you, then create your app account." />
 <meta name="theme-color" content="#0A0A0B" />
 <meta name="robots" content="noindex" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -18,49 +18,103 @@
   <div class="wrap">
     <span class="eyebrow rv in">Payment received</span>
     <h1 class="rv rv-d1 in">You're in.<br>Welcome.</h1>
-    <p class="ph-sub rv rv-d2 in">You just bought The Vincere Daily 12-Week Transformation. Here's exactly what happens next so we can get you started right away.</p>
+    <p class="ph-sub rv rv-d2 in">You just secured <span id="productName">your spot</span>. Two quick steps and I'll have you set up, so let's get the details I need to coach you right.</p>
   </div>
 </header>
 
 <section class="pad" style="padding-top:0">
   <div class="wrap" style="max-width:820px">
     <ol class="next-steps">
+      <!-- STEP 1: intake note -->
       <li class="ns rv">
         <span class="ns-n">01</span>
         <div class="ns-body">
-          <h3>Join the Vincere app</h3>
-          <p>This is where you live for the next twelve weeks. Your program, your check-ins, and your tracking all run here. Join now and I'll get you set up.</p>
-          <a href="apply.html" class="btn btn-solid" id="joinAppBtn" data-hot>Join the app <span class="arw">&rarr;</span></a>
-          <p class="ns-alt" id="joinAppAlt" hidden>Watch your email. I'll send your invite and get you set up within 24 hours.</p>
+          <h3>Tell me about you</h3>
+          <p>This is how I build your plan properly instead of guessing. Takes a minute, and it's the difference between a generic program and one built for you.</p>
+          <form id="intakeForm" class="intake-form" novalidate>
+            <div class="if-row">
+              <div class="field"><label>First name</label><input type="text" name="name" required /></div>
+              <div class="field"><label>Email</label><input type="email" name="email" required /></div>
+            </div>
+            <div class="if-row">
+              <div class="field"><label>Instagram <span class="lbl-note">so I can reach you</span></label><input type="text" name="social" placeholder="@yourhandle" /></div>
+              <div class="field"><label>Experience</label>
+                <select name="experience">
+                  <option value="New to training">New to training</option>
+                  <option value="Training, never competed" selected>Been training, never competed</option>
+                  <option value="First prep coming up">Training, first prep coming up</option>
+                  <option value="Competed before">Competed before</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label>What are you chasing? <span class="lbl-note">your goal and any timeline</span></label><input type="text" name="goal" placeholder="e.g. first show in spring, drop to 12% and hold" required /></div>
+            <div class="field"><label>Anything I should know? <span class="lbl-note">injuries, schedule, foods you hate, the works</span></label><textarea name="note" rows="3" placeholder="Give me the full picture."></textarea></div>
+            <input type="hidden" name="product" id="productField" value="" />
+            <button type="submit" class="btn btn-solid" data-hot>Send it to my coach <span class="arw">&rarr;</span></button>
+            <span class="intake-err" id="intakeErr"></span>
+          </form>
+          <div class="intake-done" id="intakeDone" hidden>
+            <p style="color:var(--silver)">Got it. I'll have everything I need to build your plan. Now the last step 👇</p>
+          </div>
         </div>
       </li>
-      <li class="ns rv rv-d1">
+
+      <!-- STEP 2: app signup (revealed after intake) -->
+      <li class="ns rv rv-d1 step-locked" id="appStep">
         <span class="ns-n">02</span>
         <div class="ns-body">
-          <h3>I build your plan</h3>
-          <p>Once you're in, I set up your full 12-week system personally: your numbers, your nutrition, your training, and your cardio, all loaded and ready.</p>
+          <h3>Create your app account</h3>
+          <p>This is where you live for the next twelve weeks: your program, your check-ins, and your tracking. Create your account and I'll load everything up.</p>
+          <a href="#" class="btn btn-solid" id="joinAppBtn" data-hot>Create my account <span class="arw">&rarr;</span></a>
+          <p class="ns-alt" id="joinAppAlt" hidden>Watch your email. I'll send your app invite and get you set up within 24 hours.</p>
         </div>
       </li>
+
+      <!-- STEP 3: IG -->
       <li class="ns rv rv-d2">
         <span class="ns-n">03</span>
         <div class="ns-body">
           <h3>Message me on Instagram</h3>
-          <p>Send me a DM at <a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener" class="ns-ig">@phildaveg_</a> so I know you're in. Tell me your goal and we'll hit the ground running.</p>
+          <p>Send me a DM at <a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener" class="ns-ig">@phildaveg_</a> so I know you're in. We'll hit the ground running.</p>
           <a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener" class="btn btn-ghost" data-hot>Message me <span class="arw">&rarr;</span></a>
         </div>
       </li>
     </ol>
-    <p class="ns-fine rv">A receipt is on its way to your email from Stripe. Any trouble getting in? DM me and I'll sort it out fast.</p>
+    <p class="ns-fine rv">A receipt is on its way from Stripe. Any trouble getting in? DM me and I'll sort it out fast.</p>
   </div>
 </section>
 
 <script src="assets/js/site.js"></script>
 <script>
 (function(){
-  /* when APP_LINK is set in site.js, point the join button at the app; otherwise show the email-invite note */
+  /* which product did they buy? set the Stripe redirect to welcome.html?plan=guide (or monthly/6month/yearly) */
+  var PLANS={guide:'The Vincere Daily 12-Week Transformation',monthly:'Coaching · Monthly','6month':'Coaching · 6 months',yearly:'Coaching · 12 months'};
+  var plan=new URLSearchParams(location.search).get('plan');
+  var product=PLANS[plan]||'your program';
+  document.getElementById('productField').value=(PLANS[plan]||'Team Vincere');
+  if(PLANS[plan]) document.getElementById('productName').textContent=PLANS[plan];
+
   var btn=document.getElementById('joinAppBtn'), alt=document.getElementById('joinAppAlt');
   if(window.VINCERE_APP_LINK){ btn.href=window.VINCERE_APP_LINK; btn.target='_blank'; btn.rel='noopener'; }
   else { btn.style.display='none'; alt.removeAttribute('hidden'); }
+
+  /* intake note -> Google Sheet "Clients" tab, then unlock the app step */
+  var form=document.getElementById('intakeForm');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=document.getElementById('intakeErr'); err.textContent='';
+    var name=form.name.value.trim(), email=form.email.value.trim(), goal=form.goal.value.trim();
+    if(!name){ err.textContent='Enter your first name.'; return; }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent='Enter a valid email.'; return; }
+    if(!goal){ err.textContent='Tell me what you’re chasing.'; return; }
+    var ep=window.VINCERE_FORM_ENDPOINT||'';
+    if(ep){ try{ var fd=new FormData(form), data={type:'intake'}; fd.forEach(function(v,k){ data[k]=v; });
+      fetch(ep,{method:'POST',body:JSON.stringify(data)}).catch(function(){}); }catch(x){} }
+    form.style.display='none';
+    document.getElementById('intakeDone').removeAttribute('hidden');
+    var step=document.getElementById('appStep'); step.classList.remove('step-locked');
+    step.scrollIntoView({behavior:'smooth',block:'center'});
+  });
 })();
 </script>
 </body>

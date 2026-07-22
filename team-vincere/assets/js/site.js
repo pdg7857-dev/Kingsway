@@ -222,6 +222,8 @@
 
     var isEbookPage = (page==='ebook');
     var hasInlineForm = !!document.getElementById('ebookForm');
+    /* pages where the free-guide funnel is inappropriate (already converting / just paid) */
+    var funnelOff = (page==='welcome' || page==='apply');
 
     /* sticky tab: scroll to the on-page form if there is one, else open the popup */
     fab.addEventListener('click',function(){
@@ -231,8 +233,8 @@
       else{ modal.classList.add('show'); }
     });
 
-    /* sticky bar. mobile: always visible from load. desktop: slides in on scroll. skipped on the dedicated ebook page. */
-    if(!isEbookPage){
+    /* sticky bar. mobile: always visible from load. desktop: slides in on scroll. skipped on the ebook/checkout pages. */
+    if(!isEbookPage && !funnelOff){
       var mqMobile=window.matchMedia('(max-width:600px)');
       function syncFab(){ if(isLead()){ hideFab(); return; } if(mqMobile.matches || window.scrollY>window.innerHeight*0.6) showFab(); else hideFab(); }
       syncFab();
@@ -241,7 +243,7 @@
     }
 
     /* timed popup, once per session, not if already a lead, only on pages without an inline form */
-    if(!isLead() && !hasInlineForm){
+    if(!isLead() && !hasInlineForm && !funnelOff){
       var shown=false; try{ if(sessionStorage.getItem('vincerePopup')==='1') shown=true; }catch(e){}
       function openModal(){ if(shown||isLead())return; shown=true; try{sessionStorage.setItem('vincerePopup','1');}catch(e){} modal.classList.add('show'); }
       setTimeout(openModal, 24000);

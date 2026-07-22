@@ -724,3 +724,16 @@ section{position:relative}
 .ns-ig{color:var(--platinum);border-bottom:1px solid var(--edge)}
 .ns-fine{color:var(--steel);font-size:13px;margin-top:26px;text-align:center}
 @media(max-width:560px){.ns{flex-direction:column;gap:10px;padding:24px}}
+
+/* ---------- WELCOME INTAKE ---------- */
+.intake-form .if-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.intake-form .if-row{grid-template-columns:1fr;gap:0}}
+.intake-form .field{margin-bottom:16px}
+.intake-form textarea{width:100%;background:var(--obsidian);border:1px solid var(--edge);color:var(--platinum);font-family:var(--sans);font-size:15px;padding:14px 15px;resize:vertical;line-height:1.55}
+.intake-form textarea:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(184,196,208,.1)}
+.intake-form .lbl-note{color:var(--steel);letter-spacing:.06em;text-transform:none;font-size:11px}
+.intake-form .btn{margin-top:4px}
+.intake-err{display:block;color:#c98b8b;font-size:13px;min-height:16px;margin-top:10px}
+.intake-done p{padding:6px 0}
+/* step 2 stays dimmed until the intake note is sent */
+.step-locked{opacity:.4!important;transform:none!important;filter:grayscale(.4);pointer-events:none;transition:opacity .5s,filter .5s}

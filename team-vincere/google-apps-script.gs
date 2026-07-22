@@ -34,6 +34,16 @@ function doPost(e) {
         leads.appendRow(['Timestamp', 'Name', 'Email', 'Source']);
       }
       leads.appendRow([new Date(), d.name || '', d.email || '', d.source || 'Free guide']);
+    } else if (d.type === 'intake') {
+      // Post-purchase client intake -> "Clients" tab (your coaching note)
+      var clients = ss.getSheetByName('Clients') || ss.insertSheet('Clients');
+      if (clients.getLastRow() === 0) {
+        clients.appendRow(['Timestamp', 'Product', 'Name', 'Email', 'Instagram', 'Goal', 'Experience', 'Note for coach']);
+      }
+      clients.appendRow([
+        new Date(), d.product || '', d.name || '', d.email || '', d.social || '',
+        d.goal || '', d.experience || '', d.note || ''
+      ]);
     } else {
       // Coaching application -> "Applications" tab
       var apps = ss.getSheetByName('Applications') || ss.insertSheet('Applications');
