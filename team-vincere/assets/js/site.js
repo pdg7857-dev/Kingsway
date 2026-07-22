@@ -72,21 +72,21 @@
   }
 
   /* ---------- inject ebook sticky tab + popup (every page) ---------- */
-  var fab = el('<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Ebook">Free Ebook <span class="fab-arw">&darr;</span></button>');
+  var fab = el('<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Training Guide">Free Guide <span class="fab-arw">&darr;</span></button>');
   document.body.appendChild(fab);
   var modal = el(
     '<div class="ebook-modal" id="ebookModal" aria-hidden="true"><div class="ebook-modal-inner">'+
       '<button class="ebook-modal-close" id="ebookModalClose" aria-label="Close">&times;</button>'+
       '<span class="eyebrow">Free download</span>'+
-      '<h3>The Vincere Daily Ebook.</h3>'+
-      '<p>Nutrition, supplements, and training styles in one guide. Building now. Get on the list and it lands in your inbox free.</p>'+
+      '<h3>The Vincere Training Guide.</h3>'+
+      '<p>My coaching philosophy in one guide: training, nutrition, cardio, and mindset. Drop your email and it is yours, free.</p>'+
       '<form id="ebookModalForm" novalidate>'+
         '<input type="text" name="name" placeholder="First name" required />'+
         '<input type="email" name="email" placeholder="Your best email" required />'+
-        '<button type="submit" class="btn btn-solid" data-hot>Get it first <span class="arw">&rarr;</span></button>'+
+        '<button type="submit" class="btn btn-solid" data-hot>Send it to me <span class="arw">&rarr;</span></button>'+
         '<span class="ebook-err"></span>'+
       '</form>'+
-      '<div class="modal-done" id="ebookModalDone"><p style="color:var(--silver);text-align:center;padding:8px 0 2px">You are on the list. It lands in your inbox the moment it drops.</p></div>'+
+      '<div class="modal-done" id="ebookModalDone"><p style="color:var(--silver);text-align:center;padding:8px 0 14px">It is yours. Tap below to download it.</p><a class="btn btn-solid" href="assets/the-vincere-training-guide.pdf" download style="width:100%;justify-content:center">Download the guide <span class="arw">&rarr;</span></a></div>'+
     '</div></div>'
   );
   document.body.appendChild(modal);
