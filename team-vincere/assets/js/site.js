@@ -76,15 +76,15 @@
     '<div class="ebook-modal" id="ebookModal" aria-hidden="true"><div class="ebook-modal-inner">'+
       '<button class="ebook-modal-close" id="ebookModalClose" aria-label="Close">&times;</button>'+
       '<span class="eyebrow">Free download</span>'+
-      '<h3>The Vincere Ebook.</h3>'+
-      '<p>My exact framework for building a stage-ready physique. Training, nutrition, and the mindset that separates the ones who make it. Free.</p>'+
+      '<h3>The Vincere Daily Ebook.</h3>'+
+      '<p>Nutrition, supplements, and training styles in one guide. Building now. Get on the list and it lands in your inbox free.</p>'+
       '<form id="ebookModalForm" novalidate>'+
         '<input type="text" name="name" placeholder="First name" required />'+
         '<input type="email" name="email" placeholder="Your best email" required />'+
-        '<button type="submit" class="btn btn-solid" data-hot>Send it to me <span class="arw">&rarr;</span></button>'+
+        '<button type="submit" class="btn btn-solid" data-hot>Get it first <span class="arw">&rarr;</span></button>'+
         '<span class="ebook-err"></span>'+
       '</form>'+
-      '<div class="modal-done" id="ebookModalDone"><a href="assets/vincere-ebook.pdf" download class="btn btn-solid" data-hot>Download now <span class="arw">&rarr;</span></a></div>'+
+      '<div class="modal-done" id="ebookModalDone"><p style="color:var(--silver);text-align:center;padding:8px 0 2px">You are on the list. It lands in your inbox the moment it drops.</p></div>'+
     '</div></div>'
   );
   document.body.appendChild(modal);

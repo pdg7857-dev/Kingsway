@@ -101,7 +101,7 @@ Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation,
 
 ## Free ebook + 12-week guide (the funnel)
 
-**The free "Vincere Ebook" (lead magnet).** Name + email opt-ins post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated section, a sticky "Free Ebook" tab that slides in as visitors scroll, and a one-time popup (fires at ~22 seconds or 45% scroll, suppressed once someone grabs it). To deliver the file: **drop your PDF at `assets/vincere-ebook.pdf`** (that exact path). After opting in, the visitor gets an instant "Download the ebook" button pointing at it.
+**The free "Vincere Daily Ebook" (lead magnet).** Your guide to nutrition, supplements, and training styles, currently being built, so the opt-in runs as a **waitlist**. Name + email sign-ups post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated page/section (`ebook.html`), a sticky "Free Ebook" tab that slides in on scroll, and a one-time popup. After opting in, the visitor sees a "you're on the list" confirmation. When the ebook is ready, email it to your Leads list, or to switch to instant download: drop the PDF at `assets/vincere-daily.pdf` and swap the confirmation `<p>` in `ebook.html` / `index.html` (and the modal in `site.js`) back to a download `<a>`.
 
 **The paid 12-Week Transformation Guide.** Sold via a Stripe Payment Link:
 1. Create the product as a **Payment Link** in your Stripe dashboard.
