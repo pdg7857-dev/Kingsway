@@ -64,12 +64,22 @@ Each submitted application is posted to a Google Sheet you own, where you can re
    - Execute as: **Me**
    - Who has access: **Anyone**
    - Click **Deploy**, authorize when prompted, and **copy the Web app URL** (it ends in `/exec`).
-4. Open `index.html`, find `var FORM_ENDPOINT = ""` in the `<script>`, and paste the URL between the quotes. Do the same in `apply.html` if you use that page.
+4. Open `index.html`, find `var FORM_ENDPOINT = ""` near the top of the `<script>` (in the CONFIG block), and paste the URL between the quotes. (This one endpoint handles BOTH coaching applications and free-ebook leads.) Do the same in `apply.html` if you use that page.
 5. Commit and redeploy. Submit a test application and confirm a row lands in the sheet.
 
-Each row captures: timestamp, name, email, phone, Instagram, age, years training, competed, goal/timeline, training days, investment range, and why they should be selected. To download: in the sheet, **File to Download to CSV** (or Excel).
+The script auto-creates two tabs in your sheet: **Applications** (timestamp, name, email, phone, Instagram, age, years training, competed, goal/timeline, training days, investment, why) and **Leads** (timestamp, name, email, source) for the free-ebook opt-ins. To download either: **File to Download to CSV** (or Excel).
 
-Until `FORM_ENDPOINT` is set, the form still works and shows the confirmation, it just doesn't record anything.
+Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation, they just don't record anything.
+
+## Free ebook + 12-week guide (the funnel)
+
+**The free "Vincere Ebook" (lead magnet).** Name + email opt-ins post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated section, a sticky "Free Ebook" tab that slides in as visitors scroll, and a one-time popup (fires at ~22 seconds or 45% scroll, suppressed once someone grabs it). To deliver the file: **drop your PDF at `assets/vincere-ebook.pdf`** (that exact path). After opting in, the visitor gets an instant "Download the ebook" button pointing at it.
+
+**The paid 12-Week Transformation Guide.** Sold via a Stripe Payment Link:
+1. Create the product as a **Payment Link** in your Stripe dashboard.
+2. Open `index.html`, find `var STRIPE_LINK = ""` in the CONFIG block, and paste your Payment Link URL. The "Buy" button activates automatically (until then it reads "Coming soon").
+3. The **price** shown on the page is `$97` in the `.guide-price` block, edit that if your price differs, and set the matching amount in Stripe.
+4. To deliver the PDF after purchase: in the Payment Link settings, turn on **"Don't show confirmation page"** off and set the confirmation/redirect to a download link, or enable Stripe's post-payment email with the file link.
 
 ## Deploy to Vercel
 

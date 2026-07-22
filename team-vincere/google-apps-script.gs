@@ -20,22 +20,31 @@ function doPost(e) {
   lock.tryLock(20000);
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName('Applications') || ss.insertSheet('Applications');
+    var d = JSON.parse(e.postData.contents);
 
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow([
-        'Timestamp', 'Name', 'Email', 'Phone', 'Instagram', 'Age',
-        'Years training', 'Competed', 'Goal / timeline', 'Training days',
-        'Investment', 'Why they should be selected'
+    if (d.type === 'lead') {
+      // Free-ebook lead -> "Leads" tab
+      var leads = ss.getSheetByName('Leads') || ss.insertSheet('Leads');
+      if (leads.getLastRow() === 0) {
+        leads.appendRow(['Timestamp', 'Name', 'Email', 'Source']);
+      }
+      leads.appendRow([new Date(), d.name || '', d.email || '', 'Vincere Ebook']);
+    } else {
+      // Coaching application -> "Applications" tab
+      var apps = ss.getSheetByName('Applications') || ss.insertSheet('Applications');
+      if (apps.getLastRow() === 0) {
+        apps.appendRow([
+          'Timestamp', 'Name', 'Email', 'Phone', 'Instagram', 'Age',
+          'Years training', 'Competed', 'Goal / timeline', 'Training days',
+          'Investment', 'Why they should be selected'
+        ]);
+      }
+      apps.appendRow([
+        new Date(), d.name || '', d.email || '', d.phone || '', d.social || '',
+        d.age || '', d.years || '', d.competed || '', d.goal || '', d.days || '',
+        d.budget || '', d.why || ''
       ]);
     }
-
-    var d = JSON.parse(e.postData.contents);
-    sheet.appendRow([
-      new Date(), d.name || '', d.email || '', d.phone || '', d.social || '',
-      d.age || '', d.years || '', d.competed || '', d.goal || '', d.days || '',
-      d.budget || '', d.why || ''
-    ]);
 
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))

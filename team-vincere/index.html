@@ -434,6 +434,69 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
 .faq-item[open] .chev::before{background:var(--glow)}
 .faq-a{padding:0 4px 30px;color:var(--steel);font-size:16px;line-height:1.75;max-width:72ch}
 
+/* ---------- FREE EBOOK ---------- */
+.ebook{background:linear-gradient(180deg,#0A0A0B,#0C0D10 50%,#0A0A0B)}
+.ebook-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,88px);align-items:center}
+@media(max-width:860px){.ebook-grid{grid-template-columns:1fr;gap:46px}}
+.ebook-cover{position:relative;width:min(320px,78%);aspect-ratio:3/4;margin:0 auto;background:linear-gradient(150deg,#17181d,#0A0A0C);border:1px solid var(--edge);box-shadow:0 44px 90px -34px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.03) inset;display:flex;flex-direction:column;justify-content:space-between;padding:34px 30px;transform:rotate(-2.5deg);transition:transform .6s var(--ease)}
+.ebook-cover:hover{transform:rotate(0)}
+.ebook-cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--chrome)}
+.ebook-cover::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 40% at 30% 12%,rgba(180,196,210,.12),transparent 60%);pointer-events:none}
+.ebook-cover .ec-top{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--steel);position:relative;z-index:2}
+.ebook-cover .ec-title{font-family:var(--serif);font-size:clamp(25px,3vw,33px);line-height:1.06;color:var(--platinum);text-transform:uppercase;letter-spacing:.03em;position:relative;z-index:2}
+.ebook-cover .ec-wm{font-family:var(--serif);font-size:14px;letter-spacing:.3em;text-transform:uppercase;position:relative;z-index:2}
+.ebook-copy h2{margin:22px 0 22px}
+.ebook-form{margin-top:32px}
+.ebook-fields{display:flex;gap:12px;flex-wrap:wrap}
+.ebook-fields input{flex:1;min-width:180px;background:var(--obsidian);border:1px solid var(--edge);color:var(--platinum);font-family:var(--sans);font-size:15px;padding:16px;transition:border-color .4s,box-shadow .4s}
+.ebook-fields input::placeholder{color:var(--steel-dim)}
+.ebook-fields input:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(184,196,208,.1)}
+.ebook-fields .btn{flex:0 0 auto}
+.ebook-err{display:block;color:#d98a8a;font-size:12.5px;margin-top:12px;min-height:1em}
+.ebook-fine{display:block;color:var(--steel-dim);font-size:12.5px;margin-top:14px;max-width:54ch}
+.ebook-done{display:none;margin-top:30px}
+.ebook-done.show{display:block;animation:fade .6s var(--ease)}
+.ebook-done-mk{font-family:var(--serif);font-size:32px;margin-bottom:12px}
+.ebook-done h3{text-transform:none;letter-spacing:-.01em;font-size:20px;color:var(--platinum);margin-bottom:20px}
+
+/* ---------- STICKY EBOOK TAB ---------- */
+.ebook-fab{position:fixed;left:24px;bottom:24px;z-index:90;display:inline-flex;align-items:center;gap:10px;padding:14px 20px;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#0A0A0B;background:var(--platinum);border:1px solid var(--platinum);cursor:pointer;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease),box-shadow .4s}
+.ebook-fab.show{opacity:1;transform:none;pointer-events:auto}
+.ebook-fab:hover{box-shadow:0 0 30px rgba(184,196,208,.45)}
+.ebook-fab .fab-arw{font-size:13px}
+@media(max-width:600px){.ebook-fab{left:14px;right:14px;bottom:14px;justify-content:center}}
+
+/* ---------- EBOOK POPUP ---------- */
+.ebook-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(6,6,8,.82);backdrop-filter:blur(6px)}
+.ebook-modal.show{display:flex;animation:fade .4s var(--ease)}
+.ebook-modal-inner{position:relative;width:100%;max-width:460px;background:var(--carbon);border:1px solid var(--edge);padding:clamp(30px,5vw,48px);box-shadow:0 40px 120px -30px rgba(0,0,0,.9)}
+.ebook-modal-inner .eyebrow{justify-content:flex-start}
+.ebook-modal-inner h3{text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1.6rem,4vw,2.1rem);color:var(--platinum);margin:16px 0 12px}
+.ebook-modal-inner p{color:var(--steel);font-size:15px;line-height:1.6;margin-bottom:24px}
+.ebook-modal-inner form{display:flex;flex-direction:column;gap:12px}
+.ebook-modal-inner input{background:var(--obsidian);border:1px solid var(--edge);color:var(--platinum);font-family:var(--sans);font-size:15px;padding:15px 16px}
+.ebook-modal-inner input:focus{outline:none;border-color:var(--glow);box-shadow:0 0 0 3px rgba(184,196,208,.1)}
+.ebook-modal-inner .btn{justify-content:center;margin-top:4px}
+.ebook-modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--steel);font-size:26px;line-height:1;cursor:pointer;transition:color .3s}
+.ebook-modal-close:hover{color:var(--platinum)}
+.modal-done{display:none;margin-top:6px}
+.modal-done.show{display:block}
+
+/* ---------- 12-WEEK GUIDE ---------- */
+.guide-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,88px);align-items:center}
+@media(max-width:860px){.guide-grid{grid-template-columns:1fr;gap:46px}.guide-visual{order:-1}}
+.guide-copy h2{margin:22px 0 22px}
+.guide-list{list-style:none;margin:28px 0;display:flex;flex-direction:column}
+.guide-list li{display:flex;gap:14px;padding:15px 0;border-top:1px solid var(--edge);color:var(--silver);font-size:15px;line-height:1.5;align-items:flex-start}
+.guide-list li:last-child{border-bottom:1px solid var(--edge)}
+.guide-list li::before{content:"";width:6px;height:6px;margin-top:7px;flex:none;border-radius:50%;background:var(--chrome)}
+.guide-buy{display:flex;align-items:center;gap:26px;margin-top:30px;flex-wrap:wrap}
+.guide-price{display:flex;align-items:baseline;gap:9px}
+.guide-price .gp-amt{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--platinum);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.guide-price .gp-note{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
+.guide-cta[aria-disabled="true"]{opacity:.5;pointer-events:none}
+.guide-fine{display:block;color:var(--steel-dim);font-size:12.5px;margin-top:16px}
+
 /* ---------- MOBILE ---------- */
 @media (max-width:880px){
   .ba-stage{aspect-ratio:3/4}
@@ -454,6 +517,9 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   .hero-cta{margin-top:34px;gap:16px}
   .hero-cta .btn,.final .btn,.confirm-cta,.cta-row .btn{width:100%;justify-content:center}
   .cta-row{margin-top:48px}
+  .ebook-fields{flex-direction:column}
+  .ebook-fields .btn{width:100%;justify-content:center}
+  .guide-buy{gap:18px}
   .btn{padding:17px 24px}
   .creed .lines{font-size:clamp(1.28rem,6.2vw,2rem)}
   .creed .mark{margin-top:40px}
@@ -741,6 +807,67 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   </div>
 </section>
 
+<!-- FREE EBOOK -->
+<section class="pad ebook" id="ebook">
+  <div class="wrap ebook-grid">
+    <div class="ebook-visual rv">
+      <div class="ebook-cover">
+        <div class="ec-top">Team Vincere · Free</div>
+        <div class="ec-title">The Vincere Ebook</div>
+        <div class="ec-wm chrome">Vincere</div>
+      </div>
+    </div>
+    <div class="ebook-copy">
+      <span class="eyebrow rv">Free download</span>
+      <h2 class="rv rv-d1">The Vincere<br>Ebook.</h2>
+      <p class="lead rv rv-d2">The exact framework I use to turn ordinary lifters into stage-ready physiques. Training, nutrition, and the mindset that separates the ones who make it from the ones who quit. Yours, free.</p>
+      <form class="ebook-form rv rv-d2" id="ebookForm" novalidate>
+        <div class="ebook-fields">
+          <input type="text" name="name" placeholder="First name" required />
+          <input type="email" name="email" placeholder="Your best email" required />
+          <button type="submit" class="btn btn-solid" data-hot>Send me the ebook <span class="arw">→</span></button>
+        </div>
+        <span class="ebook-err"></span>
+        <span class="ebook-fine">No spam. Just the ebook, and the occasional message that's actually worth your time.</span>
+      </form>
+      <div class="ebook-done" id="ebookDone">
+        <div class="ebook-done-mk chrome">Vincere</div>
+        <h3>You're in. Here it is.</h3>
+        <a href="assets/vincere-ebook.pdf" download class="btn btn-solid" data-hot>Download the ebook <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12-WEEK GUIDE -->
+<section class="pad guide" id="guide">
+  <div class="wrap guide-grid">
+    <div class="guide-copy">
+      <span class="eyebrow rv">Do it yourself</span>
+      <h2 class="rv rv-d1">The 12-Week<br>Transformation Guide.</h2>
+      <p class="lead rv rv-d2">Not ready for full coaching? This is the exact twelve-week blueprint I run my athletes through. Training, nutrition, and progression, laid out week by week so you can execute it yourself.</p>
+      <ul class="guide-list rv rv-d2">
+        <li>A full 12-week training program, periodized week by week</li>
+        <li>Nutrition and macro guidelines built to strip fat and hold muscle</li>
+        <li>Cardio and recovery protocols that actually move the needle</li>
+        <li>The mindset system I use to stay locked in for twelve weeks straight</li>
+      </ul>
+      <div class="guide-buy rv rv-d2">
+        <div class="guide-price"><span class="gp-amt">$97</span><span class="gp-note">one-time</span></div>
+        <a href="#" class="btn btn-solid guide-cta" id="guideBuy" data-hot>Get the guide <span class="arw">→</span></a>
+      </div>
+      <span class="guide-fine">Instant access after checkout. Yours to keep for life.</span>
+    </div>
+    <div class="guide-visual rv">
+      <div class="ebook-cover">
+        <div class="ec-top">Team Vincere · 12 Weeks</div>
+        <div class="ec-title">The 12-Week Transformation Guide</div>
+        <div class="ec-wm chrome">Vincere</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EXCLUSIVITY BAND -->
 <section class="band pad">
   <img class="band-img" src="assets/img/band-bg.jpg" alt="" aria-hidden="true" />
@@ -833,11 +960,37 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   </div>
 </section>
 
+<!-- STICKY EBOOK TAB -->
+<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Ebook">Free Ebook <span class="fab-arw">↓</span></button>
 
+<!-- EBOOK POPUP -->
+<div class="ebook-modal" id="ebookModal" aria-hidden="true">
+  <div class="ebook-modal-inner">
+    <button class="ebook-modal-close" id="ebookModalClose" aria-label="Close">×</button>
+    <span class="eyebrow">Free download</span>
+    <h3>Before you go.</h3>
+    <p>Grab the Vincere Ebook, my exact framework for building a stage-ready physique. Free.</p>
+    <form id="ebookModalForm" novalidate>
+      <input type="text" name="name" placeholder="First name" required />
+      <input type="email" name="email" placeholder="Your best email" required />
+      <button type="submit" class="btn btn-solid" data-hot>Send it to me <span class="arw">→</span></button>
+      <span class="ebook-err"></span>
+    </form>
+    <div class="modal-done" id="ebookModalDone">
+      <a href="assets/vincere-ebook.pdf" download class="btn btn-solid" data-hot>Download now <span class="arw">→</span></a>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ============================================================
+     CONFIG. Set these two, then you're live.
+     ============================================================ */
+  var FORM_ENDPOINT = "";  // <-- your Google Apps Script /exec URL (handles BOTH applications and ebook leads)
+  var STRIPE_LINK   = "";  // <-- your Stripe Payment Link for the 12-Week Guide
 
   /* year (footer removed; guard in case) */
   var yrEl = document.getElementById('yr');
@@ -923,8 +1076,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       });
       return ok;
     }
-    /* Applications post to your Google Sheet. Paste your Apps Script Web App URL below (see README). */
-    var FORM_ENDPOINT = "";
+    /* Applications post to your Google Sheet via the FORM_ENDPOINT set at the top. */
     function sendToSheet(){
       if(!FORM_ENDPOINT) return;
       try{
@@ -956,6 +1108,80 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     function play(){ el.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="Mark testimonial" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'; }
     el.addEventListener('click',play);
     el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); play(); } });
+  })();
+
+  /* 12-week guide: wire the Stripe buy button */
+  (function(){
+    var buy=document.getElementById('guideBuy'); if(!buy)return;
+    if(STRIPE_LINK){ buy.setAttribute('href',STRIPE_LINK); buy.setAttribute('target','_blank'); buy.setAttribute('rel','noopener'); }
+    else{ buy.setAttribute('href','#'); buy.setAttribute('aria-disabled','true'); buy.innerHTML='Coming soon'; }
+  })();
+
+  /* free ebook: lead capture, sticky tab, timed popup (leads go to FORM_ENDPOINT) */
+  (function(){
+    var LEAD_KEY='vincereLead';
+    function isLead(){ try{return localStorage.getItem(LEAD_KEY)==='1';}catch(e){return false;} }
+    function markLead(){ try{localStorage.setItem(LEAD_KEY,'1');}catch(e){} }
+    function validEmail(v){ return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((v||'').trim()); }
+    function postLead(name,email){
+      if(!FORM_ENDPOINT) return;
+      try{ fetch(FORM_ENDPOINT,{method:'POST',body:JSON.stringify({type:'lead',name:name,email:email})}).catch(function(){}); }catch(e){}
+    }
+    var fab=document.getElementById('ebookFab');
+    var modal=document.getElementById('ebookModal');
+    function hideFab(){ if(fab)fab.classList.remove('show'); }
+    function showFab(){ if(fab && !isLead())fab.classList.add('show'); }
+    function closeModal(){ if(modal)modal.classList.remove('show'); }
+
+    function wire(form, onDone){
+      if(!form)return;
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var nEl=form.querySelector('[name=name]'), eEl=form.querySelector('[name=email]');
+        var name=(nEl&&nEl.value||'').trim(), email=(eEl&&eEl.value||'').trim();
+        var err=form.querySelector('.ebook-err');
+        if(!name){ if(err)err.textContent='Enter your first name.'; return; }
+        if(!validEmail(email)){ if(err)err.textContent='Enter a valid email.'; return; }
+        if(err)err.textContent='';
+        postLead(name,email); markLead(); hideFab();
+        onDone();
+      });
+    }
+    wire(document.getElementById('ebookForm'), function(){
+      var f=document.getElementById('ebookForm'), d=document.getElementById('ebookDone');
+      if(f)f.style.display='none'; if(d)d.classList.add('show');
+    });
+    wire(document.getElementById('ebookModalForm'), function(){
+      var f=document.getElementById('ebookModalForm'), d=document.getElementById('ebookModalDone');
+      if(f)f.style.display='none'; if(d)d.classList.add('show');
+    });
+
+    if(fab){
+      fab.addEventListener('click',function(){
+        var s=document.getElementById('ebook');
+        if(s)s.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+        setTimeout(function(){ var em=document.querySelector('#ebookForm [name=email]'); if(em)em.focus(); }, reduce?0:600);
+      });
+      window.addEventListener('scroll',function(){
+        if(isLead()){ hideFab(); return; }
+        if(window.scrollY > window.innerHeight*0.6) showFab(); else hideFab();
+      },{passive:true});
+    }
+
+    if(modal && !isLead()){
+      var shown=false;
+      try{ if(sessionStorage.getItem('vincerePopup')==='1') shown=true; }catch(e){}
+      function openModal(){ if(shown||isLead())return; shown=true; try{sessionStorage.setItem('vincerePopup','1');}catch(e){} modal.classList.add('show'); }
+      setTimeout(openModal, 22000);
+      window.addEventListener('scroll',function(){
+        var denom=(document.body.scrollHeight-window.innerHeight)||1;
+        if(window.scrollY/denom > 0.45) openModal();
+      },{passive:true});
+      var cl=document.getElementById('ebookModalClose');
+      if(cl)cl.addEventListener('click',closeModal);
+      modal.addEventListener('click',function(e){ if(e.target===modal)closeModal(); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape')closeModal(); });
+    }
   })();
 })();
 </script>
