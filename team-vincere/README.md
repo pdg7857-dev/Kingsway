@@ -17,7 +17,6 @@ The site is multi-page, sharing one stylesheet and one script. The nav, footer, 
 | `shop.html` | Product cards: the guide, the ebook, plus coming-soon apparel and supplements. |
 | `articles.html` | Blog index scaffold with starter post cards (fill in real posts later). |
 | `ebook.html` | The free *Vincere Training Guide* lead-magnet page (instant download). |
-| `calculator.html` | The free macro calculator (the guide's exact method). |
 | `welcome.html` | Post-purchase page Stripe redirects to; walks the buyer into the app. |
 | `guide.html` | The paid 12-Week Guide product page. |
 | `apply.html` | The multi-step application form. |
@@ -119,10 +118,9 @@ Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation,
 1. Create the product as a **Payment Link** in your Stripe dashboard (price $97, or edit the `.guide-price` block to match).
 2. Open `assets/js/site.js`, paste your Payment Link URL into `var STRIPE_LINK`. Every "Get the program" button activates automatically (until then they read "Coming soon").
 3. In the Payment Link's settings, set **After payment to Redirect** to your site's `.../welcome.html`. That page confirms the purchase and walks the buyer into the app.
-4. Set `var APP_LINK` to your app's signup/login URL. The `welcome.html` "Join the app" button and the calculator's "track it in the app" link point there. If `APP_LINK` is blank, `welcome.html` shows a "watch your email, I'll send your invite" message instead, so you can invite buyers manually.
+4. Set `var APP_LINK` to your app's signup/login URL. The `welcome.html` "Create my account" button points there. If `APP_LINK` is blank, `welcome.html` shows a "watch your email, I'll send your invite" message instead, so you can invite buyers manually.
 5. The paid PDF is **not** hosted on the site. You deliver and assign it inside the app after they join, so it can't be downloaded without paying.
 
-**The macro calculator (`calculator.html`).** The free tool the guide points readers to (`teamvincere.ca/calculator`). It runs the guide's exact method (Mifflin-St Jeor, protein 1 g/lb, fat 0.4 g/lb, carbs tapering across the four phases) and outputs training-day and rest-day macros plus the cardio ramp. It also captures leads (offering the free guide) and links to the paid program and the app.
 
 ## Deploy to Vercel
 

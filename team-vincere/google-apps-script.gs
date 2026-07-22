@@ -16,7 +16,7 @@
  * Two tabs are auto-created:
  *   Applications  - coaching form (apply.html)
  *   Leads         - free-guide opt-ins, with a Source column so you can see
- *                   where each came from (Free guide, calculator, popup, etc.)
+ *                   where each came from (Free guide, popup, etc.)
  * ------------------------------------------------------------------
  */
 

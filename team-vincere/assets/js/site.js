@@ -11,7 +11,7 @@
   var STRIPE_MONTHLY = "https://buy.stripe.com/7sY6oIfzc6vw0dLb0Vgw001";  // $450 / month
   var STRIPE_6MONTH  = "https://buy.stripe.com/6oUfZibiW8DE1hP3ytgw002";  // $2,500 / 6 months
   var STRIPE_YEARLY  = "https://buy.stripe.com/dRm7sM3Qu0781hP4Cxgw003";  // $4,200 / 12 months
-  window.VINCERE_FORM_ENDPOINT = FORM_ENDPOINT;  // exposed so standalone pages (calculator) can post leads
+  window.VINCERE_FORM_ENDPOINT = FORM_ENDPOINT;  // exposed so standalone pages (welcome) can post to the sheet
   window.VINCERE_APP_LINK = APP_LINK;
 
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -32,7 +32,7 @@
   /* ---------- inject nav ---------- */
   var links=[
     ['about','About'],['coaching','Coaching'],['programs','Programs'],
-    ['calculator','Calculator'],['shop','Shop'],['articles','Articles'],['ebook','Ebook']
+    ['shop','Shop'],['articles','Articles'],['ebook','Ebook']
   ];
   var linksHTML=links.map(function(l){
     return '<a href="'+l[0]+'.html"'+(page===l[0]?' class="active"':'')+'>'+l[1]+'</a>';
@@ -66,7 +66,7 @@
         '<div class="wrap foot-grid">'+
           '<div class="foot-brand"><div class="fb chrome">Vincere</div><p class="tl2">To conquer.</p></div>'+
           '<div class="foot-col"><h4>Explore</h4><a href="about.html">About</a><a href="coaching.html">Coaching</a><a href="programs.html">Programs</a><a href="shop.html">Shop</a><a href="articles.html">Articles</a></div>'+
-          '<div class="foot-col"><h4>Start here</h4><a href="calculator.html">Macro calculator</a><a href="ebook.html">Free training guide</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
+          '<div class="foot-col"><h4>Start here</h4><a href="ebook.html">Free training guide</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
           '<div class="foot-col"><h4>Connect</h4><a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener">Instagram</a><a href="apply.html">Book a call</a></div>'+
         '</div>'+
         '<div class="wrap foot-btm"><span>&copy; '+yr+' Team Vincere. By application only.</span><span>Vincere. To conquer.</span></div>'+
