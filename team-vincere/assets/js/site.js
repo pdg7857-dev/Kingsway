@@ -3,7 +3,7 @@
    CONFIG: set these three, then you're live.
    ============================================================ */
 (function(){
-  var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + leads)
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwLUygnsvj4Dubx-ezvFSCKdSzaJw4yirQmuXfbjUCH0a6xvaiSq7r6mYrBLDvqAnVzyQ/exec";  // Google Apps Script /exec URL (applications + leads)
   var STRIPE_LINK   = "https://buy.stripe.com/5kQ3cwcn06vwaSp9WRgw000";  // 12-Week program ($97)
   var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // Mark's testimonial
   var APP_LINK      = "";  // your Vincere app URL (login/signup) for "join / track in the app" CTAs
