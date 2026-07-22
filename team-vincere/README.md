@@ -86,6 +86,8 @@ The site is static, so there's no build step.
 
 That's it, no environment variables, no database. (Set `FORM_ENDPOINT` and `MARK_VIDEO` before deploying so the live site has the sheet and video wired in.)
 
+**Link previews (favicon + share image):** a brushed-chrome "V" favicon (`assets/favicon.svg` + PNG fallbacks) and a branded 1200x630 share image (`assets/og-image.jpg`) are already wired in. The `og:image` uses a root-relative path, which most platforms resolve. For rock-solid unfurling everywhere (iMessage, Slack, WhatsApp), once your domain is set, change the four `og:image` / `twitter:image` tags in `index.html` to the full absolute URL, e.g. `https://yourdomain.com/assets/og-image.jpg`.
+
 ---
 
 Built for Team Vincere. Black & silver. Champion vision. By application only.
