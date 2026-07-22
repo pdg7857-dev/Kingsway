@@ -411,6 +411,29 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
 .foot .col a:hover{color:var(--platinum)}
 .foot-btm{display:flex;justify-content:space-between;margin-top:56px;padding-top:26px;border-top:1px solid var(--edge);font-size:11px;letter-spacing:.1em;color:var(--steel-dim);flex-wrap:wrap;gap:12px}
 
+/* ---------- COACH ---------- */
+.coach-vis img{object-position:50% 20%;filter:grayscale(.55) contrast(1.08) brightness(.92)}
+.cred-list{list-style:none;margin-top:34px;display:flex;flex-direction:column}
+.cred-list li{display:flex;gap:15px;padding:16px 0;border-top:1px solid var(--edge);color:var(--silver);font-size:15px;line-height:1.5;align-items:flex-start}
+.cred-list li:last-child{border-bottom:1px solid var(--edge)}
+.cred-list li::before{content:"";width:6px;height:6px;margin-top:7px;flex:none;border-radius:50%;background:var(--chrome)}
+
+/* ---------- FAQ ---------- */
+.faq-head{max-width:620px;margin-bottom:54px}
+.faq-head h2{margin-top:22px}
+.faq-list{border-top:1px solid var(--edge)}
+.faq-item{border-bottom:1px solid var(--edge)}
+.faq-item summary{list-style:none;cursor:pointer;padding:28px 4px;display:flex;justify-content:space-between;align-items:center;gap:26px;font-size:clamp(1.05rem,2vw,1.32rem);font-weight:600;letter-spacing:-.01em;color:var(--platinum);transition:color .4s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:#fff}
+.faq-item .chev{position:relative;width:15px;height:15px;flex:none}
+.faq-item .chev::before,.faq-item .chev::after{content:"";position:absolute;background:var(--steel);transition:transform .4s var(--ease),background .4s}
+.faq-item .chev::before{top:7px;left:0;width:15px;height:1.5px}
+.faq-item .chev::after{top:0;left:6.75px;width:1.5px;height:15px}
+.faq-item[open] .chev::after{transform:scaleY(0)}
+.faq-item[open] .chev::before{background:var(--glow)}
+.faq-a{padding:0 4px 30px;color:var(--steel);font-size:16px;line-height:1.75;max-width:72ch}
+
 /* ---------- MOBILE ---------- */
 @media (max-width:880px){
   .ba-stage{aspect-ratio:3/4}
@@ -466,6 +489,7 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
     <a href="#mindset">Mindset</a>
     <a href="#software">Software</a>
     <a href="#proof">Proof</a>
+    <a href="#coach">Coach</a>
     <a href="#apply" class="nav-cta" data-hot>Apply</a>
   </div>
 </nav>
@@ -660,6 +684,28 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
   </div>
 </section>
 
+<!-- COACH -->
+<section class="pad" id="coach">
+  <div class="wrap split">
+    <div class="mind-vis coach-vis rv">
+      <img src="assets/img/coach.jpg" alt="Coach Phil Dave with his 2025 Atlantic Championships medals" />
+      <div class="cap"><b>Coach Phil Dave</b>Height-class champion, 2025 Atlantic · CPA natural</div>
+    </div>
+    <div class="pill-copy">
+      <span class="eyebrow rv">Who's coaching you</span>
+      <h2 class="rv rv-d1">Coach<br>Phil Dave.</h2>
+      <p class="lead rv rv-d2">Before I ever coached a bodybuilder, I spent my life competing. I grew up a gymnast, competing across Canada and at the Canadian and American national level, then coached gymnastics for over six years. I ran track in university until the money ran out and I had to walk away.</p>
+      <p class="lead rv rv-d3">The gym caught me instantly. I went from 160 to 180 pounds in three months and knew I wanted to turn pro. My first two years I did it wrong, dirty bulking and guessing. Year three I locked all the way in and never looked back. At the 2025 Atlantic Championships I won my height class and took second in true novice, natural, in the CPA. Now I'm building toward my pro card in 2027. I will never ask you to chase something I'm not chasing myself.</p>
+      <ul class="cred-list rv rv-d2">
+        <li>National-level gymnast, Canada and USA, and a coach for over six years</li>
+        <li>2025 Atlantic Championships: height-class winner, 2nd in true novice</li>
+        <li>Competes natural in the CPA, building toward a pro card in 2027</li>
+        <li>Based in Montreal and Toronto, coaching athletes anywhere</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- METHOD -->
 <section class="pad" id="method">
   <div class="wrap">
@@ -674,6 +720,24 @@ footer{border-top:1px solid var(--edge);padding:64px 0 48px}
       <div class="step rv rv-d3"><div class="num"><span class="chrome">04</span></div><div><h3>The Work</h3><p>Data-driven prep. Relentless standard. A championship trajectory measured in every variable that matters, and held to it, week after week.</p></div><div class="st">The trajectory</div></div>
     </div>
     <div class="cta-row rv"><a href="#apply" class="btn btn-solid" data-hot>Begin your application <span class="arw">→</span></a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <span class="eyebrow rv">Before you apply</span>
+      <h2 class="rv rv-d1">Questions,<br>answered.</h2>
+    </div>
+    <div class="faq-list rv rv-d1">
+      <details class="faq-item"><summary>Is this natural?<span class="chev"></span></summary><div class="faq-a">Yes. I compete natural in the CPA, and so do my athletes. Everything I build for you is designed to get you to the stage drug free and keep the physique long after.</div></details>
+      <details class="faq-item"><summary>What does it cost?<span class="chev"></span></summary><div class="faq-a">Coaching is $350 per month, or $1,800 for a six-month block, which works out cheaper and is how most serious preps run. Posing coaching is a separate add-on.</div></details>
+      <details class="faq-item"><summary>Is it online or in person?<span class="chev"></span></summary><div class="faq-a">Coaching is fully online, so I can work with you wherever you are. If you're in the Montreal or Toronto area, you can add in-person training on top.</div></details>
+      <details class="faq-item"><summary>Do I need to have competed before?<span class="chev"></span></summary><div class="faq-a">No. First timer or seasoned, everyone is welcome on one condition: you are willing to actually live the lifestyle of a bodybuilder. The standard does not bend.</div></details>
+      <details class="faq-item"><summary>What is included?<span class="chev"></span></summary><div class="faq-a">Training, nutrition, supplement guidance, cardio, weekly check-ins, my app, and mindset work, plus direct messaging access to me. Posing coaching is an optional add-on.</div></details>
+      <details class="faq-item"><summary>How long do I commit for?<span class="chev"></span></summary><div class="faq-a">Run month to month at $350, or lock in a six-month block at $1,800. Real change takes months, not weeks, so I build for the long game.</div></details>
+    </div>
   </div>
 </section>
 
