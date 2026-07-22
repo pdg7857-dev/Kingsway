@@ -6,6 +6,9 @@
   var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + ebook leads)
   var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week Guide
   var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // Mark's testimonial
+  var APP_LINK      = "";  // your Vincere app URL (login/signup) for "track it in the app" CTAs
+  window.VINCERE_FORM_ENDPOINT = FORM_ENDPOINT;  // exposed so standalone pages (calculator) can post leads
+  window.VINCERE_APP_LINK = APP_LINK;
 
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -25,7 +28,7 @@
   /* ---------- inject nav ---------- */
   var links=[
     ['about','About'],['coaching','Coaching'],['programs','Programs'],
-    ['shop','Shop'],['articles','Articles'],['ebook','Free Ebook']
+    ['calculator','Calculator'],['shop','Shop'],['articles','Articles'],['ebook','Ebook']
   ];
   var linksHTML=links.map(function(l){
     return '<a href="'+l[0]+'.html"'+(page===l[0]?' class="active"':'')+'>'+l[1]+'</a>';
@@ -59,7 +62,7 @@
         '<div class="wrap foot-grid">'+
           '<div class="foot-brand"><div class="fb chrome">Vincere</div><p class="tl2">To conquer.</p></div>'+
           '<div class="foot-col"><h4>Explore</h4><a href="about.html">About</a><a href="coaching.html">Coaching</a><a href="programs.html">Programs</a><a href="shop.html">Shop</a><a href="articles.html">Articles</a></div>'+
-          '<div class="foot-col"><h4>Start here</h4><a href="ebook.html">Free ebook</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
+          '<div class="foot-col"><h4>Start here</h4><a href="calculator.html">Macro calculator</a><a href="ebook.html">Free training guide</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
           '<div class="foot-col"><h4>Connect</h4><a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener">Instagram</a><a href="apply.html">Book a call</a></div>'+
         '</div>'+
         '<div class="wrap foot-btm"><span>&copy; '+yr+' Team Vincere. By application only.</span><span>Vincere. To conquer.</span></div>'+
