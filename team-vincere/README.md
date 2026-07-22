@@ -65,6 +65,8 @@ Real competition and transformation photos are wired in and optimized under `ass
 |---|---|
 | `hero.jpg` | Hero background — coach on the spotlit stage |
 | `coaching-card.jpg` | Home "Train with me directly" feature card — in the gym |
+| `ebook-card.jpg` | Home "three ways in" — the free-ebook card |
+| `guide-card.jpg` | Home "three ways in" — the 12-week guide card |
 | `coach-bicep.jpg` | About gallery — front double-bicep on stage |
 | `podium.jpg` | About — the 2025 Atlantic Championships podium win |
 | `coach-front.jpg` | Mindset section — "led from the front" |
@@ -104,7 +106,7 @@ Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation,
 
 ## Free ebook + 12-week guide (the funnel)
 
-**The free "Vincere Daily Ebook" (lead magnet).** Your guide to nutrition, supplements, and training styles, currently being built, so the opt-in runs as a **waitlist**. Name + email sign-ups post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated page/section (`ebook.html`), a sticky "Free Ebook" tab that slides in on scroll, and a one-time popup. After opting in, the visitor sees a "you're on the list" confirmation. When the ebook is ready, email it to your Leads list, or to switch to instant download: drop the PDF at `assets/vincere-daily.pdf` and swap the confirmation `<p>` in `ebook.html` / `index.html` (and the modal in `site.js`) back to a download `<a>`.
+**The free "Vincere Daily Ebook" (lead magnet).** Your guide to nutrition, supplements, and training styles, currently being built, so the opt-in runs as a **waitlist**. Name + email sign-ups post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated page/section (`ebook.html`), a sticky "Free Ebook" bar (always visible on mobile, and slides in on scroll on desktop) that scrolls to the on-page form or opens the popup, and a one-time popup on pages without an inline form. After opting in, the visitor sees a "you're on the list" confirmation. When the ebook is ready, email it to your Leads list, or to switch to instant download: drop the PDF at `assets/vincere-daily.pdf` and swap the confirmation `<p>` in `ebook.html` / `index.html` (and the modal in `site.js`) back to a download `<a>`.
 
 **The paid 12-Week Transformation Guide.** Sold via a Stripe Payment Link:
 1. Create the product as a **Payment Link** in your Stripe dashboard.

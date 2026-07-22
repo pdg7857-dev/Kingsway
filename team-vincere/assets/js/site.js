@@ -69,7 +69,6 @@
   }
 
   /* ---------- inject ebook sticky tab + popup (every page) ---------- */
-  var onEbookPage = !!document.getElementById('ebookForm');
   var fab = el('<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Ebook">Free Ebook <span class="fab-arw">&darr;</span></button>');
   document.body.appendChild(fab);
   var modal = el(
@@ -214,18 +213,28 @@
       if(f)f.style.display='none'; if(d)d.classList.add('show');
     });
 
-    /* sticky tab: opens the popup (or scrolls to section on the ebook page) */
+    var isEbookPage = (page==='ebook');
+    var hasInlineForm = !!document.getElementById('ebookForm');
+
+    /* sticky tab: scroll to the on-page form if there is one, else open the popup */
     fab.addEventListener('click',function(){
-      if(onEbookPage){ var s=document.getElementById('ebook'); if(s)s.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
-        setTimeout(function(){ var em=document.querySelector('#ebookForm [name=email]'); if(em)em.focus(); }, reduce?0:600); }
+      var inlineForm=document.getElementById('ebookForm');
+      if(inlineForm){ inlineForm.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+        setTimeout(function(){ var em=inlineForm.querySelector('[name=email]'); if(em)em.focus(); }, reduce?0:600); }
       else{ modal.classList.add('show'); }
     });
-    if(!onEbookPage){
-      window.addEventListener('scroll',function(){ if(isLead()){ hideFab(); return; } if(window.scrollY>window.innerHeight*0.6) showFab(); else hideFab(); },{passive:true});
+
+    /* sticky bar. mobile: always visible from load. desktop: slides in on scroll. skipped on the dedicated ebook page. */
+    if(!isEbookPage){
+      var mqMobile=window.matchMedia('(max-width:600px)');
+      function syncFab(){ if(isLead()){ hideFab(); return; } if(mqMobile.matches || window.scrollY>window.innerHeight*0.6) showFab(); else hideFab(); }
+      syncFab();
+      window.addEventListener('scroll',syncFab,{passive:true});
+      if(mqMobile.addEventListener) mqMobile.addEventListener('change',syncFab);
     }
 
-    /* timed popup, once per session, not if already a lead, not on the ebook page */
-    if(!isLead() && !onEbookPage){
+    /* timed popup, once per session, not if already a lead, only on pages without an inline form */
+    if(!isLead() && !hasInlineForm){
       var shown=false; try{ if(sessionStorage.getItem('vincerePopup')==='1') shown=true; }catch(e){}
       function openModal(){ if(shown||isLead())return; shown=true; try{sessionStorage.setItem('vincerePopup','1');}catch(e){} modal.classList.add('show'); }
       setTimeout(openModal, 24000);
