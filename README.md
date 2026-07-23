@@ -16,7 +16,8 @@ The site is multi-page, sharing one stylesheet and one script. The nav, footer, 
 | `programs.html` | Program cards: the free ebook, the 12-week guide, 1:1 coaching, and a coming-soon challenge. |
 | `shop.html` | Product cards: the guide, the ebook, plus coming-soon apparel and supplements. |
 | `articles.html` | Blog index scaffold with starter post cards (fill in real posts later). |
-| `ebook.html` | The free "Vincere Ebook" lead-magnet page. |
+| `ebook.html` | The free *Vincere Training Guide* lead-magnet page (instant download). |
+| `welcome.html` | Post-purchase page Stripe redirects to; walks the buyer into the app. |
 | `guide.html` | The paid 12-Week Guide product page. |
 | `apply.html` | The multi-step application form. |
 | `assets/css/vincere.css` | The entire design system + components (shared by all pages). |
@@ -27,10 +28,15 @@ The site is multi-page, sharing one stylesheet and one script. The nav, footer, 
 Open `assets/js/site.js` and set the three values at the top:
 
 ```js
-var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + ebook leads)
-var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week Guide
+var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + leads)
+var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week program
 var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // testimonial
+var APP_LINK      = "";  // your Vincere app URL (signup/login) for "join / track in the app" CTAs
 ```
+
+**The two products (the actual books):**
+- **Free lead magnet:** *The Vincere Training Guide* (coaching philosophy). Delivered as an **instant download** (`assets/the-vincere-training-guide.pdf`) the moment someone submits the email form, and the lead is recorded to the sheet.
+- **Paid ($97):** *The Vincere Daily 12-Week Transformation*. Sold via Stripe. After payment, buyers land on `welcome.html` and are pushed to **join the app**, where you set up their plan personally (the paid PDF is never hosted publicly).
 
 That's the only place these live now, and every page picks them up.
 
@@ -106,13 +112,15 @@ Until `FORM_ENDPOINT` is set, both forms still work and show their confirmation,
 
 ## Free ebook + 12-week guide (the funnel)
 
-**The free "Vincere Daily Ebook" (lead magnet).** Your guide to nutrition, supplements, and training styles, currently being built, so the opt-in runs as a **waitlist**. Name + email sign-ups post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`). It appears in three places: a dedicated page/section (`ebook.html`), a sticky "Free Ebook" bar (always visible on mobile, and slides in on scroll on desktop) that scrolls to the on-page form or opens the popup, and a one-time popup on pages without an inline form. After opting in, the visitor sees a "you're on the list" confirmation. When the ebook is ready, email it to your Leads list, or to switch to instant download: drop the PDF at `assets/vincere-daily.pdf` and swap the confirmation `<p>` in `ebook.html` / `index.html` (and the modal in `site.js`) back to a download `<a>`.
+**The free "Vincere Training Guide" (lead magnet).** Your coaching-philosophy guide, delivered as an **instant download** (`assets/the-vincere-training-guide.pdf`). Name + email sign-ups post to the **Leads** tab of the same sheet (same `FORM_ENDPOINT`), then the visitor gets a "download the guide" button. It appears in three places: a dedicated page/section (`ebook.html`), a sticky "Free Guide" bar (always visible on mobile, and slides in on scroll on desktop) that scrolls to the on-page form or opens the popup, and a one-time popup on pages without an inline form. To swap in an updated PDF, replace `assets/the-vincere-training-guide.pdf` (keep the filename) — every download link points there. *(The hosted copy is a compressed, web-optimized render of the source PDF.)*
 
-**The paid 12-Week Transformation Guide.** Sold via a Stripe Payment Link:
-1. Create the product as a **Payment Link** in your Stripe dashboard.
-2. Open `assets/js/site.js`, find `var STRIPE_LINK = ""` in the CONFIG block, and paste your Payment Link URL. Every "Buy the guide" button activates automatically (until then they read "Coming soon").
-3. The **price** shown on the page is `$97` in the `.guide-price` block, edit that if your price differs, and set the matching amount in Stripe.
-4. To deliver the PDF after purchase: in the Payment Link settings, turn on **"Don't show confirmation page"** off and set the confirmation/redirect to a download link, or enable Stripe's post-payment email with the file link.
+**The paid Vincere Daily 12-Week Transformation.** Sold via a Stripe Payment Link, delivered inside your app:
+1. Create the product as a **Payment Link** in your Stripe dashboard (price $97, or edit the `.guide-price` block to match).
+2. Open `assets/js/site.js`, paste your Payment Link URL into `var STRIPE_LINK`. Every "Get the program" button activates automatically (until then they read "Coming soon").
+3. In the Payment Link's settings, set **After payment to Redirect** to your site's `.../welcome.html`. That page confirms the purchase and walks the buyer into the app.
+4. Set `var APP_LINK` to your app's signup/login URL. The `welcome.html` "Create my account" button points there. If `APP_LINK` is blank, `welcome.html` shows a "watch your email, I'll send your invite" message instead, so you can invite buyers manually.
+5. The paid PDF is **not** hosted on the site. You deliver and assign it inside the app after they join, so it can't be downloaded without paying.
+
 
 ## Deploy to Vercel
 

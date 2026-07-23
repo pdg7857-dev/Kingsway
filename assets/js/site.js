@@ -3,9 +3,16 @@
    CONFIG: set these three, then you're live.
    ============================================================ */
 (function(){
-  var FORM_ENDPOINT = "";  // Google Apps Script /exec URL (applications + ebook leads)
-  var STRIPE_LINK   = "";  // Stripe Payment Link for the 12-Week Guide
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxlf25BQuFq52xrkm5UFuaTHOsckGeATZc0AR2D5Nr-eEugAo56X3apXGhm4GIzkUn1AA/exec";  // Google Apps Script /exec URL (applications + leads)
+  var STRIPE_LINK   = "https://buy.stripe.com/5kQ3cwcn06vwaSp9WRgw000";  // 12-Week program ($97)
   var MARK_VIDEO    = "https://youtube.com/shorts/ohGumv4unZo"; // Mark's testimonial
+  var APP_LINK      = "";  // your Vincere app URL (login/signup) for "join / track in the app" CTAs
+  // Coaching (Vincere Standard) Stripe Payment Links, by term:
+  var STRIPE_MONTHLY = "https://buy.stripe.com/7sY6oIfzc6vw0dLb0Vgw001";  // $450 / month
+  var STRIPE_6MONTH  = "https://buy.stripe.com/6oUfZibiW8DE1hP3ytgw002";  // $2,500 / 6 months
+  var STRIPE_YEARLY  = "https://buy.stripe.com/dRm7sM3Qu0781hP4Cxgw003";  // $4,200 / 12 months
+  window.VINCERE_FORM_ENDPOINT = FORM_ENDPOINT;  // exposed so standalone pages (welcome) can post to the sheet
+  window.VINCERE_APP_LINK = APP_LINK;
 
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -25,7 +32,7 @@
   /* ---------- inject nav ---------- */
   var links=[
     ['about','About'],['coaching','Coaching'],['programs','Programs'],
-    ['shop','Shop'],['articles','Articles'],['ebook','Free Ebook']
+    ['shop','Shop'],['articles','Articles'],['ebook','Ebook']
   ];
   var linksHTML=links.map(function(l){
     return '<a href="'+l[0]+'.html"'+(page===l[0]?' class="active"':'')+'>'+l[1]+'</a>';
@@ -59,7 +66,7 @@
         '<div class="wrap foot-grid">'+
           '<div class="foot-brand"><div class="fb chrome">Vincere</div><p class="tl2">To conquer.</p></div>'+
           '<div class="foot-col"><h4>Explore</h4><a href="about.html">About</a><a href="coaching.html">Coaching</a><a href="programs.html">Programs</a><a href="shop.html">Shop</a><a href="articles.html">Articles</a></div>'+
-          '<div class="foot-col"><h4>Start here</h4><a href="ebook.html">Free ebook</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
+          '<div class="foot-col"><h4>Start here</h4><a href="ebook.html">Free training guide</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
           '<div class="foot-col"><h4>Connect</h4><a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener">Instagram</a><a href="apply.html">Book a call</a></div>'+
         '</div>'+
         '<div class="wrap foot-btm"><span>&copy; '+yr+' Team Vincere. By application only.</span><span>Vincere. To conquer.</span></div>'+
@@ -69,21 +76,21 @@
   }
 
   /* ---------- inject ebook sticky tab + popup (every page) ---------- */
-  var fab = el('<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Ebook">Free Ebook <span class="fab-arw">&darr;</span></button>');
+  var fab = el('<button class="ebook-fab" id="ebookFab" data-hot aria-label="Get the free Vincere Training Guide">Free Guide <span class="fab-arw">&darr;</span></button>');
   document.body.appendChild(fab);
   var modal = el(
     '<div class="ebook-modal" id="ebookModal" aria-hidden="true"><div class="ebook-modal-inner">'+
       '<button class="ebook-modal-close" id="ebookModalClose" aria-label="Close">&times;</button>'+
       '<span class="eyebrow">Free download</span>'+
-      '<h3>The Vincere Daily Ebook.</h3>'+
-      '<p>Nutrition, supplements, and training styles in one guide. Building now. Get on the list and it lands in your inbox free.</p>'+
+      '<h3>The Vincere Training Guide.</h3>'+
+      '<p>My coaching philosophy in one guide: training, nutrition, cardio, and mindset. Drop your email and it is yours, free.</p>'+
       '<form id="ebookModalForm" novalidate>'+
         '<input type="text" name="name" placeholder="First name" required />'+
         '<input type="email" name="email" placeholder="Your best email" required />'+
-        '<button type="submit" class="btn btn-solid" data-hot>Get it first <span class="arw">&rarr;</span></button>'+
+        '<button type="submit" class="btn btn-solid" data-hot>Send it to me <span class="arw">&rarr;</span></button>'+
         '<span class="ebook-err"></span>'+
       '</form>'+
-      '<div class="modal-done" id="ebookModalDone"><p style="color:var(--silver);text-align:center;padding:8px 0 2px">You are on the list. It lands in your inbox the moment it drops.</p></div>'+
+      '<div class="modal-done" id="ebookModalDone"><p style="color:var(--silver);text-align:center;padding:8px 0 14px">It is yours. Tap below to download it.</p><a class="btn btn-solid" href="assets/the-vincere-training-guide.pdf" download style="width:100%;justify-content:center">Download the guide <span class="arw">&rarr;</span></a></div>'+
     '</div></div>'
   );
   document.body.appendChild(modal);
@@ -215,6 +222,8 @@
 
     var isEbookPage = (page==='ebook');
     var hasInlineForm = !!document.getElementById('ebookForm');
+    /* pages where the free-guide funnel is inappropriate (already converting / just paid) */
+    var funnelOff = (page==='welcome' || page==='apply');
 
     /* sticky tab: scroll to the on-page form if there is one, else open the popup */
     fab.addEventListener('click',function(){
@@ -224,8 +233,8 @@
       else{ modal.classList.add('show'); }
     });
 
-    /* sticky bar. mobile: always visible from load. desktop: slides in on scroll. skipped on the dedicated ebook page. */
-    if(!isEbookPage){
+    /* sticky bar. mobile: always visible from load. desktop: slides in on scroll. skipped on the ebook/checkout pages. */
+    if(!isEbookPage && !funnelOff){
       var mqMobile=window.matchMedia('(max-width:600px)');
       function syncFab(){ if(isLead()){ hideFab(); return; } if(mqMobile.matches || window.scrollY>window.innerHeight*0.6) showFab(); else hideFab(); }
       syncFab();
@@ -234,7 +243,7 @@
     }
 
     /* timed popup, once per session, not if already a lead, only on pages without an inline form */
-    if(!isLead() && !hasInlineForm){
+    if(!isLead() && !hasInlineForm && !funnelOff){
       var shown=false; try{ if(sessionStorage.getItem('vincerePopup')==='1') shown=true; }catch(e){}
       function openModal(){ if(shown||isLead())return; shown=true; try{sessionStorage.setItem('vincerePopup','1');}catch(e){} modal.classList.add('show'); }
       setTimeout(openModal, 24000);
