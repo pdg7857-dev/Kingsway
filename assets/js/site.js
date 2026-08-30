@@ -31,7 +31,7 @@
 
   /* ---------- inject nav ---------- */
   var links=[
-    ['about','About'],['coaching','Coaching'],['programs','Programs'],
+    ['coaching','Coaching'],['programs','Programs'],
     ['shop','Shop'],['articles','Articles'],['ebook','Ebook']
   ];
   var linksHTML=links.map(function(l){
@@ -65,7 +65,7 @@
       '<footer class="site-footer">'+
         '<div class="wrap foot-grid">'+
           '<div class="foot-brand"><div class="fb chrome">Vincere</div><p class="tl2">To conquer.</p></div>'+
-          '<div class="foot-col"><h4>Explore</h4><a href="about.html">About</a><a href="coaching.html">Coaching</a><a href="programs.html">Programs</a><a href="shop.html">Shop</a><a href="articles.html">Articles</a></div>'+
+          '<div class="foot-col"><h4>Explore</h4><a href="coaching.html">Coaching</a><a href="programs.html">Programs</a><a href="shop.html">Shop</a><a href="articles.html">Articles</a></div>'+
           '<div class="foot-col"><h4>Start here</h4><a href="ebook.html">Free training guide</a><a href="guide.html">The 12-week guide</a><a href="apply.html">Apply for coaching</a></div>'+
           '<div class="foot-col"><h4>Connect</h4><a href="https://instagram.com/phildaveg_" target="_blank" rel="noopener">Instagram</a><a href="apply.html">Book a call</a></div>'+
         '</div>'+
